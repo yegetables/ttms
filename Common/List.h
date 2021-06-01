@@ -13,7 +13,6 @@
 #include <assert.h>
 #include <stdlib.h>
 
-
 /*初始化链表list。链表为带头结点的双向循环链表*/
 #define List_Init(list, list_node_t)                               \
     {                                                              \
@@ -36,7 +35,7 @@
     }
 
 //销毁链表list，释放所有数据结点及头结点。
-//list为链表头指针，tmpPtr为链表结点临时指针变量
+// list为链表头指针，tmpPtr为链表结点临时指针变量
 #define List_Destroy(list, list_node_t)          \
     {                                            \
         assert(NULL != list);                    \
