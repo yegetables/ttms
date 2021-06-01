@@ -1,4 +1,4 @@
 .vscode 
 .git 
 .clang-format 
-build
+build/*

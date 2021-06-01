@@ -6,12 +6,13 @@ project (ttms)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-#add_subdirectory(${CMAKE_SOURCE_DIR})
 
+aux_source_directory(${CMAKE_SOURCE_DIR} MAIN_FUNC_SRCS)
 aux_source_directory(${CMAKE_SOURCE_DIR}/Common COMMON_FUNC_SRCS)
 aux_source_directory(${CMAKE_SOURCE_DIR}/Service SERVICE_FUNC_SRCS)
 aux_source_directory(${CMAKE_SOURCE_DIR}/Persistence PERSISTENCE_FUNC_SRCS)
 aux_source_directory(${CMAKE_SOURCE_DIR}/View VIEW_FUNC_SRCS)
+
 
 include_directories(${CMAKE_SOURCE_DIR}/Common)
 include_directories(${CMAKE_SOURCE_DIR}/Service)
@@ -24,6 +25,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 add_definitions(  -g -Wall -DDEBUG )
 
 # 指定生成目标 
-add_executable(ttms.exe ${VIEW_FUNC_SRCS}  ${PERSISTENCE_FUNC_SRCS}  ${COMMON_FUNC_SRCS} ${SERVICE_FUNC_SRCS})
+add_executable( ttms.exe  ${MAIN_FUNC_SRCS}  ${VIEW_FUNC_SRCS}   ${PERSISTENCE_FUNC_SRCS}  
+ ${COMMON_FUNC_SRCS}  ${SERVICE_FUNC_SRCS})
 
 # -fsanitize=address -fno-omit-frame-pointer
