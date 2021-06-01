@@ -19,13 +19,13 @@ include_directories(${CMAKE_SOURCE_DIR}/Service)
 include_directories(${CMAKE_SOURCE_DIR}/Persistence)
 include_directories(${CMAKE_SOURCE_DIR}/View)
 
-set(EXECUTABLE_OUTPUT_PATH  ${CMAKE_BINARY_DIR})
+set(EXECUTABLE_OUTPUT_PATH  ${CMAKE_SOURCE_DIR})
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 
 add_definitions(  -g -Wall -DDEBUG )
 
 # 指定生成目标 
-add_executable( ttms.exe  ${MAIN_FUNC_SRCS}  ${VIEW_FUNC_SRCS}   ${PERSISTENCE_FUNC_SRCS}  
+add_executable( ttms  ${MAIN_FUNC_SRCS}  ${VIEW_FUNC_SRCS}   ${PERSISTENCE_FUNC_SRCS}  
  ${COMMON_FUNC_SRCS}  ${SERVICE_FUNC_SRCS})
 
 # -fsanitize=address -fno-omit-frame-pointer
