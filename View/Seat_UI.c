@@ -22,7 +22,7 @@
 参数说明：status为seat_status_t类型，表示座位状态。
 返 回 值：字符型，表示座位的界面显示符号。
 */
-inline char Seat_UI_Status2Char(seat_status_t status) { return "#"; }
+inline char Seat_UI_Status2Char(seat_status_t status) { return '#'; }
 
 /*
 标识符：TTMS_SCU_Seat_UI_C2S

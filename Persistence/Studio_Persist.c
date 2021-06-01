@@ -15,8 +15,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "../Service/studio.h"
-#include "../common/list.h"
+#include "../Service/Studio.h"
+#include "../Common/List.h"
 #include "EntityKey_Persist.h"
 
 static const char STUDIO_DATA_FILE[] = "Studio.dat";  //演出厅文件名常量

@@ -210,8 +210,8 @@ int Studio_UI_Modify(int id)
     printf("Room ID:%d\n", rec.id);
     printf("Room Name[%s]:", rec.name);
     fflush(stdin);
-    gets(rec.name);
-
+    //    gets(rec.name);
+    fgets(rec.name, 30, stdin);
     List_Init(list, seat_node_t);
     seatcount = Seat_Srv_FetchByRoomID(list, rec.id);
     if (seatcount)

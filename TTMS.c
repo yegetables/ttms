@@ -8,16 +8,16 @@
  */
 
 #include <assert.h>
+#include <io.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "./View/Main_Menu.h"
-#include "io.h"
 
 //系统运行入口函数main
 int main(void)
 {
     setvbuf(stdout, NULL, _IONBF, 0);
-    Main_Mednu();
+    Main_Menu();
     return EXIT_SUCCESS;
 }

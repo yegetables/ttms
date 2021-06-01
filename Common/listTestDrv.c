@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../Common/list.h"
+#include "../Common/List.h"
 
 //¡¥±Ì≥ı ºªØ≤‚ ‘
 void ListTest_Init()
