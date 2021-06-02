@@ -3,44 +3,44 @@
  * File name: listTestDrv.h
  * Author:   XUPT
  * Version:  v.1
- * Date: 	2015Äê4ÔÂ22ÈÕ
+ * Date: 	2015å¹´4æœˆ22æ—¥
  */
 
 #ifndef COMMON_LISTTESTDRV_H_
 #define COMMON_LISTTESTDRV_H_
 
-//Á´±í½áµãÊı¾İ¶¨Òå £¬²âÊÔÓÃ
+//é“¾è¡¨ç»“ç‚¹æ•°æ®å®šä¹‰ ï¼Œæµ‹è¯•ç”¨
 typedef struct TestListRec
 {
     int value;
 } TestListRec_t;
 
-//Á´±í½áµã¶¨Òå £¬²âÊÔÓÃ
+//é“¾è¡¨ç»“ç‚¹å®šä¹‰ ï¼Œæµ‹è¯•ç”¨
 typedef struct TestListNode
 {
     TestListRec_t data;
     struct TestListNode *next, *prev;
 } TestList_Node_t, *TestList_t;
 
-//Á´±íÎª¿Õ£¬²âÊÔÓÃ
+//é“¾è¡¨ä¸ºç©ºï¼Œæµ‹è¯•ç”¨
 static void ListTest_Empty();
 
-//³õÊ¼»¯Á´±í£¬²âÊÔÓÃ
+//åˆå§‹åŒ–é“¾è¡¨ï¼Œæµ‹è¯•ç”¨
 static void ListTest_Init();
 
-//Á´±íÎ²²å·¨²åÈë½áµã,²âÊÔÓÃ
+//é“¾è¡¨å°¾æ’æ³•æ’å…¥ç»“ç‚¹,æµ‹è¯•ç”¨
 static void ListTest_AddTail();
 
-//Á´±íÍ·²å·¨²åÈë½áµã,²âÊÔÓÃ
+//é“¾è¡¨å¤´æ’æ³•æ’å…¥ç»“ç‚¹,æµ‹è¯•ç”¨
 static void ListTest_AddHead();
 
-//ÊÍ·ÅÁ´±í,²âÊÔÓÃ
+//é‡Šæ”¾é“¾è¡¨,æµ‹è¯•ç”¨
 static void ListTest_Free();
 
-//Ïú»ÙÁ´±í£¬²âÊÔÓÃ
+//é”€æ¯é“¾è¡¨ï¼Œæµ‹è¯•ç”¨
 static void ListTest_Destroy();
 
-//Á´±í²âÊÔÓÃÀı
+//é“¾è¡¨æµ‹è¯•ç”¨ä¾‹
 void List_TestDriver_Entry();
 
 #endif /* COMMON_LISTTESTDRV_H_ */

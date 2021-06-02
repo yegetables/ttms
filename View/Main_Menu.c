@@ -1,7 +1,7 @@
 /*
  * Copyright(C), 2007-2008, XUPT Univ.
  * File name: Main_Menu.c
- * Description : TTMS ϵͳ���˵�
+ * Description : TTMS 系统主菜单
  * Author:   XUPT
  * Version:  v.1
  * Da
@@ -13,7 +13,7 @@
 
 #include "../View/Studio_UI.h"
 
-//ϵͳ���˵�
+//系统主菜单
 void Main_Menu(void)
 {
     char choice;

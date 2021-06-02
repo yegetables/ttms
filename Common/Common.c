@@ -1,10 +1,10 @@
 /*
  * Copyright(C), 2007-2008, XUPT Univ.
  * File name: common.c
- * Description : Í¨ÓÃº¯Êı¶¨Òå
+ * Description : é€šç”¨å‡½æ•°å®šä¹‰
  * Author:   XUPT
  * Version:  v.1
- * Date: 	2015Äê4ÔÂ22ÈÕ
+ * Date: 	2015å¹´4æœˆ22æ—¥
  */
 
 #include "Common.h"
@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <time.h>
 
-//½«×Ö·û´®str¾ÍµØ×ª»»Îª´óĞ´×Ö·û´®£¬²¢·µ»Ø×Ö·û´®Í·Ö¸Õë
+//å°†å­—ç¬¦ä¸²strå°±åœ°è½¬æ¢ä¸ºå¤§å†™å­—ç¬¦ä¸²ï¼Œå¹¶è¿”å›å­—ç¬¦ä¸²å¤´æŒ‡é’ˆ
 char *Str2Upper(char *str)
 {
     if (NULL == str)
@@ -30,7 +30,7 @@ char *Str2Upper(char *str)
     }
 }
 
-//½«×Ö·û´®str¾ÍµØ×ª»»ÎªĞ¡Ğ´×Ö·û´®£¬²¢·µ»Ø×Ö·û´®Í·Ö¸Õë
+//å°†å­—ç¬¦ä¸²strå°±åœ°è½¬æ¢ä¸ºå°å†™å­—ç¬¦ä¸²ï¼Œå¹¶è¿”å›å­—ç¬¦ä¸²å¤´æŒ‡é’ˆ
 char *Str2Lower(char *str)
 {
     if (NULL == str)
@@ -47,7 +47,7 @@ char *Str2Lower(char *str)
     }
 }
 
-//±È½ÏÈÕÆÚdt1, dt2µÄ´óĞ¡¡£ÏàµÈ·µ»Ø0£¬dt1<dt2·µ»Ø-1£¬·ñÔò1
+//æ¯”è¾ƒæ—¥æœŸdt1, dt2çš„å¤§å°ã€‚ç›¸ç­‰è¿”å›0ï¼Œdt1<dt2è¿”å›-1ï¼Œå¦åˆ™1
 int DateCmp(user_date_t dt1, user_date_t dt2)
 {
     if (dt1.year < dt2.year)
@@ -64,12 +64,12 @@ int DateCmp(user_date_t dt1, user_date_t dt2)
         return 1;
 }
 
-//»ñÈ¡ÏµÍ³µ±Ç°ÈÕÆÚ
+//è·å–ç³»ç»Ÿå½“å‰æ—¥æœŸ
 user_date_t DateNow()
 {
     user_date_t curDate;
-    time_t now;          //ÊµÀı»¯time_t½á¹¹
-    struct tm *timeNow;  //ÊµÀı»¯tm½á¹¹Ö¸Õë
+    time_t now;          //å®ä¾‹åŒ–time_tç»“æ„
+    struct tm *timeNow;  //å®ä¾‹åŒ–tmç»“æ„æŒ‡é’ˆ
     time(&now);
     timeNow       = localtime(&now);
     curDate.year  = timeNow->tm_year + 1900;
@@ -79,12 +79,12 @@ user_date_t DateNow()
     return curDate;
 }
 
-//»ñÈ¡ÏµÍ³µ±Ç°Ê±¼ä
+//è·å–ç³»ç»Ÿå½“å‰æ—¶é—´
 user_time_t TimeNow()
 {
     user_time_t curTime;
-    time_t now;          //ÊµÀı»¯time_t½á¹¹
-    struct tm *timeNow;  //ÊµÀı»¯tm½á¹¹Ö¸Õë
+    time_t now;          //å®ä¾‹åŒ–time_tç»“æ„
+    struct tm *timeNow;  //å®ä¾‹åŒ–tmç»“æ„æŒ‡é’ˆ
     time(&now);
     timeNow        = localtime(&now);
     curTime.hour   = timeNow->tm_hour;

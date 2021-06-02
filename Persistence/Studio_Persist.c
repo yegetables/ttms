@@ -1,11 +1,11 @@
 /*
  * Copyright(C), 2007-2008, XUPT Univ.
- * ÓÃÀý±àºÅ£ºTTMS_UC_01
+ * ç”¨ä¾‹ç¼–å·ï¼šTTMS_UC_01
  * File name: Studio_Persist.c
- * Description : ÑÝ³öÌüÓÃÀý³Ö¾Ã»¯²ã
+ * Description : æ¼”å‡ºåŽ…ç”¨ä¾‹æŒä¹…åŒ–å±‚
  * Author:   XUPT
  * Version:  v.1
- * Date: 	2015Äê4ÔÂ22ÈÕ
+ * Date: 	2015å¹´4æœˆ22æ—¥
  */
 
 #include "Studio_Persist.h"
@@ -19,30 +19,30 @@
 #include "../Common/List.h"
 #include "EntityKey_Persist.h"
 
-static const char STUDIO_DATA_FILE[] = "Studio.dat";  //ÑÝ³öÌüÎÄ¼þÃû³£Á¿
+static const char STUDIO_DATA_FILE[] = "Studio.dat";  //æ¼”å‡ºåŽ…æ–‡ä»¶åå¸¸é‡
 static const char STUDIO_DATA_TEMP_FILE[] =
-    "StudioTmp.dat";  //ÑÝ³öÌüÁÙÊ±ÎÄ¼þÃû³£Á¿
-static const char STUDIO_KEY_NAME[] = "Studio";  //ÑÝ³öÌüÃû³£Á¿
+    "StudioTmp.dat";  //æ¼”å‡ºåŽ…ä¸´æ—¶æ–‡ä»¶åå¸¸é‡
+static const char STUDIO_KEY_NAME[] = "Studio";  //æ¼”å‡ºåŽ…åå¸¸é‡
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Studio_Perst_Insert
-º¯Êý¹¦ÄÜ£ºÓÃÓÚÏòÎÄ¼þÖÐÌí¼ÓÒ»¸öÐÂÑÝ³öÌüÊý¾Ý¡£
-²ÎÊýËµÃ÷£ºdataÎªstudio_tÀàÐÍÖ¸Õë£¬ÊÇÐèÒªÌí¼ÓµÄÑÝ³öÌüÊý¾Ý½áµã¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦Ìí¼ÓÁËÑÝ³öÌüµÄ±êÖ¾¡£
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Perst_Insert
+å‡½æ•°åŠŸèƒ½ï¼šç”¨äºŽå‘æ–‡ä»¶ä¸­æ·»åŠ ä¸€ä¸ªæ–°æ¼”å‡ºåŽ…æ•°æ®ã€‚
+å‚æ•°è¯´æ˜Žï¼šdataä¸ºstudio_tç±»åž‹æŒ‡é’ˆï¼Œæ˜¯éœ€è¦æ·»åŠ çš„æ¼”å‡ºåŽ…æ•°æ®ç»“ç‚¹ã€‚
+è¿” å›ž å€¼ï¼šæ•´åž‹ï¼Œè¡¨ç¤ºæ˜¯å¦æˆåŠŸæ·»åŠ äº†æ¼”å‡ºåŽ…çš„æ ‡å¿—ã€‚
 */
 int Studio_Perst_Insert(studio_t *data)
 {
     assert(NULL != data);
 
-    ////ÒÔÏÂÊÇÐÂÉè¼Æ·½°¸·½°¸Ìí¼ÓµÄ´úÂë
-    ////ÒÔÏÂÊÇÐÂÉè¼Æ·½°¸·½°¸Ìí¼ÓµÄ´úÂë
+    ////ä»¥ä¸‹æ˜¯æ–°è®¾è®¡æ–¹æ¡ˆæ–¹æ¡ˆæ·»åŠ çš„ä»£ç 
+    ////ä»¥ä¸‹æ˜¯æ–°è®¾è®¡æ–¹æ¡ˆæ–¹æ¡ˆæ·»åŠ çš„ä»£ç 
     long key =
-        EntKey_Perst_GetNewKeys(STUDIO_KEY_NAME, 1);  //ÎªÐÂÑÝ³öÌü·ÖÅä»ñÈ¡
-    if (key <= 0)  //Ö÷¼ü·ÖÅäÊ§°Ü£¬Ö±½Ó·µ»Ø
+        EntKey_Perst_GetNewKeys(STUDIO_KEY_NAME, 1);  //ä¸ºæ–°æ¼”å‡ºåŽ…åˆ†é…èŽ·å–
+    if (key <= 0)  //ä¸»é”®åˆ†é…å¤±è´¥ï¼Œç›´æŽ¥è¿”å›ž
         return 0;
-    data->id = key;  //¸³¸øÐÂ¶ÔÏó´ø»Øµ½UI²ã
-    ////ÒÔÉÏÊÇÐÂÉè¼Æ·½°¸·½°¸Ìí¼ÓµÄ´úÂë
-    ////ÒÔÉÏÊÇÐÂÉè¼Æ·½°¸·½°¸Ìí¼ÓµÄ´úÂë
+    data->id = key;  //èµ‹ç»™æ–°å¯¹è±¡å¸¦å›žåˆ°UIå±‚
+    ////ä»¥ä¸Šæ˜¯æ–°è®¾è®¡æ–¹æ¡ˆæ–¹æ¡ˆæ·»åŠ çš„ä»£ç 
+    ////ä»¥ä¸Šæ˜¯æ–°è®¾è®¡æ–¹æ¡ˆæ–¹æ¡ˆæ·»åŠ çš„ä»£ç 
 
     FILE *fp = fopen(STUDIO_DATA_FILE, "ab");
     int rtn  = 0;
@@ -59,10 +59,10 @@ int Studio_Perst_Insert(studio_t *data)
 }
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Studio_Perst_Update
-º¯Êý¹¦ÄÜ£ºÓÃÓÚÔÚÎÄ¼þÖÐ¸üÐÂÒ»¸öÑÝ³öÌüÊý¾Ý¡£
-²ÎÊýËµÃ÷£ºdataÎªstudio_tÀàÐÍÖ¸Õë£¬ÊÇÐèÒª¸üÐÂµÄÑÝ³öÌüÊý¾Ý½áµã¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦¸üÐÂÁËÑÝ³öÌüµÄ±êÖ¾¡£
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Perst_Update
+å‡½æ•°åŠŸèƒ½ï¼šç”¨äºŽåœ¨æ–‡ä»¶ä¸­æ›´æ–°ä¸€ä¸ªæ¼”å‡ºåŽ…æ•°æ®ã€‚
+å‚æ•°è¯´æ˜Žï¼šdataä¸ºstudio_tç±»åž‹æŒ‡é’ˆï¼Œæ˜¯éœ€è¦æ›´æ–°çš„æ¼”å‡ºåŽ…æ•°æ®ç»“ç‚¹ã€‚
+è¿” å›ž å€¼ï¼šæ•´åž‹ï¼Œè¡¨ç¤ºæ˜¯å¦æˆåŠŸæ›´æ–°äº†æ¼”å‡ºåŽ…çš„æ ‡å¿—ã€‚
 */
 int Studio_Perst_Update(const studio_t *data)
 {
@@ -97,16 +97,16 @@ int Studio_Perst_Update(const studio_t *data)
 }
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Studio_Perst_DeleteByID
-º¯Êý¹¦ÄÜ£ºÓÃÓÚ´ÓÎÄ¼þÖÐÉ¾³ýÒ»¸öÑÝ³öÌüµÄÊý¾Ý¡£
-²ÎÊýËµÃ÷£ºµÚÒ»¸ö²ÎÊýIDÎªÕûÐÍ£¬±íÊ¾ÐèÒªÔØÈëÊý¾ÝµÄÑÝ³öÌüID£»µÚ¶þ¸ö²ÎÊýbufÎªstudio_tÖ¸Õë£¬Ö¸ÏòÔØÈëÑÝ³öÌüÊý¾ÝµÄÖ¸Õë¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦É¾³ýÁËÑÝ³öÌüµÄ±êÖ¾¡£
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Perst_DeleteByID
+å‡½æ•°åŠŸèƒ½ï¼šç”¨äºŽä»Žæ–‡ä»¶ä¸­åˆ é™¤ä¸€ä¸ªæ¼”å‡ºåŽ…çš„æ•°æ®ã€‚
+å‚æ•°è¯´æ˜Žï¼šç¬¬ä¸€ä¸ªå‚æ•°IDä¸ºæ•´åž‹ï¼Œè¡¨ç¤ºéœ€è¦è½½å…¥æ•°æ®çš„æ¼”å‡ºåŽ…IDï¼›ç¬¬äºŒä¸ªå‚æ•°bufä¸ºstudio_tæŒ‡é’ˆï¼ŒæŒ‡å‘è½½å…¥æ¼”å‡ºåŽ…æ•°æ®çš„æŒ‡é’ˆã€‚
+è¿” å›ž å€¼ï¼šæ•´åž‹ï¼Œè¡¨ç¤ºæ˜¯å¦æˆåŠŸåˆ é™¤äº†æ¼”å‡ºåŽ…çš„æ ‡å¿—ã€‚
 */
 int Studio_Perst_DeleteByID(int ID)
 {
-    //½«Ô­Ê¼ÎÄ¼þÖØÃüÃû£¬È»ºó¶ÁÈ¡Êý¾ÝÖØÐÂÐ´Èëµ½Êý¾ÝÎÄ¼þÖÐ£¬²¢½«ÒªÉ¾³ýµÄÊµÌå¹ýÂËµô¡£
+    //å°†åŽŸå§‹æ–‡ä»¶é‡å‘½åï¼Œç„¶åŽè¯»å–æ•°æ®é‡æ–°å†™å…¥åˆ°æ•°æ®æ–‡ä»¶ä¸­ï¼Œå¹¶å°†è¦åˆ é™¤çš„å®žä½“è¿‡æ»¤æŽ‰ã€‚
 
-    //¶ÔÔ­Ê¼Êý¾ÝÎÄ¼þÖØÃüÃû
+    //å¯¹åŽŸå§‹æ•°æ®æ–‡ä»¶é‡å‘½å
     if (rename(STUDIO_DATA_FILE, STUDIO_DATA_TEMP_FILE) < 0)
     {
         printf("Cannot open file %s!\n", STUDIO_DATA_FILE);
@@ -147,16 +147,16 @@ int Studio_Perst_DeleteByID(int ID)
     fclose(fpTarg);
     fclose(fpSour);
 
-    //É¾³ýÁÙÊ±ÎÄ¼þ
+    //åˆ é™¤ä¸´æ—¶æ–‡ä»¶
     remove(STUDIO_DATA_TEMP_FILE);
     return found;
 }
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Studio_Perst_SelectByID
-º¯Êý¹¦ÄÜ£ºÓÃÓÚ´ÓÎÄ¼þÖÐÔØÈëÒ»¸öÑÝ³öÌüµÄÊý¾Ý¡£
-²ÎÊýËµÃ÷£ºµÚÒ»¸ö²ÎÊýIDÎªÕûÐÍ£¬±íÊ¾ÐèÒªÔØÈëÊý¾ÝµÄÑÝ³öÌüID£»µÚ¶þ¸ö²ÎÊýbufÎªstudio_tÖ¸Õë£¬Ö¸ÏòÔØÈëÑÝ³öÌüÊý¾ÝµÄÖ¸Õë¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾ÊÇ·ñ³É¹¦ÔØÈëÁËÑÝ³öÌüµÄ±êÖ¾¡£
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Perst_SelectByID
+å‡½æ•°åŠŸèƒ½ï¼šç”¨äºŽä»Žæ–‡ä»¶ä¸­è½½å…¥ä¸€ä¸ªæ¼”å‡ºåŽ…çš„æ•°æ®ã€‚
+å‚æ•°è¯´æ˜Žï¼šç¬¬ä¸€ä¸ªå‚æ•°IDä¸ºæ•´åž‹ï¼Œè¡¨ç¤ºéœ€è¦è½½å…¥æ•°æ®çš„æ¼”å‡ºåŽ…IDï¼›ç¬¬äºŒä¸ªå‚æ•°bufä¸ºstudio_tæŒ‡é’ˆï¼ŒæŒ‡å‘è½½å…¥æ¼”å‡ºåŽ…æ•°æ®çš„æŒ‡é’ˆã€‚
+è¿” å›ž å€¼ï¼šæ•´åž‹ï¼Œè¡¨ç¤ºæ˜¯å¦æˆåŠŸè½½å…¥äº†æ¼”å‡ºåŽ…çš„æ ‡å¿—ã€‚
 */
 int Studio_Perst_SelectByID(int ID, studio_t *buf)
 {
@@ -189,10 +189,10 @@ int Studio_Perst_SelectByID(int ID, studio_t *buf)
 }
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Studio_Perst_SelAll
-º¯Êý¹¦ÄÜ£ºÓÃÓÚ´ÓÎÄ¼þÖÐÔØÈëËùÓÐÑÝ³öÌüÊý¾Ý¡£
-²ÎÊýËµÃ÷£ºlistÊÇstudio_list_tÀàÐÍÖ¸Õë£¬Ö¸ÏòÑÝ³öÌüÁ´±íµÄÍ·Ö¸Õë¡£
-·µ »Ø Öµ£ºÕûÐÍ£¬±íÊ¾³É¹¦ÔØÈëÁËÑÝ³öÌüµÄ¸öÊý¡£
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Perst_SelAll
+å‡½æ•°åŠŸèƒ½ï¼šç”¨äºŽä»Žæ–‡ä»¶ä¸­è½½å…¥æ‰€æœ‰æ¼”å‡ºåŽ…æ•°æ®ã€‚
+å‚æ•°è¯´æ˜Žï¼šlistæ˜¯studio_list_tç±»åž‹æŒ‡é’ˆï¼ŒæŒ‡å‘æ¼”å‡ºåŽ…é“¾è¡¨çš„å¤´æŒ‡é’ˆã€‚
+è¿” å›ž å€¼ï¼šæ•´åž‹ï¼Œè¡¨ç¤ºæˆåŠŸè½½å…¥äº†æ¼”å‡ºåŽ…çš„ä¸ªæ•°ã€‚
 */
 int Studio_Perst_SelectAll(studio_list_t list)
 {
@@ -206,7 +206,7 @@ int Studio_Perst_SelectAll(studio_list_t list)
 
     FILE *fp = fopen(STUDIO_DATA_FILE, "rb");
     if (NULL == fp)
-    {  //ÎÄ¼þ²»´æÔÚ
+    {  //æ–‡ä»¶ä¸å­˜åœ¨
         return 0;
     }
 

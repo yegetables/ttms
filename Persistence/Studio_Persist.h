@@ -1,11 +1,11 @@
 /*
  * Copyright(C), 2007-2008, XUPT Univ.
- * ÓÃÀı±àºÅ£ºTTMS_UC_01
+ * ç”¨ä¾‹ç¼–å·ï¼šTTMS_UC_01
  * File name: Studio_Persist.h
- * Description : Ñİ³öÌüÓÃÀı³Ö¾Ã»¯²ãÍ·ÎÄ¼ş
+ * Description : æ¼”å‡ºå…ç”¨ä¾‹æŒä¹…åŒ–å±‚å¤´æ–‡ä»¶
  * Author:   XUPT
  * Version:  v.1
- * Date: 	2015Äê4ÔÂ22ÈÕ
+ * Date: 	2015å¹´4æœˆ22æ—¥
  */
 
 #ifndef STUDIO_PERSIST_H_
@@ -13,24 +13,24 @@
 
 #include "../Service/Studio.h"
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_Perst_Insert
-//¹¦ÄÜ£ºÏòÎÄ¼şÖĞ´æ´¢ĞÂÑİ³öÌü
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Perst_Insert
+//åŠŸèƒ½ï¼šå‘æ–‡ä»¶ä¸­å­˜å‚¨æ–°æ¼”å‡ºå…
 int Studio_Perst_Insert(studio_t *data);
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_ Perst_Update
-//¹¦ÄÜ£ºÔÚÎÄ¼şÖĞ¸üĞÂÑİ³öÌü
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_ Perst_Update
+//åŠŸèƒ½ï¼šåœ¨æ–‡ä»¶ä¸­æ›´æ–°æ¼”å‡ºå…
 int Studio_Perst_Update(const studio_t *data);
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_Perst_DeleteByID
-//¹¦ÄÜ£ºÔÚÎÄ¼şÖĞÉ¾³ıÑİ³öÌü
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Perst_DeleteByID
+//åŠŸèƒ½ï¼šåœ¨æ–‡ä»¶ä¸­åˆ é™¤æ¼”å‡ºå…
 int Studio_Perst_DeleteByID(int ID);
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_Perst_SelectByID
-//¹¦ÄÜ£º¸ù¾İID´ÓÎÄ¼şÖĞÔØÈëÑİ³öÌü
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Perst_SelectByID
+//åŠŸèƒ½ï¼šæ ¹æ®IDä»æ–‡ä»¶ä¸­è½½å…¥æ¼”å‡ºå…
 int Studio_Perst_SelectByID(int ID, studio_t *buf);
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_Perst_SelAll
-//¹¦ÄÜ£º´ÓÎÄ¼şÖĞÔØÈëÈ«²¿Ñİ³öÌü
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Perst_SelAll
+//åŠŸèƒ½ï¼šä»æ–‡ä»¶ä¸­è½½å…¥å…¨éƒ¨æ¼”å‡ºå…
 int Studio_Perst_SelectAll(studio_list_t list);
 
 #endif /* STUDIO_PERSIST_H_ */

@@ -1,36 +1,36 @@
 /*
  * Copyright(C), 2007-2008, XUPT Univ.
- * ÓÃÀı±àºÅ£ºTTMS_UC_02
+ * ç”¨ä¾‹ç¼–å·ï¼šTTMS_UC_02
  * File name: Seat.h
- * Description : ÉèÖÃ×ùÎ»ÓÃÀıÒµÎñÂß¼­²ãÍ·ÎÄ¼ş
+ * Description : è®¾ç½®åº§ä½ç”¨ä¾‹ä¸šåŠ¡é€»è¾‘å±‚å¤´æ–‡ä»¶
  * Author:   XUPT
  * Version:  v.1
- * Date: 	2015Äê4ÔÂ22ÈÕ
+ * Date: 	2015å¹´4æœˆ22æ—¥
  */
 
 #ifndef SEAT_H_
 #define SEAT_H_
 
-//×ùÎ»×´Ì¬
+//åº§ä½çŠ¶æ€
 typedef enum
 {
-    SEAT_NONE   = 0,  //¿ÕÎ»
-    SEAT_GOOD   = 1,  //ÓĞ×ùÎ»
-    SEAT_BROKEN = 9   //Ëğ»µµÄ×ùÎ»
+    SEAT_NONE   = 0,  //ç©ºä½
+    SEAT_GOOD   = 1,  //æœ‰åº§ä½
+    SEAT_BROKEN = 9   //æŸåçš„åº§ä½
 } seat_status_t;
 
-//×ùÎ»Êı¾İ½á¹¹
+//åº§ä½æ•°æ®ç»“æ„
 typedef struct
 {
-    int id;      //×ùÎ»id
-    int roomID;  //ËùÔÚÑİ³öÌüid
-    int row;     //×ùÎ»ĞĞºÅ
-    int column;  //×ùÎ»ÁĞºÅ
+    int id;      //åº§ä½id
+    int roomID;  //æ‰€åœ¨æ¼”å‡ºå…id
+    int row;     //åº§ä½è¡Œå·
+    int column;  //åº§ä½åˆ—å·
     seat_status_t
-        status;  //×ùÎ»ÔÚ¸ÃĞĞµÄ×´Ì¬£¬0±íÊ¾Ã»ÓĞ×ùÎ»£¬1±íÊ¾ÓĞ×ùÎ»¡£À©Õ¹2¿É±íÊ¾×ùÎ»»µÁË
+        status;  //åº§ä½åœ¨è¯¥è¡Œçš„çŠ¶æ€ï¼Œ0è¡¨ç¤ºæ²¡æœ‰åº§ä½ï¼Œ1è¡¨ç¤ºæœ‰åº§ä½ã€‚æ‰©å±•2å¯è¡¨ç¤ºåº§ä½åäº†
 } seat_t;
 
-//Ë«ÏòÁ´±í
+//åŒå‘é“¾è¡¨
 typedef struct seat_node
 {
     seat_t data;
@@ -38,86 +38,86 @@ typedef struct seat_node
 } seat_node_t, *seat_list_t;
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_Srv_RoomInit
-¹¦ÄÜ£º¸ù¾İĞĞ¡¢ÁĞÊı³õÊ¼»¯Ñİ³öÌüµÄ×ùÎ»
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Srv_RoomInit
+åŠŸèƒ½ï¼šæ ¹æ®è¡Œã€åˆ—æ•°åˆå§‹åŒ–æ¼”å‡ºå…çš„åº§ä½
 */
 int Seat_Srv_RoomInit(seat_list_t list, int roomID, int rowsCount,
                       int colsCount);
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_Srv_SortSeatList
-¹¦ÄÜ£º¶Ô×ùÎ»Á´±ílist½øĞĞÅÅĞò
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Srv_SortSeatList
+åŠŸèƒ½ï¼šå¯¹åº§ä½é“¾è¡¨listè¿›è¡Œæ’åº
 */
 void Seat_Srv_SortSeatList(seat_list_t list);
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_Srv_AddSortedList
-¹¦ÄÜ£º½«½áµãnode¼ÓÈëµ½ÒÑÅÅĞòÁ´±ílistÖĞ*/
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Srv_AddSortedList
+åŠŸèƒ½ï¼šå°†ç»“ç‚¹nodeåŠ å…¥åˆ°å·²æ’åºé“¾è¡¨listä¸­*/
 void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node);
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_Srv_Add
-¹¦ÄÜ£ºµ¥¸öÌí¼Ó×ùÎ»
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Srv_Add
+åŠŸèƒ½ï¼šå•ä¸ªæ·»åŠ åº§ä½
 */
 int Seat_Srv_Add(const seat_t *data);
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_Srv_AddBatch
-¹¦ÄÜ£ºÅúÁ¿Ìí¼Ó×ùÎ»
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Srv_AddBatch
+åŠŸèƒ½ï¼šæ‰¹é‡æ·»åŠ åº§ä½
 */
 int Seat_Srv_AddBatch(seat_list_t list);
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_ Srv_Mod
-¹¦ÄÜ£ºĞŞ¸Ä×ùÎ»
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_ Srv_Mod
+åŠŸèƒ½ï¼šä¿®æ”¹åº§ä½
 */
 int Seat_Srv_Modify(const seat_t *data);
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_Srv_DelByID
-¹¦ÄÜ£ºÉ¾³ı×ùÎ»
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Srv_DelByID
+åŠŸèƒ½ï¼šåˆ é™¤åº§ä½
 */
 int Seat_Srv_DeleteByID(int ID);
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_Srv_DeleteAllByRoomID
-¹¦ÄÜ£ºÅúÁ¿É¾³ı×ùÎ»
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Srv_DeleteAllByRoomID
+åŠŸèƒ½ï¼šæ‰¹é‡åˆ é™¤åº§ä½
 */
 int Seat_Srv_DeleteAllByRoomID(int roomID);
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_Srv_ FetchValidByRoomID
-¹¦ÄÜ£º¸ù¾İ·ÅÓ³ÌüIDÌáÈ¡ÓĞĞ§µÄ×ùÎ»
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Srv_ FetchValidByRoomID
+åŠŸèƒ½ï¼šæ ¹æ®æ”¾æ˜ å…IDæå–æœ‰æ•ˆçš„åº§ä½
 */
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID);
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_Srv_FetchByID
-¹¦ÄÜ£º¸ù¾İID»ñÈ¡×ùÎ»·şÎñ
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Srv_FetchByID
+åŠŸèƒ½ï¼šæ ¹æ®IDè·å–åº§ä½æœåŠ¡
 */
 int Seat_Srv_FetchByID(int ID, seat_t *buf);
 
 /*
-±êÊ¶·û£º±êÊ¶·û£ºTTMS_SCU_Seat_Srv_FetchByRoomID
-¹¦ÄÜ£º¸ù¾İÑİ³öÌüID»ñÈ¡ËùÓĞ×ùÎ»·şÎñ
+æ ‡è¯†ç¬¦ï¼šæ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Srv_FetchByRoomID
+åŠŸèƒ½ï¼šæ ¹æ®æ¼”å‡ºå…IDè·å–æ‰€æœ‰åº§ä½æœåŠ¡
 */
 int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID);
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_Srv_FetchByRoomID
-¹¦ÄÜ£º¸ù¾İ·ÅÓ³ÌüIDÌáÈ¡ÓĞĞ§µÄ×ùÎ»
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Srv_FetchByRoomID
+åŠŸèƒ½ï¼šæ ¹æ®æ”¾æ˜ å…IDæå–æœ‰æ•ˆçš„åº§ä½
 */
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID);
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Seat_Srv_FindByRC
-¹¦ÄÜ£º¸ù¾İĞĞÁĞºÅ»ñÈ¡×ùÎ»·şÎñ
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Srv_FindByRC
+åŠŸèƒ½ï¼šæ ¹æ®è¡Œåˆ—å·è·å–åº§ä½æœåŠ¡
 */
 seat_node_t *Seat_Srv_FindByRowCol(seat_list_t list, int row, int column);
 
 /*
-±êÊ¶·û£ºTTMS_SCU_Studio_Srv_FindByID
-¹¦ÄÜ£º¸ù¾İIDÔÚÁ´±íÖĞ»ñÈ¡×ùÎ»·şÎñ*/
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Srv_FindByID
+åŠŸèƒ½ï¼šæ ¹æ®IDåœ¨é“¾è¡¨ä¸­è·å–åº§ä½æœåŠ¡*/
 seat_node_t *Seat_Srv_FindByID(seat_list_t list, int seatID);
 
 #endif  // SEAT_H_

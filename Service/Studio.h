@@ -1,56 +1,56 @@
 /*
  * Copyright(C), 2007-2008, XUPT Univ.
- * ÓÃÀı±àºÅ£ºTTMS_UC_01
+ * ç”¨ä¾‹ç¼–å·ï¼šTTMS_UC_01
  * File name: Studio_c
- * Description : Ñİ³öÌüÓÃÀıÒµÎñÂß¼­²ãÍ·ÎÄ¼ş
+ * Description : æ¼”å‡ºå…ç”¨ä¾‹ä¸šåŠ¡é€»è¾‘å±‚å¤´æ–‡ä»¶
  * Author:   XUPT
  * Version:  v.1
- * Date: 	2015Äê4ÔÂ22ÈÕ
+ * Date: 	2015å¹´4æœˆ22æ—¥
  */
 
 #ifndef STUDIO_H_
 #define STUDIO_H_
 
-//Ñİ³öÌüÊı¾İ½á¹¹
+//æ¼”å‡ºå…æ•°æ®ç»“æ„
 typedef struct
 {
-    int id;         //·ÅÓ³ÌüID
-    char name[30];  //·ÅÓ³ÌüÃû³Æ
-    int rowsCount;  //×ùÎ»ĞĞÊı
-    int colsCount;  //×ùÎ»ÁĞÊı
+    int id;         //æ”¾æ˜ å…ID
+    char name[30];  //æ”¾æ˜ å…åç§°
+    int rowsCount;  //åº§ä½è¡Œæ•°
+    int colsCount;  //åº§ä½åˆ—æ•°
     int seatsCount;
 } studio_t;
 
-//Ë«ÏòÁ´±í
+//åŒå‘é“¾è¡¨
 typedef struct studio_node
 {
-    studio_t data;             //ÊµÌåÊı¾İ
-    struct studio_node *next;  //ºóÏòÖ¸Õë
-    struct studio_node *prev;  //Ç°ÏòÖ¸Õë
+    studio_t data;             //å®ä½“æ•°æ®
+    struct studio_node *next;  //åå‘æŒ‡é’ˆ
+    struct studio_node *prev;  //å‰å‘æŒ‡é’ˆ
 } studio_node_t, *studio_list_t;
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_Srv_Add
-//¹¦ÄÜ£ºÌí¼ÓĞÂÑİ³öÌü·şÎñ
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Srv_Add
+//åŠŸèƒ½ï¼šæ·»åŠ æ–°æ¼”å‡ºå…æœåŠ¡
 int Studio_Srv_Add(studio_t *data);
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_ Srv _Mod
-//¹¦ÄÜ£ºĞŞ¸ÄÑİ³öÌü·şÎñ
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_ Srv _Mod
+//åŠŸèƒ½ï¼šä¿®æ”¹æ¼”å‡ºå…æœåŠ¡
 int Studio_Srv_Modify(const studio_t *data);
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_Srv_DelByID
-//¹¦ÄÜ£º¸ù¾İIDÉ¾³ıÑİ³öÌü·şÎñ
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Srv_DelByID
+//åŠŸèƒ½ï¼šæ ¹æ®IDåˆ é™¤æ¼”å‡ºå…æœåŠ¡
 int Studio_Srv_DeleteByID(int ID);
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_Srv_FetchByID
-//¹¦ÄÜ£º¸ù¾İID»ñÈ¡ÏàÓ¦Ñİ³öÌü
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Srv_FetchByID
+//åŠŸèƒ½ï¼šæ ¹æ®IDè·å–ç›¸åº”æ¼”å‡ºå…
 int Studio_Srv_FetchByID(int ID, studio_t *buf);
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_Srv_FetchAll
-//¹¦ÄÜ£º»ñÈ¡È«²¿Ñİ³öÌü·şÎñ
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Srv_FetchAll
+//åŠŸèƒ½ï¼šè·å–å…¨éƒ¨æ¼”å‡ºå…æœåŠ¡
 int Studio_Srv_FetchAll(studio_list_t list);
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_Srv_FindByID
-//¹¦ÄÜ£º¸ù¾İIDÔÚÁ´±íÖĞ»ñÈ¡ÏàÓ¦Ñİ³öÌü½áµã
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Srv_FindByID
+//åŠŸèƒ½ï¼šæ ¹æ®IDåœ¨é“¾è¡¨ä¸­è·å–ç›¸åº”æ¼”å‡ºå…ç»“ç‚¹
 studio_node_t *Studio_Srv_FindByID(studio_list_t list, int ID);
 
 #endif  // STUDIO_H_

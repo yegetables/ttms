@@ -1,10 +1,10 @@
 /*
  * Copyright(C), 2007-2008, XUPT Univ.
  * File name: list.h
- * Description : Á´±í²Ù×÷ºê¶¨Òå¡¢·ÖÒ³²Ù×÷
+ * Description : é“¾è¡¨æ“ä½œå®å®šä¹‰ã€åˆ†é¡µæ“ä½œ
  * Author:   XUPT
  * Version:  v.1
- * Date: 	2015Äê4ÔÂ22ÈÕ
+ * Date: 	2015å¹´4æœˆ22æ—¥
  */
 
 #ifndef LIST_H_
@@ -13,14 +13,14 @@
 #include <assert.h>
 #include <stdlib.h>
 
-/*³õÊ¼»¯Á´±ílist¡£Á´±íÎª´øÍ·½áµãµÄË«ÏòÑ­»·Á´±í*/
+/*åˆå§‹åŒ–é“¾è¡¨listã€‚é“¾è¡¨ä¸ºå¸¦å¤´ç»“ç‚¹çš„åŒå‘å¾ªç¯é“¾è¡¨*/
 #define List_Init(list, list_node_t)                               \
     {                                                              \
         list         = (list_node_t *)malloc(sizeof(list_node_t)); \
         (list)->next = (list)->prev = list;                        \
     }
 
-//ÊÍ·ÅÁ´±ílistÖĞËùÓĞÊı¾İ½áµã¡£list ÎªÁ´±íÍ·Ö¸Õë£¬list_node_tÎªÁ´±í½áµãÀàĞÍ
+//é‡Šæ”¾é“¾è¡¨listä¸­æ‰€æœ‰æ•°æ®ç»“ç‚¹ã€‚list ä¸ºé“¾è¡¨å¤´æŒ‡é’ˆï¼Œlist_node_tä¸ºé“¾è¡¨ç»“ç‚¹ç±»å‹
 #define List_Free(list, list_node_t)            \
     {                                           \
         assert(NULL != list);                   \
@@ -34,8 +34,8 @@
         (list)->next = (list)->prev = list;     \
     }
 
-//Ïú»ÙÁ´±ílist£¬ÊÍ·ÅËùÓĞÊı¾İ½áµã¼°Í·½áµã¡£
-// listÎªÁ´±íÍ·Ö¸Õë£¬tmpPtrÎªÁ´±í½áµãÁÙÊ±Ö¸Õë±äÁ¿
+//é”€æ¯é“¾è¡¨listï¼Œé‡Šæ”¾æ‰€æœ‰æ•°æ®ç»“ç‚¹åŠå¤´ç»“ç‚¹ã€‚
+// listä¸ºé“¾è¡¨å¤´æŒ‡é’ˆï¼ŒtmpPträ¸ºé“¾è¡¨ç»“ç‚¹ä¸´æ—¶æŒ‡é’ˆå˜é‡
 #define List_Destroy(list, list_node_t)          \
     {                                            \
         assert(NULL != list);                    \
@@ -43,7 +43,7 @@
         (list) = NULL;                           \
     }
 
-//Á´±íÍ·²å·¨£¬listÎªÍ·Ö¸Õë£¬newÎªĞÂ½Úµã
+//é“¾è¡¨å¤´æ’æ³•ï¼Œlistä¸ºå¤´æŒ‡é’ˆï¼Œnewä¸ºæ–°èŠ‚ç‚¹
 #define List_AddHead(list, newNode)        \
     {                                      \
         (newNode)->next    = (list)->next; \
@@ -52,7 +52,7 @@
         (list)->next       = newNode;      \
     }
 
-//Á´±íÎ²²å·¨£¬listÎªÍ·Ö¸Õë£¬newÎªĞÂ½Úµã
+//é“¾è¡¨å°¾æ’æ³•ï¼Œlistä¸ºå¤´æŒ‡é’ˆï¼Œnewä¸ºæ–°èŠ‚ç‚¹
 #define List_AddTail(list, newNode)        \
     {                                      \
         (newNode)->prev    = (list)->prev; \
@@ -61,7 +61,7 @@
         (list)->prev       = newNode;      \
     }
 
-//½«ĞÂ½ÚµãnewNode¼ÓÈëµ½nodeÖ®Ç°
+//å°†æ–°èŠ‚ç‚¹newNodeåŠ å…¥åˆ°nodeä¹‹å‰
 #define List_InsertBefore(node, newNode)      \
     {                                         \
         (newNode)->prev       = (node)->prev; \
@@ -70,7 +70,7 @@
         (newNode)->next->prev = newNode;      \
     }
 
-//½«ĞÂ½ÚµãnewNode¼ÓÈëµ½nodeÖ®ºó
+//å°†æ–°èŠ‚ç‚¹newNodeåŠ å…¥åˆ°nodeä¹‹å
 #define List_InsertAfter(node, newNode)     \
     {                                       \
         (newNode)->next       = node->next; \
@@ -79,11 +79,11 @@
         (newNode)->prev->next = newNode;    \
     }
 
-//ÅĞ¶ÏÁ´±íÊÇ·ñÎª¿Õ£¬listÎªÍ·Ö¸Õë
+//åˆ¤æ–­é“¾è¡¨æ˜¯å¦ä¸ºç©ºï¼Œlistä¸ºå¤´æŒ‡é’ˆ
 #define List_IsEmpty(list) \
     ((list != NULL) && ((list)->next == list) && (list == (list)->prev))
 
-//´ÓÉ¾³ıÁ´±í½áµãnode£¬
+//ä»åˆ é™¤é“¾è¡¨ç»“ç‚¹nodeï¼Œ
 #define List_DelNode(node)                                                    \
     {                                                                         \
         assert(NULL != node && node != (node)->next && node != (node)->prev); \
@@ -91,27 +91,28 @@
         (node)->next->prev = (node)->prev;                                    \
     }
 
-//´ÓÁ´±íÖĞÉ¾³ı²¢ÊÍ·Å½áµãnode
+//ä»é“¾è¡¨ä¸­åˆ é™¤å¹¶é‡Šæ”¾ç»“ç‚¹node
 #define List_FreeNode(node) \
     {                       \
         List_DelNode(node); \
         free(node);         \
     }
 
-//Ê¹ÓÃÖ¸ÕëcurPosÒÀ´Î±éÀúÁ´±ílist
+//ä½¿ç”¨æŒ‡é’ˆcurPosä¾æ¬¡éå†é“¾è¡¨list
 #define List_ForEach(list, curPos) \
     for (curPos = (list)->next; curPos != list; curPos = curPos->next)
 
-//·ÖÒ³Êı¾İ½á¹¹Ìå£¬¼ò³Æ·ÖÒ³Æ÷ÀàĞÍ
+//åˆ†é¡µæ•°æ®ç»“æ„ä½“ï¼Œç®€ç§°åˆ†é¡µå™¨ç±»å‹
 typedef struct
 {
-    int totalRecords;  //×Ü¼ÇÂ¼Êı
-    int offset;  //µ±Ç°Ò³ÆğÊ¼¼ÇÂ¼Ïà¶ÔÓÚµÚÒ»Ìõ¼ÇÂ¼µÄÆ«ÒÆ¼ÇÂ¼Êı
-    int pageSize;  //Ò³Ãæ´óĞ¡
-    void *curPos;  //µ±Ç°Ò³ÆğÊ¼¼ÇÂ¼ÔÚÁ´±íÖĞµÄ½áµãµØÖ·
+    int totalRecords;  //æ€»è®°å½•æ•°
+    int offset;  //å½“å‰é¡µèµ·å§‹è®°å½•ç›¸å¯¹äºç¬¬ä¸€æ¡è®°å½•çš„åç§»è®°å½•æ•°
+    int pageSize;  //é¡µé¢å¤§å°
+    void *curPos;  //å½“å‰é¡µèµ·å§‹è®°å½•åœ¨é“¾è¡¨ä¸­çš„ç»“ç‚¹åœ°å€
 } Pagination_t;
 
-//¸ù¾İ·ÖÒ³Æ÷pagingµÄÆ«ÒÆÁ¿offset½«·ÖÒ³Æ÷¶¨Î»µ½Á´±ílistµÄ¶ÔÓ¦Î»ÖÃ
+// MARK: åˆ†é¡µå™¨
+//æ ¹æ®åˆ†é¡µå™¨pagingçš„åç§»é‡offsetå°†åˆ†é¡µå™¨å®šä½åˆ°é“¾è¡¨listçš„å¯¹åº”ä½ç½®
 #define List_Paging(list, paging, list_node_t)                      \
     {                                                               \
         if (paging.offset + paging.pageSize >= paging.totalRecords) \
@@ -128,14 +129,14 @@ typedef struct
         }                                                           \
     }
 
-//½«·ÖÒ³Æ÷paging¶¨Î»µ½Á´±ílistµÄµÚÒ»Ò³
+//å°†åˆ†é¡µå™¨pagingå®šä½åˆ°é“¾è¡¨listçš„ç¬¬ä¸€é¡µ
 #define Paging_Locate_FirstPage(list, paging)   \
     {                                           \
         paging.offset = 0;                      \
         paging.curPos = (void *)((list)->next); \
     }
 
-//½«·ÖÒ³Æ÷paging¶¨Î»µ½Á´±ílistµÄ×îºóÒ»Ò³
+//å°†åˆ†é¡µå™¨pagingå®šä½åˆ°é“¾è¡¨listçš„æœ€åä¸€é¡µ
 #define Paging_Locate_LastPage(list, paging, list_node_t)           \
     {                                                               \
         int i = paging.totalRecords % paging.pageSize;              \
@@ -146,15 +147,15 @@ typedef struct
         paging.curPos = (void *)pos;                                \
     }
 
-//¶ÔÓÚÁ´±ílist¼°·ÖÒ³Æ÷paging,Ê¹ÓÃÖ¸ÕëcurPosÒÀ´Î±éÀúpagingÖ¸ÏòÒ³ÃæÖĞÃ¿¸ö½áµã
-//ÕâÀïiÎªÕûĞÍ¼ÆÊıÆ÷±äÁ¿
+//å¯¹äºé“¾è¡¨liståŠåˆ†é¡µå™¨paging,ä½¿ç”¨æŒ‡é’ˆcurPosä¾æ¬¡éå†pagingæŒ‡å‘é¡µé¢ä¸­æ¯ä¸ªç»“ç‚¹
+//è¿™é‡Œiä¸ºæ•´å‹è®¡æ•°å™¨å˜é‡
 #define Paging_ViewPage_ForEach(list, paging, list_node_t, pos, i) \
     for (i = 0, pos = (list_node_t *)(paging.curPos);              \
          pos != list && i < paging.pageSize; i++, pos = pos->next)
 
-//¶ÔÓÚÁ´±ílist,½«·ÖÒ³Æ÷pagingÏòÇ°£¨ºó£©ÒÆ¶¯offsetPage¸öÒ³Ãæ.
-//µ±offsetPage<0Ê±£¬ÏòÇ°£¨Á´±íÍ··½Ïò£©ÒÆ¶¯|offsetPage|¸öÒ³Ãæ
-//µ±offsetPage>0Ê±£¬Ïòºó£¨Á´Ä©Î²·½Ïò£©ÒÆ¶¯offsetPage¸öÒ³Ãæ
+//å¯¹äºé“¾è¡¨list,å°†åˆ†é¡µå™¨pagingå‘å‰ï¼ˆåï¼‰ç§»åŠ¨offsetPageä¸ªé¡µé¢.
+//å½“offsetPage<0æ—¶ï¼Œå‘å‰ï¼ˆé“¾è¡¨å¤´æ–¹å‘ï¼‰ç§»åŠ¨|offsetPage|ä¸ªé¡µé¢
+//å½“offsetPage>0æ—¶ï¼Œå‘åï¼ˆé“¾æœ«å°¾æ–¹å‘ï¼‰ç§»åŠ¨offsetPageä¸ªé¡µé¢
 #define Paging_Locate_OffsetPage(list, paging, offsetPage, list_node_t) \
     {                                                                   \
         int offset       = offsetPage * paging.pageSize;                \
@@ -188,20 +189,20 @@ typedef struct
         }                                                               \
     }
 
-//¸ù¾İ·ÖÒ³Æ÷paging¼ÆËãµ±Ç°µÄÒ³ºÅ
+//æ ¹æ®åˆ†é¡µå™¨pagingè®¡ç®—å½“å‰çš„é¡µå·
 #define Pageing_CurPage(paging) \
     (0 == (paging).totalRecords ? 0 : 1 + (paging).offset / (paging).pageSize)
 
-//¸ù¾İ·ÖÒ³Æ÷paging¼ÆËãµÄ×ÜµÄÒ³Êı
+//æ ¹æ®åˆ†é¡µå™¨pagingè®¡ç®—çš„æ€»çš„é¡µæ•°
 #define Pageing_TotalPages(paging)                    \
     (((paging).totalRecords % (paging).pageSize == 0) \
          ? (paging).totalRecords / (paging).pageSize  \
          : (paging).totalRecords / (paging).pageSize + 1)
 
-//¸ù¾İpagingÅĞ¶Ïµ±Ç°Ò³ÃæÊÇ·ñÎªµÚÒ»Ò³¡£½á¹ûÎªtrue±íÊ¾ÊÇ£¬·ñÔòfalse
+//æ ¹æ®pagingåˆ¤æ–­å½“å‰é¡µé¢æ˜¯å¦ä¸ºç¬¬ä¸€é¡µã€‚ç»“æœä¸ºtrueè¡¨ç¤ºæ˜¯ï¼Œå¦åˆ™false
 #define Pageing_IsFirstPage(paging) (Pageing_CurPage(paging) <= 1)
 
-//¸ù¾İpagingÅĞ¶Ïµ±Ç°Ò³ÃæÊÇ·ñÎª×îºóÒ»Ò³¡£½á¹ûÎªtrue±íÊ¾ÊÇ£¬·ñÔòfalse
+//æ ¹æ®pagingåˆ¤æ–­å½“å‰é¡µé¢æ˜¯å¦ä¸ºæœ€åä¸€é¡µã€‚ç»“æœä¸ºtrueè¡¨ç¤ºæ˜¯ï¼Œå¦åˆ™false
 #define Pageing_IsLastPage(paging) \
     (Pageing_CurPage(paging) >= Pageing_TotalPages(paging))
 

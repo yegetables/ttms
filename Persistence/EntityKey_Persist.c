@@ -2,10 +2,10 @@
  * Copyright(C), 2007-2008, XUPT Univ.
  * File name: EntityKey_Persit.c
  * Description :
- * Ö÷¼ü·şÎñ½öÓÃÓÚÔÚ³Ö¾Ã»¯²ãÖĞÌí¼ÓÒ»¸öĞÂµÄÒµÎñÊµÌåÊı¾İÊ±£¬ÎªÆä·ÖÅäÎ¨Ò»Ö÷¼ü¡£
+ * ä¸»é”®æœåŠ¡ä»…ç”¨äºåœ¨æŒä¹…åŒ–å±‚ä¸­æ·»åŠ ä¸€ä¸ªæ–°çš„ä¸šåŠ¡å®ä½“æ•°æ®æ—¶ï¼Œä¸ºå…¶åˆ†é…å”¯ä¸€ä¸»é”®ã€‚
  * Author:   XUPT
  * Version:  v.1
- * Date: 	2015Äê4ÔÂ22ÈÕ
+ * Date: 	2015å¹´4æœˆ22æ—¥
  */
 
 #include "EntityKey_Persist.h"
@@ -16,7 +16,7 @@
 #include <string.h>
 #include <unistd.h>
 
-//¶¨Òå´æ´¢ËùÓĞÊµÌåÖ÷¼üµÄÎÄ¼şÃûÎªEntityKey.dat
+//å®šä¹‰å­˜å‚¨æ‰€æœ‰å®ä½“ä¸»é”®çš„æ–‡ä»¶åä¸ºEntityKey.dat
 static const char ENTITY_KEY_FILE[] = "EntityKey.dat";
 
 typedef struct
@@ -26,10 +26,10 @@ typedef struct
 } entity_key_t;
 
 /*
-±êÊ¶·û£ºTTMS_SCU_EntKey_Perst_GetNewKeys
-¹¦ÄÜ£º¸ù¾İ´«ÈëµÄÊµÌåÃûentName¼°ÊµÌå¸öÊıcount£¬ÎªÕâ¸öcount¸öĞÂÊµÌå·ÖÅäÒ»¸ö³¤¶ÈÎªcountµÄÖ÷¼üÖµÇø¼ä£¬
-     Ê¹µÃÃ¿¸öĞÂÊµÌåÔÚ¸ÃÇø¼äÄÚ¶¼¿ÉÒÔ·ÖÅäµ½ Î¨Ò»µÄ
-Ö÷¼ü¡£·µ»ØÖµÎª¸ÃÖ÷¼üÇø¼äµÄ×îĞ¡Öµ
+æ ‡è¯†ç¬¦ï¼šTTMS_SCU_EntKey_Perst_GetNewKeys
+åŠŸèƒ½ï¼šæ ¹æ®ä¼ å…¥çš„å®ä½“åentNameåŠå®ä½“ä¸ªæ•°countï¼Œä¸ºè¿™ä¸ªcountä¸ªæ–°å®ä½“åˆ†é…ä¸€ä¸ªé•¿åº¦ä¸ºcountçš„ä¸»é”®å€¼åŒºé—´ï¼Œ
+     ä½¿å¾—æ¯ä¸ªæ–°å®ä½“åœ¨è¯¥åŒºé—´å†…éƒ½å¯ä»¥åˆ†é…åˆ° å”¯ä¸€çš„
+ä¸»é”®ã€‚è¿”å›å€¼ä¸ºè¯¥ä¸»é”®åŒºé—´çš„æœ€å°å€¼
 */
 long EntKey_Perst_GetNewKeys(const char entName[], int count)
 {
@@ -44,10 +44,10 @@ long EntKey_Perst_GetNewKeys(const char entName[], int count)
         return 0;
     }
 
-    //ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+    //åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
     if (access(ENTITY_KEY_FILE, 0))
     {
-        //ĞÂ½¨ÎÄ¼ş
+        //æ–°å»ºæ–‡ä»¶
         fp = fopen(ENTITY_KEY_FILE, "wb+");
         if (NULL == fp)
         {
@@ -56,7 +56,7 @@ long EntKey_Perst_GetNewKeys(const char entName[], int count)
     }
     else
     {
-        //ÒÔ¸üĞÂÄ£Ê½´ò¿ª
+        //ä»¥æ›´æ–°æ¨¡å¼æ‰“å¼€
         fp = fopen(ENTITY_KEY_FILE, "rb+");
         if (NULL == fp)
         {
@@ -69,7 +69,7 @@ long EntKey_Perst_GetNewKeys(const char entName[], int count)
         if (fread(&ent, sizeof(entity_key_t), 1, fp))
         {
             if (0 == strcmp(ent.entyName, entName))
-            {  //ÕÒµ½Ö÷¼ü¼ÇÂ¼
+            {  //æ‰¾åˆ°ä¸»é”®è®°å½•
                 fseek(fp, -((int)sizeof(entity_key_t)), SEEK_CUR);
                 newEntKey = ent.key + 1;
                 ent.key += count;
@@ -80,7 +80,7 @@ long EntKey_Perst_GetNewKeys(const char entName[], int count)
         }
     }
 
-    //Î´ÕÒµ½ÊµÌåµÄÖ÷¼ü¼ÇÂ¼£¬ĞÂ¼ÓÖ÷¼ü¼ÇÂ¼µ½ÎÄ¼şÄ©Î²£¬
+    //æœªæ‰¾åˆ°å®ä½“çš„ä¸»é”®è®°å½•ï¼Œæ–°åŠ ä¸»é”®è®°å½•åˆ°æ–‡ä»¶æœ«å°¾ï¼Œ
     if (!found)
     {
         strcpy(ent.entyName, entName);

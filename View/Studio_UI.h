@@ -1,30 +1,30 @@
 /*
  * Copyright(C), 2007-2008, XUPT Univ.
- * ÓÃÀý±àºÅ£ºTTMS_UC_01
+ * ç”¨ä¾‹ç¼–å·ï¼šTTMS_UC_01
  * File name: Studio_UI.h
- * Description : ÑÝ³öÌüÓÃÀý½çÃæ²ãÍ·ÎÄ¼þ
+ * Description : æ¼”å‡ºåŽ…ç”¨ä¾‹ç•Œé¢å±‚å¤´æ–‡ä»¶
  * Author:   XUPT
  * Version:  v.1
- * Date: 	2015Äê4ÔÂ22ÈÕ
+ * Date: 	2015å¹´4æœˆ22æ—¥
  */
 
 #ifndef STUDIO_UI_H_
 #define STUDIO_UI_H_
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_UI_Add
-//¹¦ÄÜ£ºÌí¼ÓÐÂÑÝ³öÌü½çÃæ
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_UI_Add
+//åŠŸèƒ½ï¼šæ·»åŠ æ–°æ¼”å‡ºåŽ…ç•Œé¢
 int Studio_UI_Add(void);
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_UI_Mod
-//¹¦ÄÜ£º¸ù¾ÝIDÐÞ¸ÄÑÝ³öÌü½çÃæ
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_UI_Mod
+//åŠŸèƒ½ï¼šæ ¹æ®IDä¿®æ”¹æ¼”å‡ºåŽ…ç•Œé¢
 int Studio_UI_Modify(int id);
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_UI_Del
-//¹¦ÄÜ£º¸ù¾ÝIDÉ¾³ýÑÝ³öÌü½çÃæ
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_UI_Del
+//åŠŸèƒ½ï¼šæ ¹æ®IDåˆ é™¤æ¼”å‡ºåŽ…ç•Œé¢
 int Studio_UI_Delete(int id);
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_UI_MgtEnt
-//¹¦ÄÜ£º¸ù¾ÝIDÉ¾³ýÑÝ³öÌü½çÃæ
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_UI_MgtEnt
+//åŠŸèƒ½ï¼šæ ¹æ®IDåˆ é™¤æ¼”å‡ºåŽ…ç•Œé¢
 void Studio_UI_MgtEntry(void);
 
 #endif /* STUDIO_UI_H_ */

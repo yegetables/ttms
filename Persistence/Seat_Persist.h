@@ -1,11 +1,11 @@
 /*
  * Copyright(C), 2007-2008, XUPT Univ.
- * ÓÃÀı±àºÅ£ºTTMS_UC_02
+ * ç”¨ä¾‹ç¼–å·ï¼šTTMS_UC_02
  * File name: Seat.h
- * Description : ÉèÖÃ×ùÎ»ÓÃÀı³Ö¾Ã»¯²ãÍ·ÎÄ¼ş
+ * Description : è®¾ç½®åº§ä½ç”¨ä¾‹æŒä¹…åŒ–å±‚å¤´æ–‡ä»¶
  * Author:   XUPT
  * Version:  v.1
- * Date: 	2015Äê4ÔÂ22ÈÕ
+ * Date: 	2015å¹´4æœˆ22æ—¥
  */
 
 #ifndef SEATPERSIST_H_
@@ -13,36 +13,36 @@
 
 #include "../Service/Seat.h"
 
-//±êÊ¶·û£º TTMS_SCU_Seat_Perst_Insert
-//¹¦ÄÜ£ºÏòÎÄ¼şÖĞ´æ´¢ĞÂ×ùÎ»
+//æ ‡è¯†ç¬¦ï¼š TTMS_SCU_Seat_Perst_Insert
+//åŠŸèƒ½ï¼šå‘æ–‡ä»¶ä¸­å­˜å‚¨æ–°åº§ä½
 int Seat_Perst_Insert(seat_t *data);
 
-//±êÊ¶·û£ºTTMS_SCU_Seat_Perst_InsertBatch
-//¹¦ÄÜ£ºÏòÎÄ¼şÖĞÅúÁ¿´æ´¢×ùÎ»
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Perst_InsertBatch
+//åŠŸèƒ½ï¼šå‘æ–‡ä»¶ä¸­æ‰¹é‡å­˜å‚¨åº§ä½
 int Seat_Perst_InsertBatch(seat_list_t list);
 
-//±êÊ¶·û£ºTTMS_SCU_Seat_Perst_Update
-//¹¦ÄÜ£ºÔÚÎÄ¼şÖĞ¸üĞÂ×ùÎ»
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Perst_Update
+//åŠŸèƒ½ï¼šåœ¨æ–‡ä»¶ä¸­æ›´æ–°åº§ä½
 int Seat_Perst_Update(const seat_t *data);
 
-//±êÊ¶·û£ºTTMS_SCU_Seat_Perst_DelByID
-//¹¦ÄÜ£º¸ù¾İ×ùÎ»IDÉ¾³ı×ùÎ»
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Perst_DelByID
+//åŠŸèƒ½ï¼šæ ¹æ®åº§ä½IDåˆ é™¤åº§ä½
 int Seat_Perst_DeleteByID(int ID);
 
-//±êÊ¶·û£ºTTMS_SCU_Seat_Perst_DelAllByID
-//¹¦ÄÜ£º¸ù¾İÑİ³öÌüIDÉ¾³ı×ùÎ»
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Perst_DelAllByID
+//åŠŸèƒ½ï¼šæ ¹æ®æ¼”å‡ºå…IDåˆ é™¤åº§ä½
 int Seat_Perst_DeleteAllByRoomID(int roomID);
 
-//±êÊ¶·û£ºTTMS_SCU_Seat_Perst_SelByRoomID
-//¹¦ÄÜ£º¸ù¾İÑİ³öÌüID´ÓÎÄ¼şÖĞÔØÈëËùÓĞ×ùÎ»
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Perst_SelByRoomID
+//åŠŸèƒ½ï¼šæ ¹æ®æ¼”å‡ºå…IDä»æ–‡ä»¶ä¸­è½½å…¥æ‰€æœ‰åº§ä½
 int Seat_Perst_SelectByRoomID(seat_list_t list, int roomID);
 
-//±êÊ¶·û£ºTTMS_SCU_Studio_Perst_SelByID
-//¹¦ÄÜ£º¸ù¾İID´ÓÎÄ¼şÖĞÔØÈë×ùÎ»
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Studio_Perst_SelByID
+//åŠŸèƒ½ï¼šæ ¹æ®IDä»æ–‡ä»¶ä¸­è½½å…¥åº§ä½
 int Seat_Perst_SelectByID(int ID, seat_t *buf);
 
-//±êÊ¶·û£ºTTMS_SCU_Seat_Perst_SelAll
-//¹¦ÄÜ£º´ÓÎÄ¼şÖĞÔØÈëËùÓĞ×ùÎ»
+//æ ‡è¯†ç¬¦ï¼šTTMS_SCU_Seat_Perst_SelAll
+//åŠŸèƒ½ï¼šä»æ–‡ä»¶ä¸­è½½å…¥æ‰€æœ‰åº§ä½
 int Seat_Perst_SelectAll(seat_list_t list);
 
 #endif /* SEATPERSIST_H_ */
