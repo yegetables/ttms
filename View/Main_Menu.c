@@ -7,11 +7,11 @@
  * Da
  */
 
-#include "../View/Main_Menu.h"
+#include "Main_Menu.h"
 
 #include <stdio.h>
 
-#include "../View/Studio_UI.h"
+#include "Studio_UI.h"
 
 //系统主菜单
 void Main_Menu(void)

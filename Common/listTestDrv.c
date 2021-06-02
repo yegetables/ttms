@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../Common/List.h"
+#include "List.h"
 
 //链表初始化测试
 void ListTest_Init()

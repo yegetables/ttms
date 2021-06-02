@@ -8,7 +8,7 @@
  * Date: 	2015年4月22日
  */
 
-#include "../View/Studio_UI.h"
+#include "Studio_UI.h"
 
 #include "../Common/List.h"
 #include "../Service/Seat.h"
