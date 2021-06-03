@@ -8,7 +8,12 @@
  */
 
 #include <assert.h>
+#if __has_include(<io.h>)
 #include <io.h>
+#else
+#include <sys/io.h>
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 
