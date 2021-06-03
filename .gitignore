@@ -1,5 +1,4 @@
 .vscode 
 .git 
-.clang-format 
 build/*
 ttms 
