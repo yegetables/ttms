@@ -14,15 +14,14 @@
 
 #include "../Common/List.h"
 
-/*
-MARK
-函数功能：用于添加一个新座位数据。
+/*MARK:函数功能：用于添加一个新座位数据。
 参数说明：data为seat_t类型指针，表示需要添加的座位数据结点。
 返 回 值：整型，表示是否成功添加了座位的标志。
 */
 int Seat_Srv_Add(const seat_t *data)
 {
     // 请补充完整
+    
     return 0;
 }
 

@@ -15,14 +15,18 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "../Service/Studio.h"
 #include "../Common/List.h"
+#include "../Service/Studio.h"
 #include "EntityKey_Persist.h"
 
-static const char STUDIO_DATA_FILE[] = "Studio.dat";  //演出厅文件名常量
-static const char STUDIO_DATA_TEMP_FILE[] =
-    "StudioTmp.dat";  //演出厅临时文件名常量
-static const char STUDIO_KEY_NAME[] = "Studio";  //演出厅名常量
+//演出厅文件名常量"Studio.dat"
+static const char STUDIO_DATA_FILE[] = "Studio.dat";
+
+//演出厅临时文件名常量"StudioTmp.dat"
+static const char STUDIO_DATA_TEMP_FILE[] = "StudioTmp.dat";
+
+//演出厅名常量"Studio"
+static const char STUDIO_KEY_NAME[] = "Studio";
 
 /*
 标识符：TTMS_SCU_Studio_Perst_Insert
