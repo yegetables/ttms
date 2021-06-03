@@ -41,17 +41,15 @@ inline seat_status_t Seat_UI_Char2Status(char statusChar) { return SEAT_NONE; }
 void Seat_UI_MgtEntry(int roomID) {}
 
 /*
+MARK
 识符：TTMS_SCU_Seat_UI_Add
 函数功能：用于添加一个新的座位数据。
 参数说明：第一个参数list为seat_list_t类型指针，指向座位链表头指针，
          第二个参数rowsCount为整型，表示座位所在行号，第三个参数colsCount为整型，表示座位所在列号。
 返 回 值：整型，表示是否成功添加了座位的标志。
+//输入一个座位
 */
-int Seat_UI_Add(seat_list_t list, int roomID, int row, int column)
-{  //输入一个座位
-
-    return 0;
-}
+int Seat_UI_Add(seat_list_t list, int roomID, int row, int column) { return 0; }
 
 /*
 标识符：TTMS_SCU_Seat_UI_Mod

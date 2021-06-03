@@ -62,6 +62,7 @@ int Seat_Perst_Update(const seat_t *seatdata)
 }
 
 /*
+MARK
 识符：TTMS_SCU_Seat_Perst_DelByID
 函数功能：用于从文件中删除一个座位的数据。
 参数说明：参数ID为整型，表示需要删除的座位ID。
