@@ -115,7 +115,7 @@ void Studio_UI_MgtEntry(void)
             case 'S':
                 printf("Input the ID:");
                 scanf("%d", &id);
-                // Seat_UI_MgtEntry(id);
+                // MARK:??? Seat_UI_MgtEntry(id);
                 paging.totalRecords = Studio_Srv_FetchAll(head);
                 List_Paging(head, paging, studio_node_t);
                 break;
