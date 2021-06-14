@@ -107,10 +107,10 @@ int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID)
     seat_list_t headStr =
         (seat_list_t)malloc(sizeof(seat_node_t));  //所有roomID的头节点
     headStr->next = headStr->prev = NULL;
-    Seat_Srv_FetchByRoomID(headStr, roomID) == 0;  //获取所有roomID的座位
-    int validCount = 0;                            //有效座位个数
-    seat_list_t p  = NULL;                         //遍历座位的指针
-    List_ForEach(headStr, p)                       //遍历所有roomID座位
+    Seat_Srv_FetchByRoomID(headStr, roomID);  //获取所有roomID的座位
+    int validCount = 0;                       //有效座位个数
+    seat_list_t p  = NULL;                    //遍历座位的指针
+    List_ForEach(headStr, p)                  //遍历所有roomID座位
     {
         if (p->data.roomID == SEAT_GOOD)
         {
