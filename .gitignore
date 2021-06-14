@@ -1,6 +1,7 @@
 .vscode 
 .git 
 build/*
+bulid/*
 ttms 
 EntityKey.dat
 Studio.dat
