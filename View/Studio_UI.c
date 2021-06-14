@@ -43,7 +43,6 @@ void Studio_UI_MgtEntry(void)
 
     do
     {
-        system("cls");  //清屏
         printf(
             "\n================================================================"
             "==\n");
@@ -78,9 +77,7 @@ void Studio_UI_MgtEntry(void)
             "\n================================================================"
             "==\n");
         printf("Your Choice:");
-        fflush(stdin);
         scanf("%c", &choice);
-        fflush(stdin);
         system("cls");  //清屏
         switch (choice)
         {
