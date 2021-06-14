@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "list.h": "c",
+        "stdlib.h": "c",
+        "seat_persist.h": "c"
+    }
+}
