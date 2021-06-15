@@ -1,4 +1,8 @@
-
+#ifndef SALE_PERSIST_H_
+#define SALE_PERSIST_H_
+#include "../Persistence/Sale_Persist.h"
+#include "../Service/Sale.h"
+#include "../View/Sale_UI.h"
 /**
  * @brief 将参数指向的订单信息写入售票文件
  * @param data 售出票信息
@@ -22,3 +26,4 @@ int Ticket_Srv_SelBySchID(int id, ticket_list_t list);
 Schedule_Perst_FetchByPlay();
 Seat_Perst_SelByyRoomID();
 EntKey_Perst_GetNewKeys();
+#endif

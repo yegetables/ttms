@@ -12,4 +12,14 @@
  */
 int Ticket_Srv_GenBatch(int schedule_id);
 
+typedef struct
+{
+} ticket_t;
+typedef enum
+{
+
+} ticket_status_t;
+typedef struct ticket_node
+{
+} ticket_node_t, *ticket_list_t;
 #endif

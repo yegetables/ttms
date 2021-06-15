@@ -1,3 +1,7 @@
+#ifndef SALE_H_
+#define SALE_H_
+
+#include "../Persistence/Sale_Persist.h"
 #include "Play.h"
 #include "Schedule.h"
 #include "Ticket.h"
@@ -31,6 +35,7 @@ typedef struct sale_node
  * @return int 0成功其他失败
  */
 int Sale_Srv_Add(const sale_t* data);
+
 /**
  * @brief 使用data的票信息
  * 修改数据文件中的票信息
@@ -38,6 +43,7 @@ int Sale_Srv_Add(const sale_t* data);
  * @return int 0成功其他失败
  */
 int Ticket_Srv_Modify(const ticket_t* data);
+
 /**
  * @brief 根据演出计划id获取所有票数据
  * @param ID 演出计划id
@@ -45,6 +51,7 @@ int Ticket_Srv_Modify(const ticket_t* data);
  * @return int 获取到的票数量
  */
 int Ticket_Srv_FetchBySchID(int ID, ticket_list_t list);
+
 /**
  * @brief 根据座位id获取票数据
  * @param list 指向票链表
@@ -53,16 +60,7 @@ int Ticket_Srv_FetchBySchID(int ID, ticket_list_t list);
  */
 ticket_node_t* Ticket_Srv_FetchBySeatID(ticket_list_t list, int seat_id);
 
-
-
-
-
-
-
-
-
-
-
 Schedule_Srv_FetchByPlayer();
 Seat_Srv_FetchByRoomID();
 Seat_Srv_FindByRC();
+#endif

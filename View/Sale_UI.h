@@ -1,4 +1,7 @@
-
+#ifndef SALE_UI_H_
+#define SALE_UI_H_
+#include "../Persistence/Sale_Persist.h"
+#include "../Service/Sale.h"
 #define SALESANALYSIS_PAGE_SIZE 5
 /**
  * @brief 管理售票主界面
@@ -19,27 +22,11 @@ void Sale_UI_ShowScheduler(int playID);
  */
 int Sale_UI_SellTicket(ticket_list_t tickList, seat_list_t seatList);
 
-
-
 /**
  * @brief 退票
  */
 void Sale_UI_RetfundTicket(void);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void Sale_UI_ShowTicket(int playID);
+
+#endif
