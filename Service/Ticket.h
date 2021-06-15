@@ -12,7 +12,4 @@
  */
 int Ticket_Srv_GenBatch(int schedule_id);
 
-//??
-void Play_Srv_FetchByID(int play_id);
-
 #endif

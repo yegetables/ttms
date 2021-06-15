@@ -24,3 +24,4 @@ int Ticket_Srv_GenBatch(int schedule_id)
     }
     return number;
 }
+

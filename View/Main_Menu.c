@@ -46,7 +46,6 @@ void Main_Menu(void)
             case 's':
                 Studio_UI_MgtEntry();
                 break;
-                /*MARK:UI*/
             case 'P':
             case 'p': 
                 Play_UI_MgtEntry(0);
