@@ -38,7 +38,10 @@ inline seat_status_t Seat_UI_Char2Status(char statusChar) { return SEAT_NONE; }
 参数说明：roomID为整型，是需要设置座位的演出厅ID。
 返 回 值：无。
 */
-void Seat_UI_MgtEntry(int roomID) {}
+void Seat_UI_MgtEntry(int roomID) 
+{
+    
+}
 
 /*
 

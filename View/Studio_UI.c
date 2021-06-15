@@ -13,6 +13,7 @@
 #include "../Common/List.h"
 #include "../Service/Seat.h"
 #include "../Service/Studio.h"
+#include "Seat_UI.h"
 
 static const int STUDIO_PAGE_SIZE = 5;
 
@@ -110,9 +111,9 @@ void Studio_UI_MgtEntry(void)
                 break;
             case 's':
             case 'S':
-                printf("Input the ID:");
+                printf("Input the RoomID:");
                 scanf("%d", &id);
-                // Seat_UI_MgtEntry(id);
+                Seat_UI_MgtEntry(id);
                 paging.totalRecords = Studio_Srv_FetchAll(head);
                 List_Paging(head, paging, studio_node_t);
                 break;
@@ -130,8 +131,14 @@ void Studio_UI_MgtEntry(void)
                     Paging_Locate_OffsetPage(head, paging, 1, studio_node_t);
                 }
                 break;
+            case 'r':
+            case 'R':
+                break;
+            default:
+                printf("Input Error,Please Input again\n");
+                break;
         }
-    } while (choice != 'r' && choice != 'R');
+    } while (1);
     //释放链表空间
     List_Destroy(head, studio_node_t);
 }
