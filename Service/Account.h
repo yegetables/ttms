@@ -1,11 +1,10 @@
-#ifndef _ACCOUNT_H_
-#define _ACCOUNT_H_
-typedef enum
-{
-    USR_ANOMY = 0,
-    USR_CLERK = 1,
-    USR_MANG  = 2,
-    USR_ADMIN = 9,
+#ifndef ACCOUNT_H_
+#define ACCOUNT_H_
+typedef enum {
+    USR_ANOMY=0,
+    USR_CLERK=1,
+    USR_MANG=2,
+    USR_ADMIN=9,
 } account_type_t;
 typedef struct
 {

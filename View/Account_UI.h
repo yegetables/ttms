@@ -1,5 +1,5 @@
-#ifndef _ACCOUNT_UI_H_
-#define _ACCOUNT_UI_H_
+#ifndef ACCOUNT_UI_H_
+#define ACCOUNT_UI_H_
 #include "../Service/Account.h"
 int SysLogin();
 void Account_UI_MgtEntry();
