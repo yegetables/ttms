@@ -14,8 +14,8 @@
 //座位状态
 typedef enum
 {
-    SEAT_NONE   = 0,  //空位
-    SEAT_GOOD   = 1,  //有座位
+    SEAT_NONE   = 0,  //待售
+    SEAT_GOOD   = 1,  //已售
     SEAT_BROKEN = 9   //损坏的座位
 } seat_status_t;
 

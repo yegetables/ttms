@@ -42,7 +42,7 @@ typedef struct
 //剧目链表定义
 typedef struct play_node
 {
-    play_t date;
+    play_t data;
     struct play_node *next;
     struct play_node *prev;
 } play_node_t, *play_list_t;
