@@ -1,5 +1,5 @@
-#ifndef _ACCOUNT_H_
-#define _ACCOUNT_H_
+#ifndef ACCOUNT_H_
+#define ACCOUNT_H_
 typedef enum {
     USR_ANOMY=0,
     USR_CLERK=1,
