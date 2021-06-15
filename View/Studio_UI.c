@@ -78,7 +78,6 @@ void Studio_UI_MgtEntry(void)
             "==\n");
         printf("Your Choice:");
         scanf("%c", &choice);
-        system("cls");  //清屏
         switch (choice)
         {
             case 'a':
@@ -157,7 +156,7 @@ int Studio_UI_Add(void)
         printf("Room Name:");
         fflush(stdin);
         // gets(rec.name);
-        getchar();
+        // getchar();
         fgets(rec.name, 30, stdin);  // 1\n\0
         rec.name[strlen(rec.name) - 1] = '\0';
         printf("Row Count of Seats:");
@@ -211,7 +210,7 @@ int Studio_UI_Modify(int id)
     printf("Room Name[%s]:", rec.name);
     fflush(stdin);
     //    gets(rec.name);
-    getchar();
+    // getchar();
     fgets(rec.name, 30, stdin);
     rec.name[strlen(rec.name) - 1] = '\0';
 

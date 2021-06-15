@@ -70,6 +70,7 @@ void Main_Menu(void)
             case 'a':
                 Account_UI_MgtEntry();
                 break;
+                //
         }
     } while ('E' != choice && 'e' != choice);
 }

@@ -34,7 +34,7 @@ typedef struct
 long EntKey_Perst_GetNewKeys(const char entName[], int count)
 {
     entity_key_t ent;
-    FILE *fp;
+    FILE *fp = NULL;
     int found      = 0;
     long newEntKey = 1;
 
