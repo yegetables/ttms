@@ -23,5 +23,9 @@ int Ticket_Srv_GenBatch(int schedule_id)
         printf("error %s:%d", __FILE__, __LINE__);
     }
     return number;
+<<<<<<< Updated upstream
 }
 
+=======
+}
+>>>>>>> Stashed changes
