@@ -9,9 +9,14 @@
 #ifndef StaSales_Srv_H_
 #define StaSales_Srv_H_
 
-#include "..\Common\Common.h"
-//标识符：TTMS_SCU_StaSales_Srv_CompSaleVal
-//功能：根据售票员ID统计在给定日期区间的销售额
-
+/**
+ * @brief 
+ * 标识符：TTMS_SCU_StaSales_Srv_CompSaleVal
+ * 功能：根据售票员ID统计在给定日期区间的销售额
+ * @param usrID 
+ * @param stDate 
+ * @param endDate 
+ * @return int 
+ */
 int StaSales_Srv_CompSaleVal(int usrID, ttms_data_t stDate, ttms_data_t endDate);
 #endif /* StaSales_Srv_H_ */
