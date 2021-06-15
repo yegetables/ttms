@@ -8,7 +8,6 @@
  */
 
 #include "Main_Menu.h"
-
 //系统主菜单
 void Main_Menu(void)
 {
@@ -55,7 +54,7 @@ void Main_Menu(void)
                 break;
             case 'R':
             case 'r':
-                Sale_UI_ReturnTicket();
+                Sale_UI_RetfundTicket();
                 break;
             case 'N':
             case 'n':

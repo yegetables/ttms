@@ -11,8 +11,8 @@
 #define SALESANALYSIS_UI_H_
 
 /**
- * @brief 
- * 标识符：TTMS_SCU_ SalesAnalysis_UI_MgtEnt    
+ * @brief
+ * 标识符：TTMS_SCU_ SalesAnalysis_UI_MgtEnt
  * 功能：实现了“浏览剧目票房排行榜”功能的入口界面
  */
 void SalesAnalysis_UI_MgtEntry(void);

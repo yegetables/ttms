@@ -26,15 +26,15 @@ inline char Seat_UI_Status2Char(seat_status_t status)
 {
     if (status == SEAT_GOOD)
     {
-        return "○";
+        return '○';
     }
     else if (status == SEAT_NONE)
     {
-        return "●";
+        return '●';
     }
     else
     {
-        return "*";
+        return '*';
     }
 }
 

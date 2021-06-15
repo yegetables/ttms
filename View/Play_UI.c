@@ -14,3 +14,6 @@ int Play_UI_Modify(int id) { return 1; }
 int Play_UI_Delete(int id) { return 1; }
 //查询剧目界面函数,查询剧目信息,以列表形式展出,返回值==1查询成功,返回值!=1查询失败
 int Play_UI_Query(int id) { return 1; }
+
+
+ Play_UI_FetchByName();

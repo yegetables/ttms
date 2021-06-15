@@ -1,5 +1,7 @@
 #ifndef SALE_UI_H_
 #define SALE_UI_H_
+#include <stdio.h>
+
 #include "../Persistence/Sale_Persist.h"
 #include "../Service/Play.h"
 #include "../Service/Sale.h"

@@ -18,7 +18,7 @@
 static const int STUDIO_PAGE_SIZE = 5;
 
 #include <stdio.h>
-
+#include <string.h>
 /*
 标识符：TTMS_SCU_Studio_UI_MgtEnt
 函数功能：界面层管理演出厅的入口函数，显示当前的演出厅数据，并提供演出厅数据添加、修改及删除功能操作的入口。

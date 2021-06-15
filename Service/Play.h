@@ -88,3 +88,6 @@ int Play_Srv_DeleteByID(int id);
  */
 int Play_Srv_FetchByID(int id, play_t *buf);
 #endif
+
+
+ Play_Srv_FilterByName();
