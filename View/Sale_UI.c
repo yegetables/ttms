@@ -41,14 +41,14 @@ dod:
             case 'P':
                 if (!Pageing_IsFirstPage(paging))
                 {
-                    Paging_Locate_OffsetPage(list, paging, -1, studio_node_t);
+                    Paging_Locate_OffsetPage(list, paging, -1, play_node_t);
                 }
                 break;
             case 'n':
             case 'N':
                 if (!Pageing_IsLastPage(paging))
                 {
-                    Paging_Locate_OffsetPage(list, paging, 1, studio_node_t);
+                    Paging_Locate_OffsetPage(list, paging, 1, play_node_t);
                 }
                 break;
         }
@@ -57,10 +57,22 @@ dod:
 
 void Sale_UI_ShowScheduler(int playID)
 {
-    Play_Srv_FetchByID(playID);
-    //失败
-    return;
-    //成功
+    Pagination_t paging;
+    paging.pageSize = SALESANALYSIS_PAGE_SIZE;
+    paging.offset   = 0;
+
+    play_list_t list;
+    List_Init(list, play_node_t);
+
+    if (1 != Play_Srv_FetchByID(playID, list->data))
+    {
+        List_Destroy(list, play_node_t);
+        return;
+    }
+
+w:
+    Schedule_Srv_FetchByPlay();
+
     do
     {  //
         fflush(stdin);
@@ -70,50 +82,63 @@ void Sale_UI_ShowScheduler(int playID)
         {
             case 'T':
             case 't':
-                Sale_UI_ShowTicket();
+                Sale_UI_ShowTicket(playID);
                 break;
+            case 'R':
+            case 'r':
+                goto w;
             case 'p':
             case 'P':
                 if (!Pageing_IsFirstPage(paging))
                 {
-                    Paging_Locate_OffsetPage(head, paging, -1, studio_node_t);
+                    Paging_Locate_OffsetPage(list, paging, -1, play_node_t);
                 }
                 break;
             case 'n':
             case 'N':
                 if (!Pageing_IsLastPage(paging))
                 {
-                    Paging_Locate_OffsetPage(head, paging, 1, studio_node_t);
+                    Paging_Locate_OffsetPage(list, paging, 1, play_node_t);
                 }
                 break;
+            default:
+                choice = 'e';
         }
-    } while ('E' != choice && 'e' != choice);
-    Schedule_Srv_FetchByID();
+    } while ('e' != choice);
 
-    Seat_Srv_FetchByRoomID();
-    Ticket_Srv_FetchBySchID();
-
-    // show
-    fflush(stdin);
-    choice = getchar();
-
-    switch (choice)
-    {
-        case 'R':
-        case 'r':
-            return;
-        case 'B':
-        case 'b':
-            Sale_UI_SellTicket();
-            Ticket_UI_Print();
-            return;
-    }
+    List_Destroy(list, play_node_t);
+    return;
 }
 
 int Sale_UI_SellTicket(ticket_list_t tickList, seat_list_t seatList)
 {
-    // TODO:
-    return 0;
+    printf("输入位置行和列\n");
+    int hang, lie;
+    scanf("%d %d", &hang, &lie);
+
+    int ret = 0;
+    ret     = Seat_Srv_FindByRC(hang, lie);
+
+    Ticket_Srv_FetchByID(ret);
+    //未找到return -1;
+    Ticket_Srv_Modify();
+
+    sale_t sale;
+    {
+        sale.id        = ;
+        sale.user_id   = ;
+        sale.ticket_id = ;
+        sale.date      = ;
+        sale.time      = ;
+        sale.value     = ;
+        sale.type      = SALE_SELL;
+    }
+
+    //票已售
+
+    Sale_Srv_Add(&sale);
+
+    return ret;
 }
 
 void Sale_UI_RetfundTicket(void)
