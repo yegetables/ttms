@@ -78,10 +78,7 @@ void Studio_UI_MgtEntry(void)
             "\n================================================================"
             "==\n");
         printf("Your Choice:");
-        fflush(stdin);
         scanf("%c", &choice);
-        fflush(stdin);
-
         switch (choice)
         {
             case 'a':
@@ -114,7 +111,7 @@ void Studio_UI_MgtEntry(void)
                 break;
             case 's':
             case 'S':
-                printf("Input the ID:");
+                printf("Input the RoomID:");
                 scanf("%d", &id);
                 Seat_UI_MgtEntry(id);
                 paging.totalRecords = Studio_Srv_FetchAll(head);
@@ -134,11 +131,14 @@ void Studio_UI_MgtEntry(void)
                     Paging_Locate_OffsetPage(head, paging, 1, studio_node_t);
                 }
                 break;
+            case 'r':
+            case 'R':
+                break;
             default:
                 printf("Input Error,Please Input again\n");
                 break;
         }
-    } while (choice != 'r' && choice != 'R');
+    } while (1);
     //释放链表空间
     List_Destroy(head, studio_node_t);
 }
@@ -163,7 +163,7 @@ int Studio_UI_Add(void)
         printf("Room Name:");
         fflush(stdin);
         // gets(rec.name);
-        getchar();
+        // getchar();
         fgets(rec.name, 30, stdin);  // 1\n\0
         rec.name[strlen(rec.name) - 1] = '\0';
         printf("Row Count of Seats:");
@@ -217,7 +217,7 @@ int Studio_UI_Modify(int id)
     printf("Room Name[%s]:", rec.name);
     fflush(stdin);
     //    gets(rec.name);
-    getchar();
+    // getchar();
     fgets(rec.name, 30, stdin);
     rec.name[strlen(rec.name) - 1] = '\0';
 

@@ -31,8 +31,18 @@ static const char SEAT_KEY_NAME[] = "Seat";
 int Seat_Perst_Insert(seat_t *data)
 {
     assert(NULL != data);
-    
-    return 0;
+    FILE *fp = fopen(SEAT_DATA_FILE, "ab");
+    int rtn  = 0;
+    if (NULL == fp)
+    {
+        printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+        return 0;
+    }
+
+    rtn = fwrite(data, sizeof(seat_t), 1, fp);
+
+    fclose(fp);
+    return rtn;
 }
 
 /*
@@ -43,10 +53,21 @@ int Seat_Perst_Insert(seat_t *data)
 */
 int Seat_Perst_InsertBatch(seat_list_t list)
 {
-    seat_node_t *p;
+    seat_node_t *curPos;
     assert(NULL != list);
-
-    return 0;
+    FILE *fp = fopen(SEAT_DATA_FILE, "ab");
+    int rtn  = 0;
+    if (NULL == fp)
+    {
+        printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+        return 0;
+    }
+    List_ForEach(list, curPos)
+    {
+        rtn += fwrite(curPos, sizeof(seat_node_t), 1, fp);
+    }
+    fclose(fp);
+    return rtn;
 }
 
 /*
@@ -58,7 +79,33 @@ int Seat_Perst_InsertBatch(seat_list_t list)
 int Seat_Perst_Update(const seat_t *seatdata)
 {
     assert(NULL != seatdata);
-    return 0;
+
+    FILE *fp = fopen(SEAT_DATA_FILE, "rb+");
+    if (NULL == fp)
+    {
+        printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+        return 0;
+    }
+
+    seat_t buf;
+    int found = 0;
+
+    while (!feof(fp))
+    {
+        if (fread(&buf, sizeof(seat_t), 1, fp))
+        {
+            if (buf.id == seatdata->id)
+            {
+                fseek(fp, -((int)sizeof(seat_t)), SEEK_CUR);
+                fwrite(seatdata, sizeof(seat_t), 1, fp);
+                found = 1;
+                break;
+            }
+        }
+    }
+    fclose(fp);
+
+    return found;
 }
 
 /*
@@ -67,7 +114,93 @@ MARK:函数功能：用于从文件中删除一个座位的数据。
 参数说明：参数ID为整型，表示需要删除的座位ID。
 返 回 值：整型，表示是否成功删除了座位的标志。
 */
-int Seat_Perst_DeleteByID(int ID) { return 0; }
+int Seat_Perst_DeleteByID(int ID)
+{
+    assert(NULL != data);
+
+    FILE *fp = fopen(STUDIO_DATA_FILE, "rb+");
+    if (NULL == fp)
+    {
+        printf("Cannot open file %s!\n", STUDIO_DATA_FILE);
+        return 0;
+    }
+
+    studio_t buf;
+    int found = 0;
+
+    while (!feof(fp))
+    {
+        if (fread(&buf, sizeof(studio_t), 1, fp))
+        {
+            if (buf.id == data->id)
+            {
+                fseek(fp, -((int)sizeof(studio_t)), SEEK_CUR);
+                fwrite(data, sizeof(studio_t), 1, fp);
+                found = 1;
+                break;
+            }
+        }
+    }
+    fclose(fp);
+
+    return found;
+}
+
+/*
+标识符：TTMS_SCU_Studio_Perst_DeleteByID
+函数功能：用于从文件中删除一个演出厅的数据。
+参数说明：第一个参数ID为整型，表示需要载入数据的演出厅ID；第二个参数buf为studio_t指针，指向载入演出厅数据的指针。
+返 回 值：整型，表示是否成功删除了演出厅的标志。
+*/
+int Studio_Perst_DeleteByID(int ID)
+{
+    //将原始文件重命名，然后读取数据重新写入到数据文件中，并将要删除的实体过滤掉。
+
+    //对原始数据文件重命名
+    if (rename(SEAT_DATA_FILE, SEAT_DATA_TEMP_FILE) < 0)
+    {
+        printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+        return 0;
+    }
+
+    FILE *fpSour, *fpTarg;
+    fpSour = fopen(SEAT_DATA_TEMP_FILE, "rb");
+    if (NULL == fpSour)
+    {
+        printf("Cannot open file %s!\n", SEAT_DATA_FILE);
+        return 0;
+    }
+
+    fpTarg = fopen(SEAT_DATA_FILE, "wb");
+    if (NULL == fpTarg)
+    {
+        printf("Cannot open file %s!\n", SEAT_DATA_TEMP_FILE);
+        return 0;
+    }
+
+    seat_t buf;
+
+    int found = 0;
+    while (!feof(fpSour))
+    {
+        if (fread(&buf, sizeof(seat_t), 1, fpSour))
+        {
+            if (ID == buf.id)
+            {
+                found = 1;
+                continue;
+            }
+            fwrite(&buf, sizeof(seat_t), 1, fpTarg);
+        }
+    }
+
+    fclose(fpTarg);
+    fclose(fpSour);
+
+    //删除临时文件
+    remove(SEAT_DATA_TEMP_FILE);
+    return found;
+}
 
 /*
 标识符：TTMS_SCU_Seat_Perst_DelAllByID

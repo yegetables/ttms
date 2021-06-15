@@ -104,12 +104,6 @@ int Seat_Srv_FetchByID(int ID, seat_t *buf);
 int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID);
 
 /*
-标识符：TTMS_SCU_Seat_Srv_FetchByRoomID
-功能：根据放映厅ID提取有效的座位
-*/
-int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID);
-
-/*
 标识符：TTMS_SCU_Seat_Srv_FindByRC
 功能：根据行列号获取座位服务
 */

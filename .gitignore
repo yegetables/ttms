@@ -1,7 +1,8 @@
 .vscode 
 .git 
 build/*
-ttms.exe
 ttms 
 EntityKey.dat
 Studio.dat
+ttms.exe
+.vscode/*

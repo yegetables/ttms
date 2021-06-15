@@ -46,8 +46,9 @@ void Main_Menu(void)
             case 's':
                 Studio_UI_MgtEntry();
                 break;
+                // MARK:UI
             case 'P':
-            case 'p': 
+            case 'p':
                 Play_UI_MgtEntry(0);
                 break;
             case 'Q':
@@ -70,6 +71,7 @@ void Main_Menu(void)
             case 'a':
                 Account_UI_MgtEntry();
                 break;
+                //
         }
     } while ('E' != choice && 'e' != choice);
 }
