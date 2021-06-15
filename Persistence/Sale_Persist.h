@@ -23,7 +23,4 @@ int Ticket_perst_Update(const ticket_t* data);
  */
 int Ticket_Srv_SelBySchID(int id, ticket_list_t list);
 
-Schedule_Perst_FetchByPlay();
-Seat_Perst_SelByyRoomID();
-EntKey_Perst_GetNewKeys();
 #endif
