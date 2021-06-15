@@ -7,17 +7,24 @@ void Sale_UI_MgtEntry(void)
     play_list_t list;
 dod:
     List_Init(list, play_node_t);
-    paging.pageSize = SALESANALYSIS_PAGE_SIZE;
-    paging.offset   = 0;
-
-    //获取所有剧目
+    paging.pageSize     = SALESANALYSIS_PAGE_SIZE;
+    paging.offset       = 0;
     paging.totalRecords = Play_Srv_FetchAll(list);
+    Paging_Locate_FirstPage(list, paging);
+
     int play_id;
     do
-    {  //
-        fflush(stdin);
-        choice = getchar();
-
+    {
+        printf("\n=========================================================\n");
+        printf("**************** SALE  System ****************\n");
+        printf("[C]显示演出计划\n");
+        printf("[S]查询剧目名字\n");
+        printf("[F]根据名称筛选剧目\n");
+        printf("[R]eturn\n");
+        printf("[E]xist.\n");
+        printf("\n=======|[P]revPage|[N]extPage|=============\n");
+        printf("Please input your choice:");
+        scanf("%c", &choice);
         switch (choice)
         {
             case 'C':
