@@ -1,7 +1,6 @@
 .vscode 
 .git 
 build/*
-bulid/*
 ttms.exe
 ttms 
 EntityKey.dat
