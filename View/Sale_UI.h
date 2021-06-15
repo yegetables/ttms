@@ -1,8 +1,8 @@
 #ifndef SALE_UI_H_
 #define SALE_UI_H_
 #include "../Persistence/Sale_Persist.h"
+#include "../Service/Play.h"
 #include "../Service/Sale.h"
-#define SALESANALYSIS_PAGE_SIZE 5
 /**
  * @brief 管理售票主界面
  */

@@ -7,8 +7,8 @@
  * Version:  v.1
  */
 
-#ifndef SalesAnalysis_UI_H_
-#define SalesAnalysis_UI_H_
+#ifndef SALESANALYSIS_UI_H_
+#define SALESANALYSIS_UI_H_
 
 /**
  * @brief 

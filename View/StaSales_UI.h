@@ -6,8 +6,8 @@
  * Author:   XUPT
  * Version:  v.1
  */
-#ifndef StaSales_UI_H_
-#define StaSales_UI_H_
+#ifndef STASALES_UI_H_
+#define STASALES_UI_H_
 
 /**
  * @brief 

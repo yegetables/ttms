@@ -7,10 +7,11 @@
  * Version:  v.1
  */
 
-#ifndef salesanalysis_t
-#define salesanalysis_t
+#ifndef SALESANALYSIS_t
+#define SALESANALYSIS_t
 
 #include "../Common/List.h"
+#include "../Service/Play.h"
 /**
  * @brief
  *  标识符：TTMS_SCU_SalesAnalysis_Srv_StaticSale
@@ -18,16 +19,16 @@
  */
 typedef struct
 {
-    int play_id;            //剧目编号
-    char name[31];          //剧目名称
-    char area[9];           //剧目区域
-    int duration;           //剧目播放时长
-    long totaltickets;      //剧目上座数量
-    long sales;             //剧目票房（销售额统计）
-    int price;              //剧目票价
-    ttms_date_tstart_date;  //剧目上映日期
-    ttms_date_tend_date;    //剧目下映日期
-} salesanalysis_list_t;
+    int play_id;             //剧目编号
+    char name[31];           //剧目名称
+    char area[9];            //剧目区域
+    int duration;            //剧目播放时长
+    long totaltickets;       //剧目上座数量
+    long sales;              //剧目票房（销售额统计）
+    int price;               //剧目票价
+    ttms_date_t start_date;  //剧目上映日期
+    ttms_date_t end_date;    //剧目下映日期
+} salesanalysis_t;
 
 typedef struct salesanalysis_node
 {
