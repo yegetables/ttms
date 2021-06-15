@@ -12,6 +12,7 @@
 #include <stdio.h>
 
 #include "Studio_UI.h"
+#include "Ticket_UI.h"
 
 //系统主菜单
 void Main_Menu(void)
