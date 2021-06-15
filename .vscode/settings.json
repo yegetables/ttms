@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "list.h": "c",
-        "stdlib.h": "c",
-        "seat_persist.h": "c",
-        "assert.h": "c",
-        "unistd.h": "c"
-    }
-}
