@@ -13,7 +13,7 @@ void Ticket_UI_MgtEntry(int schedule_id)
         exit(1);
     }
     //用剧目id作为参数 ,获取剧目信息
-    // TODO:
+    //
     Play_Srv_FetchByID(play_id);
 //显示剧目名称,演出厅编号,演出日期演出时间
 

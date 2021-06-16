@@ -71,7 +71,7 @@ void Sale_UI_ShowScheduler(int playID)
     play_list_t list;
     List_Init(list, play_node_t);
 
-    if (1 != Play_Srv_FetchByID(playID, list->data))
+    if (1 != Play_Srv_FetchByID(playID, &list->data))
     {
         List_Destroy(list, play_node_t);
         return;
@@ -79,7 +79,7 @@ void Sale_UI_ShowScheduler(int playID)
 
 w:
     Schedule_Srv_FetchByPlay();
-
+    char choice;
     do
     {  //
         fflush(stdin);
@@ -153,10 +153,10 @@ void Sale_UI_RetfundTicket(void)
     int ticket_id;
     printf("输入票id\n");
     scanf("%d", &ticket_id);
-    Ticket_Srv_FetchByID()
-        //票id->判断票存在
-        //不存在
-        return;
+    Ticket_Srv_FetchByID();
+    //票id->判断票存在
+    //不存在
+    return;
 
     //判断已售?
     //未售
