@@ -83,8 +83,8 @@ void Seat_UI_MgtEntry(int roomID)
     List_Init(list, seat_node_t);
     if (Seat_Srv_FetchByRoomID(list, roomID) == 0)
     {
-        int rowsCount, colsCount;
         printf("此放映厅座位未初始化\n");
+        int rowsCount, colsCount;
         while (1)
         {
             printf("输入座位行数:");
@@ -101,7 +101,7 @@ void Seat_UI_MgtEntry(int roomID)
             }
             break;
         }
-        Seat_Srv_RoomInit(list, roomID, rowsCount, colsCount);
+        Seat_Srv_RoomInit(list, roomID, rowsCount, colsCount);  //座位初始化
         studio_t data = {buf->id, buf->name, rowsCount, colsCount,
                          rowsCount * colsCount};
         Studio_Srv_Modify(&data);
@@ -132,13 +132,14 @@ void Seat_UI_MgtEntry(int roomID)
                 {
                     if (seat[i][j] == NONE)
                     {
-                        printf(NONE + " ");
+                        printf("%c ", NONE);
                     }
                     else
                     {
                         printf("%c ", Seat_UI_Status2Char(seat[i][j]));
                     }
                 }
+                printf("\n");
             }
             for (int i = 0; i < buf->rowsCount; i++)
             {
@@ -233,8 +234,11 @@ rec:
             newCol,  //座位列号
             Seat_UI_Char2Status(char_status),
         };
-        if (Seat_Srv_Add(&data))
+        if (Seat_Srv_Add(&data))  //文件中添加
         {
+            seat_node_t *node = (seat_node_t *)malloc(sizeof(seat_node_t));
+            node->data        = data;
+            Seat_Srv_AddToSoftedList(list, node);  //链表中添加
             printf("增加成功\n");
             newRecCount++;
         }
@@ -288,12 +292,13 @@ int Seat_UI_Modify(seat_list_t list, int row, int column)
            Seat_UI_Status2Char(nodePtr->data.status));
     printf("请输入修改后座位的状态\n");
     char char_status;
+    fflush(stdin);
     scanf("%c", &char_status);
     if (char_status == CHAR_SEAT_GOOD || char_status == CHAR_SEAT_NONE ||
         char_status == CHAR_SEAT_BROKEN)
     {
-        nodePtr->data.status = Seat_UI_Char2Status(char_status);
-        return Seat_Srv_Modify(&nodePtr->data);
+        nodePtr->data.status = Seat_UI_Char2Status(char_status);  //链表中修改
+        return Seat_Srv_Modify(&nodePtr->data);  //文件中修改
     }
     else
     {
@@ -316,8 +321,9 @@ int Seat_UI_Delete(seat_list_t list, int row, int column)
     seat_node_t *node = Seat_Srv_FindByRowCol(list, row, column);
     if (node)
     {
-        if (Seat_Srv_DeleteByID(node->data.id))
+        if (Seat_Srv_DeleteByID(node->data.id))  //将座位从文件中删除
         {
+            List_DelNode(node);  //将座位从链表中删除
             printf("删除成功\n");
             return 1;
         }
