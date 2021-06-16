@@ -4,6 +4,7 @@
 #include "../Persistence/Sale_Persist.h"
 #include "Play.h"
 #include "Schedule.h"
+#include "Seat.h"
 #include "Ticket.h"
 #define SALESANALYSIS_PAGE_SIZE 5
 typedef enum
@@ -60,7 +61,4 @@ int Ticket_Srv_FetchBySchID(int ID, ticket_list_t list);
  */
 ticket_node_t* Ticket_Srv_FetchBySeatID(ticket_list_t list, int seat_id);
 
-Schedule_Srv_FetchByPlayer();
-Seat_Srv_FetchByRoomID();
-Seat_Srv_FindByRC();
 #endif
