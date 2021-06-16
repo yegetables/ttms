@@ -1,0 +1,15 @@
+第一天
+void StaSales_UI_MgtEntry(void)；
+void StaSales_UI_Self(void)；
+void StaSales_UI_Clerk(void)；
+第二天
+int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list);
+void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t);
+int Schedule_Srv_StatRevByPlay(int play_id,int *soldCount);
+int Ticket_Srv_StatRevBySchID(int schedule_id,int *soldCount);
+int Ticket_Srv_FetchBySchID(ticket_list_t list,int schedule_id);
+int Sale_Perst_SelByTicketID(int ticket_id,sale_t *sale);
+第三天
+int Ticket_Perst_SelectBySchID(tickList,schedule_id);
+int Sale_Perst_SellByID(sale_list_t list,int usrID);
+int StaSales_Srv_CompSaleVal(int usrID, ttms_date_t stDate, ttms_date_t endDate)
