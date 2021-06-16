@@ -179,7 +179,29 @@ void Seat_UI_MgtEntry(int roomID)
 返 回 值：整型，表示是否成功添加了座位的标志。
 //输入一个座位
 */
-int Seat_UI_Add(seat_list_t list, int roomID, int row, int column) { return 0; }
+int Seat_UI_Add(seat_list_t list, int roomID, int row, int column)
+{
+    int newRecCount = 0;
+rec:
+    printf("输入待添加的座位行和列\n");
+    int newRow, newCol;
+    scanf("%d%d", &newRow, &newCol);
+    if (newRow <= 0 || newCol <= 0 || newRow > row || newCol > column)
+    {
+        printf("输入有误,继续请输入y");
+        char choice;
+        fflush(stdin);
+        scanf("%c", &choice);
+        if (choice == 'y')
+        {
+            goto rec;
+        }
+        else
+        {
+            return newRecCount;
+        }
+    }
+}
 
 /*
 标识符：TTMS_SCU_Seat_UI_Mod
@@ -208,9 +230,17 @@ int Seat_UI_Modify(seat_list_t list, int row, int column)
     printf("请输入修改后座位的状态\n");
     char char_status;
     scanf("%c", &char_status);
-    if
-        ;
-    Seat_Srv_Modify();
+    if (char_status == CHAR_SEAT_GOOD || char_status == CHAR_SEAT_NONE ||
+        char_status == CHAR_SEAT_BROKEN)
+    {
+        nodePtr->data.status = Seat_UI_Char2Status(char_status);
+        return Seat_Srv_Modify(&nodePtr->data);
+    }
+    else
+    {
+        printf("状态输入有误\n");
+        return 0;
+    }
 }
 
 /*

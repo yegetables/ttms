@@ -12,19 +12,32 @@
 #define STUDIO_UI_H_
 
 //标识符：TTMS_SCU_Studio_UI_Add
-//功能：添加新演出厅界面
+/**
+ * @brief 添加新演出厅界面
+ * @return int
+ */
 int Studio_UI_Add(void);
 
 //标识符：TTMS_SCU_Studio_UI_Mod
-//功能：根据ID修改演出厅界面
+/**
+ * @brief 根据ID修改演出厅界面
+ * @param id
+ * @return int
+ */
 int Studio_UI_Modify(int id);
 
 //标识符：TTMS_SCU_Studio_UI_Del
-//功能：根据ID删除演出厅界面
+/**
+ * @brief 根据ID删除演出厅界面
+ * @param id
+ * @return int
+ */
 int Studio_UI_Delete(int id);
 
 //标识符：TTMS_SCU_Studio_UI_MgtEnt
-//功能：根据ID删除演出厅界面
+/**
+ * @brief 根据ID删除演出厅界面
+ */
 void Studio_UI_MgtEntry(void);
 
 #endif /* STUDIO_UI_H_ */
