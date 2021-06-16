@@ -18,10 +18,6 @@
 #include "../Service/Seat.h"
 #include "../Service/Studio.h"
 
-#define CHAR_SEAT_GOOD '○'
-#define CHAR_SEAT_NONE '●'
-#define CHAR_SEAT_BROKEN '*'
-
 /*
 表识符：TTMS_SCU_Seat_UI_S2C
 函数功能：根据座位状态获取界面显示符号。
@@ -38,9 +34,13 @@ inline char Seat_UI_Status2Char(seat_status_t status)
     {
         return CHAR_SEAT_NONE;
     }
-    else
+    else if (status == SEAT_BROKEN)
     {
         return CHAR_SEAT_BROKEN;
+    }
+    else
+    {
+        return CHAR_SEAT_NONEONE;
     }
 }
 
@@ -74,48 +74,48 @@ inline seat_status_t Seat_UI_Char2Status(char statusChar)
 */
 void Seat_UI_MgtEntry(int roomID)
 {
-    printf("\n=======================================================\n");
-    printf("****************  座位管理界面  ****************\n");
-    printf("-------------------------------------------------------\n");
-    studio_t *buf = NULL;  //存储放映厅信息
-    if (Studio_Srv_FetchByID(roomID, buf) == 0)
+    while (1)
     {
-        printf("不存在此放映厅\n");
-        return;
-    }
-    seat_list_t list = NULL;  //存储座位的链表
-    List_Init(list, seat_node_t);
-    if (Seat_Srv_FetchByRoomID(list, roomID) == 0)
-    {
-        printf("此放映厅座位未初始化\n");
-        int rowsCount, colsCount;
-        while (1)
+        printf("\n=======================================================\n");
+        printf("****************  座位管理界面  ****************\n");
+        printf("-------------------------------------------------------\n");
+        studio_t *buf = NULL;  //存储放映厅信息
+        if (Studio_Srv_FetchByID(roomID, buf) == 0)
         {
-            printf("输入座位行数:");
-            if (scanf("%d", &rowsCount) != 1 || rowsCount <= 0)
-            {
-                printf("输入有误,请重新输入\n");
-                continue;
-            }
-            printf("输入座位列数:");
-            if (scanf("%d", &colsCount) != 1 || colsCount <= 0)
-            {
-                printf("输入有误,请重新输入\n");
-                continue;
-            }
-            break;
+            printf("不存在此放映厅\n");
+            return;
         }
-        Seat_Srv_RoomInit(list, roomID, rowsCount, colsCount);  //座位初始化
-        studio_t data = {buf->id, buf->name, rowsCount, colsCount,
-                         rowsCount * colsCount};
-        Studio_Srv_Modify(&data);
-        printf("初始化完毕\n");
-    }
-    else
-    {
-        seat_node_t *curPos;
-        while (1)
+        seat_list_t list = NULL;  //存储座位的链表
+        List_Init(list, seat_node_t);
+        if (Seat_Srv_FetchByRoomID(list, roomID) == 0)
         {
+            printf("此放映厅座位未初始化\n");
+            int rowsCount, colsCount;
+            while (1)
+            {
+                printf("输入座位行数:");
+                if (scanf("%d", &rowsCount) != 1 || rowsCount <= 0)
+                {
+                    printf("输入有误,请重新输入\n");
+                    continue;
+                }
+                printf("输入座位列数:");
+                if (scanf("%d", &colsCount) != 1 || colsCount <= 0)
+                {
+                    printf("输入有误,请重新输入\n");
+                    continue;
+                }
+                break;
+            }
+            Seat_Srv_RoomInit(list, roomID, rowsCount, colsCount);  //座位初始化
+            studio_t data = {buf->id, buf->name, rowsCount, colsCount,
+                             rowsCount * colsCount};
+            Studio_Srv_Modify(&data);
+            printf("初始化完毕\n");
+        }
+        else
+        {
+            seat_node_t *curPos;
             printf("%d放映厅座位共%d行%d列\n", roomID, buf->rowsCount,
                    buf->colsCount);
             int cnt    = 0;
@@ -302,7 +302,16 @@ int Seat_UI_Modify(seat_list_t list, int row, int column)
         char_status == CHAR_SEAT_BROKEN)
     {
         nodePtr->data.status = Seat_UI_Char2Status(char_status);  //链表中修改
-        return Seat_Srv_Modify(&nodePtr->data);  //文件中修改
+        if (Seat_Srv_Modify(&nodePtr->data))  //文件中修改
+        {
+            printf("修改成功\n");
+            return 1;
+        }
+        else
+        {
+            printf("修改失败\n");
+            return 0;
+        }
     }
     else
     {
