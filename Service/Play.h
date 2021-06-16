@@ -90,8 +90,7 @@ int Play_Srv_FetchByID(int id, play_t *buf);
 #endif
 
 /**
- * @brief 根据剧目ID获取剧目信息
- *
+ * @brief 根据剧目name获取剧目信息
  * @param name 剧目name
  * @param buf buf保存获取剧目的内存地址
  * @return int 返回值==1获取成功,!=1获取失败
