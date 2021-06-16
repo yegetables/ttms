@@ -13,19 +13,17 @@
  */
 int Ticket_Srv_GenBatch(int schedule_id);
 
-
 /**
  * @brief 根据ID获取演出计划
- * @param id 
- * @param buf 
- * @return int 
+ * @param id
+ * @param buf
+ * @return int
  */
 int Schedule_Srv_FetchByID(int id, schedule_t* buf);
 
-
 /**
  * @brief  根据演出计划ID删除演出票
- * @param schedule_id 
+ * @param schedule_id
  */
 void Ticket_Srv_DeleteBatch(int schedule_id);
 

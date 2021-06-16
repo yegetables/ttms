@@ -38,7 +38,10 @@ dod:
                 break;
             case 'S':
             case 's':
-                Play_Srv_FetchByName();
+                printf("输入剧目名称\n");
+                char name[256] = {0};
+                scanf("%s", name);
+                Play_Srv_FetchByName(name, );
                 break;
             case 'F':
             case 'f':

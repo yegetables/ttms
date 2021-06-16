@@ -10,4 +10,3 @@ ticket_node_t* Ticket_Srv_FetchBySeatID(ticket_list_t list, int seat_id)
 {
     return NULL;
 }
-

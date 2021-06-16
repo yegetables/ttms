@@ -95,7 +95,6 @@ int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID)
     return Count;
 }
 
-
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID)
 {
     // 请补充完整
@@ -197,7 +196,6 @@ void Seat_Srv_SortSeatList(seat_list_t list)
     high->next = list;
 }
 
-
 void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node)
 {
     // 请补充完整
@@ -220,7 +218,6 @@ void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node)
     List_AddTail(list, node);
 }
 
-
 seat_node_t *Seat_Srv_FindByRowCol(seat_list_t list, int row, int column)
 {
     // 请补充完整
@@ -234,7 +231,6 @@ seat_node_t *Seat_Srv_FindByRowCol(seat_list_t list, int row, int column)
     }
     return NULL;
 }
-
 
 seat_node_t *Seat_Srv_FindByID(seat_list_t list, int rowID)
 {

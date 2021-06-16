@@ -1,4 +1,1 @@
-void MaiAccount_UI_MgtEntry()
-{
-    
-}
+void MaiAccount_UI_MgtEntry() {}
