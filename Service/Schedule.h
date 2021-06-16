@@ -7,21 +7,22 @@ typedef struct{
     int minute;
     int second;
 }ttms_time_t;
+
 typedef struct 
 {
-  int id;
-  int play_id;
-  int studio_id;
-  ttms_date_t date;
-  ttms_time_t time;
-  int seat_count;
+  int id;//演出计划
+  int play_id;//剧目ID
+  int studio_id;//演出厅ID
+  ttms_date_t date;//日期
+  ttms_time_t time;//演出时间
+  int seat_count;//座位数
 
 }schedule_t;
 typedef struct schedule_node
 {
    schedule_t data;
-   struct 
-   
+   struct schedule_node *next;
+   struct schedule_node *prev;
 }schedule_node_t,* schedule_list_t;
 
 /**

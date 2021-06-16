@@ -5,6 +5,7 @@ void Sale_UI_MgtEntry(void)
     char choice;
     Pagination_t paging;
     play_list_t list;
+    play_node_t* tmp = list;
 dod:
     List_Init(list, play_node_t);
     paging.pageSize     = SALESANALYSIS_PAGE_SIZE;
@@ -29,12 +30,15 @@ dod:
         {
             case 'C':
             case 'c':
-                Sale_UI_ShowScheduler(play_id);  //显示演出计划
+                List_ForEach(list, tmp)
+                    Sale_UI_ShowScheduler(tmp->data.id);  //显示演出计划
+
                 List_Destroy(list, play_node_t);
                 goto dod;
+                break;
             case 'S':
             case 's':
-                Play_UI_FetchByName();
+                Play_Srv_FetchByName();
                 break;
             case 'F':
             case 'f':
@@ -67,29 +71,36 @@ void Sale_UI_ShowScheduler(int playID)
     Pagination_t paging;
     paging.pageSize = SALESANALYSIS_PAGE_SIZE;
     paging.offset   = 0;
-
     play_list_t list;
+    schedule_list_t sch_list;
+
     List_Init(list, play_node_t);
 
-    if (1 != Play_Srv_FetchByID(playID, &list->data))
+    if (1 != Play_Srv_FetchByID(playID, &list->data))  //获取剧目
     {
         List_Destroy(list, play_node_t);
         return;
     }
 
 w:
-    Schedule_Srv_FetchByPlay();
-    char choice;
+    Schedule_Srv_FetchByPlay(sch_list, playID);  //获取演出计划
+    char choice = 0;
     do
-    {  //
-        fflush(stdin);
-        choice = getchar();
+    {
+        printf("\n=========================================================\n");
+        printf("**************** SALE  System ****************\n");
+        printf("[T]显示演出票\n");
+        printf(
+            "\n=======|[P]revPage|[N]extPage|[E]xist|[R]eturn=============\n");
+        printf("Please input your choice:");
+        scanf("%c", &choice);
 
         switch (choice)
         {
             case 'T':
             case 't':
-                Sale_UI_ShowTicket(playID);
+                // MARK:Sale_UI_ShowTicket
+                Sale_UI_ShowTicket(sch_list, list->data);
                 break;
             case 'R':
             case 'r':
@@ -111,7 +122,7 @@ w:
             default:
                 choice = 'e';
         }
-    } while ('e' != choice);
+    } while ('e' != choice && choice != 'E');
 
     List_Destroy(list, play_node_t);
     return;
@@ -181,4 +192,37 @@ void Sale_UI_RetfundTicket(void)
     return;
 }
 
-void Sale_UI_ShowTicket(int playID);
+void Sale_UI_ShowTicket(void)
+{
+    //    Schedule_Srv_FetchByID();
+    Schedule_Srv_FetchByPlay();
+    Seat_Srv_FetchByRoomID();
+    Ticket_Srv_FetchBySchID();
+
+    char choice = 0;
+    do
+    {
+        printf("\n=========================================================\n");
+        printf("**************** SALE  System ****************\n");
+        printf("[B]uy购买票\n");
+        printf("\n=======[E]xist|[R]eturn=============\n");
+        printf("Please input your choice:");
+        scanf("%c", &choice);
+
+        switch (choice)
+        {
+            case 'B':
+            case 'b':
+                Sale_UI_SellTicket();
+                Ticket_UI_Print();
+                break;
+            case 'R':
+            case 'r':
+                goto w;
+            default:
+                choice = 'e';
+        }
+    } while ('e' != choice && choice != 'E');
+
+    return;
+}
