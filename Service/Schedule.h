@@ -23,7 +23,6 @@ typedef struct schedule_node
    schedule_t data;
    struct schedule_node *next;
    struct schedule_node *prev;
-   
 }schedule_node_t,* schedule_list_t;
 
 /**

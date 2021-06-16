@@ -194,7 +194,8 @@ void Sale_UI_RetfundTicket(void)
 
 void Sale_UI_ShowTicket(void)
 {
-    Schedule_Srv_FetchByID();
+    //    Schedule_Srv_FetchByID();
+    Schedule_Srv_FetchByPlay();
     Seat_Srv_FetchByRoomID();
     Ticket_Srv_FetchBySchID();
 
