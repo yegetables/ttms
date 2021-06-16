@@ -35,5 +35,15 @@ int Account_Perst_RemByID(int id);
  * @return int 表示获取到的系统用户数
  */
 int Account_Perst_SelectAll(account_list_t list);
+/**
+ * @brief 根据传入的用户名，找到并返回用户信息
+ * 
+ * @param usrName 一个字符串类型，待查找的用户名
+ * @param usr 一个account_t类型的指针，将指向查找到的用户。
+ * @return int 返回1代表查找成功，0表示查找失败。
+ */
+int Account_Perst_SelByName(char usrName,account_t * usr)
+{
 
+}
 #endif

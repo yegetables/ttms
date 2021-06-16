@@ -36,3 +36,7 @@ int Account_Srv_Modify(account_t *data)
     fclose(fp);
     return 1;
 }
+int Account_Srv_Verify(char usrName[], char pwd[])
+{
+    
+}
