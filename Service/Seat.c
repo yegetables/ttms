@@ -14,6 +14,7 @@
 #include <string.h>
 
 #include "../Common/List.h"
+#include "../Persistence/EntityKey_Persist.h"
 #include "../Persistence/Seat_Persist.h"
 
 /*增加座位:添加新座位
@@ -95,7 +96,6 @@ int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID)
     return Count;
 }
 
-
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID)
 {
     // 请补充完整
@@ -115,19 +115,6 @@ int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID)
     Seat_Srv_SortSeatList(list);
     return validCount;
 }
-//拼接合成座位ID
-int Seat_Srv_myStrcat(int roomID, int rowsCount, int colsCount)
-{
-    char ID[300] = {'\0'};
-    char roomIDStr[100], rowsCountStr[100], colsCountStr[100];
-    itoa(roomID, roomIDStr, 10);
-    itoa(rowsCount, rowsCountStr, 10);
-    itoa(colsCount, colsCountStr, 10);
-    strcat(ID, roomIDStr);
-    strcat(ID, rowsCountStr);
-    strcat(ID, colsCountStr);
-    return atoi(ID);
-}
 
 int Seat_Srv_RoomInit(seat_list_t list, int roomID, int rowsCount,
                       int colsCount)
@@ -139,7 +126,7 @@ int Seat_Srv_RoomInit(seat_list_t list, int roomID, int rowsCount,
         {
             seat_list_t p = (seat_list_t)malloc(sizeof(seat_node_t));
             seat_t node   = {
-                Seat_Srv_myStrcat(roomID, rowsCount, colsCount),
+                EntKey_Perst_GetNewKeys(SEAT_KEY_NAME, 1),
                 roomID,
                 rowsCount,
                 colsCount,
@@ -197,7 +184,6 @@ void Seat_Srv_SortSeatList(seat_list_t list)
     high->next = list;
 }
 
-
 void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node)
 {
     // 请补充完整
@@ -220,7 +206,6 @@ void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node)
     List_AddTail(list, node);
 }
 
-
 seat_node_t *Seat_Srv_FindByRowCol(seat_list_t list, int row, int column)
 {
     // 请补充完整
@@ -234,7 +219,6 @@ seat_node_t *Seat_Srv_FindByRowCol(seat_list_t list, int row, int column)
     }
     return NULL;
 }
-
 
 seat_node_t *Seat_Srv_FindByID(seat_list_t list, int rowID)
 {
