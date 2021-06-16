@@ -21,7 +21,7 @@ int Play_Srv_FetchByID(int id, play_t *buf)
     play_list_t cur;
     List_ForEach(list, cur)
     {
-        if (cur->data.id == name)
+        if (cur->data.id == id)
         {
             buf = &(cur->data);
             return 1;
