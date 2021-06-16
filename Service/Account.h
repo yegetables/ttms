@@ -14,7 +14,7 @@ typedef struct
     char username[30];
     char password[30];
 } account_t;
-typedef struct account_t_node
+typedef struct account_node
 {
     account_t data;
     struct account_node *next;
