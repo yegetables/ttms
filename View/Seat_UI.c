@@ -114,7 +114,8 @@ void Seat_UI_MgtEntry(int roomID)
         seat_node_t *curPos;
         while (1)
         {
-            printf("%d影厅座位情况如下\n", roomID);
+            printf("%d放映厅座位共%d行%d列\n", roomID, buf->rowsCount,
+                   buf->colsCount);
             int cnt = 0;
             List_ForEach(list, curPos)
             {
@@ -188,7 +189,8 @@ rec:
     scanf("%d%d", &newRow, &newCol);
     if (newRow <= 0 || newCol <= 0 || newRow > row || newCol > column)
     {
-        printf("输入有误,继续请输入y");
+        printf("输入有误,请核实后操作");
+        return newRecCount;
         char choice;
         fflush(stdin);
         scanf("%c", &choice);
@@ -196,11 +198,33 @@ rec:
         {
             goto rec;
         }
-        else
-        {
-            return newRecCount;
-        }
     }
+    if (Seat_Srv_FindByRowCol(list, newRow, newCol))
+    {
+        printf("此座位已存在,请核实后操作\n");
+        return newRecCount;
+    }
+    printf("输入此座位状态\n");
+    printf(
+        "%c:有座位\n"
+        "%c:无座位\n"
+        "%c:损坏的座位\n",
+        CHAR_SEAT_GOOD, CHAR_SEAT_NONE, CHAR_SEAT_BROKEN);
+    char char_status;
+    fflush(stdin);
+    scanf("%c", &char_status);
+    if (char_status == CHAR_SEAT_GOOD || char_status == CHAR_SEAT_NONE ||
+        char_status == CHAR_SEAT_BROKEN)
+    {
+        nodePtr->data.status = Seat_UI_Char2Status(char_status);
+        return Seat_Srv_Modify(&nodePtr->data);
+    }
+    else
+    {
+        printf("状态输入有误\n");
+        return 0;
+    }
+    Seat_Srv_Add()
 }
 
 /*
