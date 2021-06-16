@@ -111,7 +111,7 @@ void Studio_UI_MgtEntry(void)
                 break;
             case 's':
             case 'S':
-                printf("Input the RoomID:");
+                printf("输入放映厅ID:");
                 scanf("%d", &id);
                 Seat_UI_MgtEntry(id);
                 paging.totalRecords = Studio_Srv_FetchAll(head);
