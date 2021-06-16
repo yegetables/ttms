@@ -10,8 +10,19 @@
 
 #ifndef SEATPERSIST_H_
 #define SEATPERSIST_H_
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
+#include "../Common/List.h"
 #include "../Service/Seat.h"
+#include "EntityKey_Persist.h"
+static const char SEAT_DATA_FILE[]      = "Seat.dat";
+static const char SEAT_DATA_TEMP_FILE[] = "SeatTmp.dat";
+
+//添加对象主键标识名称
+static const char SEAT_KEY_NAME[] = "Seat";
 
 //标识符： TTMS_SCU_Seat_Perst_Insert
 //功能：向文件中存储新座位
