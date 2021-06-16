@@ -24,7 +24,7 @@ static const char SEAT_DATA_TEMP_FILE[] = "SeatTmp.dat";
 //添加对象主键标识名称
 static const char SEAT_KEY_NAME[] = "Seat";
 
-/*MARK:函数功能：用于向文件中添加一个新座位数据。
+/*函数功能：用于向文件中添加一个新座位数据。
 参数说明：data为seat_t类型指针，表示需要添加的座位数据结点。
 返 回 值：整型，表示是否成功添加了座位的标志。
 */
@@ -38,8 +38,8 @@ int Seat_Perst_Insert(seat_t *data)
         printf("Cannot open file %s!\n", SEAT_DATA_FILE);
         return 0;
     }
-    data->id = EntKey_Perst_GetNewKeys(SEAT_KEY_NAME, 1);  //获取主键
-    rtn      = fwrite(data, sizeof(seat_t), 1, fp);
+
+    rtn = fwrite(data, sizeof(seat_t), 1, fp);
 
     fclose(fp);
     return rtn;
@@ -110,7 +110,7 @@ int Seat_Perst_Update(const seat_t *seatdata)
 
 /*
 识符：TTMS_SCU_Seat_Perst_DelByID
-MARK:函数功能：用于从文件中删除一个座位的数据。
+函数功能：用于从文件中删除一个座位的数据。
 参数说明：参数ID为整型，表示需要删除的座位ID。
 返 回 值：整型，表示是否成功删除了座位的标志。
 */

@@ -13,9 +13,8 @@
 #include "../Common/List.h"
 #include "../Service/Play.h"
 /**
- * @brief
+ * @brief 函数实现了构建salesanalysis_list_t类型链表功能
  *  标识符：TTMS_SCU_SalesAnalysis_Srv_StaticSale
-    功能：函数实现了构建salesanalysis_list_t类型链表功能
  */
 typedef struct
 {

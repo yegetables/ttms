@@ -5,28 +5,31 @@
 #include "Schedule.h"
 #include "Seat.h"
 #include "Studio.h"
-#include "../View/Ticket_UI.h"
 //票状态
-typedef enum {
-    TICKET_AVL=0,   //待售
-    TICKET_SOLD=1, //已售
-    TICKET_RESV=9 //预留
-}ticket_status_t;
+typedef enum
+{
+    TICKET_AVL  = 0,  //待售
+    TICKET_SOLD = 1,  //已售
+    TICKET_RESV = 9   //预留
+} ticket_status_t;
 
 //票实体数据类型
-typedef struct{
-    int id;     //票id
-    int schedule_id;    //演出计划id
-    int seat_id;    //座位id
-    int price;      //票价
-    ticket_status_t status;     //票状态
-}ticket_t;
+typedef struct
+{
+    int id;                  //票id
+    int schedule_id;         //演出计划id
+    int seat_id;             //座位id
+    int price;               //票价
+    ticket_status_t status;  //票状态
+} ticket_t;
 
 //票链表节点
-typedef struct ticket_node {
-        ticket_t data;
-        struct ticket_node *next, *prev;
-}ticket_node_t,*ticket_list_t;
+typedef struct ticket_node
+{
+    ticket_t data;
+    struct ticket_node *next, *prev;
+} ticket_node_t, *ticket_list_t;
+
 /**
  * @brief 批量增加Ticket.dat的票信息
  * @param schedule_id 演出计划id
@@ -34,16 +37,17 @@ typedef struct ticket_node {
  */
 int Ticket_Srv_GenBatch(int schedule_id);
 
-//根据ID获取演出计划
+/**
+ * @brief 根据ID获取演出计划
+ * @param id
+ * @param buf
+ * @return int
+ */
 int Schedule_Srv_FetchByID(int id, schedule_t* buf);
 
-//根据演出计划ID删除演出票
-void Ticket_Srv_DeleteBatch(int schedule_id);
 /**
- * @brief 根据ID获取演出票
- * return：1成功，非1查询失败
- * 参数：id：演出票ID buf：查询成功的演出票信息内存地址
+ * @brief  根据演出计划ID删除演出票
+ * @param schedule_id
  */
-int Ticket_Srv_FetchByID(int id, ticket_t* buf);
-
+void Ticket_Srv_DeleteBatch(int schedule_id);
 #endif

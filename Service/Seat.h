@@ -37,22 +37,31 @@ typedef struct seat_node
     struct seat_node *next, *prev;
 } seat_node_t, *seat_list_t;
 
-/*
-标识符：TTMS_SCU_Seat_Srv_RoomInit
-功能：根据行、列数初始化演出厅的座位
-*/
+/**
+ * @brief
+ * 根据给定演出厅的行、列数初始化演出厅的所有座位数据，并将每个座位结点按行插入座位链表。管理座位:初始化演出厅座位
+ * @param list  seat_list_t类型指针，指向座位链表头指针
+ * @param roomID
+ * @param rowsCount 座位所在行号
+ * @param colsCount 座位所在列号
+ * @return int 表示是否成功初始化了演出厅的所有座位。
+ */
 int Seat_Srv_RoomInit(seat_list_t list, int roomID, int rowsCount,
                       int colsCount);
 
-/*
-标识符：TTMS_SCU_Seat_Srv_SortSeatList
-功能：对座位链表list进行排序
-*/
+/**
+ * @brief 对座位链表list按座位行号、列号进行排序。
+ *
+ * @param list seat_list_t类型，表示待排序座位链表头指针。
+ */
 void Seat_Srv_SortSeatList(seat_list_t list);
 
-/*
-标识符：TTMS_SCU_Seat_Srv_AddSortedList
-功能：将结点node加入到已排序链表list中*/
+/**
+ * @brief 增加结点到排序链表
+ * 将一个座位结点加入到已排序的座位链表中。
+ * @param list seat_list_t类型，表示待插入结点的座位链表头指针
+ * @param node seat_node_t指针，表示需要插入的座位数据结点
+ */
 void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node);
 
 /*
@@ -85,10 +94,12 @@ int Seat_Srv_DeleteByID(int ID);
 */
 int Seat_Srv_DeleteAllByRoomID(int roomID);
 
-/*
-标识符：TTMS_SCU_Seat_Srv_ FetchValidByRoomID
-功能：根据放映厅ID提取有效的座位
-*/
+/**
+ * @brief 根据演出厅ID获得该演出厅的有效座位。
+ * @param list seat_list_t类型，表示获取到的有效座位链表头指针
+ * @param roomID 需要提取有效座位的演出厅ID。
+ * @return int 表示演出厅的有效座位个数
+ */
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID);
 
 /*
@@ -103,15 +114,23 @@ int Seat_Srv_FetchByID(int ID, seat_t *buf);
 */
 int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID);
 
-/*
-标识符：TTMS_SCU_Seat_Srv_FindByRC
-功能：根据行列号获取座位服务
-*/
+/**
+ * @brief 根据座位的行、列号获取座位数据。
+ *
+ * @param list seat_list_t类型，表示座位链表头指针，
+ * @param row 待获取座位的行号
+ * @param column 列号
+ * @return seat_node_t* 获取到的座位数据。
+ */
 seat_node_t *Seat_Srv_FindByRowCol(seat_list_t list, int row, int column);
 
-/*
-标识符：TTMS_SCU_Studio_Srv_FindByID
-功能：根据ID在链表中获取座位服务*/
+/**
+ * @brief 根据座位ID在链表中获取座位数据。
+ *
+ * @param list seat_list_t类型，指向座位数据链表
+ * @param seatID 座位ID
+ * @return seat_node_t* 表示获取的座位数据
+ */
 seat_node_t *Seat_Srv_FindByID(seat_list_t list, int seatID);
 
 #endif  // SEAT_H_

@@ -4,6 +4,7 @@
 #include "../Persistence/Sale_Persist.h"
 #include "Play.h"
 #include "Schedule.h"
+#include "Seat.h"
 #include "Ticket.h"
 #define SALESANALYSIS_PAGE_SIZE 5
 typedef enum
@@ -34,33 +35,6 @@ typedef struct sale_node
  * @param data 售票的订单数据
  * @return int 0成功其他失败
  */
-int Sale_Srv_Add(const sale_t* data);
+int Sale_Srv_Add(sale_t* data);
 
-/**
- * @brief 使用data的票信息
- * 修改数据文件中的票信息
- * @param data 新的票信息
- * @return int 0成功其他失败
- */
-int Ticket_Srv_Modify(const ticket_t* data);
-
-/**
- * @brief 根据演出计划id获取所有票数据
- * @param ID 演出计划id
- * @param list 记录所有票的链表头指针
- * @return int 获取到的票数量
- */
-int Ticket_Srv_FetchBySchID(int ID, ticket_list_t list);
-
-/**
- * @brief 根据座位id获取票数据
- * @param list 指向票链表
- * @param seat_id 座位id
- * @return ticket_node_t* 获取到的票数据
- */
-ticket_node_t* Ticket_Srv_FetchBySeatID(ticket_list_t list, int seat_id);
-
-Schedule_Srv_FetchByPlayer();
-Seat_Srv_FetchByRoomID();
-Seat_Srv_FindByRC();
 #endif

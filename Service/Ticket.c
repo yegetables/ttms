@@ -6,7 +6,7 @@ int Schedule_Srv_FetchByID(int id, schedule_t* buf)
 }
 int Ticket_Srv_GenBatch(int schedule_id)
 {
-    int number = -1,re;
+    int number = -1;
     seat_list_t seat_head;
     List_Init(seat_head, seat_list_t);
     if (seat_head == NULL) return number;
@@ -22,7 +22,7 @@ int Ticket_Srv_GenBatch(int schedule_id)
         printf("error %s:%d", __FILE__, __LINE__);
     }
     return number;
-}   
+}
 void Ticket_Srv_DeleteBatch(int schedule_id)
 {
     int found = 0;

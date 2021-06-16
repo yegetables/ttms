@@ -111,7 +111,6 @@ typedef struct
     void *curPos;  //当前页起始记录在链表中的结点地址
 } Pagination_t;
 
-// MARK: 分页器
 //根据分页器paging的偏移量offset将分页器定位到链表list的对应位置
 #define List_Paging(list, paging, list_node_t)                      \
     {                                                               \

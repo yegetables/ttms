@@ -6,22 +6,9 @@
  * Author:   XUPT
  * Version:  v.1
  */
-#include"StaSales_UI.h"
-void StaSales_UI_MgtEntry(void)
-{
-    return ;
-}
+#include "StaSales_UI.h"
+void StaSales_UI_MgtEntry(void) { return; }
 
+void StaSales_UI_Self(void) { return; }
 
-
-void StaSales_UI_Self(void)
-{
-    return ;
-}
-
-
-
-void StaSales_UI_Clerk(void)
-{
-    return ;
-}
+void StaSales_UI_Clerk(void) { return; }
