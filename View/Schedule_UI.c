@@ -1,16 +1,15 @@
 
 
-#include"./Schedule_UI.h"
-
-#include"../Service/Schedule.h"
-
+#include "./Schedule_UI.h"
 
 #include "../Common/List.h"
-#include"./Play.h"
-#include"../Service/Ticket.h"
+#include "../Service/Schedule.h"
+#include "../Service/Ticket.h"
+#include "./Play.h"
 static const int SCHEDULE_PAGE_SIZE = 5;
-#include<stdio.h>
-void Schedule_UI_MgtEntry(int play_id){
+#include <stdio.h>
+void Schedule_UI_MgtEntry(int play_id)
+{
     char choice;
     int id;
     int i;
@@ -18,15 +17,16 @@ void Schedule_UI_MgtEntry(int play_id){
     schedule_node_t *pos;
     Pagination_t paging;
 
-    List_Init(head,studio_node_t);
-    paging.offset = 0;
+    List_Init(head, studio_node_t);
+    paging.offset   = 0;
     paging.pageSize = SCHEDULE_PAGE_SIZE;
 
-    paging.totalRecords = Schedule_Srv_FetchByPlay(head,play_id);
-    Paging_Locate_FirstPage(head,paging);
+    paging.totalRecords = Schedule_Srv_FetchByPlay(head, play_id);
+    Paging_Locate_FirstPage(head, paging);
 
-    do{
-         printf(
+    do
+    {
+        printf(
             "\n================================================================"
             "==\n");
         printf(
@@ -40,10 +40,12 @@ void Schedule_UI_MgtEntry(int play_id){
         //显示数据
         Paging_ViewPage_ForEach(head, paging, schedule_node_t, pos, i)
         {
-            printf("%10d  %10d  %10d  %10d  %d--%d--%d--%d--%d--%d\n", pos->data.play_id,
-                   pos->data.id, pos->data.studio_id, pos->data.seat_count,
-                   pos->data.date.year,pos->data.date.month,pos->data.date.day,
-                   pos->data.time.hour,pos->data.time.minute,pos->data.time.second);
+            printf("%10d  %10d  %10d  %10d  %d--%d--%d--%d--%d--%d\n",
+                   pos->data.play_id, pos->data.id, pos->data.studio_id,
+                   pos->data.seat_count, pos->data.date.year,
+                   pos->data.date.month, pos->data.date.day,
+                   pos->data.time.hour, pos->data.time.minute,
+                   pos->data.time.second);
         }
 
         printf(
@@ -121,97 +123,106 @@ void Schedule_UI_MgtEntry(int play_id){
                 printf("Input Error,Please Input again\n");
                 break;
         }
-    }while(choice!='r' || choice != 'R');
-
+    } while (choice != 'r' || choice != 'R');
 }
 
-int Schedule_UI_Add(int play_id){
+int Schedule_UI_Add(int play_id)
+{
     int newCount = 0;
     char choice;
     schedule_t sch;
-    do{
+    do
+    {
         printf("\n=======================================================\n");
         printf("****************  Add New Schedule  ****************\n");
         printf("-------------------------------------------------------\n");
         printf("Schedule id:");
         fflush(stdin);
-        scanf("%d",&(sch.id));
+        scanf("%d", &(sch.id));
         printf("Schedule play_id:");
-        scanf("%d",&(sch.play_id));
+        scanf("%d", &(sch.play_id));
         printf("Schedule studio_id:");
-        scanf("%d",&(sch.studio_id));
+        scanf("%d", &(sch.studio_id));
         printf("Schedule time\n");
         printf("hour:");
-        scanf("%d",&(sch.time.hour));
+        scanf("%d", &(sch.time.hour));
         printf("minute:");
-        scanf("%d",&(sch.time.second));
+        scanf("%d", &(sch.time.second));
         printf("Schedule seat_count:");
-        scanf("%d",&(sch.seat_count));
-         printf("=======================================================\n");
-         
-         if(Schedule_Srv_Add(&sch)){
-             newCount+=1;
-             printf("The new Schedule added successfully!");
-         }else{
-             printf("The new Schedule added failed!");
-         }
-         printf("-------------------------------------------------------\n");
+        scanf("%d", &(sch.seat_count));
+        printf("=======================================================\n");
+
+        if (Schedule_Srv_Add(&sch))
+        {
+            newCount += 1;
+            printf("The new Schedule added successfully!");
+        }
+        else
+        {
+            printf("The new Schedule added failed!");
+        }
+        printf("-------------------------------------------------------\n");
         printf("[A]dd more, [R]eturn:");
         fflush(stdin);
-        scanf("%c",&choice);
-    }while('a' == choice || 'A' == choice);
+        scanf("%c", &choice);
+    } while ('a' == choice || 'A' == choice);
 
-    return  newCount;
-   
+    return newCount;
 }
 
-
-
-int Schedule_UI_Modify(int id){
-   schedule_t sch;
-   int rtn = 0;
-   if(!Studio_Srv_FetchByID(id,&sch)){
+int Schedule_UI_Modify(int id)
+{
+    schedule_t sch;
+    int rtn = 0;
+    if (!Studio_Srv_FetchByID(id, &sch))
+    {
         printf("The room does not exist!\nPress [Enter] key to return!\n");
         getchar();
         return 0;
-   }
+    }
     printf("\n=======================================================\n");
     printf("****************  Update Schedule  ****************\n");
     printf("-------------------------------------------------------\n");
-    printf("Schedule ID[%d]=====>",sch.id);
+    printf("Schedule ID[%d]=====>", sch.id);
     fflush(stdin);
-    scanf("%d",(&sch.id));
-    printf("Schedule Play_id[%d]=====>",sch.play_id);
-    scanf("%d",&(sch.play_id));
-    printf("Schedule studio_id[%d]=====>",sch.studio_id);
-    scanf("%d",(&sch.studio_id));
-    printf("Schedule seat_count[%d]====>",sch.seat_count);
-    scanf("%d",&(sch.seat_count));
+    scanf("%d", (&sch.id));
+    printf("Schedule Play_id[%d]=====>", sch.play_id);
+    scanf("%d", &(sch.play_id));
+    printf("Schedule studio_id[%d]=====>", sch.studio_id);
+    scanf("%d", (&sch.studio_id));
+    printf("Schedule seat_count[%d]====>", sch.seat_count);
+    scanf("%d", &(sch.seat_count));
     prinf("The Schedule Time:[%d--%d--%d--%d--%d--%d]\n========>",
-    sch.date.year,sch.date.month,sch.date.day,sch.time.hour,sch.time.minute,sch.time.second);
-    scanf("%d %d %d %d %d %d",&(sch.date.year),&(sch.date.month),&(sch.date.day),&(sch.time.hour),&(sch.time.minute),&(sch.time.second));
-    if(Schedule_Srv_Modify(&sch)){
+          sch.date.year, sch.date.month, sch.date.day, sch.time.hour,
+          sch.time.minute, sch.time.second);
+    scanf("%d %d %d %d %d %d", &(sch.date.year), &(sch.date.month),
+          &(sch.date.day), &(sch.time.hour), &(sch.time.minute),
+          &(sch.time.second));
+    if (Schedule_Srv_Modify(&sch))
+    {
         printf("This Schedule Modify Successfully!");
         rtn++;
         return rtn;
-    }else{
+    }
+    else
+    {
         printf("fail to modify!");
         return 0;
     }
-
 }
 
-
-
-int Schedule_UI_Delete(int id){
+int Schedule_UI_Delete(int id)
+{
     int rtn = 0;
-    if(!Schedule_Srv_Delete(id)){
+    if (!Schedule_Srv_Delete(id))
+    {
         printf("error to delete!");
         return 0;
-    }else{
+    }
+    else
+    {
         printf("delete Successfully!");
         rtn++;
         return rtn;
     }
-
 }
