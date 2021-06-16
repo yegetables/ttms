@@ -20,4 +20,4 @@
  */
 long EntKey_Perst_GetNewKeys(const char entName[], int count);
 
-#endif /* COMMON_PERSIST_H_ */
+#endif
