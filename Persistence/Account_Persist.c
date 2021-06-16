@@ -10,7 +10,7 @@ int Account_Perst_Insert(account_t* data)
 {
     return 1;
 }
-int Account_Perst_Insert(account_t* data)
+int Account_Perst_Update(account_t* data)
 {
     return 1;
 }
