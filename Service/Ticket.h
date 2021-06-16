@@ -13,10 +13,20 @@
  */
 int Ticket_Srv_GenBatch(int schedule_id);
 
-//根据ID获取演出计划
+
+/**
+ * @brief 根据ID获取演出计划
+ * @param id 
+ * @param buf 
+ * @return int 
+ */
 int Schedule_Srv_FetchByID(int id, schedule_t* buf);
 
-//根据演出计划ID删除演出票
+
+/**
+ * @brief  根据演出计划ID删除演出票
+ * @param schedule_id 
+ */
 void Ticket_Srv_DeleteBatch(int schedule_id);
 
 typedef struct

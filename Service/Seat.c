@@ -95,11 +95,7 @@ int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID)
     return Count;
 }
 
-/*根据影厅ID获取有效座位
-函数功能：根据演出厅ID获得该演出厅的有效座位。
-参数说明：第一个参数list为seat_list_t类型，表示获取到的有效座位链表头指针，第二个参数roomID为整型，表示需要提取有效座位的演出厅ID。
-返 回 值：整型，表示演出厅的有效座位个数。
-*/
+
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID)
 {
     // 请补充完整
@@ -132,11 +128,7 @@ int Seat_Srv_myStrcat(int roomID, int rowsCount, int colsCount)
     strcat(ID, colsCountStr);
     return atoi(ID);
 }
-/*管理座位:初始化演出厅座位
-函数功能：根据给定演出厅的行、列数初始化演出厅的所有座位数据，并将每个座位结点按行插入座位链表。
-参数说明：第一个参数list为seat_list_t类型指针，指向座位链表头指针，第二个参数rowsCount为整型，表示座位所在行号，第三个参数colsCount为整型，表示座位所在列号。
-返 回 值：整型，表示是否成功初始化了演出厅的所有座位。
-*/
+
 int Seat_Srv_RoomInit(seat_list_t list, int roomID, int rowsCount,
                       int colsCount)
 {
@@ -191,11 +183,7 @@ void Seat_Srv_qSort(seat_list_t low, seat_list_t high)
     Seat_Srv_qSort(i, low->prev);
     Seat_Srv_qSort(low->next, j);
 }
-/*管理座位:对链表排序
-函数功能：对座位链表list按座位行号、列号进行排序。
-参数说明：list为seat_list_t类型，表示待排序座位链表头指针。
-返 回 值：无。
-*/
+
 void Seat_Srv_SortSeatList(seat_list_t list)
 {
     // 请补充完整
@@ -209,11 +197,7 @@ void Seat_Srv_SortSeatList(seat_list_t list)
     high->next = list;
 }
 
-/*管理座位:增加结点到排序链表
-函数功能：将一个座位结点加入到已排序的座位链表中。
-参数说明：第一个参数list为seat_list_t类型，表示待插入结点的座位链表头指针，第二个参数node为seat_node_t指针，表示需要插入的座位数据结点。
-返 回 值：无。
-*/
+
 void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node)
 {
     // 请补充完整
@@ -236,12 +220,7 @@ void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node)
     List_AddTail(list, node);
 }
 
-/*增加座位|修改座位|删除座位:判断是否存在
-函数功能：根据座位的行、列号获取座位数据。
-参数说明：第一个参数list为seat_list_t类型，表示座位链表头指针，
-         第二个参数row为整型，表示待获取座位的行号，第三个参数column为整型，表示待获取座位的列号。
-返 回 值：为seat_node_t指针，表示获取到的座位数据。
-*/
+
 seat_node_t *Seat_Srv_FindByRowCol(seat_list_t list, int row, int column)
 {
     // 请补充完整
@@ -256,11 +235,7 @@ seat_node_t *Seat_Srv_FindByRowCol(seat_list_t list, int row, int column)
     return NULL;
 }
 
-/*根据座位ID获取座位数据
-函数功能：根据座位ID在链表中获取座位数据。
-参数说明：第一个参数list为seat_list_t类型，指向座位数据链表，第二个参数ID为整型，表示座位ID。
-返 回 值：seat_node_t类型，表示获取的座位数据。
-*/
+
 seat_node_t *Seat_Srv_FindByID(seat_list_t list, int rowID)
 {
     // 请补充完整
