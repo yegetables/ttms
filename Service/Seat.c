@@ -103,18 +103,16 @@ int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID)
 int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID)
 {
     // 请补充完整
-    List_Init(list, seat_list_t);  //初始化头结点
-    seat_list_t headStr =
-        (seat_list_t)malloc(sizeof(seat_node_t));  //所有roomID的头节点
-    headStr->next = headStr->prev = NULL;
+    seat_list_t headStr;  //所有roomID的头节点
+    List_Init(headStr, seat_node_t);
     Seat_Srv_FetchByRoomID(headStr, roomID);  //获取所有roomID的座位
-    int validCount = 0;                       //有效座位个数
-    seat_list_t p  = NULL;                    //遍历座位的指针
-    List_ForEach(headStr, p)                  //遍历所有roomID座位
+    int validCount     = 0;                   //有效座位个数
+    seat_list_t curPos = NULL;                //遍历座位的指针
+    List_ForEach(headStr, curPos)             //遍历所有roomID座位
     {
-        if (p->data.roomID == SEAT_GOOD)
+        if (curPos->data.roomID == SEAT_GOOD)
         {
-            List_AddTail(list, p);
+            List_AddTail(list, curPos);
             validCount++;
         }
     }
@@ -143,7 +141,6 @@ int Seat_Srv_RoomInit(seat_list_t list, int roomID, int rowsCount,
                       int colsCount)
 {
     // 请补充完整
-    List_Init(list, seat_list_t);  //初始化头结点
     for (int i = 1; i <= rowsCount; i++)
     {
         for (int j = 1; j <= colsCount; j++)
@@ -163,11 +160,11 @@ int Seat_Srv_RoomInit(seat_list_t list, int roomID, int rowsCount,
     return Seat_Perst_InsertBatch(list);  //批量存储座位
 }
 // TODO:排序
-void Seat_Srv_qSort(seat_list_t low, seat_list_t high, seat_list_t lowHead)
+void Seat_Srv_qSort(seat_list_t low, seat_list_t high)
 {
     seat_list_t i = low, j = high;
     seat_list_t key = (seat_list_t)malloc(sizeof(seat_node_t));
-    if (low == high || low->prev == high || low == lowHead)
+    if (low == high || low->prev == high || low == NULL)
     {
         return;
     }
@@ -191,8 +188,8 @@ void Seat_Srv_qSort(seat_list_t low, seat_list_t high, seat_list_t lowHead)
         }
     }
     low->data = high->data;
-    Seat_Srv_qSort(i, low->prev, lowHead);
-    Seat_Srv_qSort(low->next, j, lowHead);
+    Seat_Srv_qSort(i, low->prev);
+    Seat_Srv_qSort(low->next, j);
 }
 /*TODO:管理座位:对链表排序
 函数功能：对座位链表list按座位行号、列号进行排序。
@@ -202,6 +199,14 @@ void Seat_Srv_qSort(seat_list_t low, seat_list_t high, seat_list_t lowHead)
 void Seat_Srv_SortSeatList(seat_list_t list)
 {
     // 请补充完整
+    if (list->next == list)  //如果为空
+    {
+        return;
+    }
+    seat_list_t high = list->prev;
+    high->next       = NULL;
+    Seat_Srv_qSort(list->next, high);
+    high->next = list;
 }
 
 /*TODO:管理座位:增加结点到排序链表
@@ -212,13 +217,23 @@ void Seat_Srv_SortSeatList(seat_list_t list)
 void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node)
 {
     // 请补充完整
-    seat_list_t p = NULL;
-    List_ForEach(list, p)
+    if List_IsEmpty (list)
     {
-        if (p->data.row)
+        List_AddTail(list, node);
+        return;
+    }
+    seat_list_t curPos;
+    List_ForEach(list, curPos)
+    {
+        if (node->data.row < curPos->data.row ||
+            node->data.row == curPos->data.row &&
+                node->data.column < curPos->data.column)
         {
+            List_InsertBefore(curPos, node);
+            return;
         }
     }
+    List_AddTail(list, node);
 }
 
 /*TODO:增加座位|修改座位|删除座位:判断是否存在

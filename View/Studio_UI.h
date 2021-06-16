@@ -24,7 +24,7 @@ int Studio_UI_Modify(int id);
 int Studio_UI_Delete(int id);
 
 //标识符：TTMS_SCU_Studio_UI_MgtEnt
-//功能：界面层管理演出厅的入口函数，显示当前的演出厅数据，并提供演出厅数据添加、修改及删除功能操作的入口。
+//功能：根据ID删除演出厅界面
 void Studio_UI_MgtEntry(void);
 
 #endif /* STUDIO_UI_H_ */

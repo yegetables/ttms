@@ -1,5 +1,8 @@
 #include "Ticket_UI.h"
-#include "../Service/Schedule.h"
+
+#include <stdio.h>
+
+#include "../Service/Ticket.h"
 void Ticket_UI_MgtEntry(int schedule_id)
 {
     schedule_t *buf = (schedule_t *)malloc(sizeof(schedule_t));

@@ -7,17 +7,24 @@ void Sale_UI_MgtEntry(void)
     play_list_t list;
 dod:
     List_Init(list, play_node_t);
-    paging.pageSize = SALESANALYSIS_PAGE_SIZE;
-    paging.offset   = 0;
-
-    //获取所有剧目
+    paging.pageSize     = SALESANALYSIS_PAGE_SIZE;
+    paging.offset       = 0;
     paging.totalRecords = Play_Srv_FetchAll(list);
+    Paging_Locate_FirstPage(list, paging);
+
     int play_id;
     do
-    {  //
-        fflush(stdin);
-        choice = getchar();
-
+    {
+        printf("\n=========================================================\n");
+        printf("**************** SALE  System ****************\n");
+        printf("[C]显示演出计划\n");
+        printf("[S]查询剧目名字\n");
+        printf("[F]根据名称筛选剧目\n");
+        printf("[R]eturn\n");
+        printf("[E]xist.\n");
+        printf("\n=======|[P]revPage|[N]extPage|=============\n");
+        printf("Please input your choice:");
+        scanf("%c", &choice);
         switch (choice)
         {
             case 'C':
@@ -64,7 +71,7 @@ void Sale_UI_ShowScheduler(int playID)
     play_list_t list;
     List_Init(list, play_node_t);
 
-    if (1 != Play_Srv_FetchByID(playID, list->data))
+    if (1 != Play_Srv_FetchByID(playID, &list->data))
     {
         List_Destroy(list, play_node_t);
         return;
@@ -72,7 +79,7 @@ void Sale_UI_ShowScheduler(int playID)
 
 w:
     Schedule_Srv_FetchByPlay();
-
+    char choice;
     do
     {  //
         fflush(stdin);
@@ -146,10 +153,10 @@ void Sale_UI_RetfundTicket(void)
     int ticket_id;
     printf("输入票id\n");
     scanf("%d", &ticket_id);
-    Ticket_Srv_FetchByID()
-        //票id->判断票存在
-        //不存在
-        return;
+    Ticket_Srv_FetchByID();
+    //票id->判断票存在
+    //不存在
+    return;
 
     //判断已售?
     //未售

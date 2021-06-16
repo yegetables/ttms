@@ -1,6 +1,7 @@
 #ifndef TICKET_H_
 #define TICKET_H_
 #include "../Common/List.h"
+#include "../View/Ticket_UI.h"
 #include "Schedule.h"
 #include "Seat.h"
 #include "Studio.h"
@@ -33,10 +34,8 @@ typedef struct ticket_node {
  */
 int Ticket_Srv_GenBatch(int schedule_id);
 
-
 //根据ID获取演出计划
-int Schedule_Srv_FetchByID(int id, schedule_t * buf);
-
+int Schedule_Srv_FetchByID(int id, schedule_t* buf);
 
 //根据演出计划ID删除演出票
 void Ticket_Srv_DeleteBatch(int schedule_id);
