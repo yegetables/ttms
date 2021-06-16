@@ -1,11 +1,10 @@
 #ifndef ACCOUNT_H_
 #define ACCOUNT_H_
-typedef enum
-{
-    USR_ANOMY = 0,
-    USR_CLERK = 1,
-    USR_MANG  = 2,
-    USR_ADMIN = 9,
+typedef enum {
+    USR_ANOMY=0,
+    USR_CLERK=1,
+    USR_MANG=2,
+    USR_ADMIN=9,
 } account_type_t;
 typedef struct
 {
@@ -14,7 +13,7 @@ typedef struct
     char username[30];
     char password[30];
 } account_t;
-typedef struct account_t_node
+typedef struct account_node
 {
     account_t data;
     struct account_node *next;
@@ -26,6 +25,6 @@ int Account_Srv_Add(const account_t *data);
 int Account_Srv_Modify(const account_t *data);
 int Account_Srv_DeleteByID(int usrID);
 int Account_Srv_FetchAll(account_list_t list);
+account_t Account_Srv_FetchbyUser(char usrName[]);
 account_node_t *Account_Srv_FindByUsrName(account_list_t list, char usrName[]);
-
 #endif
