@@ -38,8 +38,8 @@ int Seat_Perst_Insert(seat_t *data)
         printf("Cannot open file %s!\n", SEAT_DATA_FILE);
         return 0;
     }
-
-    rtn = fwrite(data, sizeof(seat_t), 1, fp);
+    data->id = EntKey_Perst_GetNewKeys(SEAT_KEY_NAME, 1);  //获取主键
+    rtn      = fwrite(data, sizeof(seat_t), 1, fp);
 
     fclose(fp);
     return rtn;

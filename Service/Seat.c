@@ -57,7 +57,7 @@ int Seat_Srv_Modify(const seat_t *data)
 int Seat_Srv_DeleteByID(int ID)
 {
     // 请补充完整
-    return Seat_Srv_DeleteByID(ID);  //删除座位
+    return Seat_Perst_DeleteByID(ID);  //删除座位
 }
 
 /*TODO:管理座位:通过座位ID获取座位数据
@@ -199,14 +199,23 @@ void Seat_Srv_qSort(seat_list_t low, seat_list_t high)
 void Seat_Srv_SortSeatList(seat_list_t list)
 {
     // 请补充完整
-    if (list->next == list)  //如果为空
+    if (List_IsEmpty(list))
     {
         return;
     }
-    seat_list_t high = list->prev;
-    high->next       = NULL;
-    Seat_Srv_qSort(list->next, high);
-    high->next = list;
+    list->prev->next     = NULL;
+    seat_list_t listLeft = list->next;
+    list->next = list->prev = list;
+    while (1)
+    {
+        if (listLeft == NULL)
+        {
+            return;
+        }
+        seat_list_t p = listLeft;
+        listLeft      = listLeft->next;
+        Seat_Srv_AddToSoftedList(listLeft, p);
+    }
 }
 
 /*TODO:管理座位:增加结点到排序链表
@@ -225,9 +234,9 @@ void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node)
     seat_list_t curPos;
     List_ForEach(list, curPos)
     {
-        if (node->data.row < curPos->data.row ||
-            node->data.row == curPos->data.row &&
-                node->data.column < curPos->data.column)
+        if (!(curPos != list && (curPos->data.row < node->data.row) ||
+              curPos->data.row == node->data.row &&
+                  curPos->data.column < node->data.column))
         {
             List_InsertBefore(curPos, node);
             return;
