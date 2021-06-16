@@ -10,14 +10,6 @@
 
 #include "Seat_UI.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#include "../Common/List.h"
-#include "../Service/Seat.h"
-#include "../Service/Studio.h"
-
 /*
 表识符：TTMS_SCU_Seat_UI_S2C
 函数功能：根据座位状态获取界面显示符号。
