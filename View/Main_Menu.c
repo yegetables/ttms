@@ -4,16 +4,10 @@
  * Description : TTMS 系统主菜单
  * Author:   XUPT
  * Version:  v.1
- * Da
+ * Date: 	2015年4月22日
  */
 
 #include "Main_Menu.h"
-
-#include <stdio.h>
-#include "Play_UI.h"
-#include "Studio_UI.h"
-#include "Ticket_UI.h"
-
 //系统主菜单
 void Main_Menu(void)
 {
@@ -46,10 +40,9 @@ void Main_Menu(void)
             case 's':
                 Studio_UI_MgtEntry();
                 break;
-                // MARK:UI
             case 'P':
             case 'p':
-                Play_UI_MgtEntry(0);
+                Play_UI_MgtEntry();
                 break;
             case 'Q':
             case 'q':
@@ -61,7 +54,7 @@ void Main_Menu(void)
                 break;
             case 'R':
             case 'r':
-                Sale_UI_ReturnTicket();
+                Sale_UI_RetfundTicket();
                 break;
             case 'N':
             case 'n':
@@ -71,7 +64,6 @@ void Main_Menu(void)
             case 'a':
                 Account_UI_MgtEntry();
                 break;
-                //
         }
     } while ('E' != choice && 'e' != choice);
 }

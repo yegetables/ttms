@@ -7,13 +7,13 @@
  * Version:  v.1
  */
 
-#ifndef SalesAnalysis_UI_H_
-#define SalesAnalysis_UI_H_
+#ifndef SALESANALYSIS_UI_H_
+#define SALESANALYSIS_UI_H_
 
 /**
- * @brief 
- * 标识符：TTMS_SCU_ SalesAnalysis_UI_MgtEnt    
- * 功能：实现了“浏览剧目票房排行榜”功能的入口界面
+ * @brief 实现了“浏览剧目票房排行榜”功能的入口界面
+ * 标识符：TTMS_SCU_ SalesAnalysis_UI_MgtEnt
+ * 功能：
  */
 void SalesAnalysis_UI_MgtEntry(void);
 
