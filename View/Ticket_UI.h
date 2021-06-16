@@ -3,17 +3,15 @@
 //生成演出票界面
 void Ticket_UI_MgtEntry(int schedule_id);
 /**
- * @brief 查询演出界面；
+ * @brief 界面层演出票查询管理的入口函数
  * 
  */
-void Schedule_UI_ListALL();
-
+void Ticket_UI_Query();
 /**
- * @brief：根据剧目名称获取演出计划
- * 功能：显示与参数关联的演出计划的数量
- * return：整型，表示获取到演出计划的数量；
- * *play_name:字符型指针，表示带获取演出计划的剧目名称
+ * @brief 显示演出界面
+ *
+ * @return 整形，1成功，否则失败
+ * 参数：演出票ID号 
  */
-int Schedule_UI_Query(char *play_name)
-
+int Ticket_UI_ShowTicket(int ticket_id);
 #endif

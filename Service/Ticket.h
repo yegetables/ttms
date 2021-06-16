@@ -41,17 +41,10 @@ int Schedule_Srv_FetchByID(int id, schedule_t * buf);
 //根据演出计划ID删除演出票
 void Ticket_Srv_DeleteBatch(int schedule_id);
 /**
- * @brief 获取全部演出计划
- * 
- * @param list ：记录所有演出计划的链表头指针
- * @return int ：获取到的演出计划数量
+ * @brief 根据ID获取演出票
+ * return：1成功，非1查询失败
+ * 参数：id：演出票ID buf：查询成功的演出票信息内存地址
  */
-int Schedule_Srv_FetchAll(schedule_list_t list);
-/**
- * @brief 根据名称获取剧目
- * 
- */
-int Play_Srv_FetchByName(play_list_t list,char condt[])
-
+int Ticket_Srv_FetchByID(int id, ticket_t* buf);
 
 #endif
