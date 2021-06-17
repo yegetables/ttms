@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "../Common/Common.h"
 #include "../Common/List.h"
+#include "../Common/TimeLegal.h"
 #include "../Service/Play.h"
 #include "Schedule_UI.h"
 static const int PLAY_PAGE_SIZE = 5;
@@ -134,20 +136,115 @@ void Play_UI_MgtEntry()
                 break;
             case 'r':
             case 'R':
-                return;
+                goto OVER;
                 break;
             default:
                 printf("输入有误,请重新输入\n");
                 break;
         }
     } while (1);
+OVER:
     //释放链表空间
     List_Destroy(head, play_node_t);
 }
-int Play_UI_Add() { return 1; }
+int Play_UI_Add()
+{
+    printf("\n=======================================================\n");
+    printf("****************  增加剧目界面  ****************\n");
+    printf("-------------------------------------------------------\n");
+    play_t newPlay;
+    printf("输入剧目名称\n");
+    scanf("%s", newPlay.name);
+    while (1)
+    {
+        printf("输入剧目类型\n");
+        printf("1.电影\n2.京剧\n3.音乐会\n");
+        if (scanf("%d", &newPlay.type) == 1 && newPlay.type >= 1 &&
+            newPlay.type <= 3)
+        {
+            break;
+        }
+        printf("输入有误,请重新输入\n");
+    }
+    printf("输入剧目出品地区\n");
+    scanf("%s", newPlay.area);
+    while (1)
+    {
+        printf("输入剧目等级\n");
+        printf("1.小孩\n2.青少年\n3.成人\n");
+        if (scanf("%d", &newPlay.rating) == 1 && newPlay.rating >= 1 &&
+            newPlay.type <= 3)
+        {
+            break;
+        }
+        printf("输入有误,请重新输入\n");
+    }
+    while (1)
+    {
+        if (scanf("%d", &newPlay.duration) == 1 && newPlay.duration > 0)
+        {
+            break;
+        }
+        printf("输入有误,请重新输入\n");
+    }
+    while (1)
+    {
+        user_date_t nowDate = DateNow();
+        ttms_date_t date;
+        printf("输入剧目放映日期(年.月.日)");
+        if (scanf("%d.%d.%d", &newPlay.start_date.year,
+                  &newPlay.start_date.month, &newPlay.start_date.day) == 3 &&
+            IsTimeLegal(newPlay.start_date.year, newPlay.start_date.month,
+                        newPlay.start_date.day, nowDate.year, nowDate.month,
+                        nowDate.day))
+        {
+            break;
+        }
+        printf("输入日期有误,请重新输入\n");
+    }
+    while (1)
+    {
+        ttms_date_t startDate = newPlay.start_date;
+        ttms_date_t date;
+        printf("输入剧目结束日期(年.月.日)");
+        if (scanf("%d.%d.%d", &newPlay.end_date.year, &newPlay.end_date.month,
+                  &newPlay.end_date.day) == 3 &&
+            IsTimeLegal(newPlay.end_date.year, newPlay.end_date.month,
+                        newPlay.end_date.day, startDate.year, startDate.month,
+                        startDate.day))
+        {
+            break;
+        }
+        printf("输入日期有误,请重新输入\n");
+    }
+    while (1)
+    {
+        printf("输入票价");
+        if (scanf("%d", &newPlay.price) == 1 && newPlay.price >= 0)
+        {
+            break;
+        }
+        printf("输入有误,请重新输入");
+    }
+    if (Play_Srv_Add(&newPlay))
+    {
+        printf("添加成功\n");
+        return 1;
+    }
+    else
+    {
+        printf("添加失败\n");
+        return 0;
+    }
+}
 int Play_UI_Modify(int id) { return 1; }
 int Play_UI_Delete(int id) { return 1; }
 
-int Play_UI_Query(int id) { return 1; }
+int Play_UI_Query(int id)
+{
+    printf("\n=======================================================\n");
+    printf("****************  查询剧目界面  ****************\n");
+    printf("-------------------------------------------------------\n");
+}
 
 // Play_UI_FetchByName();

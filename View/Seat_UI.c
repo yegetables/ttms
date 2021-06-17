@@ -142,10 +142,10 @@ void Seat_UI_MgtEntry(int roomID)
                 free(seat[i]);
             }
             printf(
-                "[A]dd    添加座位\n"
-                "[U]pdate 修改座位\n"
-                "[D]elete 删除座位\n"
-                "[R]eturn 返回上一层\n"
+                "[A]添加座位\n"
+                "[U]修改座位\n"
+                "[D]删除座位\n"
+                "[R]返回\n"
                 "输入您的选择\n");
             fflush(stdin);
             char choice;

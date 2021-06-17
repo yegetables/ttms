@@ -119,7 +119,7 @@ int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID);
  * @param list seat_list_t类型，表示座位链表头指针，
  * @param row 待获取座位的行号
  * @param column 列号
- * @return seat_node_t* 获取到的座位数据。
+ * @return seat_node_t* 获取到的座位数据,没有数据放回NULL。
  */
 seat_node_t *Seat_Srv_FindByRowCol(seat_list_t list, int row, int column);
 
@@ -128,7 +128,7 @@ seat_node_t *Seat_Srv_FindByRowCol(seat_list_t list, int row, int column);
  *
  * @param list seat_list_t类型，指向座位数据链表
  * @param seatID 座位ID
- * @return seat_node_t* 表示获取的座位数据
+ * @return seat_node_t* 表示获取的座位数据,没有找到返回NULL
  */
 seat_node_t *Seat_Srv_FindByID(seat_list_t list, int seatID);
 

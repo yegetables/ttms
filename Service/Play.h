@@ -35,7 +35,7 @@ typedef struct
     int duration;            //时长,以分钟为单位
     ttms_date_t start_date;  //开始放映日期
     ttms_date_t end_date;    //结束放映日期
-    int price;
+    int price;               //价格
     // char describe[100];  //剧目描述
 } play_t;
 
