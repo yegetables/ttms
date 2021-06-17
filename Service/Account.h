@@ -14,15 +14,22 @@ typedef struct
     char username[30];
     char password[30];
 } account_t;
-typedef struct account_t_node
+typedef struct account_node
 {
     account_t data;
     struct account_node *next;
     struct account_node *prev;
 } account_node_t, *account_list_t;
 void Account_Srv_InitSys();
+/**
+ * @brief 验证系统用户的用户名和密码
+ * 
+ * @param usrName 字符数组类型，存储待验证的用户名
+ * @param pwd 字符数组类型，存储待验证的用户名的密码
+ * @return int 返回1表示存在，返回0表示不存在
+ */
 int Account_Srv_Verify(char usrName[], char pwd[]);
-int Account_Srv_Add(const account_t *data);
+int Account_Srv_Add(account_t *data);
 int Account_Srv_Modify(account_t *data);
 int Account_Srv_DeleteByID(int usrID);
 int Account_Srv_FetchAll(account_list_t list);
