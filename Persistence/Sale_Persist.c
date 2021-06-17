@@ -9,3 +9,27 @@ int Sale_Perst_Insert(sale_t* data)
     fclose(fp);
     return ret;
 }
+int Sale_Perst_SelByID(sale_list_t list, int usrID)
+{
+    int rtn = 0;
+    if (access("Sale.dat", F_OK | R_OK)) return 0;
+    List_Init(list, sale_node_t);
+    sale_t data;
+
+    FILE* fp = fopen("Sale.dat", "rb");
+    if (fp == NULL) return 0;
+    while (!feof(fp))
+    {
+        fread(&data, sizeof(sale_t), 1, fp);
+        if (usrID == data.user_id)
+        {
+            sale_list_t node = (sale_node_t*)malloc(sizeof(sale_node_t));
+            node->data         = data;
+            node->prev = node->next = node;
+            List_AddTail(list, node);
+            rtn += 1;
+        }
+    }
+    fclose(fp);
+    return rtn;
+}
