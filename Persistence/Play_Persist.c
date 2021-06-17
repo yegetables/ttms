@@ -1,13 +1,4 @@
 #include "Play_Persist.h"
-
-//剧目文件名常量"Play.dat"
-static const char PLAY_DATA_FILE[] = "Play.dat";
-
-//剧目临时文件名常量"PlayTmp.dat"
-static const char PLAY_DATA_TEMP_FILE[] = "PlayTmp.dat";
-
-//剧目名常量"Play"
-static const char PLAY_KEY_NAME[] = "Play";
 //载入全部剧目,返回值载入剧目数量,list为所有剧目信息的头结点
 int Play_Perst_SelectAll(play_list_t list)
 {

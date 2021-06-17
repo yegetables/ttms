@@ -1,5 +1,10 @@
 #include "Play.h"
 
+#include <stdio.h>
+
+#include "../Common/List.h"
+#include "../Persistence/Play_Persist.h"
+
 int Play_Srv_FetchAll(play_list_t list) { return Play_Perst_SelectAll(list); }
 
 int Play_Srv_Add(play_t *data) { return Play_Perst_Insert(data); }

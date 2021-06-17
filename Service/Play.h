@@ -1,9 +1,5 @@
 #ifndef PLAY_H_
 #define PLAY_H_
-#include <stdio.h>
-
-#include "../Common/List.h"
-#include "../Persistence/Play_Persist.h"
 //剧目类型定义
 typedef enum
 {
@@ -100,4 +96,4 @@ int Play_Srv_FetchByID(int id, play_t *buf);
 int Play_Srv_FetchByName(char *name, play_t *buf);
 #endif
 
-Play_Srv_FilterByName();
+// Play_Srv_FilterByName();

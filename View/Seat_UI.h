@@ -18,7 +18,7 @@
 #include "../Service/Seat.h"
 #include "../Service/Studio.h"
 #define NONE 5
-#define CHAR_SEAT_GOOD '○'
+#define CHAR_SEAT_GOOD '#'
 #define CHAR_SEAT_NONE '*'
 #define CHAR_SEAT_BROKEN 'X'
 #define CHAR_SEAT_NONEONE ' '

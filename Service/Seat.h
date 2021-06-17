@@ -10,12 +10,6 @@
 
 #ifndef SEAT_H_
 #define SEAT_H_
-#include <stdlib.h>
-#include <string.h>
-
-#include "../Common/List.h"
-#include "../Persistence/EntityKey_Persist.h"
-#include "../Persistence/Seat_Persist.h"
 //座位状态
 typedef enum
 {
