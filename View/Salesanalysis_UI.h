@@ -17,4 +17,4 @@
  */
 void SalesAnalysis_UI_MgtEntry(void);
 
-#endif /* SalesAnalysis_UI_H_ */
+#endif /* SALESANALYSIS_UI_H_ */

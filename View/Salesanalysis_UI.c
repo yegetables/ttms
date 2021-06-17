@@ -6,3 +6,14 @@
  * Author:   XUPT
  * Version:  v.1
  */
+#include "Salesanalysis_UI.h"
+#include "../Common/List.h"
+#include "../Service/Salesanalysis.h"
+void SalesAnalysis_UI_MgtEntry(void)
+{
+    salesanalysis_list_t head;
+    List_Init(head,salesanalysis_node_t);
+    Pagination_t paging;
+    paging.pageSize = SALESANALYSIS_PAGE_SIZE;
+    SalesAnalysis_Srv_StaticSale(sale list);
+}
