@@ -1,5 +1,5 @@
 #include "Sale_UI.h"
-
+extern account_t gl_CurUser;
 void Sale_UI_MgtEntry(void)
 {
     char choice;
@@ -138,28 +138,33 @@ int Sale_UI_SellTicket(ticket_list_t tickList, seat_list_t seatList)
     scanf("%d %d", &hang, &lie);
 
     int ret = 0;
-    ret     = Seat_Srv_FindByRC(hang, lie);
+    seat_node_t* seat_node;
+    seat_node = Seat_Srv_FindByRowCol(seatlist, hang, lie);
+    if (seat_node == NULL) return -1;
 
-    Ticket_Srv_FetchByID(ret);
-    //未找到return -1;
-    Ticket_Srv_Modify();
+    ticket_node_t* tick_node =
+        Ticket_Srv_FetchBySeatID(tickList, seat_node->data.id);
+    if (tick_node == NULL) return -1;
+    if (tick_node->data.status == TICKET_SOLD) return -1;
+    tick_node->data.status = TICKET_SOLD;
+    if (Ticket_Srv_Modify(&tick_node->data)) return -1;
 
+    user_date_t curDate = DateNow();
+    user_time_t curTime = TimeNow();
     sale_t sale;
     {
-        sale.id        = ;
-        sale.user_id   = ;
-        sale.ticket_id = ;
-        sale.date      = ;
-        sale.time      = ;
-        sale.value     = ;
+        sale.id        = buf.ticket_id;
+        sale.user_id   = gl_CurUser.id;
+        sale.ticket_id = tick_node->data.id;
+        sale.date      = (ttms_date_t)curDate;
+        sale.time      = (ttms_time_t)curTime;
+        sale.value     = 0 - buf.price;
         sale.type      = SALE_SELL;
     }
 
-    //票已售
+    if (Sale_Srv_Add(&sale)) return -1;
 
-    Sale_Srv_Add(&sale);
-
-    return ret;
+    return sale.ticket_id;
 }
 
 void Sale_UI_RetfundTicket(void)
@@ -167,31 +172,37 @@ void Sale_UI_RetfundTicket(void)
     int ticket_id;
     printf("输入票id\n");
     scanf("%d", &ticket_id);
-    Ticket_Srv_FetchByID();
-    //票id->判断票存在
-    //不存在
-    return;
+    ticket_t buf;
+    //票存在
+    if (Ticket_Srv_FetchByID(ticket_id, &buf) != 1)
+    {
+        printf("票 不存在\n");
+        return;
+    }
 
-    //判断已售?
-    //未售
+    //票未售出
+    if (buf.status == 0)  //待售
     {
         printf("票未售出\n");
         return;
     }
 
-    Ticket_Srv_Modify();
+    buf.status = 0;
+    Ticket_Srv_Modify(&buf);
+    user_date_t curDate = DateNow();
+    user_time_t curTime = TimeNow();
     sale_t refound;
     {
-        refound.id        = ;
-        refound.user_id   = ;
-        refound.ticket_id = ;
-        refound.date      = ;
-        refound.time      = ;
-        refound.value     = ;
+        refound.id        = buf.ticket_id;
+        refound.user_id   = gl_CurUser.id;
+        refound.ticket_id = ticket_id;
+        refound.date      = (ttms_date_t)curDate;
+        refound.time      = (ttms_time_t)curTime;
+        refound.value     = 0 - buf.price;
         refound.type      = SALE_REFOUND;
     }
 
-    Sale_Srv_Add();
+    Sale_Srv_Add(&refound);
     return;
 }
 
