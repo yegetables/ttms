@@ -22,4 +22,6 @@ int Sale_Perst_Insert(sale_t* data);
  * list节点数量
  */
 int Sale_Perst_SelByID(sale_list_t list, int usrID);
+
+int Sale_Perst_SelByTicketID(int ticket_id,sale_t *sale);
 #endif

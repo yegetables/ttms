@@ -31,5 +31,4 @@ int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list)
     {
         printf("Error!!!");
     }
-    
 }
