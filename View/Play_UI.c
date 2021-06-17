@@ -237,8 +237,35 @@ int Play_UI_Add()
         return 0;
     }
 }
-int Play_UI_Modify(int id) { return 1; }
-int Play_UI_Delete(int id) { return 1; }
+int Play_UI_Modify(int id)
+{
+    play_t rec;
+    int rtn = 0;
+    if (!Play_Srv_FetchByID(id, &rec))
+    {
+        printf("this play not EXIST!");
+        return 0;
+    }
+    else
+    {
+        printf("")
+    }
+}
+int Play_UI_Delete(int id)
+{
+    int rtn = 0;
+    if (Play_Srv_DeleteByID(id))
+    {
+        printf("Delete successfully!");
+        rtn = 1;
+    }
+    else
+    {
+        rtn = 0;
+        printf("fail to delete!");
+    }
+    return rtn;
+}
 
 int Play_UI_Query(int id)
 {
