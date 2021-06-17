@@ -46,10 +46,10 @@ void Play_UI_MgtEntry()
         {
             printf(
                 "%5d  %18s  %5d  %10s  %5d  %5d  %4d年%2d月%2d日  "
-                "%4d年%2d月%2d日  %5s\n",
+                "%4d年%2d月%2d日  %5d\n",
                 pos->data.id, pos->data.name, pos->data.type, pos->data.area,
                 pos->data.rating, pos->data.duration, pos->data.start_date.year,
-                pos->data.start_date.month, pos->data.start_date.month,
+                pos->data.start_date.month, pos->data.start_date.day,
                 pos->data.end_date.year, pos->data.end_date.month,
                 pos->data.end_date.day, pos->data.price);
         }
@@ -191,7 +191,6 @@ int Play_UI_Add()
     while (1)
     {
         user_date_t nowDate = DateNow();
-        ttms_date_t date;
         printf("输入剧目放映日期(年.月.日)");
         if (scanf("%d.%d.%d", &newPlay.start_date.year,
                   &newPlay.start_date.month, &newPlay.start_date.day) == 3 &&
@@ -206,7 +205,6 @@ int Play_UI_Add()
     while (1)
     {
         ttms_date_t startDate = newPlay.start_date;
-        ttms_date_t date;
         printf("输入剧目结束日期(年.月.日)");
         if (scanf("%d.%d.%d", &newPlay.end_date.year, &newPlay.end_date.month,
                   &newPlay.end_date.day) == 3 &&
@@ -306,7 +304,6 @@ int Play_UI_Modify(int id)
         while (1)
         {
             ttms_date_t startDate = newPlay.start_date;
-            ttms_date_t date;
             printf("修改剧目结束日期(%d.%d.%d)=====>", etc.end_date.year,
                    etc.end_date.month, etc.end_date.day);
             if (scanf("%d.%d.%d", &newPlay.end_date.year,
@@ -357,9 +354,9 @@ int Play_UI_Query(int id)
            "开始放映日期", "结束放映日期", "票价(元)");
     printf(
         "%5d  %18s  %5d  %10s  %5d  %5d  %4d年%2d月%2d日  "
-        "%4d年%2d月%2d日  %5s\n",
+        "%4d年%2d月%2d日  %5d\n",
         buf->id, buf->name, buf->type, buf->area, buf->rating, buf->duration,
-        buf->start_date.year, buf->start_date.month, buf->start_date.month,
+        buf->start_date.year, buf->start_date.month, buf->start_date.day,
         buf->end_date.year, buf->end_date.month, buf->end_date.day, buf->price);
     return 1;
 }
