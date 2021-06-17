@@ -41,8 +41,6 @@ int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list);
 
 void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t);
 
-int Schedule_Srv_StatRevByPlay(int play_id,int *soldCount);
-
 int Ticket_Srv_StatRevBySchID(int schedule_id,int *soldCount);
 
 int Ticket_Srv_FetchBySchID(ticket_list_t list,int schedule_id);
