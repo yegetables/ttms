@@ -36,7 +36,7 @@ typedef struct sale_node
  * @return int 0成功其他失败
  */
 int Sale_Srv_Add(sale_t* data);
-
-Sale_Srv_insert();
+#define Sale_Srv_insert Sale_Srv_Add
+// Sale_Srv_insert();
 
 #endif

@@ -5,7 +5,8 @@
 #include "../Common/List.h"
 #include "../Service/Schedule.h"
 #include "../Service/Ticket.h"
-#include "./Play.h"
+#include "../Service/Play.h"
+#include "../Common/TimeLegal.h"
 static const int SCHEDULE_PAGE_SIZE = 5;
 #include <stdio.h>
 void Schedule_UI_MgtEntry(int play_id)
@@ -30,7 +31,7 @@ void Schedule_UI_MgtEntry(int play_id)
             "\n================================================================"
             "==\n");
         printf(
-            "********************** Schedule Room List "
+            "********************** Schedule  List "
             "**********************\n");
         printf("%10s  %10s  %10s  %10s  %30s\n", "Play_id", "id", "studio_id",
                "seat_count", "Schedule time");
@@ -143,11 +144,14 @@ int Schedule_UI_Add(int play_id)
         scanf("%d", &(sch.play_id));
         printf("Schedule studio_id:");
         scanf("%d", &(sch.studio_id));
-        printf("Schedule time\n");
-        printf("hour:");
-        scanf("%d", &(sch.time.hour));
-        printf("minute:");
-        scanf("%d", &(sch.time.second));
+        do{
+             printf("The Schedule Time:===========>");
+        scanf("%d %d %d %d %d %d", &(sch.date.year), &(sch.date.month),
+          &(sch.date.day), &(sch.time.hour), &(sch.time.minute),
+          &(sch.time.second));
+        }while(!IsTimeLegal(sch.date.year, sch.date.month, sch.date.day, sch.time.hour,sch.time.minute, sch.time.second));
+       
+          
         printf("Schedule seat_count:");
         scanf("%d", &(sch.seat_count));
         printf("=======================================================\n");
@@ -192,12 +196,15 @@ int Schedule_UI_Modify(int id)
     scanf("%d", (&sch.studio_id));
     printf("Schedule seat_count[%d]====>", sch.seat_count);
     scanf("%d", &(sch.seat_count));
-    prinf("The Schedule Time:[%d--%d--%d--%d--%d--%d]\n========>",
+    do{
+         printf("The Schedule Time:[%d--%d--%d--%d--%d--%d]\n========>",
           sch.date.year, sch.date.month, sch.date.day, sch.time.hour,
           sch.time.minute, sch.time.second);
     scanf("%d %d %d %d %d %d", &(sch.date.year), &(sch.date.month),
           &(sch.date.day), &(sch.time.hour), &(sch.time.minute),
           &(sch.time.second));
+    }while(!IsTimeLegal(sch.date.year, sch.date.month, sch.date.day, sch.time.hour,sch.time.minute, sch.time.second));
+   
     if (Schedule_Srv_Modify(&sch))
     {
         printf("This Schedule Modify Successfully!");

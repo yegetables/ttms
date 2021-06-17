@@ -3,9 +3,11 @@
 #include <stdio.h>
 
 #include "../Persistence/Sale_Persist.h"
+#include "../Service/Account.h"
 #include "../Service/Play.h"
 #include "../Service/Sale.h"
 #include "../Service/Schedule.h"
+#include "../Service/Seat.h"
 
 /**
  * @brief 管理售票主界面
