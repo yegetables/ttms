@@ -78,6 +78,8 @@ int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list);
 
 int Ticket_Srv_StatRevBySchID(int schedule_id,int *soldCount);
 
+int Ticket_Srv_FetchBySchID()
+
 Ticket_Srv_Update();
 
 #endif

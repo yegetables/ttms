@@ -1,5 +1,5 @@
 #include "Sale_UI.h"
-
+extern account_t gl_CurUser;
 void Sale_UI_MgtEntry(void)
 {
     char choice;
@@ -167,31 +167,37 @@ void Sale_UI_RetfundTicket(void)
     int ticket_id;
     printf("输入票id\n");
     scanf("%d", &ticket_id);
-    Ticket_Srv_FetchByID();
-    //票id->判断票存在
-    //不存在
-    return;
+    ticket_t buf;
+    //票存在
+    if (Ticket_Srv_FetchByID(ticket_id, &buf) != 1)
+    {
+        printf("票 不存在\n");
+        return;
+    }
 
-    //判断已售?
-    //未售
+    //票未售出
+    if (buf.status == 0)  //待售
     {
         printf("票未售出\n");
         return;
     }
 
-    Ticket_Srv_Modify();
+    buf.status = 0;
+    Ticket_Srv_Modify(&buf);
+    user_date_t curDate = DateNow();
+    user_time_t curTime = TimeNow();
     sale_t refound;
     {
-        refound.id        = ;
-        refound.user_id   = ;
-        refound.ticket_id = ;
-        refound.date      = ;
-        refound.time      = ;
-        refound.value     = ;
+        refound.id        = buf.ticket_id;
+        refound.user_id   = gl_CurUser.id;
+        refound.ticket_id = ticket_id;
+        refound.date      = (ttms_date_t)curDate;
+        refound.time      = (ttms_time_t)curTime;
+        refound.value     = 0 - buf.price;
         refound.type      = SALE_REFOUND;
     }
 
-    Sale_Srv_Add();
+    Sale_Srv_Add(&refound);
     return;
 }
 

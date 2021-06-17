@@ -34,8 +34,6 @@ int Ticket_Srv_FetchByID(int id, ticket_t* buf)
 
 Ticket_Srv_Update();
 
-
-
 int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list)
 {
     List_Init(list, *ticket_list_t);
@@ -62,8 +60,6 @@ int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list)
     fclose(fp);
     return rtn;
 }
-
-
 
 ticket_node_t* Ticket_Srv_FetchBySeatID(ticket_list_t list, int seat_id)
 {
