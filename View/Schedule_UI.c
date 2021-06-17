@@ -30,7 +30,7 @@ void Schedule_UI_MgtEntry(int play_id){
             "\n================================================================"
             "==\n");
         printf(
-            "********************** Schedule Room List "
+            "********************** Schedule  List "
             "**********************\n");
         printf("%10s  %10s  %10s  %10s  %30s\n", "Play_id", "id", "studio_id",
                "seat_count", "Schedule time");
@@ -121,7 +121,7 @@ void Schedule_UI_MgtEntry(int play_id){
                 printf("Input Error,Please Input again\n");
                 break;
         }
-    }while(choice!='r' || choice != 'R');
+    }while(!(choice=='r' || choice == 'R'));
 
 }
 
