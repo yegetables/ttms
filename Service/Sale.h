@@ -37,4 +37,6 @@ typedef struct sale_node
  */
 int Sale_Srv_Add(sale_t* data);
 
+Sale_Srv_insert();
+
 #endif
