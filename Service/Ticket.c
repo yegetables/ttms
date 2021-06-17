@@ -11,7 +11,8 @@ int Ticket_Srv_GenBatch(int schedule_id)
     List_Init(seat_head, seat_list_t);
     if (seat_head == NULL) return number;
     number = 0;
-    if ((re = Seat_Srv_FetchValidByRoomID(seat_head, schedule_id))>=0)
+    int re = 0;
+    if ((re = Seat_Srv_FetchValidByRoomID(seat_head, schedule_id)) >= 0)
     {
         //成功
         number += re;
@@ -26,12 +27,10 @@ int Ticket_Srv_GenBatch(int schedule_id)
 void Ticket_Srv_DeleteBatch(int schedule_id)
 {
     int found = 0;
-    found=Ticket_Perst_Rem(schedule_id);
+    found     = Ticket_Perst_Rem(schedule_id);
     return found;
 }
 int Ticket_Srv_FetchByID(int id, ticket_t* buf)
 {
-    return Ticket_Perst_SelByID(id,buf);
+    return Ticket_Perst_SelByID(id, buf);
 }
-
-

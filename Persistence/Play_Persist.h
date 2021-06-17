@@ -1,7 +1,13 @@
 #ifndef PLAY_PERSIST_H_
 #define PLAY_PERSIST_H_
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
+#include "../Common/List.h"
 #include "../Service/Play.h"
+#include "EntityKey_Persist.h"
 /**
  * @brief 载入全部剧目
  *
