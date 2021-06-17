@@ -6,6 +6,7 @@
 #include "../Service/Play.h"
 #include "../Service/Sale.h"
 #include "../Service/Schedule.h"
+#include "../Service/Account.h"
 
 /**
  * @brief 管理售票主界面

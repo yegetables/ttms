@@ -24,7 +24,7 @@ int Sale_Perst_SelByID(sale_list_t list, int usrID)
         if (usrID == data.user_id)
         {
             sale_list_t node = (sale_node_t*)malloc(sizeof(sale_node_t));
-            node->data         = data;
+            node->data       = data;
             node->prev = node->next = node;
             List_AddTail(list, node);
             rtn += 1;
