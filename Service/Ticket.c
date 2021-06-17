@@ -1,5 +1,5 @@
 #include "Ticket.h"
-
+#include "../Service/Sale.h"
 
 int Ticket_Srv_GenBatch(int schedule_id)
 {
@@ -79,3 +79,26 @@ int Ticket_Srv_FetchBySchID(int ID, ticket_list_t list)
     return Ticket_Srv_SelBySchID(ID, list);
 }
 int Ticket_Srv_Modify(ticket_t* data) { return Ticket_Perst_Update(data); }
+
+int Ticket_Srv_StatRevBySchID(int schedule_id,int *soldCount)
+{
+    int value;
+    ticket_list_t list;
+    ticket_node_t *p;
+    sale_node_t  *sale;
+    List_Init(list,ticket_node_t);
+    *soldCount = 0;
+    *soldCount = Ticket_Srv_FetchBySchID(list,schedule_id);
+    List_ForEach(list,p);
+    Sale_Srv_FetchByTicketID(schedule_id,sale);
+    if(sale->data.type == 1)
+    {
+        if(p->data.status == 1)
+        {
+            (*soldCount)++;
+            value += p->data.price;
+        }
+    }
+    List_Destroy(list,ticket_node_t);
+    return value;
+}

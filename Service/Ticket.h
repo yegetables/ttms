@@ -76,6 +76,8 @@ ticket_node_t* Ticket_Srv_FetchBySeatID(ticket_list_t list, int seat_id);
  */
 int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list);
 
+int Ticket_Srv_StatRevBySchID(int schedule_id,int *soldCount);
+
 Ticket_Srv_Update();
 
 #endif
