@@ -1,5 +1,5 @@
 #include "Sale_UI.h"
-extern 
+extern account_t gl_CurUser;
 void Sale_UI_MgtEntry(void)
 {
     char choice;
@@ -182,20 +182,22 @@ void Sale_UI_RetfundTicket(void)
         return;
     }
 
-    buf.status=0;
+    buf.status = 0;
     Ticket_Srv_Modify(&buf);
+    user_date_t curDate = DateNow();
+    user_time_t curTime = TimeNow();
     sale_t refound;
     {
         refound.id        = buf.ticket_id;
-        refound.user_id   = ;
-        refound.ticket_id = ;
-        refound.date      = ;
-        refound.time      = ;
-        refound.value     = ;
+        refound.user_id   = gl_CurUser.id;
+        refound.ticket_id = ticket_id;
+        refound.date      = (ttms_date_t)curDate;
+        refound.time      = (ttms_time_t)curTime;
+        refound.value     = 0 - buf.price;
         refound.type      = SALE_REFOUND;
     }
 
-    Sale_Srv_Add();
+    Sale_Srv_Add(&refound);
     return;
 }
 
