@@ -51,37 +51,7 @@ int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list)
     fclose(fp);
     return rtn;
 }
-int Schedule_Perst_SelectByID(int id,schedule_t *buf)
-{
-        int found = 0;
-        FILE *fp = fopen("Schedule.dat", "r");
-        if(feof(fp))
-        {
-            fclose(fp);
-            return found;
-        }
-        else{
-            schedule_t data;
-            while(feof(fp))
-            {
-                int x=fread(&data, sizeof(data), 1, fp);
-                if(x==0)
-                {
-                    fclose(fp);
-                    return found;
-                }
-                else{
-                    if(data.id==id)
-                    {
-                        found=1;
-                        buf=&data;
-                    }
-                }
-            }
-            fclose(fp);
-            return found;
-        }
-}
+
 int Ticket_Perst_Insert(ticket_list_t list)
 {
     FILE *fp=fopen("Ticket.dat", "a");
