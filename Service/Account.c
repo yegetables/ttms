@@ -1,5 +1,6 @@
 #include "Account.h"
 #include<stdio.h>
+#include"../Common/List.h"
 account_t Account_Srv_FetchbyUser(char usrName[])
 {
     account_t tmp;
@@ -72,4 +73,16 @@ int Account_Srv_Add(account_t *data)
         return 0;
     }
     else return 1;
+}
+account_node_t *Account_Srv_FindByUsrName(account_list_t list, char usrName[])
+{
+    account_node_t *q;
+    List_ForEach(list,q)
+    {
+        if (strcmp(usrName,q->data.username)==0)
+        {
+             return q;
+        }
+    }
+    return NULL;
 }
