@@ -1,7 +1,6 @@
-#ifndef TICKET_H_
-#define TICKET_H_
+#ifndef TICKET_H
+#define TICKET_H
 #include "../Common/List.h"
-#include "../View/Ticket_UI.h"
 #include "Schedule.h"
 #include "Seat.h"
 #include "Studio.h"
@@ -50,4 +49,12 @@ int Schedule_Srv_FetchByID(int id, schedule_t* buf);
  * @param schedule_id
  */
 void Ticket_Srv_DeleteBatch(int schedule_id);
+/**
+ * @brief 根据ID获取演出票
+ * 
+ * @param id 查询的演出票ID
+ * @param buf 查询成功的内存地址
+ * @return int 1成功，否则失败
+ */
+int Ticket_Srv_FetchByID(int id,ticket_t * buf);
 #endif

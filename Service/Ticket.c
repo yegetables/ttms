@@ -6,7 +6,7 @@ int Schedule_Srv_FetchByID(int id, schedule_t* buf)
 }
 int Ticket_Srv_GenBatch(int schedule_id)
 {
-    int number = -1;
+    int number = -1,re;
     seat_list_t seat_head;
     List_Init(seat_head, seat_list_t);
     if (seat_head == NULL) return number;
