@@ -13,7 +13,10 @@ int Schedule_Srv_FetchByPlay(schedule_list_t list,int play_id){
 
 }
 
-
+int Schedule_Srv_FetchByID(int id, schedule_t* buf)
+{
+    return Schedule_Perst_SelectByID(id, buf);
+}
 
 int Schedule_Srv_Add(schedule_t *data){
 
