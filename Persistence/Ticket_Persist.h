@@ -6,15 +6,6 @@
 #include "../Service/Schedule.h"
 #include "../Common/List.h"
 /**
- * @brief ：根据ID载入演出计划
- * 
- * @param id:待载入的演出计划的ID 
- * @param buf ：演出计划的地址
- * @return int ：返回1代表演出成功，否则代表演出失败；
- */
-int Schedule_Perst_SelectByID(int id, schedule_t * buf);
-
-/**
  * @brief 存储演出票
  * 
  * @param list 保存票务信息的链表的头指针
@@ -24,7 +15,7 @@ int Schedule_Perst_SelectByID(int id, schedule_t * buf);
 int Ticket_Perst_Insert(ticket_list_t list);
 
 //根据演出计划ID去除演出票
-void Ticket_Perst_Rem(int schedule_id);
+int Ticket_Perst_Rem(int schedule_id);
 /**
  * @brief 根据ID载入演出票
  * 

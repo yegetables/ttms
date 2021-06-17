@@ -18,5 +18,13 @@ int Schedule_Perst_SelectAll(schedule_list_t list);
  * @return int 符合条件的剧目数量
  */
 int Play_Perst_SelectByName(play_list_t list,char condt[]);
+/**
+ * @brief ：根据ID载入演出计划
+ * 
+ * @param id:待载入的演出计划的ID 
+ * @param buf ：演出计划的地址
+ * @return int ：返回1代表演出成功，否则代表演出失败；
+ */
+int Schedule_Perst_SelectByID(int id, schedule_t * buf);
 
 #endif /* TTMS_SCU_Schedule_Persist_List */
