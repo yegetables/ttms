@@ -105,7 +105,37 @@ void Schedule_UI_ListAll(void){
 
 
 int Schedule_UI_Query(char *play_name){
-    
+    play_list_t list_p;
+    int recCount = 0;
+    Play_Srv_FetchByName(play_name,list_p);
+    schedule_list_t list_s;
+    while(list_p != NULL){
+        Schedule_Srv_FetchByPlay(list_s,list_p->data.id);
+        while(list_s != NULL){
+         printf(
+            "\n================================================================"
+            "==\n");
+        printf(
+            "********************** Schedule  List "
+            "**********************\n");
+        printf("%10s  %10s  %10s  %10s  %30s\n", "Play_id", "id", "studio_id",
+               "seat_count", "Schedule time");
+        printf(
+            "------------------------------------------------------------------"
+            "\n");
+            printf("%10d  %10d  %10d  %10d  %d--%d--%d--%d--%d--%d\n",
+                   list_s->data.play_id, list_s->data.id, list_s->data.studio_id,
+                   list_s->data.seat_count, list_s->data.date.year,
+                   list_s->data.date.month, list_s->data.date.day,
+                   list_s->data.time.hour, list_s->data.time.minute,
+                   list_s->data.time.second);
+
+        list_s = list_s->next;
+        } 
+        list_p = list_p->next;
+    }   
+        
+       
+    }
 
     
-}

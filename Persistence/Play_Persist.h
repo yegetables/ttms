@@ -1,7 +1,22 @@
 #ifndef PLAY_PERSIST_H_
 #define PLAY_PERSIST_H_
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
+#include "../Common/List.h"
 #include "../Service/Play.h"
+#include "EntityKey_Persist.h"
+//剧目文件名常量"Play.dat"
+static const char PLAY_DATA_FILE[] = "Play.dat";
+
+//剧目临时文件名常量"PlayTmp.dat"
+static const char PLAY_DATA_TEMP_FILE[] = "PlayTmp.dat";
+
+//剧目名常量"Play"
+static const char PLAY_KEY_NAME[] = "Play";
+
 /**
  * @brief 载入全部剧目
  *

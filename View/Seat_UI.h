@@ -10,9 +10,18 @@
 
 #ifndef SEAT_UI_H_
 #define SEAT_UI_H_
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "../Common/List.h"
 #include "../Service/Seat.h"
-
+#include "../Service/Studio.h"
+#define NONE 5
+#define CHAR_SEAT_GOOD '#'
+#define CHAR_SEAT_NONE '*'
+#define CHAR_SEAT_BROKEN 'X'
+#define CHAR_SEAT_NONEONE ' '
 //标识符：TTMS_SCU_Seat_UI_MgtEnt
 /**
  * @brief 管理座位界面

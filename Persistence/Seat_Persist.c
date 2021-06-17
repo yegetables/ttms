@@ -10,20 +10,6 @@
 
 #include "Seat_Persist.h"
 
-#include <assert.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-#include "../Common/List.h"
-#include "../Service/Seat.h"
-
-static const char SEAT_DATA_FILE[]      = "Seat.dat";
-static const char SEAT_DATA_TEMP_FILE[] = "SeatTmp.dat";
-
-//添加对象主键标识名称
-static const char SEAT_KEY_NAME[] = "Seat";
-
 /*函数功能：用于向文件中添加一个新座位数据。
 参数说明：data为seat_t类型指针，表示需要添加的座位数据结点。
 返 回 值：整型，表示是否成功添加了座位的标志。
@@ -38,8 +24,8 @@ int Seat_Perst_Insert(seat_t *data)
         printf("Cannot open file %s!\n", SEAT_DATA_FILE);
         return 0;
     }
-
-    rtn = fwrite(data, sizeof(seat_t), 1, fp);
+    data->id = EntKey_Perst_GetNewKeys(SEAT_KEY_NAME, 1);  //获取主键
+    rtn      = fwrite(data, sizeof(seat_t), 1, fp);
 
     fclose(fp);
     return rtn;

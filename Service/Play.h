@@ -87,8 +87,6 @@ int Play_Srv_DeleteByID(int id);
  * @return int 返回值==1获取成功,!=1获取失败
  */
 int Play_Srv_FetchByID(int id, play_t *buf);
-#endif
-
 /**
  * @brief 根据剧目name获取剧目信息
  * @param name 剧目name
@@ -96,5 +94,6 @@ int Play_Srv_FetchByID(int id, play_t *buf);
  * @return int 返回值==1获取成功,!=1获取失败
  */
 int Play_Srv_FetchByName(char *name, play_t *buf);
+#endif
 
-Play_Srv_FilterByName();
+// Play_Srv_FilterByName();

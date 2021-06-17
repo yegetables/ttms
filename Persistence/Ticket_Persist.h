@@ -3,33 +3,42 @@
 #include <stdio.h>
 
 #include "../Service/Ticket.h"
+#include "../Service/Schedule.h"
+#include "../Common/List.h"
 /**
  * @brief ：根据ID载入演出计划
  * 
  * @param id:待载入的演出计划的ID 
  * @param buf ：演出计划的地址
- * @return int ：返回1代表演出成功，负责代表演出失败；
+ * @return int ：返回1代表演出成功，否则代表演出失败；
  */
 int Schedule_Perst_SelectByID(int id, schedule_t * buf);
 
-//存储演出票
-void Ticket_Perst_Insert(ticket_list_t list);
+/**
+ * @brief 存储演出票
+ * 
+ * @param list 保存票务信息的链表的头指针
+ * 
+ * @return 返回值 == 1 成功， ！= 1失败
+ */
+int Ticket_Perst_Insert(ticket_list_t list);
 
 //根据演出计划ID去除演出票
 void Ticket_Perst_Rem(int schedule_id);
-
+/**
+ * @brief 根据ID载入演出票
+ * 
+ * @param id 待查找的演出计划ID
+ * @param buf 查找到的演出票的变量地址
+ * @return int 返回1表示查找信息成功，否则失败
+ */
+int Ticket_Perst_SelByID(int id, ticket_t * buf);
 /**
  * @brief 用data的票信息更改数据文件的票
  * @param data 新的票信息
  * @return int >=0成功 <0失败
  */
 int Ticket_Perst_Update(const ticket_t* data);
-/**
- * @brief 根据演出计划id载入票数据
- * @param schedule_id 演出计划id
- * @param list 指向载入的演出票信息
- * @return int 载入票数量
- */
-int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list);
+
 
 #endif

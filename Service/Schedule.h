@@ -49,7 +49,13 @@ int Schedule_Srv_Add(schedule_t *data);
  * @return 返回1成功，不为1失败
  */
 int Schedule_Srv_Modify(const schedule_t *data);
-
+/**
+ * @brief 根据ID获取演出计划
+ * @param id
+ * @param buf
+ * @return int
+ */
+int Schedule_Srv_FetchByID(int id, schedule_t* buf);
 /**
  * @brief 根据id删除指定演出计划
  *
@@ -57,4 +63,6 @@ int Schedule_Srv_Modify(const schedule_t *data);
  * @return 返回1成功，不为1失败
  */
 int Schedule_Srv_Delete(int id);
+
+int Schedule_Srv_StatRevByPlay(int play_id,int *soldCount);
 #endif

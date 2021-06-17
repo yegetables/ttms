@@ -6,8 +6,8 @@
  * Author:   XUPT
  * Version:  v.1
  */
-#ifndef StaSales_Srv_H_
-#define StaSales_Srv_H_
+#ifndef STASALES_SRV_H_
+#define STASALES_SRV_H_
 
 #include "../Service/Play.h"
 /**
@@ -18,6 +18,5 @@
  * @param endDate
  * @return int
  */
-int StaSales_Srv_CompSaleVal(int usrID, ttms_date_t stDate,
-                             ttms_date_t endDate);
-#endif /* StaSales_Srv_H_ */
+int StaSales_Srv_CompSaleVal(int usrID, ttms_date_t stDate, ttms_date_t endDate);
+#endif /* STASALES_SRV_H_ */
