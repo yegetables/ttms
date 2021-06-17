@@ -44,6 +44,6 @@ int Account_Perst_SelectAll(account_list_t list);
  */
 int Account_Perst_SelByName(char usrName,account_t * usr)
 {
-
+    
 }
 #endif
