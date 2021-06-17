@@ -63,7 +63,49 @@ int Account_Perst_Update(account_t* data)
 }
 int Account_Perst_RemByID(int id)
 {
-    return 1;
+    account_t tmp;
+    FILE*fp=fopen("Account.dat","rb+");
+    int found=0;
+    FILE*fp1=fopen("Account1.dat","wb+");
+    if (!fp||!fp1)
+    {
+        printf("Account.dat fopen failed\n");
+        return 0;
+    }
+    else{
+        while(1)
+        {
+            if (fread(&tmp, sizeof(account_t), 1, fp)<1)
+            {
+                if (!feof(fp))//文件结束：返回非0值；文件未结束：返回0值
+                {                   
+                    printf("fread error\n");
+                    return 0;
+                }
+                break;
+            }
+            if (tmp.id==id)
+            {
+                found=1;
+            }
+            else
+            {
+            fwrite(&tmp,sizeof(account_t), 1, fp1);
+            }
+        }
+        
+    }
+    fclose(fp);
+    fclose(fp1);
+    if(remove("Account.dat")!=0)
+    {
+        return 0;
+    }
+    if(rename("Account1.dat","Account.dat")!=0)
+    {
+        return 0;
+    }
+    return found;
 }
 int Account_Perst_SelectAll(account_list_t list)
 {
@@ -103,7 +145,7 @@ int Account_Perst_SelectAll(account_list_t list)
     fclose(fp);
     return n;
 }
-int Account_Perst_SelByName(char usrName[],account_t * usr)
+int Account_Perst_SelByName(char usrName[],account_t * usr) 
 {
     account_t tmp;
     FILE*fp=fopen("Account.dat","rb+");
