@@ -11,6 +11,7 @@
 #include "stdio.h"
 #include "../Service/Play.h"
 #include "time.h"
+#include "../Service/StaSales.h"
 void StaSales_UI_MgtEntry(void)
 { 
     extern Gl_CurUser;
@@ -54,16 +55,12 @@ void StaSales_UI_Self(void)
     switch (choice)
     {
     case 'd':
-        SalesAnalysis_Srv_CompSaleVal(id,curdate,curdate);
-        break;
     case 'D':
-        SalesAnalysis_Srv_CompSaleVal(id,curdate,curdate);
+        StaSales_Srv_CompSaleVal(id,curdate,curdate);
         break;
     case 'm':
-        SalesAnalysis_Srv_CompSaleVal(id,startdate,enddate);
-        break;
     case 'M':
-        SalesAnalysis_Srv_CompSaleVal(id,startdate,enddate);
+        StaSales_Srv_CompSaleVal(id,startdate,enddate);
         break;
     }
     return ; 
@@ -82,7 +79,7 @@ void StaSales_UI_Clerk(void)
     }
     else
     {
-        SalesAnalysis_Srv_CompSaleVal(id,startdate,enddate);
+        StaSales_Srv_CompSaleVal(id,startdate,enddate);
     }
     return; 
 }
