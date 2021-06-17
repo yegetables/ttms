@@ -248,7 +248,7 @@ int Play_UI_Modify(int id)
     }
     else
     {
-        printf("")
+        printf("");
     }
 }
 int Play_UI_Delete(int id)
@@ -272,6 +272,22 @@ int Play_UI_Query(int id)
     printf("\n=======================================================\n");
     printf("****************  查询剧目界面  ****************\n");
     printf("-------------------------------------------------------\n");
+    play_t *buf;
+    if (Play_Srv_FetchByID(id, buf) != 1)
+    {
+        printf("没有查询到相关剧目信息,请确定信息后查询\n");
+        return 0;
+    }
+    printf("%5s  %18s  %5s  %10s  %5s  %5s  %11s  %11s  %5s\n", "剧目ID",
+           "剧目名称", "剧目类型", "剧目出品地区", "剧目等级", "时长(分钟)",
+           "开始放映日期", "结束放映日期", "票价(元)");
+    printf(
+        "%5d  %18s  %5d  %10s  %5d  %5d  %4d年%2d月%2d日  "
+        "%4d年%2d月%2d日  %5s\n",
+        buf->id, buf->name, buf->type, buf->area, buf->rating, buf->duration,
+        buf->start_date.year, buf->start_date.month, buf->start_date.month,
+        buf->end_date.year, buf->end_date.month, buf->end_date.day, buf->price);
+    return 1;
 }
 
 // Play_UI_FetchByName();
