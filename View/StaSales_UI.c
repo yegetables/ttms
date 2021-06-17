@@ -54,14 +54,10 @@ void StaSales_UI_Self(void)
     switch (choice)
     {
     case 'd':
-        SalesAnalysis_Srv_CompSaleVal(id,curdate,curdate);
-        break;
     case 'D':
         SalesAnalysis_Srv_CompSaleVal(id,curdate,curdate);
         break;
     case 'm':
-        SalesAnalysis_Srv_CompSaleVal(id,startdate,enddate);
-        break;
     case 'M':
         SalesAnalysis_Srv_CompSaleVal(id,startdate,enddate);
         break;

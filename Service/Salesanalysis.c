@@ -23,7 +23,7 @@ int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list)
         Play_Srv_FetchAll(playList);
         List_AddTail(playList,newNode);
         List_ForEach(playList,pos);
-        newNode->data.sales = Schedule_Srv_StatRevByPlay();
+        newNode->data.sales = Schedule_Srv_StatRevByPlay(id,sold);
         newNode->data.totaltickets = sold;
         List_Destroy(playList,play_node_t);
     }   

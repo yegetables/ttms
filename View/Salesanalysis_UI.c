@@ -15,5 +15,7 @@ void SalesAnalysis_UI_MgtEntry(void)
     List_Init(head,salesanalysis_node_t);
     Pagination_t paging;
     paging.pageSize = SALESANALYSIS_PAGE_SIZE;
-    SalesAnalysis_Srv_StaticSale(sale list);
+    paging.totalRecords = SalesAnalysis_Srv_StaticSale(head);
+    SalesAnalysis_Srv_SortBySale(head);
+    
 }

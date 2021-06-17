@@ -1,5 +1,6 @@
 #include "Ticket.h"
 #include "../Service/Sale.h"
+#include "../Common/List.h"
 
 int Ticket_Srv_GenBatch(int schedule_id)
 {
@@ -70,9 +71,22 @@ ticket_node_t* Ticket_Srv_FetchBySeatID(ticket_list_t list, int seat_id)
     }
     if (temp == list) return NULL;
 }
-int Ticket_Srv_FetchBySchID(int ID, ticket_list_t list)
+int Ticket_Srv_FetchBySchID(ticket_list_t list, int schedule_id)
 {
-    return Ticket_Srv_SelBySchID(ID, list);
+    int count = 0;
+    List_Free(list,ticket_node_t);
+    ticket_list_t tickList;
+    List_Init(tickList,ticket_node_t);
+    count = Ticket_Perst_SelBySchID(tickList,schedule_id);
+    if(Ticket_Perst_SelBySchID(tickList,schedule_id) <= 0)
+    {
+        List_Destroy(tickList,ticket_node_t);
+        return 0;
+    }
+    else
+    {
+        return count;
+    }
 }
 int Ticket_Srv_Modify(ticket_t* data) { return Ticket_Perst_Update(data); }
 

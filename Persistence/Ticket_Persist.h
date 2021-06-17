@@ -25,5 +25,5 @@ void Ticket_Perst_Rem(int schedule_id);
  */
 int Ticket_Perst_Update(const ticket_t* data);
 
-
+int Ticket_Perst_SelBySchID(ticket_list_t ticket,int schedule_id);
 #endif
