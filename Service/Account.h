@@ -29,7 +29,7 @@ void Account_Srv_InitSys();
  * @return int 返回1表示存在，返回0表示不存在
  */
 int Account_Srv_Verify(char usrName[], char pwd[]);
-int Account_Srv_Add(const account_t *data);
+int Account_Srv_Add(account_t *data);
 int Account_Srv_Modify(account_t *data);
 int Account_Srv_DeleteByID(int usrID);
 int Account_Srv_FetchAll(account_list_t list);
