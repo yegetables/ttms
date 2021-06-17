@@ -24,3 +24,4 @@ int Ticket_Perst_Update(const ticket_t* data)
     fclose(fp);
     return rtn;
 }
+Ticket_Perst_SelByID(id, buf);
