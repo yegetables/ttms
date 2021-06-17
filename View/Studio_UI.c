@@ -15,6 +15,7 @@
 #include "../Service/Studio.h"
 #include "Seat_UI.h"
 
+
 static const int STUDIO_PAGE_SIZE = 5;
 
 #include <stdio.h>

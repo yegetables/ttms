@@ -7,6 +7,7 @@ int Ticket_Srv_GenBatch(int schedule_id)
     List_Init(seat_head, seat_list_t);
     if (seat_head == NULL) return number;
     number = 0;
+    int re = 0;
     if ((re = Seat_Srv_FetchValidByRoomID(seat_head, schedule_id)) >= 0)
     {
         //成功

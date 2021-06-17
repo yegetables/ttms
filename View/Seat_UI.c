@@ -10,14 +10,6 @@
 
 #include "Seat_UI.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#include "../Common/List.h"
-#include "../Service/Seat.h"
-#include "../Service/Studio.h"
-
 /*
 表识符：TTMS_SCU_Seat_UI_S2C
 函数功能：根据座位状态获取界面显示符号。
@@ -108,9 +100,10 @@ void Seat_UI_MgtEntry(int roomID)
                 break;
             }
             Seat_Srv_RoomInit(list, roomID, rowsCount, colsCount);  //座位初始化
-            studio_t data = {buf->id, buf->name, rowsCount, colsCount,
-                             rowsCount * colsCount};
-            Studio_Srv_Modify(&data);
+            buf->rowsCount  = rowsCount;
+            buf->colsCount  = colsCount;
+            buf->seatsCount = rowsCount * colsCount;
+            Studio_Srv_Modify(buf);
             printf("初始化完毕\n");
         }
         else
@@ -118,13 +111,12 @@ void Seat_UI_MgtEntry(int roomID)
             seat_node_t *curPos;
             printf("%d放映厅座位共%d行%d列\n", roomID, buf->rowsCount,
                    buf->colsCount);
-            int cnt    = 0;
             int **seat = (int **)malloc(sizeof(int *) * buf->rowsCount);
             for (int i = 0; i < buf->rowsCount; i++)
             {
                 seat[i] = (int *)malloc(sizeof(int) * buf->colsCount);
             }
-            memset(seat, NONE, sizeof(seat));
+            memset(seat, NONE, sizeof(int) * buf->rowsCount * buf->colsCount);
             List_ForEach(list, curPos)
             {
                 seat[curPos->data.row][curPos->data.column] =
@@ -157,7 +149,8 @@ void Seat_UI_MgtEntry(int roomID)
                 "输入您的选择\n");
             fflush(stdin);
             char choice;
-            scanf("%c", choice);
+            scanf("%c", &choice);
+            int row, col;
             switch (choice)
             {
                 case 'A':
@@ -167,14 +160,12 @@ void Seat_UI_MgtEntry(int roomID)
                 case 'u':
                 case 'U':
                     printf("输入需要修改的座位行数和列数\n");
-                    int row, cols;
-                    scanf("%d%d", &row, &cols);
-                    Seat_UI_Modify(list, row, cols);
+                    scanf("%d%d", &row, &col);
+                    Seat_UI_Modify(list, row, col);
                     break;
                 case 'd':
                 case 'D':
                     printf("输入删除座位的行列\n");
-                    int row, col;
                     scanf("%d%d", &row, &col);
                     Seat_UI_Delete(list, row, col);
                     break;

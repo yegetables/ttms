@@ -42,3 +42,14 @@ int Schedule_Srv_Delete(int id){
 
 
 }
+int Schedule_Srv_StatRevByPlay(int play_id,int *soldCount)
+{
+    int value,sold;
+    schedule_list_t list;
+    schedule_node_t *p;
+    *soldCount = 0;
+    List_Init(list,schedule_node_t);
+    Schedule_Perst_SelectByPlay(list,play_id);
+    List_ForEach(list,p);
+    
+}

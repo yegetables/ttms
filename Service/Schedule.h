@@ -63,4 +63,6 @@ int Schedule_Srv_FetchByID(int id, schedule_t* buf);
  * @return 返回1成功，不为1失败
  */
 int Schedule_Srv_Delete(int id);
+
+int Schedule_Srv_StatRevByPlay(int play_id,int *soldCount);
 #endif

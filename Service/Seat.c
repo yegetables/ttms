@@ -16,7 +16,6 @@
 #include "../Common/List.h"
 #include "../Persistence/EntityKey_Persist.h"
 #include "../Persistence/Seat_Persist.h"
-
 /*增加座位:添加新座位
 函数功能：用于添加一个新座位数据。
 参数说明：data为seat_t类型指针，表示需要添加的座位数据结点。
