@@ -25,7 +25,7 @@ int Ticket_Perst_Update(const ticket_t* data)
     return rtn;
 }
 
-
+//----------------------------------------------------------------
 int Ticket_Perst_Insert(ticket_list_t list)
 {
     FILE *fp=fopen("Ticket.dat", "a");

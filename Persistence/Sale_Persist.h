@@ -22,4 +22,12 @@ int Sale_Perst_Insert(sale_t* data);
  * list节点数量
  */
 int Sale_Perst_SelByID(sale_list_t list, int usrID);
+
+/**
+ * @brief 根据票id载入销售记录id
+ * @param ticket_id 票id
+ * @param sale 销售记录
+ * @return int 1成功否则失败
+ */
+int Sale_Perst_SelByTicketID(int ticket_id, sale_t* sale);
 #endif

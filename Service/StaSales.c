@@ -9,16 +9,17 @@
 #include "StaSales.h"
 #include "../Service/Sale.h"
 #include "../Common/List.h"
+#include "../Persistence/Sale_Persist.h"
 int StaSales_Srv_CompSaleVal(int usrID, ttms_date_t stDate, ttms_date_t endDate)
 {
     int amount = 0;
     sale_list_t saleList;
     sale_node_t *pSale;
     List_Init(saleList,sale_node_t);
-    Sale_Perst_SelectByUsrID(usrID);
+    Sale_Perst_SelByID(saleList,usrID);
     List_ForEach(saleList,pSale);
     amount += pSale->data.value;
     List_Destroy(saleList,sale_node_t);
+    
     return amount;
 }
-Sale_Perst_SelByID(sale_list_t list,int usrID);
