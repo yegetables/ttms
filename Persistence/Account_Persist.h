@@ -42,8 +42,5 @@ int Account_Perst_SelectAll(account_list_t list);
  * @param usr 一个account_t类型的指针，将指向查找到的用户。
  * @return int 返回1代表查找成功，0表示查找失败。
  */
-int Account_Perst_SelByName(char usrName,account_t * usr)
-{
-    
-}
+int Account_Perst_SelByName(char usrName[],account_t * usr) ;
 #endif
