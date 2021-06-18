@@ -15,7 +15,7 @@ typedef struct
     int year;
     int month;
     int day;
-} user_date_t;
+} user_date_t, ttms_date_t;
 
 //时间结构体
 typedef struct
@@ -23,10 +23,7 @@ typedef struct
     int hour;
     int minute;
     int second;
-} user_time_t;
-
-typedef ttms_date_t user_date_t;
-typedef ttms_time_t user_time_t;
+} user_time_t, ttms_time_t;
 
 //直接读取键盘输入值
 // int ScanKeyboard();

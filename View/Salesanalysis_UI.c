@@ -7,23 +7,20 @@
  * Version:  v.1
  */
 #include "Salesanalysis_UI.h"
-#include "../Common/List.h"
-#include "../Service/Salesanalysis.h"
-#include "../Service/Play.h"
-#include "../Service/Sale.h"
+
 void SalesAnalysis_UI_MgtEntry(void)
 {
     char choice;
     int i;
     salesanalysis_node_t *newNode;
     salesanalysis_list_t head;
-    List_Init(head,salesanalysis_node_t);
+    List_Init(head, salesanalysis_node_t);
     Pagination_t paging;
-    paging.pageSize = SALESANALYSIS_PAGE_SIZE;
+    paging.pageSize     = SALESANALYSIS_PAGE_SIZE;
     paging.totalRecords = SalesAnalysis_Srv_StaticSale(head);
     SalesAnalysis_Srv_SortBySale(head);
     Paging_Locate_FirstPage(head, paging);
-    play_node_t  *pos;
+    play_node_t *pos;
     do
     {
         printf(
@@ -32,8 +29,8 @@ void SalesAnalysis_UI_MgtEntry(void)
         printf(
             "********************** 剧目票房排行信息 "
             "**********************\n");
-        printf("%5s  %18s  %10s  %10s  %10s\n", "剧目名", "剧目区域", "剧目上座数量",
-               "剧目票房", "剧目上映日期","剧目下映日期");
+        printf("%5s  %18s  %10s  %10s  %10s\n", "剧目名", "剧目区域",
+               "剧目上座数量", "剧目票房", "剧目上映日期", "剧目下映日期");
         printf(
             "------------------------------------------------------------------"
             "\n");
@@ -41,7 +38,8 @@ void SalesAnalysis_UI_MgtEntry(void)
         Paging_ViewPage_ForEach(head, paging, play_node_t, pos, i)
         {
             printf("%5d  %18s  %10d  %10d  %10d\n", pos->data.name,
-                   pos->data.area, newNode->data.totaltickets,newNode->data.sales, pos->data.start_date,
+                   pos->data.area, newNode->data.totaltickets,
+                   newNode->data.sales, pos->data.start_date,
                    pos->data.end_date);
         }
 
@@ -59,9 +57,9 @@ void SalesAnalysis_UI_MgtEntry(void)
         printf(
             "\n================================================================"
             "==\n");
-    printf("Your Choice:");
-    scanf("%c", &choice);
-    switch (choice)
+        printf("Your Choice:");
+        scanf("%c", &choice);
+        switch (choice)
         {
             case 'p':
             case 'P':
@@ -83,7 +81,8 @@ void SalesAnalysis_UI_MgtEntry(void)
             default:
                 printf("Input Error,Please Input again\n");
                 break;
-        } 
-    }while (1);
+        }
+    } while (1);
     //释放链表空间
     List_Destroy(head, play_node_t);
+}
