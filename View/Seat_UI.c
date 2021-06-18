@@ -237,7 +237,9 @@ int Seat_UI_Add(seat_list_t list, int roomID, int row, int column)
             };
             if (Seat_Srv_Add(&data))  //文件中添加
             {
-                Seat_Srv_AddToSoftedList(list, &data);  //链表中添加
+                seat_node_t node;
+                node.data = data;
+                Seat_Srv_AddToSoftedList(list, &node);  //链表中添加
                 printf("增加成功\n");
                 newRecCount++;
             }
