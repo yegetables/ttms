@@ -32,7 +32,6 @@ dod:
             case 'c':
                 List_ForEach(list, tmp)
                     Sale_UI_ShowScheduler(tmp->data.id);  //显示演出计划
-
                 List_Destroy(list, play_node_t);
                 goto dod;
                 break;
@@ -81,12 +80,17 @@ void Sale_UI_ShowScheduler(int playID)
 
     if (1 != Play_Srv_FetchByID(playID, &list->data))  //获取剧目
     {
+        printf("获取剧目失败\n");
         List_Destroy(list, play_node_t);
         return;
     }
 
 w:
-    Schedule_Srv_FetchByPlay(sch_list, playID);  //获取演出计划
+    if (Schedule_Srv_FetchByPlay(sch_list, playID) == 0)  //获取演出计划
+    {
+        printf("获取演出计划失败\n");
+        return -1;
+    }
     char choice = 0;
     do
     {
@@ -102,8 +106,7 @@ w:
         {
             case 'T':
             case 't':
-                // MARK:Sale_UI_ShowTicket
-                Sale_UI_ShowTicket(sch_list, list->data);
+                Ticket_UI_ShowTicket(tickID);
                 break;
             case 'R':
             case 'r':
@@ -140,14 +143,29 @@ int Sale_UI_SellTicket(ticket_list_t tickList, seat_list_t seatList)
     int ret = 0;
     seat_node_t* seat_node;
     seat_node = Seat_Srv_FindByRowCol(seatlist, hang, lie);
-    if (seat_node == NULL) return -1;
-
+    if (seat_node == NULL)
+    {
+        printf("未找到座位信息\n");
+        return -1;
+    }
     ticket_node_t* tick_node =
         Ticket_Srv_FetchBySeatID(tickList, seat_node->data.id);
-    if (tick_node == NULL) return -1;
-    if (tick_node->data.status == TICKET_SOLD) return -1;
+    if (tick_node == NULL)
+    {
+        printf("未找到票信息\n");
+        return -1;
+    }
+    if (tick_node->data.status == TICKET_SOLD)
+    {
+        printf("票已售出\n");
+        return -1;
+    }
     tick_node->data.status = TICKET_SOLD;
-    if (Ticket_Srv_Modify(&tick_node->data)) return -1;
+    if (Ticket_Srv_Modify(&tick_node->data))
+    {
+        printf("修改票信息成功\n");
+        return -1;
+    }
 
     user_date_t curDate = DateNow();
     user_time_t curTime = TimeNow();
@@ -162,8 +180,11 @@ int Sale_UI_SellTicket(ticket_list_t tickList, seat_list_t seatList)
         sale.type      = SALE_SELL;
     }
 
-    if (Sale_Srv_Add(&sale)) return -1;
-
+    if (Sale_Srv_Add(&sale))
+    {
+        printf("加入销售记录失败\n");
+        return -1;
+    }
     return sale.ticket_id;
 }
 
@@ -176,7 +197,7 @@ void Sale_UI_RetfundTicket(void)
     //票存在
     if (Ticket_Srv_FetchByID(ticket_id, &buf) != 1)
     {
-        printf("票 不存在\n");
+        printf("票不存在\n");
         return;
     }
 
@@ -203,6 +224,7 @@ void Sale_UI_RetfundTicket(void)
     }
 
     Sale_Srv_Add(&refound);
+    printf("退票成功\n");
     return;
 }
 
@@ -216,7 +238,9 @@ void Sale_UI_ShowTicket(void)
     char choice = 0;
     do
     {
-        printf("\n=========================================================\n");
+        printf(
+            "\n========================================================="
+            "\n");
         printf("**************** SALE  System ****************\n");
         printf("[B]uy购买票\n");
         printf("\n=======[E]xist|[R]eturn=============\n");
