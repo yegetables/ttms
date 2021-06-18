@@ -1,6 +1,7 @@
 #include "Play.h"
 
 #include <stdio.h>
+#include <string.h>
 
 #include "../Common/List.h"
 #include "../Persistence/Play_Persist.h"
@@ -33,4 +34,44 @@ int Play_Srv_FetchByName(char *name, play_t *buf)
         }
     }
     return 0;
+}
+int max(int a, int b) { return a > b ? a : b; }
+int _strcmp(char *s1, char *s2)
+{
+    int dp[100][100] = {0};
+    int len1, len2;
+    len1 = strlen(s1), len2 = strlen(s2);
+    for (int i = 1; i <= len1; i++)
+    {
+        for (int j = 1; j <= len2; j++)
+        {
+            if (s1[i - 1] == s2[j - 1])
+            {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            }
+            else
+            {
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+    return dp[len1][len2];
+}
+
+int Play_Srv_FilterByName(play_list_t list, char *key)
+{
+    int recCount = 0;
+    play_list_t headStr;
+    List_Init(headStr, play_node_t);
+    if (Play_Srv_FetchAll(headStr) <= 0) return recCount;
+    play_node_t *curPos;
+    List_ForEach(headStr, curPos)
+    {
+        if (_strcmp(curPos->data.name, key) >= 1)
+        {
+            List_AddTail(list, curPos);
+            recCount++;
+        }
+    }
+    return recCount;
 }
