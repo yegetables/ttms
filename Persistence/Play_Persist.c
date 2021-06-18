@@ -165,7 +165,7 @@ int Play_Perst_SelectByName(play_list_t list,char condt[]){
       while(!feof(fp)){
           if(fread(&sch,sizeof(play_t),1,fp)){
               if(strcmp(condt,sch.name)){
-                  newNode = (schedule_node_t *)malloc(sizeof(schedule_node_t));
+                  newNode = (play_node_t *)malloc(sizeof(play_node_t));
                   newNode->data = sch;           
                   List_AddTail(list,newNode);
                   recCount++;
