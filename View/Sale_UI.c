@@ -1,4 +1,7 @@
 #include "Sale_UI.h"
+#include"../Common/List.h"
+#include"../Service/Seat.h"
+#include"../Service/Schedule.h"
 extern account_t gl_CurUser;
 void Sale_UI_MgtEntry(void)
 {
@@ -32,6 +35,7 @@ dod:
             case 'c':
                 List_ForEach(list, tmp)
                     Sale_UI_ShowScheduler(tmp->data.id);  //显示演出计划
+
                 List_Destroy(list, play_node_t);
                 goto dod;
                 break;
@@ -235,3 +239,74 @@ void Sale_UI_RetfundTicket(void)
     printf("退票成功\n");
     return;
 }
+<<<<<<< HEAD
+
+void Sale_UI_ShowTicket(play_t p_t)
+{
+    printf(
+            "\n========================================================="
+            "\n");
+        printf("**************** SALE  System ****************\n");
+    //    Schedule_Srv_FetchByID();
+    schedule_list_t sch_t_head;
+    schedule_node_t *sch_t;
+    List_Init(sch_t_head,schedule_node_t);
+    Schedule_Srv_FetchByPlay(sch_t_head,p_t.id);
+    List_ForEach(sch_t_head,sch_t){//遍历演出计划
+        seat_list_t seat_t_head;
+        seat_node_t *seat_sch;
+
+        ticket_list_t ticket_t_head;
+        ticket_node_t *ticket_sch;
+        List_Init(ticket_t_head,ticket_node_t);
+        Ticket_Srv_FetchBySchID();
+        List_Init(seat_t_head,seat_node_t);
+        Seat_Srv_FetchByRoomID(seat_t_head,sch_t->data.studio_id);
+        for (ticket_sch = (ticket_t_head)->next,seat_sch = (seat_t_head)->next;ticket_sch!=ticket_t_head, seat_sch != seat_t_head;ticket_sch = ticket_sch->next, seat_sch = seat_sch->next){
+            
+            printf("%10s  %10s  %10s  %15s  %10s  %10s  %10s  %30s  %15s\n",
+            "ticket_id","seat_id","price","ticket_status_t","room_id",
+            "row","column","show time","seat_ticket_status");
+            printf("%10d  %10d  %10d  %15d  %10d  %10d  %10d %d-%d-%d-%d-%d-%d  %10d\n",
+            ticket_sch->data.id,seat_sch->data.id,ticket_sch->data.price,
+            ticket_sch->data.status,seat_sch->data.roomID,seat_sch->data.row,
+            seat_sch->data.column,sch_t->data.date.year,
+                   sch_t->data.date.month, sch_t->data.date.day,
+                   sch_t->data.time.hour, sch_t->data.time.minute,
+                   sch_t->data.time.second,seat_sch->data.status);
+
+
+        }
+
+    }
+    
+    
+
+    char choice = 0;
+    do
+    {
+        
+        printf("[B]uy购买票\n");
+        printf("\n=======[E]xist|[R]eturn=============\n");
+        printf("Please input your choice:");
+        scanf("%c", &choice);
+
+        switch (choice)
+        {
+            case 'B':
+            case 'b':
+                Sale_UI_SellTicket();
+                Ticket_UI_Print();
+                break;
+            case 'R':
+            case 'r':
+                goto w;
+            default:
+                choice = 'e';
+        }
+    } while ('e' != choice && choice != 'E');
+
+    return;
+}
+=======
+>>>>>>> 1c097500c00d7ac1bfefe4b53ea46c82c67054f0
