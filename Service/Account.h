@@ -34,5 +34,9 @@ int Account_Srv_Modify(account_t *data);  //实际根据用户名来找到修改
 int Account_Srv_DeleteByID(int usrID);
 int Account_Srv_FetchAll(account_list_t list);
 account_node_t *Account_Srv_FindByUsrName(account_list_t list, char usrName[]);
-
+account_t Account_Srv_FetchbyUser(char usrName[])
+{
+    account_t tmp;
+    return tmp;
+}
 #endif

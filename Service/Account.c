@@ -74,6 +74,14 @@ int Account_Srv_Add(account_t *data)
     }
     else return 1;
 }
+int Account_Srv_DeleteByID(int usrID)
+{
+    if (Account_Perst_RemByID(usrID))
+    {
+        return 1;
+    }
+    else return 0;
+}
 account_node_t *Account_Srv_FindByUsrName(account_list_t list, char usrName[])
 {
     account_node_t *q;
