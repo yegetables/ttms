@@ -15,7 +15,6 @@
 #include "../Service/Studio.h"
 #include "Seat_UI.h"
 
-
 static const int STUDIO_PAGE_SIZE = 5;
 
 #include <stdio.h>
@@ -139,7 +138,7 @@ void Studio_UI_MgtEntry(void)
                 printf("Input Error,Please Input again\n");
                 break;
         }
-    } while (1);
+    } while (choice != 'r' && choice != 'R');
     //释放链表空间
     List_Destroy(head, studio_node_t);
 }
