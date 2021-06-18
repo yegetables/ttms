@@ -3,7 +3,7 @@
 #include"../Service/Schedule.h"
 #include"../Service/Play.h"
 
-static const char SCHEDULE_DAT_FILE[] = "Schedule.dat";
+static const char SCHEDULE_DATA_FILE[] = "Schedule.dat";
 static const char PLAY_DAT_FILE[] = "play.dat";
 int Schedule_Perst_SelectAll(schedule_list_t list){
     schedule_node_t *newNode;
@@ -12,9 +12,9 @@ int Schedule_Perst_SelectAll(schedule_list_t list){
 
     assert(NULL != list);
 
-    List_Free(list, studio_node_t);
+    List_Free(list, schedule_node_t);
 
-    FILE *fp = fopen(SCHEDULE_DAT_FILE, "rb");
+    FILE *fp = fopen(SCHEDULE_DATA_FILE, "rb");
     if (NULL == fp)
     {  //文件不存在
         return 0;
@@ -24,7 +24,7 @@ int Schedule_Perst_SelectAll(schedule_list_t list){
     {
         if (fread(&data, sizeof(schedule_t), 1, fp))
         {
-            newNode = (studio_node_t *)malloc(sizeof(studio_node_t));
+            newNode = (schedule_node_t *)malloc(sizeof(schedule_node_t));
             if (!newNode)
             {
                 printf(
