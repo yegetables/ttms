@@ -4,11 +4,7 @@
 account_t Account_Srv_FetchbyUser(char usrName[])
 {
     account_t tmp;
-    if (Account_Perst_SelByName(usrName,&tmp)==0)
-    {
-        printf("未找到");
-    }
-    else return tmp;
+    return tmp;
 }
 int Account_Srv_Modify(account_t *data)
 {
