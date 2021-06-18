@@ -11,14 +11,6 @@
 int Schedule_Perst_SelectAll(schedule_list_t list);
 
 /**
- * @brief 根据名称载入数据
- * 
- * @param list 储存数据的单链表头指针
- * @param condt 指定的剧目名
- * @return int 符合条件的剧目数量
- */
-int Play_Perst_SelectByName(play_list_t list,char condt[]);
-/**
  * @brief ：根据ID载入演出计划
  * 
  * @param id:待载入的演出计划的ID 

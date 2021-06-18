@@ -30,4 +30,4 @@ void StaSales_UI_Self(void);
  */
 void StaSales_UI_Clerk(void);
 
-#endif /* StaSales_UI_H_ */
+#endif /* STASALES_UI_H_ */

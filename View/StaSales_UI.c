@@ -30,7 +30,7 @@ void StaSales_UI_MgtEntry(void)
             printf("账号没有权限！！");
         }
     }
-    return; 
+    return ; 
 }
 
 void StaSales_UI_Self(void) 
@@ -50,16 +50,25 @@ void StaSales_UI_Self(void)
     enddate.year = p->tm_year;
     enddate.month = p->tm_mon;
     enddate.day = 31;
+    printf(
+            "---------------------------选择菜单信息----------------------------"
+            "----\n");
+    printf(
+            "\n================================================================"
+            "==\n");
     char choice;
+    printf("Your choice:");
     scanf("%c",&choice);
     switch (choice)
     {
     case 'd':
     case 'D':
+        printf("当日销售额统计：");
         StaSales_Srv_CompSaleVal(id,curdate,curdate);
         break;
     case 'm':
     case 'M':
+        printf("当月销售额统计：");
         StaSales_Srv_CompSaleVal(id,startdate,enddate);
         break;
     }

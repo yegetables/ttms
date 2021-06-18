@@ -94,6 +94,14 @@ int Play_Srv_FetchByID(int id, play_t *buf);
  * @return int 返回值==1获取成功,!=1获取失败
  */
 int Play_Srv_FetchByName(char *name, play_t *buf);
+/**
+ * @brief 通过剧目关键字模糊查询剧目
+ *
+ * @param list 存储含有关键字的剧目链表头指针
+ * @param key 剧目名关键字
+ * @return int 含有关键字的剧目数量
+ */
+int Play_Srv_FilterByName(play_list_t list, char *key);
 #endif
 
 // Play_Srv_FilterByName();

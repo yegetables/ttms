@@ -1,13 +1,6 @@
 #ifndef PLAY_PERSIST_H_
 #define PLAY_PERSIST_H_
-#include <assert.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 
-#include "../Common/List.h"
-#include "../Service/Play.h"
-#include "EntityKey_Persist.h"
 //剧目文件名常量"Play.dat"
 static const char PLAY_DATA_FILE[] = "Play.dat";
 
@@ -54,4 +47,13 @@ int Play_Perst_RemByID(int id);
  * @return int 返回值==1载入成功,!=1载入失败,
  */
 int Play_Perst_SelectByID(int id, play_t *buf);
+
+/**
+ * @brief 根据名称载入数据
+ * 
+ * @param list 储存数据的单链表头指针
+ * @param condt 指定的剧目名
+ * @return int 符合条件的剧目数量
+ */
+int Play_Perst_SelectByName(play_list_t list,char condt[]);
 #endif

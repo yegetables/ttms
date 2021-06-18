@@ -25,6 +25,9 @@ typedef struct
     int second;
 } user_time_t;
 
+typedef ttms_date_t user_date_t;
+typedef ttms_time_t user_time_t;
+
 //直接读取键盘输入值
 // int ScanKeyboard();
 

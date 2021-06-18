@@ -1,10 +1,22 @@
 #include "Play_Persist.h"
+static const char SCHEDULE_DATA_FILE[] = "Schedule.dat";
+static const char PLAY_DAT_FILE[]      = "play.dat";
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+#include "../Common/List.h"
+#include "../Service/Play.h"
+#include "../Service/Schedule.h"
+#include "EntityKey_Persist.h"
 //载入全部剧目,返回值载入剧目数量,list为所有剧目信息的头结点
 int Play_Perst_SelectAll(play_list_t list)
 {
+    List_Free(list, play_node_t);
     int recCount = 0;
     assert(NULL != list);
-    List_Free(list, play_node_t);
     FILE *fp = fopen(PLAY_DATA_FILE, "rb");
     if (NULL == fp)
     {
@@ -150,4 +162,24 @@ int Play_Perst_SelectByID(int id, play_t *buf)
     }
     fclose(fp);
     return found;
+}
+int Play_Perst_SelectByName(play_list_t list, char condt[])
+{
+    int recCount = 0;
+    play_node_t *curPos;
+    play_list_t headPtr = (play_list_t)malloc(sizeof(play_node_t));
+    List_Init(headPtr, play_node_t);
+    if (Play_Perst_SelectAll(headPtr) <= 0)
+    {
+        return recCount;
+    }
+    List_ForEach(headPtr, curPos)
+    {
+        if (strcmp(condt, curPos->data.name) == 0)
+        {
+            List_AddTail(list, curPos);
+            recCount++;
+        }
+    }
+    return recCount;
 }
