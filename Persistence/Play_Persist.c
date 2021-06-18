@@ -1,4 +1,8 @@
 #include "Play_Persist.h"
+static const char SCHEDULE_DATA_FILE[] = "Schedule.dat";
+static const char PLAY_DAT_FILE[] = "play.dat";
+#include"../Service/Schedule.h"
+
 //载入全部剧目,返回值载入剧目数量,list为所有剧目信息的头结点
 int Play_Perst_SelectAll(play_list_t list)
 {
@@ -150,4 +154,30 @@ int Play_Perst_SelectByID(int id, play_t *buf)
     }
     fclose(fp);
     return found;
+}
+int Play_Perst_SelectByName(play_list_t list,char condt[]){
+   List_Init(list,play_list_t);
+   play_t sch;
+   int recCount = 0;
+   play_node_t *newNode;
+   FILE *fp = fopen(PLAY_DAT_FILE,"rb");
+   if(!(fp == NULL)){
+      while(!feof(fp)){
+          if(fread(&sch,sizeof(play_t),1,fp)){
+              if(strcmp(condt,sch.name)){
+                  newNode = (schedule_node_t *)malloc(sizeof(schedule_node_t));
+                  newNode->data = sch;           
+                  List_AddTail(list,newNode);
+                  recCount++;
+          }
+      }
+   }
+   }else{
+       printf("Cannot open file %s!\n", SCHEDULE_DATA_FILE);
+       return 0;
+   }
+   fclose(fp);
+   return recCount; 
+    
+
 }
