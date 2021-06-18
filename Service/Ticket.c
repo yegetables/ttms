@@ -1,6 +1,5 @@
 #include "Ticket.h"
-#include "../Service/Sale.h"
-#include "../Common/List.h"
+
 
 int Ticket_Srv_GenBatch(int schedule_id)
 {
