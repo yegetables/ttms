@@ -4,6 +4,8 @@
 #include "Schedule.h"
 #include "Seat.h"
 #include "Studio.h"
+#include "../Service/Sale.h"
+#include "../Common/List.h"
 //票状态
 typedef enum
 {
