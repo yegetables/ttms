@@ -7,9 +7,10 @@
  * Version:  v.1
  */
 #include "Salesanalysis.h"
-#include "stdio.h"
-#include "../Service/Play.h"
+
 #include "../Common/List.h"
+#include "../Service/Play.h"
+#include "stdio.h"
 int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list)
 {
     if (list != NULL)
@@ -18,15 +19,23 @@ int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list)
         salesanalysis_node_t *newNode;
         play_list_t playList;
         int sold;
-        List_Free(list,salesanalysis_node_t);
-        List_Init(playList,play_node_t);
-        Play_Srv_FetchAll(playList);
-        List_AddTail(playList,newNode);
-        List_ForEach(playList,pos);
-        newNode->data.sales = Schedule_Srv_StatRevByPlay(id,sold);
-        newNode->data.totaltickets = sold;
-        List_Destroy(playList,play_node_t);
-    }   
+        List_Free(list, salesanalysis_node_t);
+        List_Init(playList, play_node_t);
+        if(Play_Srv_FetchAll(playList) <= 0)
+        {
+            return 0;
+        }
+        else
+        {
+        List_AddTail(playList, newNode);
+        List_ForEach(playList, pos)
+        {
+            newNode->data.sales        = Schedule_Srv_StatRevByPlay(pos->data.id, &sold);
+            newNode->data.totaltickets = sold;
+        }
+        List_Destroy(playList, play_node_t);
+        }
+    }
     else
     {
         printf("Error!!!");
