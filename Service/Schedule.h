@@ -15,7 +15,7 @@ typedef struct
 
 typedef struct
 {
-    int id;            //演出计划
+    int id;            //演出计划id
     int play_id;       //剧目ID
     int studio_id;     //演出厅ID
     ttms_date_t date;  //日期
