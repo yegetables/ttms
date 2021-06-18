@@ -44,29 +44,3 @@ int Schedule_Perst_SelectAll(schedule_list_t list){
 }
 
 
-int Play_Perst_SelectByName(play_list_t list,char condt[]){
-   List_Init(list,play_list_t);
-   play_t sch;
-   int recCount = 0;
-   play_node_t *newNode;
-   FILE *fp = fopen(PLAY_DAT_FILE,"rb");
-   if(!(fp == NULL)){
-      while(!feof(fp)){
-          if(fread(&sch,sizeof(play_t),1,fp)){
-              if(strcmp(condt,sch.name)){
-                  newNode = (schedule_node_t *)malloc(sizeof(schedule_node_t));
-                  newNode->data = sch;           
-                  List_AddTail(list,newNode);
-                  recCount++;
-          }
-      }
-   }
-   }else{
-       printf("Cannot open file %s!\n", SCHEDULE_DATA_FILE);
-       return 0;
-   }
-   fclose(fp);
-   return recCount; 
-    
-
-}
