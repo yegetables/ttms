@@ -25,9 +25,10 @@ int Ticket_Perst_Update(const ticket_t* data)
     return rtn;
 }
 
-//----------------------------------------------------------------
+//---------------------------------------------------------------------------------------
 int Ticket_Perst_Insert(ticket_list_t list)
 {
+    int count=0;
     FILE *fp=fopen("Ticket.dat", "a");
     if(fp==NULL)
     {
@@ -37,9 +38,20 @@ int Ticket_Perst_Insert(ticket_list_t list)
     schedule_t sch;
     Schedule_Perst_SelectByID(list->data.schedule_id,sch);
     Play_Perst_SelectByID(sch.play_id);
-    
+    seat_list_t seat;
+    seat_t data;
+    FILE *fp= fopen("ticket.dat","a");
+    while(seat!=NULL) {
+        count++;
+        seat =seat->next;
+        data = seat->data;
+        fwrite(&data, sizeof(ticket_t),1,fp);
+    }
+    fclose(fp);
+    return;
+
 }
-//----------------------------------------------------------------
+//---------------------------------------------------------------------------
 int Ticket_Perst_Rem(int schedule_id)
 {
     int found=0;

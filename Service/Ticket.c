@@ -32,7 +32,7 @@ int Ticket_Srv_FetchByID(int id, ticket_t* buf)
     return Ticket_Perst_SelByID(id, buf);
 }
 
-Ticket_Srv_Update();
+int Ticket_Srv_Update();
 
 int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list)
 {
@@ -97,7 +97,7 @@ int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list)
     return rtn;
 }
 
-int Ticket_Srv_FetchBySchID(ticket_list_t list, int schedule_id)
+int Ticket_Srv_FetchBySchID( int schedule_id,ticket_list_t list)
 {
     int count = 0;
     List_Free(list,ticket_node_t);
