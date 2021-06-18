@@ -33,3 +33,30 @@ int Sale_Perst_SelByID(sale_list_t list, int usrID)
     fclose(fp);
     return rtn;
 }
+
+int Sale_Perst_SelByTicketID(int ticket_id, sale_t* sale)
+{
+    assert(NULL != buf);
+    FILE* fp = fopen("Sale.dat", "rb");
+    if (NULL == fp)
+    {
+        return 0;
+    }
+
+    sale_t data;
+    int found = 0;
+    while (!feof(fp))
+    {
+        if (fread(&data, sizeof(sale_t), 1, fp))
+        {
+            if (id == data.id)
+            {
+                *sale = data;
+                found = 1;
+                break;
+            }
+        }
+    }
+    fclose(fp);
+    return found;
+}
