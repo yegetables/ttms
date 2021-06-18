@@ -41,3 +41,25 @@ int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list)
         printf("Error!!!");
     }
 }
+
+void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t list)
+{
+    // 请补充完整
+    if (List_IsEmpty(list))
+    {
+        return;
+    }
+    list->prev->next     = NULL;
+    salesanalysis_list_t listLeft = list->next;
+    list->next = list->prev = list;
+    while (1)
+    {
+        if (listLeft == NULL)
+        {
+            return;
+        }
+        salesanalysis_list_t p = listLeft;
+        listLeft      = listLeft->next;
+        Seat_Srv_AddToSoftedList(listLeft, p);
+    }
+}

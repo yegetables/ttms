@@ -79,11 +79,13 @@ void StaSales_UI_Self(void)
 void StaSales_UI_Clerk(void)
 {
     int id = Gl_CurUser.id;
-    ttms_date_t curdate, startdate, enddate;
+    ttms_date_t curdate,startdate,enddate;
+    account_t tmp;
     char Usrname[1000];
-    scanf("%s", &Usrname);
-    id = Account_Srv_FetchByName(Usrname);
-    if ()
+    scanf("%s",&Usrname);
+    tmp = Account_Srv_FetchbyUser(Usrname);
+    id = tmp.id;
+    if()
     {
         printf("用户不存在！！");
     }

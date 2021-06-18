@@ -39,7 +39,7 @@ typedef struct salesanalysis_node
 
 int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list);
 
-void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t);
+void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t list);
 
 int Sale_Perst_SelByTicketID(int ticket_id,sale_t *sale);
 
