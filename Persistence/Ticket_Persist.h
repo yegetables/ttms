@@ -31,5 +31,5 @@ int Ticket_Perst_SelByID(int id, ticket_t * buf);
  */
 int Ticket_Perst_Update(const ticket_t* data);
 
-
+int Ticket_Perst_SelBySchID(ticket_list_t ticket,int schedule_id);
 #endif
