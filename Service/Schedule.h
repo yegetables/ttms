@@ -1,7 +1,11 @@
-#include "Play.h"
 #ifndef SCHEDULE_H_
 #define SCHEDULE_H_
+#include <stdio.h>
 
+#include "../Common/List.h"
+#include "../Persistence/Schedule_Persist.h"
+#include "../Service/Ticket.h"
+#include "Play.h"
 typedef struct
 {
     int hour;
@@ -44,18 +48,18 @@ int Schedule_Srv_Add(schedule_t *data);
 
 /**
  * @brief 调用持久层，修改演出计划
- *
  * @param data 新的演出计划数据
  * @return 返回1成功，不为1失败
  */
 int Schedule_Srv_Modify(const schedule_t *data);
+
 /**
  * @brief 根据ID获取演出计划
  * @param id
  * @param buf
  * @return int
  */
-int Schedule_Srv_FetchByID(int id, schedule_t* buf);
+int Schedule_Srv_FetchByID(int id, schedule_t *buf);
 /**
  * @brief 根据id删除指定演出计划
  *
@@ -64,5 +68,5 @@ int Schedule_Srv_FetchByID(int id, schedule_t* buf);
  */
 int Schedule_Srv_Delete(int id);
 
-int Schedule_Srv_StatRevByPlay(int play_id,int *soldCount);
+int Schedule_Srv_StatRevByPlay(int play_id, int *soldCount);
 #endif

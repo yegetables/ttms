@@ -1,12 +1,12 @@
 #include"MaiAccount_UI.h"
 #include"../Service/Account.h"
 extern gl_CurUser;
-void MaiAccount_UI_MgtEntry()
+void MainAccount_UI_MgtEntry()
 {
     initdata();
     account_t cdata=gl_CurUser;
     char cpassword[30];
-    printff();
+
     while(1)
     {
         printf("维护个人资料界面\n");
@@ -36,15 +36,26 @@ void MaiAccount_UI_MgtEntry()
         {
             case '1':i=0;
                     printf("请输入你的新密码\n");
-                    while((n=getchar())!='\n')
+                    while(1)
                     {
-                        if (n==' '&&i>=29)
+                        n=getchar();
+                        if (i==0&&n=='\n')
+                        {
+                            printf("密码不为空\n");
+
+                        }
+                        else if (n==' '||i>=29)
                         {
                             printf("密码不合规请重新输入\n");
                             i=0;
-                            break;
+                            while((n=getchar())!='\n');                          
                         }
-                        cpassword[i++]=n;
+                        else
+                        {
+                            if(n=='\n')
+                            break;
+                            cpassword[i++]=n;
+                        }
                     }
                     cpassword[i]='\0';
                     memset(cdata.password,'\0',sizeof(cdata.password));

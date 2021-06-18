@@ -78,7 +78,7 @@ int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list)
     FILE* fp = fopen("Ticket.dat", "r");
     if (fp == NULL)
     {
-        printf("file open fiaied\n");
+        printf("file open fialed\n");
         return -1;
     }
     while (!feof(fp))
