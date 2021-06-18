@@ -10,6 +10,7 @@
 
 #ifndef SEAT_H_
 #define SEAT_H_
+
 //座位状态
 typedef enum
 {

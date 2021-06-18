@@ -1,5 +1,6 @@
 #ifndef PLAY_H_
 #define PLAY_H_
+
 //剧目类型定义
 typedef enum
 {
@@ -16,13 +17,21 @@ typedef enum
     PLAY_RATE_ADULT   = 3
 } play_rating_t;
 
-//日期类型定义
-typedef struct
-{
-    int year;
-    int month;
-    int day;
-} ttms_date_t;
+// //日期结构体
+// typedef struct
+// {
+//     int year;
+//     int month;
+//     int day;
+// } user_date_t, ttms_date_t;
+
+// //时间结构体
+// typedef struct
+// {
+//     int hour;
+//     int minute;
+//     int second;
+// } user_time_t, ttms_time_t;
 
 //剧目实体数据类型定义
 typedef struct
@@ -103,5 +112,3 @@ int Play_Srv_FetchByName(char *name, play_t *buf);
  */
 int Play_Srv_FilterByName(play_list_t list, char *key);
 #endif
-
-// Play_Srv_FilterByName();

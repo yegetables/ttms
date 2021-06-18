@@ -1,13 +1,6 @@
 #include "Play_UI.h"
 
-#include <stdio.h>
-#include <string.h>
 
-#include "../Common/Common.h"
-#include "../Common/List.h"
-#include "../Common/TimeLegal.h"
-#include "../Service/Play.h"
-#include "Schedule_UI.h"
 static const int PLAY_PAGE_SIZE = 5;
 
 void Play_UI_MgtEntry()
