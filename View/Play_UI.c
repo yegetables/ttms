@@ -75,6 +75,7 @@ void Play_UI_MgtEntry()
             "\n================================================================"
             "==\n");
         printf("输入选项:");
+        fflush(stdin);
         scanf("%c", &choice);
         switch (choice)
         {
@@ -88,7 +89,8 @@ void Play_UI_MgtEntry()
                 break;
             case 'd':
             case 'D':
-                printf("I输入删除剧目id:");
+                printf("输入删除剧目id:");
+                fflush(stdin);
                 scanf("%d", &id);
                 if (Play_UI_Delete(id))
                 {  //从新载入数据
@@ -136,14 +138,12 @@ void Play_UI_MgtEntry()
                 break;
             case 'r':
             case 'R':
-                goto OVER;
                 break;
             default:
                 printf("输入有误,请重新输入\n");
                 break;
         }
-    } while (1);
-OVER:
+    } while (choice != 'r' && choice != 'R');
     //释放链表空间
     List_Destroy(head, play_node_t);
 }
@@ -225,7 +225,7 @@ int Play_UI_Add()
         }
         printf("输入有误,请重新输入");
     }
-    if (Play_Srv_Add(&newPlay))
+    if (Play_Srv_Add(&newPlay))  //文件保存
     {
         printf("添加成功\n");
         return 1;
@@ -360,5 +360,3 @@ int Play_UI_Query(int id)
         buf->end_date.year, buf->end_date.month, buf->end_date.day, buf->price);
     return 1;
 }
-
-// Play_UI_FetchByName();
