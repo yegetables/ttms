@@ -4,8 +4,7 @@
 #include "Schedule.h"
 #include "Seat.h"
 #include "Studio.h"
-#include "../Service/Sale.h"
-#include "../Common/List.h"
+#include "stdio.h"
 //票状态
 typedef enum
 {
@@ -77,9 +76,9 @@ ticket_node_t* Ticket_Srv_FetchBySeatID(ticket_list_t list, int seat_id);
  */
 int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list);
 
-int Ticket_Srv_StatRevBySchID(int schedule_id,int *soldCount)
+int Ticket_Srv_StatRevBySchID(int schedule_id,int *soldCount);
 
-Ticket_Srv_Update();
+int Ticket_Srv_Update();
 
 /**
  * @brief 根据ID获取演出票

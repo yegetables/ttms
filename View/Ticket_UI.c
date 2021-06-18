@@ -45,9 +45,9 @@ reshow:
 }
 void Ticket_UI_Query()
 {
-    ticket_node_t t_node;
-    ticket_list_t  *tmp;
-    List_Init(tmp,t_node);
+    ticket_list_t  tmp;
+    List_Init(tmp,ticket_list_t);
+
 }
 int Ticket_UI_ShowTicket(int ticket_id)
 {
