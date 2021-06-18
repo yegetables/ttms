@@ -239,7 +239,6 @@ void Sale_UI_RetfundTicket(void)
     printf("退票成功\n");
     return;
 }
-<<<<<<< HEAD
 
 void Sale_UI_ShowTicket(play_t p_t)
 {
@@ -308,5 +307,3 @@ void Sale_UI_ShowTicket(play_t p_t)
 
     return;
 }
-=======
->>>>>>> 1c097500c00d7ac1bfefe4b53ea46c82c67054f0
