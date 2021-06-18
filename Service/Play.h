@@ -94,6 +94,8 @@ int Play_Srv_FetchByID(int id, play_t *buf);
  * @return int 返回值==1获取成功,!=1获取失败
  */
 int Play_Srv_FetchByName(char *name, play_t *buf);
+
+
 #endif
 
 // Play_Srv_FilterByName();

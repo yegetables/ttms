@@ -107,10 +107,9 @@ int Account_Perst_RemByID(int id)
     }
     return found;
 }
-int Account_Perst_SelectAll(account_list_t list)
+int Account_Perst_SelectAll(account_list_t list)  //list在外部初始化
 {
     int n;
-    List_Init(list,account_node_t)
     account_node_t *p,*q;
     account_t tmp;
     FILE*fp=fopen("Account.dat","rb+");
@@ -135,10 +134,6 @@ int Account_Perst_SelectAll(account_list_t list)
                 p->data=tmp;
                 n++;
               List_AddTail(list,p)
-        }
-        List_ForEach(list,q)
-        {
-            printf("%s\n",q->data.username);
         }
      
     }
