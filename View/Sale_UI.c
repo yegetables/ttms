@@ -93,13 +93,23 @@ w:
     if (Schedule_Srv_FetchByPlay(sch_list, playID) == 0)  //获取演出计划
     {
         printf("获取演出计划失败\n");
-        return -1;
+        return;
     }
     char choice = 0;
     do
     {
         printf("\n=========================================================\n");
         printf("**************** SALE  System ****************\n");
+        int i;
+        // Paging_ViewPage_ForEach(sch_list, paging, play_node_t, pos, i)
+        // {
+        //     printf("%10d  %10d  %10d  %10d  %d--%d--%d--%d--%d--%d\n",
+        //            pos->data.play_id, pos->data.id, pos->data.studio_id,
+        //            pos->data.seat_count, pos->data.date.year,
+        //            pos->data.date.month, pos->data.date.day,
+        //            pos->data.time.hour, pos->data.time.minute,
+        //            pos->data.time.second);
+        // }
         printf("[T]显示演出票\n");
         printf(
             "\n=======|[P]revPage|[N]extPage|[E]xist|[R]eturn=============\n");
@@ -110,7 +120,7 @@ w:
         {
             case 'T':
             case 't':
-                Ticket_UI_ShowTicket(tickID);
+                Sale_UI_ShowTicket(&list->data);
                 break;
             case 'R':
             case 'r':
@@ -146,7 +156,7 @@ int Sale_UI_SellTicket(ticket_list_t tickList, seat_list_t seatList)
 
     int ret = 0;
     seat_node_t* seat_node;
-    seat_node = Seat_Srv_FindByRowCol(seatlist, hang, lie);
+    seat_node = Seat_Srv_FindByRowCol(seatList, hang, lie);
     if (seat_node == NULL)
     {
         printf("未找到座位信息\n");
@@ -175,12 +185,11 @@ int Sale_UI_SellTicket(ticket_list_t tickList, seat_list_t seatList)
     user_time_t curTime = TimeNow();
     sale_t sale;
     {
-        sale.id        = buf.ticket_id;
         sale.user_id   = gl_CurUser.id;
         sale.ticket_id = tick_node->data.id;
-        sale.date      = (ttms_date_t)curDate;
-        sale.time      = (ttms_time_t)curTime;
-        sale.value     = 0 - buf.price;
+        sale.date      = curDate;
+        sale.time      = curTime;
+        sale.value     = 0 - tick_node->data.price;
         sale.type      = SALE_SELL;
     }
 
@@ -212,17 +221,16 @@ void Sale_UI_RetfundTicket(void)
         return;
     }
 
-    buf.status = 0;
+    buf.status = TICKET_AVL;
     Ticket_Srv_Modify(&buf);
     user_date_t curDate = DateNow();
     user_time_t curTime = TimeNow();
     sale_t refound;
     {
-        refound.id        = buf.ticket_id;
         refound.user_id   = gl_CurUser.id;
         refound.ticket_id = ticket_id;
-        refound.date      = (ttms_date_t)curDate;
-        refound.time      = (ttms_time_t)curTime;
+        refound.date      = curDate;
+        refound.time      = curTime;
         refound.value     = 0 - buf.price;
         refound.type      = SALE_REFOUND;
     }
@@ -231,6 +239,7 @@ void Sale_UI_RetfundTicket(void)
     printf("退票成功\n");
     return;
 }
+<<<<<<< HEAD
 
 void Sale_UI_ShowTicket(play_t p_t)
 {
@@ -299,3 +308,5 @@ void Sale_UI_ShowTicket(play_t p_t)
 
     return;
 }
+=======
+>>>>>>> 1c097500c00d7ac1bfefe4b53ea46c82c67054f0

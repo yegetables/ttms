@@ -112,7 +112,6 @@ int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID)
         }
     }
     Seat_Srv_SortSeatList(list);
-    List_Destroy(headStr, seat_node_t);  //销毁
     return validCount;
 }
 
