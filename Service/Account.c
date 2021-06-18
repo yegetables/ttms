@@ -27,7 +27,7 @@ int Account_Srv_Modify(account_t *data)
                 }
                 break;
             }
-            if (tmp.id==data->id)
+            if (tmp.username==data->username)
             {
                 fseek(fp,-(int)sizeof(account_t),SEEK_CUR);
                 fwrite(data,sizeof(account_t), 1, fp);
