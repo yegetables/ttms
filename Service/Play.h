@@ -1,6 +1,6 @@
 #ifndef PLAY_H_
 #define PLAY_H_
-#include "Common.h"
+#include "../Common/Common.h"
 //剧目类型定义
 typedef enum
 {
