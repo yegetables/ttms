@@ -65,7 +65,6 @@ void MainAccount_UI_MgtEntry()
                 {
                     printf("Account_Srv_Modify error!\n");
                 }
-                printff();
                 break;
             case '2':
                 printf("暂时未开放");
