@@ -36,6 +36,7 @@ void StaSales_UI_MgtEntry(void)
 
 void StaSales_UI_Self(void)
 {
+    extern account_t Gl_CurUser;
     int id = Gl_CurUser.id;
     ttms_date_t curdate, startdate, enddate;
     time_t timep;
@@ -78,6 +79,7 @@ void StaSales_UI_Self(void)
 
 void StaSales_UI_Clerk(void)
 {
+    extern account_t Gl_CurUser;
     int id = Gl_CurUser.id;
     ttms_date_t curdate,startdate,enddate;
     account_t tmp;
