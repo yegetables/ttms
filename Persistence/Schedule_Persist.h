@@ -1,6 +1,7 @@
 #ifndef SCHEDULE_PERSIST_H_
 #define SCHEDULE_PERSIST_H_
-#include"schedule.h"
+#include"../Service/Schedule.h"
+#include"../Service/Schedule.h"
 //功能：从演出计划数据文件中载入与指定剧目关联的演出计划信息，构成链表list
 int Schedule_Perst_SelectByPlay(schedule_list_t list,int play_id);
 
