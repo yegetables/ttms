@@ -7,6 +7,7 @@
 #include "../Service/Ticket.h"
 #include "../Service/Play.h"
 #include "../Common/TimeLegal.h"
+#include"../Common/Common.h"
 static const int SCHEDULE_PAGE_SIZE = 5;
 #include <stdio.h>
 void Schedule_UI_MgtEntry(int play_id)
