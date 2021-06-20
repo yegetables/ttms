@@ -1,17 +1,11 @@
 #ifndef SCHEDULE_H_
 #define SCHEDULE_H_
 #include <stdio.h>
+#include"Common.h"
 
 #include "../Common/List.h"
 #include "../Persistence/Schedule_Persist.h"
 #include "../Service/Ticket.h"
-#include "Play.h"
-typedef struct
-{
-    int hour;
-    int minute;
-    int second;
-} ttms_time_t;
 
 typedef struct
 {
@@ -21,7 +15,6 @@ typedef struct
     ttms_date_t date;  //日期
     ttms_time_t time;  //演出时间
     int seat_count;    //座位数
-
 } schedule_t;
 typedef struct schedule_node
 {
