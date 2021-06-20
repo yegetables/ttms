@@ -1,7 +1,4 @@
 #include "Sale_UI.h"
-#include"../Common/List.h"
-#include"../Service/Seat.h"
-#include"../Service/Schedule.h"
 extern account_t gl_CurUser;
 void Sale_UI_MgtEntry(void)
 {
@@ -44,10 +41,10 @@ dod:
             case 'S':
             case 's':
                 printf("输入剧目名称\n");
-                char name[256] = {0};
-                scanf("%s", name);
+                char name1[256] = {0};
+                scanf("%s", name1);
                 play_t* buf;
-                if (1 != Play_Srv_FetchByName(name, buf))
+                if (1 != Play_Srv_FetchByName(name1, buf))
                     printf("未找到剧目信息\n");
                 else
                     printf("剧目id:%d\n剧目名称:%s\n", buf->id, buf->name);
@@ -55,11 +52,14 @@ dod:
             case 'F':
             case 'f':
                 printf("输入剧目名称\n");
-                char name[256] = {0};
-                scanf("%s", name);
-                Play_Srv_FilterByName(newlist, name);
-                List_ForEach(newlist, tmp) printf("剧目id:%d\n剧目名称:%s\n",
-                                                  tmp->data.id, tmp->data.name);
+                char name2[256] = {0};
+                scanf("%s", name2);
+                Play_Srv_FilterByName(newlist, name2);
+                List_ForEach(newlist, tmp)
+                {
+                    printf("剧目id:%d\n剧目名称:%s\n", tmp->data.id,
+                           tmp->data.name);
+                }
                 List_Destroy(list, play_node_t);
                 break;
             case 'R':
@@ -249,48 +249,49 @@ void Sale_UI_RetfundTicket(void)
 void Sale_UI_ShowTicket(play_t p_t)
 {
     printf(
-            "\n========================================================="
-            "\n");
-        printf("**************** SALE  System ****************\n");
+        "\n========================================================="
+        "\n");
+    printf("**************** SALE  System ****************\n");
     //    Schedule_Srv_FetchByID();
     schedule_list_t sch_t_head;
-    schedule_node_t *sch_t;
-    List_Init(sch_t_head,schedule_node_t);
-    Schedule_Srv_FetchByPlay(sch_t_head,p_t.id);
-    List_ForEach(sch_t_head,sch_t){//遍历演出计划
+    schedule_node_t* sch_t;
+    List_Init(sch_t_head, schedule_node_t);
+    Schedule_Srv_FetchByPlay(sch_t_head, p_t.id);
+    List_ForEach(sch_t_head, sch_t)
+    {  //遍历演出计划
         seat_list_t seat_t_head;
-        seat_node_t *seat_sch;
+        seat_node_t* seat_sch;
 
         ticket_list_t ticket_t_head;
-        ticket_node_t *ticket_sch;
-        List_Init(ticket_t_head,ticket_node_t);
+        ticket_node_t* ticket_sch;
+        List_Init(ticket_t_head, ticket_node_t);
         Ticket_Srv_FetchBySchID();
-        List_Init(seat_t_head,seat_node_t);
-        Seat_Srv_FetchByRoomID(seat_t_head,sch_t->data.studio_id);
-        for (ticket_sch = (ticket_t_head)->next,seat_sch = (seat_t_head)->next;ticket_sch!=ticket_t_head, seat_sch != seat_t_head;ticket_sch = ticket_sch->next, seat_sch = seat_sch->next){
-            
+        List_Init(seat_t_head, seat_node_t);
+        Seat_Srv_FetchByRoomID(seat_t_head, sch_t->data.studio_id);
+        for (ticket_sch = (ticket_t_head)->next, seat_sch = (seat_t_head)->next;
+             ticket_sch != ticket_t_head, seat_sch != seat_t_head;
+             ticket_sch = ticket_sch->next, seat_sch = seat_sch->next)
+        {
             printf("%10s  %10s  %10s  %15s  %10s  %10s  %10s  %30s  %15s\n",
-            "ticket_id","seat_id","price","ticket_status_t","room_id",
-            "row","column","show time","seat_ticket_status");
-            printf("%10d  %10d  %10d  %15d  %10d  %10d  %10d %d-%d-%d-%d-%d-%d  %10d\n",
-            ticket_sch->data.id,seat_sch->data.id,ticket_sch->data.price,
-            ticket_sch->data.status,seat_sch->data.roomID,seat_sch->data.row,
-            seat_sch->data.column,sch_t->data.date.year,
-                   sch_t->data.date.month, sch_t->data.date.day,
-                   sch_t->data.time.hour, sch_t->data.time.minute,
-                   sch_t->data.time.second,seat_sch->data.status);
-
-
+                   "ticket_id", "seat_id", "price", "ticket_status_t",
+                   "room_id", "row", "column", "show time",
+                   "seat_ticket_status");
+            printf(
+                "%10d  %10d  %10d  %15d  %10d  %10d  %10d %d-%d-%d-%d-%d-%d  "
+                "%10d\n",
+                ticket_sch->data.id, seat_sch->data.id, ticket_sch->data.price,
+                ticket_sch->data.status, seat_sch->data.roomID,
+                seat_sch->data.row, seat_sch->data.column,
+                sch_t->data.date.year, sch_t->data.date.month,
+                sch_t->data.date.day, sch_t->data.time.hour,
+                sch_t->data.time.minute, sch_t->data.time.second,
+                seat_sch->data.status);
         }
-
     }
-    
-    
 
     char choice = 0;
     do
     {
-        
         printf("[B]uy购买票\n");
         printf("\n=======[E]xist|[R]eturn=============\n");
         printf("Please input your choice:");
