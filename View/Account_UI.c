@@ -32,7 +32,7 @@ int SysLogin()  //SL界面
             usrname[j]='\0';
         printf("请输入您的密码:");
             j=0;
-            while((n=getch())!='\n')
+            while((n=getchar())!='\n')
                 {
                     if (n==' '&&j>=29)
                     {

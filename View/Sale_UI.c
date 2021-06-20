@@ -15,7 +15,7 @@ dod:
     paging.totalRecords = Play_Srv_FetchAll(list);
     Paging_Locate_FirstPage(list, paging);
 
-    int play_id;
+    int play_id = 0;
     do
     {
         printf("\n=========================================================\n");
@@ -126,7 +126,7 @@ w:
         {
             case 'T':
             case 't':
-                Sale_UI_ShowTicket(&list->data);
+                Sale_UI_ShowTicket(list->data);
                 break;
             case 'R':
             case 'r':
@@ -160,7 +160,6 @@ int Sale_UI_SellTicket(ticket_list_t tickList, seat_list_t seatList)
     int hang, lie;
     scanf("%d %d", &hang, &lie);
 
-    int ret = 0;
     seat_node_t* seat_node;
     seat_node = Seat_Srv_FindByRowCol(seatList, hang, lie);
     if (seat_node == NULL)
@@ -265,19 +264,24 @@ void Sale_UI_ShowTicket(play_t p_t)
         ticket_list_t ticket_t_head;
         ticket_node_t* ticket_sch;
         List_Init(ticket_t_head, ticket_node_t);
-        Ticket_Srv_FetchBySchID();
+
+        Ticket_Srv_FetchBySchID(sch_t->data.id, ticket_t_head);
         List_Init(seat_t_head, seat_node_t);
         Seat_Srv_FetchByRoomID(seat_t_head, sch_t->data.studio_id);
-        for (ticket_sch = (ticket_t_head)->next, seat_sch = (seat_t_head)->next;
-             ticket_sch != ticket_t_head, seat_sch != seat_t_head;
-             ticket_sch = ticket_sch->next, seat_sch = seat_sch->next)
+        // for (ticket_sch = (ticket_t_head)->next, seat_sch =
+        // (seat_t_head)->next;
+        //      ticket_sch != ticket_t_head, seat_sch != seat_t_head;
+        //      ticket_sch = ticket_sch->next, seat_sch = seat_sch->next)
+        List_ForEach(ticket_t_head, ticket_sch)
+            List_ForEach(seat_t_head, seat_sch)
         {
             printf("%10s  %10s  %10s  %15s  %10s  %10s  %10s  %30s  %15s\n",
                    "ticket_id", "seat_id", "price", "ticket_status_t",
                    "room_id", "row", "column", "show time",
                    "seat_ticket_status");
             printf(
-                "%10d  %10d  %10d  %15d  %10d  %10d  %10d %d-%d-%d-%d-%d-%d  "
+                "%10d  %10d  %10d  %15d  %10d  %10d  %10d "
+                "%d-%d-%d-%d-%d-%d  "
                 "%10d\n",
                 ticket_sch->data.id, seat_sch->data.id, ticket_sch->data.price,
                 ticket_sch->data.status, seat_sch->data.roomID,
@@ -306,7 +310,6 @@ void Sale_UI_ShowTicket(play_t p_t)
                 break;
             case 'R':
             case 'r':
-                goto w;
             default:
                 choice = 'e';
         }

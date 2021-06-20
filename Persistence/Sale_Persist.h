@@ -1,7 +1,5 @@
 #ifndef SALE_PERSIST_H_
 #define SALE_PERSIST_H_
-#include <unistd.h>
-
 #include "../Persistence/Sale_Persist.h"
 #include "../Service/Sale.h"
 #include "../View/Sale_UI.h"
@@ -30,4 +28,8 @@ int Sale_Perst_SelByID(sale_list_t list, int usrID);
  * @return int 1成功否则失败
  */
 int Sale_Perst_SelByTicketID(int ticket_id, sale_t* sale);
+
+int Sale_Perst_SelByTicketID(int ticket_id, sale_t* sale);
+
+int Sale_Perst_SelByID(sale_list_t list, int usrID);
 #endif
