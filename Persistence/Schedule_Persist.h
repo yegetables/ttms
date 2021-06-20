@@ -1,3 +1,4 @@
+#include"schedule.h"
 #ifndef SCHEDULE_PERSIST_H_
 #define SCHEDULE_PERSIST_H_
 
