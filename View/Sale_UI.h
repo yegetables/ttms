@@ -36,6 +36,6 @@ int Sale_UI_SellTicket(ticket_list_t tickList, seat_list_t seatList);
 void Sale_UI_RetfundTicket(void);
 
 //显示演出票
-Sale_UI_ShowTicket();
+void Sale_UI_ShowTicket(play_t p_t);
 
 #endif

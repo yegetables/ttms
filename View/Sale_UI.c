@@ -8,9 +8,11 @@ void Sale_UI_MgtEntry(void)
     char choice;
     Pagination_t paging;
     play_list_t list;
+    play_list_t newlist;
     play_node_t* tmp = list;
 dod:
     List_Init(list, play_node_t);
+    List_Init(newlist, play_node_t);
     paging.pageSize     = SALESANALYSIS_PAGE_SIZE;
     paging.offset       = 0;
     paging.totalRecords = Play_Srv_FetchAll(list);
@@ -44,11 +46,21 @@ dod:
                 printf("输入剧目名称\n");
                 char name[256] = {0};
                 scanf("%s", name);
-                Play_Srv_FetchByName(name, );
+                play_t* buf;
+                if (1 != Play_Srv_FetchByName(name, buf))
+                    printf("未找到剧目信息\n");
+                else
+                    printf("剧目id:%d\n剧目名称:%s\n", buf->id, buf->name);
                 break;
             case 'F':
             case 'f':
-                Play_Srv_FilterByName();
+                printf("输入剧目名称\n");
+                char name[256] = {0};
+                scanf("%s", name);
+                Play_Srv_FilterByName(newlist, name);
+                List_ForEach(newlist, tmp) printf("剧目id:%d\n剧目名称:%s\n",
+                                                  tmp->data.id, tmp->data.name);
+                List_Destroy(list, play_node_t);
                 break;
             case 'R':
             case 'r':
@@ -88,9 +100,9 @@ void Sale_UI_ShowScheduler(int playID)
         List_Destroy(list, play_node_t);
         return;
     }
-
+    schedule_list_t tmp;
 w:
-    if (Schedule_Srv_FetchByPlay(sch_list, playID) == 0)  //获取演出计划
+    if (Schedule_Srv_FetchByPlay(sch_list, playID) <= 0)  //获取演出计划
     {
         printf("获取演出计划失败\n");
         return;
@@ -101,15 +113,9 @@ w:
         printf("\n=========================================================\n");
         printf("**************** SALE  System ****************\n");
         int i;
-        // Paging_ViewPage_ForEach(sch_list, paging, play_node_t, pos, i)
-        // {
-        //     printf("%10d  %10d  %10d  %10d  %d--%d--%d--%d--%d--%d\n",
-        //            pos->data.play_id, pos->data.id, pos->data.studio_id,
-        //            pos->data.seat_count, pos->data.date.year,
-        //            pos->data.date.month, pos->data.date.day,
-        //            pos->data.time.hour, pos->data.time.minute,
-        //            pos->data.time.second);
-        // }
+        List_ForEach(sch_list, tmp) printf(
+            "演出计划id:%d,剧目ID:%d,演出厅ID:%d,座位数:%d\n", tmp->data.id,
+            tmp->data.play_id, tmp->data.studio_id, tmp->data.seat_count);
         printf("[T]显示演出票\n");
         printf(
             "\n=======|[P]revPage|[N]extPage|[E]xist|[R]eturn=============\n");

@@ -2,20 +2,12 @@
 #define SCHEDULE_H_
 #include <stdio.h>
 
-#include "../Common/List.h"
-#include "../Persistence/Schedule_Persist.h"
-#include "../Service/Ticket.h"
-#include "Play.h"
-typedef struct
-{
-    int hour;
-    int minute;
-    int second;
-} ttms_time_t;
+
+#include "../Common/Common.h"
 
 typedef struct
 {
-    int id;            //演出计划
+    int id;            //演出计划id
     int play_id;       //剧目ID
     int studio_id;     //演出厅ID
     ttms_date_t date;  //日期

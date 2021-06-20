@@ -1,6 +1,5 @@
 #include "Play_UI.h"
 
-
 static const int PLAY_PAGE_SIZE = 5;
 
 void Play_UI_MgtEntry()
@@ -280,7 +279,6 @@ int Play_UI_Modify(int id)
         while (1)
         {
             user_date_t nowDate = DateNow();
-            ttms_date_t date;
             printf("修改剧目放映日期(%d.%d.%d)=====>", etc.start_date.year,
                    etc.start_date.month, etc.start_date.day);
             if (scanf("%d.%d.%d", &newPlay.start_date.year,
@@ -336,7 +334,7 @@ int Play_UI_Query(int id)
     printf("\n=======================================================\n");
     printf("****************  查询剧目界面  ****************\n");
     printf("-------------------------------------------------------\n");
-    play_t *buf;
+    play_t *buf = NULL;
     if (Play_Srv_FetchByID(id, buf) != 1)
     {
         printf("没有查询到相关剧目信息,请确定信息后查询\n");
