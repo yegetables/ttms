@@ -1,7 +1,8 @@
 #include "Ticket_Persist.h"
 
+#include "../Persistence/Play_Persist.h"
+#include "../Persistence/Schedule_Persist_Qry.h"
 #include "stdio.h"
-
 int Ticket_Perst_Update(const ticket_t *data)
 {
     ticket_t ret;
@@ -36,9 +37,9 @@ int Ticket_Perst_Insert(ticket_list_t list)
         return 0;
     }
     schedule_t sch;
-    Schedule_Perst_SelectByID(sch, list->data.schedule_id);
-    Play_Perst_SelectByID(sch, play_id);
     seat_list_t seat;
+    Schedule_Perst_SelectByID(list->data.schedule_id, &sch);
+    Play_Perst_SelectByID(play_id, &seat);
     seat_t data;
     while (seat != NULL)
     {
