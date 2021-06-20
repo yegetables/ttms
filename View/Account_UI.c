@@ -1,8 +1,10 @@
 #include "Account_UI.h"
 #include"../Service/Account.h"
 #include<stdio.h>
+#include<string.h>
 #include<stdlib.h>
 #include"../Common/List.h"
+
 int SysLogin()  //SL界面
 {
     Account_Srv_InitSys();
@@ -62,12 +64,10 @@ int SysLogin()  //SL界面
 }
 int account_UI_Add(account_list_t list)
 {
-     int num;
     char cpassword[30];
     char usrename[30];
     account_node_t *tmp=(account_node_t *)malloc(sizeof(account_node_t));
     int i=0;
-    char ch;
     char n;
     account_t cdata;
     printf("添加新系统用户界面\n");
@@ -237,9 +237,7 @@ int Account_UI_Query(account_list_t list, char usrName[])
 void Account_UI_MgtEntry()
 {
     int n;
-    account_node_t* pos=NULL;
     account_list_t head=NULL;
-    initdata();
     List_Init(head,account_node_t)
     n=Account_Srv_FetchAll(head);
 
