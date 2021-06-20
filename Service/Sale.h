@@ -1,7 +1,6 @@
 #ifndef SALE_H_
 #define SALE_H_
 
-#include "../Persistence/Sale_Persist.h"
 #include "Play.h"
 #include "Schedule.h"
 #include "Seat.h"

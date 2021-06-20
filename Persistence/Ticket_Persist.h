@@ -1,5 +1,5 @@
-#ifndef TICKET_H_
-#define TICKET_H_
+#ifndef TICKET_Persist_H_
+#define TICKET_Persist_H_
 #include <stdio.h>
 
 #include "../Common/List.h"

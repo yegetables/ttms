@@ -1,10 +1,11 @@
 #ifndef TICKET_H_
 #define TICKET_H_
+#include <stdio.h>
+
 #include "../Common/List.h"
 #include "Schedule.h"
 #include "Seat.h"
 #include "Studio.h"
-#include "stdio.h"
 //票状态
 typedef enum
 {
@@ -36,8 +37,6 @@ typedef struct ticket_node
  * @return <0生成失败,>=0表示生成多少票
  */
 int Ticket_Srv_GenBatch(int schedule_id);
-
-
 
 /**
  * @brief 根据演出计划id获取所有票数据
@@ -76,16 +75,16 @@ ticket_node_t* Ticket_Srv_FetchBySeatID(ticket_list_t list, int seat_id);
  */
 int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list);
 
-int Ticket_Srv_StatRevBySchID(int schedule_id,int *soldCount);
+int Ticket_Srv_StatRevBySchID(int schedule_id, int* soldCount);
 
 int Ticket_Srv_Update();
 
 /**
  * @brief 根据ID获取演出票
- * 
+ *
  * @param id 查询的演出票ID
  * @param buf 查询成功的内存地址
  * @return int 1成功，否则失败
  */
-int Ticket_Srv_FetchByID(int id,ticket_t * buf);
+int Ticket_Srv_FetchByID(int id, ticket_t* buf);
 #endif

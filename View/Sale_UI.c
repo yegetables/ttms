@@ -6,7 +6,7 @@ void Sale_UI_MgtEntry(void)
     Pagination_t paging;
     play_list_t list;
     play_list_t newlist;
-    play_node_t* tmp = list;
+    play_node_t* tmp = NULL;
 dod:
     List_Init(list, play_node_t);
     List_Init(newlist, play_node_t);

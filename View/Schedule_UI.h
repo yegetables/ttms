@@ -1,7 +1,13 @@
 #ifndef SCHEDULE_UI_H_
-
 #define SCHEDULE_UI_H_
+#include <stdio.h>
 
+#include "../Common/List.h"
+#include "../Common/TimeLegal.h"
+#include "../Service/Play.h"
+#include "../Service/Schedule.h"
+#include "../Service/Ticket.h"
+#include "../View/Seat_UI.h"
 /**
  * @brief 显示指定ID的剧目相关联的所有演出计划，并提供增删改演出计划的功能
  *
