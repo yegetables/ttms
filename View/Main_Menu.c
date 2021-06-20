@@ -58,7 +58,7 @@ void Main_Menu(void)
                 break;
             case 'N':
             case 'n':
-                SalesAanalysis_UI_MgtEntry();
+                SalesAnalysis_UI_MgtEntry();
                 break;
             case 'A':
             case 'a':

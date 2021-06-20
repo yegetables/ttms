@@ -151,7 +151,7 @@ int Play_UI_Add()
     {
         printf("输入剧目类型\n");
         printf("1.电影\n2.京剧\n3.音乐会\n");
-        if (scanf("%d", &newPlay.type) == 1 && newPlay.type >= 1 &&
+        if (scanf("%d", (int *)&(newPlay.type)) == 1 && newPlay.type >= 1 &&
             newPlay.type <= 3)
         {
             break;
@@ -164,7 +164,7 @@ int Play_UI_Add()
     {
         printf("输入剧目等级\n");
         printf("1.小孩\n2.青少年\n3.成人\n");
-        if (scanf("%d", &newPlay.rating) == 1 && newPlay.rating >= 1 &&
+        if (scanf("%d", (int *)&(newPlay.rating)) == 1 && newPlay.rating >= 1 &&
             newPlay.type <= 3)
         {
             break;
@@ -246,9 +246,13 @@ int Play_UI_Modify(int id)
         scanf("%s", newPlay.name);
         while (1)
         {
-            printf("修改剧目类型[%s]=====>\n", etc.type);
+            char *t = NULL;
+            if (etc.type == 1) t = "PLAY_TYPE_FILE";
+            if (etc.type == 2) t = "PLAY_TYPE_OPEAR";
+            if (etc.type == 3) t = "PLAY_TYPE_CONCERT";
+            printf("修改剧目类型[%s]=====>\n", t);
             printf("1.电影\n2.京剧\n3.音乐会\n");
-            if (scanf("%d", &newPlay.type) == 1 && newPlay.type >= 1 &&
+            if (scanf("%d", (int *)&newPlay.type) == 1 && newPlay.type >= 1 &&
                 newPlay.type <= 3)
             {
                 break;
@@ -259,10 +263,10 @@ int Play_UI_Modify(int id)
         scanf("%s", newPlay.area);
         while (1)
         {
-            printf("修改剧目等级[%s]=====>\n", etc.rating);
+            printf("修改剧目等级[%d]=====>\n", etc.rating);
             printf("1.小孩\n2.青少年\n3.成人\n");
-            if (scanf("%d", &newPlay.rating) == 1 && newPlay.rating >= 1 &&
-                newPlay.type <= 3)
+            if (scanf("%d", (int *)&newPlay.rating) == 1 &&
+                newPlay.rating >= 1 && newPlay.type <= 3)
             {
                 break;
             }

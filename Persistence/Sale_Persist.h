@@ -1,6 +1,5 @@
 #ifndef SALE_PERSIST_H_
 #define SALE_PERSIST_H_
-#include "../Persistence/Sale_Persist.h"
 #include "../Service/Sale.h"
 #include "../View/Sale_UI.h"
 #include "EntityKey_Persist.h"
@@ -29,7 +28,4 @@ int Sale_Perst_SelByID(sale_list_t list, int usrID);
  */
 int Sale_Perst_SelByTicketID(int ticket_id, sale_t* sale);
 
-int Sale_Perst_SelByTicketID(int ticket_id, sale_t* sale);
-
-int Sale_Perst_SelByID(sale_list_t list, int usrID);
 #endif

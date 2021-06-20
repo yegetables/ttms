@@ -10,6 +10,7 @@
 #include "../Service/Sale.h"
 #include "../Service/Schedule.h"
 #include "../Service/Seat.h"
+#include "../Service/Ticket.h"
 
 /**
  * @brief 管理售票主界面

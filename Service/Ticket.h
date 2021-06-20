@@ -1,5 +1,5 @@
-#ifndef TICKET_H
-#define TICKET_H
+#ifndef TICKET_H_
+#define TICKET_H_
 #include "../Common/List.h"
 #include "Schedule.h"
 #include "Seat.h"

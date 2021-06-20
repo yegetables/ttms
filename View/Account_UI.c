@@ -127,7 +127,7 @@ int account_UI_Add(account_list_t list)
          printf("请输入新用户的权限\n");
          while(1)
          {
-             scanf("%d",&cdata.type);
+             scanf("%d",(int*)&cdata.type);
              if (cdata.type==0||cdata.type==1||cdata.type==2||cdata.type==9)
                 break;
             else {

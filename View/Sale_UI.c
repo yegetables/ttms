@@ -15,7 +15,7 @@ dod:
     paging.totalRecords = Play_Srv_FetchAll(list);
     Paging_Locate_FirstPage(list, paging);
 
-    int play_id = 0;
+    // int play_id = 0;
     do
     {
         printf("\n=========================================================\n");
@@ -43,11 +43,11 @@ dod:
                 printf("输入剧目名称\n");
                 char name1[256] = {0};
                 scanf("%s", name1);
-                play_t* buf;
-                if (1 != Play_Srv_FetchByName(name1, buf))
+                play_t buf;
+                if (1 != Play_Srv_FetchByName(name1, &buf))
                     printf("未找到剧目信息\n");
                 else
-                    printf("剧目id:%d\n剧目名称:%s\n", buf->id, buf->name);
+                    printf("剧目id:%d\n剧目名称:%s\n", buf.id, buf.name);
                 break;
             case 'F':
             case 'f':
@@ -93,6 +93,7 @@ void Sale_UI_ShowScheduler(int playID)
     schedule_list_t sch_list;
 
     List_Init(list, play_node_t);
+    List_Init(sch_list, schedule_node_t);
 
     if (1 != Play_Srv_FetchByID(playID, &list->data))  //获取剧目
     {
@@ -112,7 +113,7 @@ w:
     {
         printf("\n=========================================================\n");
         printf("**************** SALE  System ****************\n");
-        int i;
+        // int i;
         List_ForEach(sch_list, tmp) printf(
             "演出计划id:%d,剧目ID:%d,演出厅ID:%d,座位数:%d\n", tmp->data.id,
             tmp->data.play_id, tmp->data.studio_id, tmp->data.seat_count);
@@ -256,13 +257,14 @@ void Sale_UI_ShowTicket(play_t p_t)
     schedule_node_t* sch_t;
     List_Init(sch_t_head, schedule_node_t);
     Schedule_Srv_FetchByPlay(sch_t_head, p_t.id);
+    seat_list_t seat_t_head;
+    seat_node_t* seat_sch;
+
+    ticket_list_t ticket_t_head;
+    ticket_node_t* ticket_sch;
     List_ForEach(sch_t_head, sch_t)
     {  //遍历演出计划
-        seat_list_t seat_t_head;
-        seat_node_t* seat_sch;
 
-        ticket_list_t ticket_t_head;
-        ticket_node_t* ticket_sch;
         List_Init(ticket_t_head, ticket_node_t);
 
         Ticket_Srv_FetchBySchID(sch_t->data.id, ticket_t_head);
@@ -305,8 +307,8 @@ void Sale_UI_ShowTicket(play_t p_t)
         {
             case 'B':
             case 'b':
-                Sale_UI_SellTicket();
-                Ticket_UI_Print();
+                Sale_UI_SellTicket(ticket_t_head, seat_t_head);
+                // Ticket_UI_Print();
                 break;
             case 'R':
             case 'r':
