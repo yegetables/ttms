@@ -8,11 +8,11 @@
  */
 #include "StaSales_UI.h"
 #include "../Common/Common.h"
-#include "../Service/Account.h"
 #include "../Service/Play.h"
 #include "../Service/StaSales.h"
 #include "stdio.h"
 #include "time.h"
+#include "../Persistence/Account_Persist.h"
 void StaSales_UI_MgtEntry(void)
 {
     extern account_t Gl_CurUser;
@@ -81,7 +81,7 @@ void StaSales_UI_Clerk(void)
 {
     extern account_t Gl_CurUser;
     int id = Gl_CurUser.id;
-    ttms_date_t curdate, startdate, enddate;
+    ttms_date_t startdate, enddate;
     account_t tmp;
     char Usrname[1000];
     scanf("%s", Usrname);
