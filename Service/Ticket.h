@@ -5,6 +5,7 @@
 #include "../Common/List.h"
 #include "../Persistence/Sale_Persist.h"
 #include "../Persistence/Ticket_Persist.h"
+#include "../Service/Sale.h"
 #include "Sale.h"
 #include "Schedule.h"
 #include "Seat.h"

@@ -17,5 +17,6 @@
 int Sale_Srv_Add(sale_t* data);
 #define Sale_Srv_insert Sale_Srv_Add
 // Sale_Srv_insert();
+int Sale_Srv_FetchByTicketID(int ticket_id, sale_t* sale);
 
 #endif

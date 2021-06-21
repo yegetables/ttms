@@ -4,7 +4,6 @@
 #include"../Service/Play.h"
 
 static const char SCHEDULE_DATA_FILE[] = "Schedule.dat";
-static const char PLAY_DAT_FILE[] = "play.dat";
 int Schedule_Perst_SelectAll(schedule_list_t list){
     schedule_node_t *newNode;
     schedule_t data;

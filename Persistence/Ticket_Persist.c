@@ -26,7 +26,6 @@ int Ticket_Perst_Update(const ticket_t *data)
     return rtn;
 }
 
-
 int Ticket_Perst_Insert(ticket_list_t list)
 {
     int count = 0, x;
@@ -107,4 +106,36 @@ int Ticket_Perst_SelByID(int id, ticket_t *buf)
     }
     fclose(fp);
     return found;
+}
+
+int Ticket_Perst_SelBySchID(ticket_list_t ticket, int schedule_id)
+{
+    List_Free(ticket, ticket_node_t);
+    int recCount = 0;
+    assert(NULL != ticket);
+    FILE *fp = fopen("Ticket.dat", "rb");
+    if (NULL == fp)
+    {
+        return 0;
+    }
+    ticket_t data;
+    while (!feof(fp))
+    {
+        if (fread(&data, sizeof(ticket_t), 1, fp) &&
+            data.schedule_id == schedule_id)
+        {
+            ticket_node_t *newNode =
+                (ticket_node_t *)malloc(sizeof(ticket_node_t));
+            if (!newNode)
+            {
+                printf("Warning,Memory OverFlow!!!\n");
+                break;
+            }
+            newNode->data = data;
+            List_AddTail(ticket, newNode);
+            recCount++;
+        }
+    }
+    fclose(fp);
+    return recCount;
 }
