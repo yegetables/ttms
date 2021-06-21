@@ -7,7 +7,6 @@
  * Version:  v.1
  */
 #include "StaSales_UI.h"
-
 void StaSales_UI_MgtEntry(void)
 {
     extern account_t Gl_CurUser;
