@@ -71,7 +71,7 @@ void Play_UI_MgtEntry()
         {
             case 'a':
             case 'A':
-                if (Play_UI_Add())  //新添加成功，跳到最后一页显示
+                if (Play_UI_Add()>0)  //新添加成功，跳到最后一页显示
                 {
                     paging.totalRecords = Play_Srv_FetchAll(head);
                     Paging_Locate_LastPage(head, paging, play_node_t);
@@ -92,7 +92,7 @@ void Play_UI_MgtEntry()
             case 'U':
                 printf("输入需要修改的剧目id:");
                 scanf("%d", &id);
-                if (Play_UI_Modify(id))
+                if (Play_UI_Modify(id)==1)
                 {  //从新载入数据
                     paging.totalRecords = Play_Srv_FetchAll(head);
                     List_Paging(head, paging, play_node_t);
@@ -353,3 +353,4 @@ int Play_UI_Query(int id)
         buf->end_date.year, buf->end_date.month, buf->end_date.day, buf->price);
     return 1;
 }
+int Play_UI_Delete(int id) { return Play_Srv_DeleteByID(id); }
