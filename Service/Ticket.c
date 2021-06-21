@@ -20,7 +20,7 @@ int Ticket_Srv_GenBatch(int schedule_id)
     }
     return number;
 }
-void Ticket_Srv_DeleteBatch(int schedule_id)
+int Ticket_Srv_DeleteBatch(int schedule_id)
 {
     int found = 0;
     found     = Ticket_Perst_Rem(schedule_id);
