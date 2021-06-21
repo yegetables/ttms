@@ -1,12 +1,9 @@
 #ifndef TICKET_H_
 #define TICKET_H_
 #include <stdio.h>
-
-#include "../Common/List.h"
-#include "../Persistence/Sale_Persist.h"
 #include "../Persistence/Ticket_Persist.h"
+#include "../Persistence/Sale_Persist.h"
 #include "Sale.h"
-#include "Schedule.h"
 #include "Seat.h"
 #include "Studio.h"
 
@@ -66,5 +63,5 @@ int Ticket_Srv_Update();
  * @param buf 查询成功的内存地址
  * @return int 1成功，否则失败
  */
-int Ticket_Srv_FetchByID(int id, ticket_t* buf);
+int Ticket_Srv_FetchByID(int id, ticket_t *buf);
 #endif

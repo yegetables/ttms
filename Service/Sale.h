@@ -6,7 +6,7 @@
 #include "Play.h"
 #include "Schedule.h"
 #include "Seat.h"
-#include "Ticket.h"
+
 #define SALESANALYSIS_PAGE_SIZE 5
 
 /**
