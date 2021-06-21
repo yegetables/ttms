@@ -15,6 +15,7 @@
 #include "../Persistence/Account_Persist.h"
 #include "../Service/Play.h"
 #include "../Service/StaSales.h"
+#include "../Service/Account.h"
 /**
  * @brief 提供统计销售额界面，
  * 剧院经理和售票员可以根据角色权限使用“统计售票员销售额”功能和“统计个人
