@@ -69,7 +69,6 @@ ticket_node_t* Ticket_Srv_FetchBySeatID(ticket_list_t list, int seat_id)
     }
     if (temp == list) return NULL;
 }
-
 int Ticket_Srv_FetchBySchID(int schedule_id, ticket_list_t list)
 {
     int count = 0;
