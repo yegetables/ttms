@@ -1,5 +1,14 @@
 #ifndef ACCOUNT_PERSIST_H_
 #define ACCOUNT_PERSIST_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+#include "../Common/Common.h"
+#include "../Common/List.h"
+#include "../Persistence/EntityKey_Persist.h"
 typedef enum
 {
     USR_ANOMY = 0,

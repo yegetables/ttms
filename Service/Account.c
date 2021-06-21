@@ -104,3 +104,8 @@ account_node_t *Account_Srv_FindByUsrName(account_list_t list, char usrName[])
     }
     return NULL;
 }
+int Account_Srv_FetchAll(account_list_t list)  
+{
+    int n = Account_Perst_SelectAll(list);
+    return n;
+}

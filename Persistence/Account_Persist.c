@@ -1,14 +1,5 @@
 #include "Account_Persist.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-
-#include "../Common/Common.h"
-#include "../Common/List.h"
-#include "../Persistence/EntityKey_Persist.h"
-#include "../Service/Account.h"
 account_t gl_CurUser;
 int Account_Perst_CheckAccFile()
 {

@@ -41,7 +41,7 @@ int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list)
     FILE* fp = fopen("Ticket.dat", "r");
     if (fp == NULL)
     {
-        printf("file open fiaied\n");
+        printf("file open failed\n");
         return -1;
     }
     while (!feof(fp))
@@ -77,7 +77,7 @@ int Ticket_Srv_FetchBySchID(int schedule_id, ticket_list_t list)
     ticket_list_t tickList;
     List_Init(tickList, ticket_node_t);
     count = Ticket_Perst_SelBySchID(tickList, schedule_id);
-    if (Ticket_Perst_SelBySchID(tickList, schedule_id) <= 0)
+    if (count <= 0)
     {
         List_Destroy(tickList, ticket_node_t);
         return 0;
