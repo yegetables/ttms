@@ -29,8 +29,7 @@ int Play_Srv_Add(play_t *data);
  * @brief 修改剧目
  *
  * @param data 指向待修改的剧目信息
- * @return int 返回值==1修改成功,!=1修改失败
- */
+ * @return int 返回值==1
 int Play_Srv_Modify(const play_t *data);
 
 /**

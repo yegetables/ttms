@@ -10,4 +10,5 @@
  */
 
 int Schedule_Srv_FetchAll(schedule_list_t list);
+
 #endif /* TTMS_SCU_Schedule_UI_List */

@@ -41,7 +41,7 @@ int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list)
     FILE* fp = fopen("Ticket.dat", "r");
     if (fp == NULL)
     {
-        printf("file open fiaied\n");
+        printf("file open failed\n");
         return -1;
     }
     while (!feof(fp))
@@ -69,7 +69,6 @@ ticket_node_t* Ticket_Srv_FetchBySeatID(ticket_list_t list, int seat_id)
     }
     if (temp == list) return NULL;
 }
-
 int Ticket_Srv_FetchBySchID(int schedule_id, ticket_list_t list)
 {
     int count = 0;
@@ -77,7 +76,7 @@ int Ticket_Srv_FetchBySchID(int schedule_id, ticket_list_t list)
     ticket_list_t tickList;
     List_Init(tickList, ticket_node_t);
     count = Ticket_Perst_SelBySchID(tickList, schedule_id);
-    if (Ticket_Perst_SelBySchID(tickList, schedule_id) <= 0)
+    if (count <= 0)
     {
         List_Destroy(tickList, ticket_node_t);
         return 0;
@@ -94,18 +93,20 @@ int Ticket_Srv_StatRevBySchID(int schedule_id, int* soldCount)
     int value;
     ticket_list_t list;
     ticket_node_t* p;
-    sale_node_t* sale;
+    sale_node_t sale;
     List_Init(list, ticket_node_t);
     *soldCount = 0;
     *soldCount = Ticket_Srv_FetchBySchID(schedule_id, list);
-    List_ForEach(list, p);
-    Sale_Srv_FetchByTicketID(schedule_id, sale);
-    if (sale->data.type == 1)
+    List_ForEach(list, p)
     {
-        if (p->data.status == 1)
+        Sale_Srv_FetchByTicketID(p->data.id, &sale.data);
+        if (sale.data.type == 1)
         {
-            (*soldCount)++;
-            value += p->data.price;
+            if (p->data.status == 1)
+            {
+                (*soldCount)++;
+                value += p->data.price;
+            }
         }
     }
     List_Destroy(list, ticket_node_t);

@@ -1,7 +1,10 @@
 #include "Schedule_Qry_UI.h"
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0c0833f34fcaca6e094001bf4da2e42bb1a8fbaf
 static const int SCHEDULE_QUERY_SIZE = 5;
 
 
@@ -107,8 +110,8 @@ void Schedule_UI_ListAll(void)
 int Schedule_UI_Query(char *play_name)
 {
     play_list_t list_p;
-    List_Init(list_p,play_node_t);
-    int recCount = Play_Srv_FilterByName(list_p,play_name);
+    List_Init(list_p, play_node_t);
+    int recCount = Play_Srv_FilterByName(list_p, play_name);
     schedule_list_t list_s;
     while (list_p != NULL)
     {
