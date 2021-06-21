@@ -2,9 +2,9 @@
 #define TICKET_Persist_H_
 #include <stdio.h>
 
+#include "../Service/Ticket.h"
 #include "../Common/List.h"
 #include "../Service/Schedule.h"
-#include "../Service/Ticket.h"
 /**
  * @brief 存储演出票
  *
