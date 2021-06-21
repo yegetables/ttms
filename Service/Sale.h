@@ -7,28 +7,6 @@
 #include "Ticket.h"
 #include "../Persistence/Seat_Persist.h"
 #define SALESANALYSIS_PAGE_SIZE 5
-typedef enum
-{
-    SALE_SELL    = 1,  //买票
-    SALE_REFOUND = -1  //退票
-} sale_type_t;
-typedef struct
-{
-    long id;           //销售记录id
-    int user_id;       //售票员id
-    int ticket_id;     //票id
-    ttms_date_t date;  //处理日期
-    ttms_time_t time;  //处理时间
-    int value;         //票价
-    sale_type_t type;  //交易类型
-} sale_t;
-
-typedef struct sale_node
-{
-    sale_t data;  //实体数据
-    struct sale_node* prev;
-    struct sale_node* next;
-} sale_node_t, *sale_list_t;
 
 /**
  * @brief 将新的售票订单加入销售记录
