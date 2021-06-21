@@ -12,7 +12,7 @@ int Ticket_Srv_GenBatch(int schedule_id)
     {
         //成功
         number += re;
-        Ticket_Perst_Insert(seat_head, schedule_id);
+        Ticket_Perst_Insert(seat_head);
     }
     else
     {
@@ -69,33 +69,6 @@ ticket_node_t* Ticket_Srv_FetchBySeatID(ticket_list_t list, int seat_id)
     }
     if (temp == list) return NULL;
 }
-int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list)
-{
-    List_Init(list, ticket_list_t)
-    ticket_t data;
-    int rtn  = 0;
-    FILE* fp = fopen("Ticket.dat", "r");
-    if (fp == NULL)
-    {
-        printf("file open fialed\n");
-        return -1;
-    }
-    while (!feof(fp))
-    {
-        fread(&data, sizeof(ticket_t), 1, fp);
-        if (schedule_id == data.schedule_id)
-        {
-            ticket_list_t  tmp = (ticket_list_t)malloc(sizeof(ticket_list_t));
-            tmp->data         = data;
-            tmp->prev = tmp->next = tmp;
-            List_AddTail(list, tmp);
-            rtn += 1;
-        }
-    }
-    fclose(fp);
-    return rtn;
-}
-
 int Ticket_Srv_FetchBySchID( int schedule_id,ticket_list_t list)
 {
     int count = 0;
