@@ -17,7 +17,7 @@ void Schedule_UI_ListAll(void);
 /**
  * @brief 根据剧目名称获取演出计划
  * @param int 获取到的演出计划的数量
- * 
+ *
  */
 int Schedule_UI_Query(char *play_name);
 

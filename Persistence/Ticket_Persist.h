@@ -1,6 +1,7 @@
 #ifndef TICKET_Persist_H_
 #define TICKET_Persist_H_
 #include <stdio.h>
+
 #include "../Common/List.h"
 //票状态
 typedef enum
@@ -52,8 +53,13 @@ int Ticket_Perst_SelByID(int id, ticket_t* buf);
  * @return int >=0成功 <0失败
  */
 int Ticket_Perst_Update(const ticket_t* data);
-
+/**
+ * @brief 根据schedule_id获取票信息的链表
+ *
+ * @param ticket 票信息头结点
+ * @param schedule_id id
+ * @return int 返回票的数量
+ */
 int Ticket_Perst_SelBySchID(ticket_list_t ticket, int schedule_id);
 
-// int Tick_Perst_SelectBySchID(tickList, schedule_id);
 #endif

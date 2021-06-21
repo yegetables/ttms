@@ -24,7 +24,7 @@ void Main_Menu(void)
         printf("[P]lay Management.\n");
         printf("[T]icket Sale.\n");
         printf("[R]eturn Ticket.\n");
-        printf("[Q]ueries\n");
+        // printf("[Q]ueries\n");
         printf("Ra[n]king and Statistics.\n");
         printf("[A]ccount Management.\n");
         printf("[E]xist.\n");
@@ -44,10 +44,10 @@ void Main_Menu(void)
             case 'p':
                 Play_UI_MgtEntry();
                 break;
-            case 'Q':
-            case 'q':
-                Queries_Menu();
-                break;
+            // case 'Q':
+            // case 'q':
+            // Queries_Menu();
+            // break;
             case 'T':
             case 't':
                 Sale_UI_MgtEntry();

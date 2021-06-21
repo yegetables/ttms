@@ -1,12 +1,9 @@
 #ifndef TICKET_H_
 #define TICKET_H_
 #include <stdio.h>
-
-#include "../Common/List.h"
-#include "../Persistence/Sale_Persist.h"
 #include "../Persistence/Ticket_Persist.h"
+#include "../Persistence/Sale_Persist.h"
 #include "Sale.h"
-#include "Schedule.h"
 #include "Seat.h"
 #include "Studio.h"
 
@@ -34,7 +31,8 @@ int Ticket_Srv_FetchBySchID(int ID, ticket_list_t list);
 int Ticket_Srv_Modify(ticket_t* data);
 /**
  * @brief  根据演出计划ID删除演出票
- * @param schedule_id
+ * @param schedule_id]
+ * @return int >=0表示删除票的数量，<0表示删除票操作失败
  */
 int Ticket_Srv_DeleteBatch(int schedule_id);
 
@@ -65,5 +63,5 @@ int Ticket_Srv_Update();
  * @param buf 查询成功的内存地址
  * @return int 1成功，否则失败
  */
-int Ticket_Srv_FetchByID(int id, ticket_t* buf);
+int Ticket_Srv_FetchByID(int id, ticket_t *buf);
 #endif
