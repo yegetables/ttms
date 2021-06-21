@@ -7,7 +7,7 @@
  * Version:  v.1
  */
 #include "StaSales_UI.h"
-
+#include "../Common/Common.h"
 #include "../Service/Account.h"
 #include "../Service/Play.h"
 #include "../Service/StaSales.h"
