@@ -1,6 +1,11 @@
 #ifndef SALE_PERSIST_H_
 #define SALE_PERSIST_H_
+#include <assert.h>
+#include <stddef.h>
+#include <stdio.h>
+
 #include "../Common/Common.h"
+#include "../Common/List.h"
 #include "EntityKey_Persist.h"
 typedef enum
 {

@@ -1,11 +1,12 @@
 #ifndef SALE_H_
 #define SALE_H_
 
+#include "../Persistence/Sale_Persist.h"
+#include "../Persistence/Seat_Persist.h"
 #include "Play.h"
 #include "Schedule.h"
 #include "Seat.h"
 #include "Ticket.h"
-#include "../Persistence/Seat_Persist.h"
 #define SALESANALYSIS_PAGE_SIZE 5
 
 /**
