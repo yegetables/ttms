@@ -5,6 +5,7 @@
 #include "Schedule.h"
 #include "Seat.h"
 #include "Ticket.h"
+#include "../Persistence/Seat_Persist.h"
 #define SALESANALYSIS_PAGE_SIZE 5
 typedef enum
 {

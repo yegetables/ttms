@@ -14,11 +14,11 @@ void Ticket_UI_MgtEntry(int schedule_id)
     }
     //用剧目id作为参数 ,获取剧目信息
     Play_Srv_FetchByID(schedule_id, buf);
-//显示剧目名称,演出厅编号,演出日期演出时间
+    //显示剧目名称,演出厅编号,演出日期演出时间
 
-//接受输入,
-reshow:
+    //接受输入,
     int which = -1;
+reshow:
     //选择 生成还是重新生成 还是返回上一层
     printf("2:重新生成票；1：生成票；0：返回上一层\n");
     scanf("%d", &which);

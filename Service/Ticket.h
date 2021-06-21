@@ -6,6 +6,7 @@
 #include "Schedule.h"
 #include "Seat.h"
 #include "Studio.h"
+#include "../Persistence/Ticket_Persist.h"
 //票状态
 typedef enum
 {
