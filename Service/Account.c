@@ -1,10 +1,5 @@
 #include "Account.h"
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include"../Common/List.h"
-#include"../Persistence/EntityKey_Persist.h"
-#include"../Persistence/Account_Persist.h"
+
 extern account_t gl_CurUser;
 account_t Account_Srv_FetchbyUser(char usrName[])
 {
