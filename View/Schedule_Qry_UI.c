@@ -1,14 +1,10 @@
 #include "Schedule_Qry_UI.h"
 
-#include "../Common/List.h"
-#include "../Service/Play.h"
-#include "../Service/Schedule.h"
-#include "../Service/Schedule_Qry.h"
-#include "../Service/Studio.h"
+
 
 static const int SCHEDULE_QUERY_SIZE = 5;
 
-#include <stdio.h>
+
 
 void Schedule_UI_ListAll(void)
 {
