@@ -1,6 +1,26 @@
 #ifndef ACCOUNT_PERSIST_H_
 #define ACCOUNT_PERSIST_H_
 #include "../Service/Account.h"
+typedef enum
+{
+    USR_ANOMY = 0,
+    USR_CLERK = 1,
+    USR_MANG  = 2,
+    USR_ADMIN = 9,
+} account_type_t;
+typedef struct
+{
+    int id;
+    account_type_t type;
+    char username[30];
+    char password[30];
+} account_t;
+typedef struct account_node
+{
+    account_t data;
+    struct account_node *next;
+    struct account_node *prev;
+} account_node_t, *account_list_t;
 /**
  * @brief 判断系统用户文件是否存在
  * 
