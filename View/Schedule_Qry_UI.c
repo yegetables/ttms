@@ -1,13 +1,6 @@
 #include "Schedule_Qry_UI.h"
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 0c0833f34fcaca6e094001bf4da2e42bb1a8fbaf
 static const int SCHEDULE_QUERY_SIZE = 5;
-
-
 
 void Schedule_UI_ListAll(void)
 {

@@ -8,7 +8,6 @@
 #include "../Persistence/Play_Persist.h"
 #include "../Persistence/Seat_Persist.h"
 
-
 /**
  * @brief 获取全部剧目
  *
@@ -30,6 +29,7 @@ int Play_Srv_Add(play_t *data);
  *
  * @param data 指向待修改的剧目信息
  * @return int 返回值==1
+ */
 int Play_Srv_Modify(const play_t *data);
 
 /**

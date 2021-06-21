@@ -21,19 +21,20 @@ int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list)
         int sold;
         List_Free(list, salesanalysis_node_t);
         List_Init(playList, play_node_t);
-        if(Play_Srv_FetchAll(playList) <= 0)
+        if (Play_Srv_FetchAll(playList) <= 0)
         {
             return 0;
         }
         else
         {
-        List_AddTail(playList, newNode);
-        List_ForEach(playList, pos)
-        {
-            newNode->data.sales        = Schedule_Srv_StatRevByPlay(pos->data.id, &sold);
-            newNode->data.totaltickets = sold;
-        }
-        List_Destroy(playList, play_node_t);
+            List_AddTail(playList, newNode);
+            List_ForEach(playList, pos)
+            {
+                newNode->data.sales =
+                    Schedule_Srv_StatRevByPlay(pos->data.id, &sold);
+                newNode->data.totaltickets = sold;
+            }
+            List_Destroy(playList, play_node_t);
         }
     }
     else
@@ -49,7 +50,7 @@ void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t list)
     {
         return;
     }
-    list->prev->next     = NULL;
+    list->prev->next              = NULL;
     salesanalysis_list_t listLeft = list->next;
     list->next = list->prev = list;
     while (1)
@@ -59,7 +60,7 @@ void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t list)
             return;
         }
         salesanalysis_list_t p = listLeft;
-        listLeft      = listLeft->next;
+        listLeft               = listLeft->next;
         Seat_Srv_AddToSoftedList(listLeft, p);
     }
 }

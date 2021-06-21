@@ -5,10 +5,7 @@
 #include "../Service/Schedule.h"
 #include "../Service/Schedule_Qry.h"
 #include "../Service/Studio.h"
-<<<<<<< HEAD
 #include <stdio.h>
-=======
->>>>>>> 0c0833f34fcaca6e094001bf4da2e42bb1a8fbaf
 /**
  * @brief 以列表形式显示所有的演出计划信息，
  * 列表上方显示表头信息，
