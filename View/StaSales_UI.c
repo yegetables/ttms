@@ -86,13 +86,13 @@ void StaSales_UI_Clerk(void)
     char Usrname[1000];
     scanf("%s", Usrname);
     tmp = Account_Srv_FetchbyUser(Usrname);
-
-    if (id == tmp.id)
+    if(Account_Perst_SelByName(Usrname,&tmp)==0)
     {
-        printf("用户不存在！！");
+        printf("用户不存在！！！");
     }
     else
     {
+        id = tmp.id;
         StaSales_Srv_CompSaleVal(id, startdate, enddate);
     }
     return;
