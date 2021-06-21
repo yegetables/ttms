@@ -5,6 +5,8 @@
 #include "Schedule.h"
 #include "Seat.h"
 #include "Studio.h"
+#include "Sale.h"
+#include "../Persistence/Sale_Persist.h"
 #include "../Persistence/Ticket_Persist.h"
 
 /**
