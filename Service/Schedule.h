@@ -1,26 +1,13 @@
 #ifndef SCHEDULE_H_
 #define SCHEDULE_H_
 #include <stdio.h>
+#include"Common.h"
+
+#include "../Common/List.h"
+#include "../Persistence/Schedule_Persist.h"
+#include "../Service/Ticket.h"
 
 
-#include "../Common/Common.h"
-
-typedef struct
-{
-    int id;            //演出计划id
-    int play_id;       //剧目ID
-    int studio_id;     //演出厅ID
-    ttms_date_t date;  //日期
-    ttms_time_t time;  //演出时间
-    int seat_count;    //座位数
-
-} schedule_t;
-typedef struct schedule_node
-{
-    schedule_t data;
-    struct schedule_node *next;
-    struct schedule_node *prev;
-} schedule_node_t, *schedule_list_t;
 
 /**
  * @brief 查找与ID号相关的的演出计划
