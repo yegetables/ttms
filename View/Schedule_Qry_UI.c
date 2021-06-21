@@ -111,6 +111,7 @@ void Schedule_UI_ListAll(void)
 int Schedule_UI_Query(char *play_name)
 {
     play_list_t list_p;
+    List_Init(list_p,play_node_t);
     int recCount = Play_Srv_FilterByName(list_p,play_name);
     schedule_list_t list_s;
     while (list_p != NULL)
