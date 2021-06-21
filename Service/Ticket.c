@@ -93,12 +93,12 @@ int Ticket_Srv_StatRevBySchID(int schedule_id, int* soldCount)
     int value;
     ticket_list_t list;
     ticket_node_t* p;
-    sale_node_t* sale;
+    sale_node_t *sale;
     List_Init(list, ticket_node_t);
     *soldCount = 0;
     *soldCount = Ticket_Srv_FetchBySchID(schedule_id, list);
     List_ForEach(list, p);
-    Sale_Srv_FetchByTicketID(schedule_id, sale);
+    Sale_Srv_FetchByTicketID(schedule_id, *sale);
     if (sale->data.type == 1)
     {
         if (p->data.status == 1)
