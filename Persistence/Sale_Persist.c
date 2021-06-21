@@ -12,7 +12,6 @@ int Sale_Perst_Insert(sale_t* data)
 int Sale_Perst_SelByID(sale_list_t list, int usrID)
 {
     int rtn = 0;
-    if (access("Sale.dat", F_OK | R_OK)) return 0;
     List_Init(list, sale_node_t);
     sale_t data;
 
@@ -36,7 +35,7 @@ int Sale_Perst_SelByID(sale_list_t list, int usrID)
 
 int Sale_Perst_SelByTicketID(int ticket_id, sale_t* sale)
 {
-    assert(NULL != buf);
+    assert(NULL != sale);
     FILE* fp = fopen("Sale.dat", "rb");
     if (NULL == fp)
     {
@@ -49,7 +48,7 @@ int Sale_Perst_SelByTicketID(int ticket_id, sale_t* sale)
     {
         if (fread(&data, sizeof(sale_t), 1, fp))
         {
-            if (id == data.id)
+            if (ticket_id == data.id)
             {
                 *sale = data;
                 found = 1;

@@ -1,4 +1,9 @@
 #include "Schedule.h"
+
+#include "../Common/List.h"
+#include "../Persistence/Schedule_Persist.h"
+#include "../Service/Ticket.h"
+#include "Play.h"
 int Schedule_Srv_FetchByPlay(schedule_list_t list, int play_id)
 {
     return Schedule_Perst_SelectByPlay(list, play_id);

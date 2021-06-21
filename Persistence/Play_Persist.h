@@ -1,6 +1,7 @@
 #ifndef PLAY_PERSIST_H_
 #define PLAY_PERSIST_H_
 
+#include "../Service/Play.h"
 //剧目文件名常量"Play.dat"
 static const char PLAY_DATA_FILE[] = "Play.dat";
 
@@ -50,10 +51,10 @@ int Play_Perst_SelectByID(int id, play_t *buf);
 
 /**
  * @brief 根据名称载入数据
- * 
+ *
  * @param list 储存数据的单链表头指针
  * @param condt 指定的剧目名
  * @return int 符合条件的剧目数量
  */
-int Play_Perst_SelectByName(play_list_t list,char condt[]);
+int Play_Perst_SelectByName(play_list_t list, char condt[]);
 #endif

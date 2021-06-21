@@ -8,7 +8,7 @@
  */
 #ifndef STASALES_SRV_H_
 #define STASALES_SRV_H_
-
+#include"../Common/Common.h"
 #include "../Service/Play.h"
 /**
  * @brief 根据售票员ID统计在给定日期区间的销售额

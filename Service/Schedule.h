@@ -2,16 +2,8 @@
 #define SCHEDULE_H_
 #include <stdio.h>
 
-#include "../Common/List.h"
-#include "../Persistence/Schedule_Persist.h"
-#include "../Service/Ticket.h"
-#include "Play.h"
-typedef struct
-{
-    int hour;
-    int minute;
-    int second;
-} ttms_time_t;
+
+#include "../Common/Common.h"
 
 typedef struct
 {

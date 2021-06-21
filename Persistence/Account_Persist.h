@@ -1,6 +1,6 @@
 #ifndef ACCOUNT_PERSIST_H_
 #define ACCOUNT_PERSIST_H_
-#include "../Service/Account.h";
+#include "../Service/Account.h"
 /**
  * @brief 判断系统用户文件是否存在
  * 

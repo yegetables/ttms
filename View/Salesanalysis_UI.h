@@ -10,6 +10,8 @@
 #ifndef SALESANALYSIS_UI_H_
 #define SALESANALYSIS_UI_H_
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "../Common/List.h"
 #include "../Service/Play.h"

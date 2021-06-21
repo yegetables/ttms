@@ -1,6 +1,5 @@
 #include "Ticket.h"
 
-
 int Ticket_Srv_GenBatch(int schedule_id)
 {
     int number = -1;
@@ -36,7 +35,7 @@ int Ticket_Srv_Update();
 
 int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list)
 {
-    List_Init(list, *ticket_list_t);
+    List_Init(list, ticket_node_t);
     ticket_t data;
     int rtn  = 0;
     FILE* fp = fopen("Ticket.dat", "r");
