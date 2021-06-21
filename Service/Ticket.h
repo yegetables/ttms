@@ -34,7 +34,8 @@ int Ticket_Srv_FetchBySchID(int ID, ticket_list_t list);
 int Ticket_Srv_Modify(ticket_t* data);
 /**
  * @brief  根据演出计划ID删除演出票
- * @param schedule_id
+ * @param schedule_id]
+ * @return int >=0表示删除票的数量，<0表示删除票操作失败
  */
 int Ticket_Srv_DeleteBatch(int schedule_id);
 

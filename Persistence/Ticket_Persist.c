@@ -38,8 +38,9 @@ int Ticket_Perst_Insert(ticket_list_t list)
     }
     schedule_t sch;
     seat_list_t seat;
+    play_t play;
     Schedule_Perst_SelectByID(list->data.schedule_id, &sch);
-    Play_Perst_SelectByID(sch.play_id, &seat);
+    Play_Perst_SelectByID(sch.play_id, &play);
     seat_t data;
     while (seat != NULL)
     {
