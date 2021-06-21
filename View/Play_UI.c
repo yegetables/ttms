@@ -82,7 +82,7 @@ void Play_UI_MgtEntry()
                 printf("输入删除剧目id:");
                 fflush(stdin);
                 scanf("%d", &id);
-                if (Play_UI_Delete(id))
+                if (Play_UI_Delete(id) == 1)
                 {  //从新载入数据
                     paging.totalRecords = Play_Srv_FetchAll(head);
                     List_Paging(head, paging, play_node_t);

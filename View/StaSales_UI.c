@@ -9,14 +9,14 @@
 #include "StaSales_UI.h"
 void StaSales_UI_MgtEntry(void)
 {
-    extern account_t Gl_CurUser;
-    if (Gl_CurUser.type == USR_CLERK)
+    extern account_t gl_CurUser;
+    if (gl_CurUser.type == USR_CLERK)
     {
         StaSales_UI_Self();
     }
     else
     {
-        if (Gl_CurUser.type == USR_MANG)
+        if (gl_CurUser.type == USR_MANG)
         {
             StaSales_UI_Clerk();
         }
@@ -30,8 +30,8 @@ void StaSales_UI_MgtEntry(void)
 
 void StaSales_UI_Self(void)
 {
-    extern account_t Gl_CurUser;
-    int id = Gl_CurUser.id;
+    extern account_t gl_CurUser;
+    int id = gl_CurUser.id;
     ttms_date_t curdate, startdate, enddate;
     time_t timep;
     struct tm *p;
@@ -73,14 +73,14 @@ void StaSales_UI_Self(void)
 
 void StaSales_UI_Clerk(void)
 {
-    extern account_t Gl_CurUser;
-    int id = Gl_CurUser.id;
+    extern account_t gl_CurUser;
+    int id = gl_CurUser.id;
     ttms_date_t startdate, enddate;
     account_t tmp;
     char Usrname[1000];
     scanf("%s", Usrname);
     tmp = Account_Srv_FetchbyUser(Usrname);
-    if(Account_Perst_SelByName(Usrname,&tmp)==0)
+    if (tmp.id == -1)
     {
         printf("用户不存在！！！");
     }

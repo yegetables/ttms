@@ -1,9 +1,5 @@
 #include "Account_UI.h"
-#include"../Service/Account.h"
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include"../Common/List.h"
+
 
 int SysLogin()  //SL界面
 {
