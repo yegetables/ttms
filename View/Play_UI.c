@@ -1,7 +1,5 @@
 #include "Play_UI.h"
 
-static const int PLAY_PAGE_SIZE = 5;
-
 void Play_UI_MgtEntry()
 {
     int i, id;

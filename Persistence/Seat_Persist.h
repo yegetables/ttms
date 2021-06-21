@@ -20,7 +20,31 @@
 #include "EntityKey_Persist.h"
 static const char SEAT_DATA_FILE[]      = "Seat.dat";
 static const char SEAT_DATA_TEMP_FILE[] = "SeatTmp.dat";
+//座位状态
+typedef enum
+{
+    SEAT_NONE   = 0,  //空位
+    SEAT_GOOD   = 1,  //有座位
+    SEAT_BROKEN = 9   //损坏的座位
+} seat_status_t;
 
+//座位数据结构
+typedef struct
+{
+    int id;      //座位id
+    int roomID;  //所在演出厅id
+    int row;     //座位行号
+    int column;  //座位列号
+    seat_status_t
+        status;  //座位在该行的状态，0表示没有座位，1表示有座位。扩展2可表示座位坏了
+} seat_t;
+
+//双向链表
+typedef struct seat_node
+{
+    seat_t data;
+    struct seat_node *next, *prev;
+} seat_node_t, *seat_list_t;
 //添加对象主键标识名称
 static const char SEAT_KEY_NAME[] = "Seat";
 

@@ -8,6 +8,7 @@
 #include "../Common/TimeLegal.h"
 #include "../Service/Play.h"
 #include "Schedule_UI.h"
+static const int PLAY_PAGE_SIZE = 5;
 /**
  * @brief 管理剧目界面函数
  *

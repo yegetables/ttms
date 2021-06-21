@@ -1,15 +1,5 @@
 #include "Play_Persist.h"
 
-#include <assert.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-
-#include "../Common/List.h"
-#include "../Service/Schedule.h"
-#include "EntityKey_Persist.h"
-
 //载入全部剧目,返回值载入剧目数量,list为所有剧目信息的头结点
 int Play_Perst_SelectAll(play_list_t list)
 {
