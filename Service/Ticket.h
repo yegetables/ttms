@@ -36,7 +36,7 @@ int Ticket_Srv_Modify(ticket_t* data);
  * @brief  根据演出计划ID删除演出票
  * @param schedule_id
  */
-void Ticket_Srv_DeleteBatch(int schedule_id);
+int Ticket_Srv_DeleteBatch(int schedule_id);
 
 /**
  * @brief 根据座位id获取票数据
