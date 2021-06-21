@@ -49,7 +49,7 @@ int Ticket_Srv_SelBySchID(int schedule_id, ticket_list_t list)
         fread(&data, sizeof(ticket_t), 1, fp);
         if (schedule_id == data.schedule_id)
         {
-            ticket_list_t tmp = (ticket_list_t)malloc(sizeof(ticket_list_t));
+            ticket_list_t tmp = (ticket_list_t)malloc(sizeof(ticket_node_t));
             tmp->data         = data;
             tmp->prev = tmp->next = tmp;
             List_AddTail(list, tmp);

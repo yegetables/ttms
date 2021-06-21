@@ -181,7 +181,7 @@ int Schedule_UI_Modify(int id)
 {
     schedule_t sch;
     int rtn = 0;
-    if (!Studio_Srv_FetchByID(id, &sch))
+    if (!Schedule_Srv_FetchByID(id, &sch))
     {
         printf("The room does not exist!\nPress [Enter] key to return!\n");
         getchar();

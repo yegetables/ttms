@@ -2,7 +2,6 @@
 #define TICKET_Persist_H_
 #include <stdio.h>
 #include "../Common/List.h"
-
 //票状态
 typedef enum
 {
@@ -56,5 +55,5 @@ int Ticket_Perst_Update(const ticket_t* data);
 
 int Ticket_Perst_SelBySchID(ticket_list_t ticket, int schedule_id);
 
-int Tick_Perst_SelectBySchID(tickList, schedule_id);
+// int Tick_Perst_SelectBySchID(tickList, schedule_id);
 #endif
