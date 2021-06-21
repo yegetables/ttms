@@ -1,4 +1,15 @@
 #include "Schedule_UI.h"
+
+
+#include "./Schedule_UI.h"
+
+#include "../Common/List.h"
+#include "../Service/Schedule.h"
+#include "../Service/Ticket.h"
+#include "../Service/Play.h"
+#include "../Common/TimeLegal.h"
+#include"../Common/Common.h"
+#include"../Service/Schedule_Qry.h"
 static const int SCHEDULE_PAGE_SIZE = 5;
 void Schedule_UI_MgtEntry(int play_id)
 {
@@ -62,7 +73,7 @@ void Schedule_UI_MgtEntry(int play_id)
             case 'A':
                 if (Schedule_UI_Add(play_id))  //新添加成功，跳到最后一页显示
                 {
-                    paging.totalRecords = Studio_Srv_FetchAll(head);
+                    paging.totalRecords = Schedule_Srv_FetchAll(head);
                     Paging_Locate_LastPage(head, paging, studio_node_t);
                 }
                 break;
@@ -72,7 +83,7 @@ void Schedule_UI_MgtEntry(int play_id)
                 scanf("%d", &id);
                 if (Schedule_UI_Delete(id))
                 {  //从新载入数据
-                    paging.totalRecords = Studio_Srv_FetchAll(head);
+                    paging.totalRecords = Schedule_Srv_FetchAll(head);
                     List_Paging(head, paging, studio_node_t);
                 }
                 break;
@@ -82,7 +93,7 @@ void Schedule_UI_MgtEntry(int play_id)
                 scanf("%d", &id);
                 if (Schedule_UI_Modify(id))
                 {  //从新载入数据
-                    paging.totalRecords = Studio_Srv_FetchAll(head);
+                    paging.totalRecords = Schedule_Srv_FetchAll(head);
                     List_Paging(head, paging, studio_node_t);
                 }
                 break;
@@ -91,8 +102,7 @@ void Schedule_UI_MgtEntry(int play_id)
                 printf("Input the RoomID:");
                 scanf("%d", &id);
                 Seat_UI_MgtEntry(id);
-
-                paging.totalRecords = Studio_Srv_FetchAll(head);
+                paging.totalRecords = Schedule_Srv_FetchAll(head);
                 List_Paging(head, paging, studio_node_t);
                 break;
             case 'p':
