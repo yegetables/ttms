@@ -29,18 +29,25 @@ void SalesAnalysis_UI_MgtEntry(void)
         printf(
             "********************** 剧目票房排行信息 "
             "**********************\n");
-        printf("%5s  %18s  %10s  %10s  %10s\n", "剧目名", "剧目区域",
+        printf("  %18s  %10s  %10s  %10s %10s %10s \n", "剧目名", "剧目区域",
                "剧目上座数量", "剧目票房", "剧目上映日期", "剧目下映日期");
         printf(
             "------------------------------------------------------------------"
             "\n");
         //显示数据
+        char sho1[50] = {0};
+        char sho2[50] = {0};
         Paging_ViewPage_ForEach(head, paging, play_node_t, pos, i)
         {
-            printf("%5d  %18s  %10d  %10d  %10d\n", pos->data.name,
+            memset(sho1, 0, sizeof(sho1));
+            memset(sho2, 0, sizeof(sho2));
+            sprintf(sho1, "%d-%d-%d", pos->data.start_date.year,
+                    pos->data.start_date.month, pos->data.start_date.day);
+            sprintf(sho2, "%d-%d-%d", pos->data.end_date.year,
+                    pos->data.end_date.month, pos->data.end_date.day);
+            printf("%5s  %18s  %10ld  %10ld  %10s %10s\n", pos->data.name,
                    pos->data.area, newNode->data.totaltickets,
-                   newNode->data.sales, pos->data.start_date,
-                   pos->data.end_date);
+                   newNode->data.sales, sho1, sho2);
         }
 
         printf(

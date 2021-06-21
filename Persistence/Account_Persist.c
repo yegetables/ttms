@@ -3,6 +3,10 @@
 #include<stdio.h>
 #include "../Common/List.h"
 #include"../Service/Account.h"
+#include "../Common/Common.h"
+#include<stdlib.h>
+#include<string.h>
+#include"../Persistence/EntityKey_Persist.h"
 int Account_Perst_CheckAccFile()
 {
     if (access("Account.dat",F_OK)==0)
@@ -110,7 +114,7 @@ int Account_Perst_RemByID(int id)
 int Account_Perst_SelectAll(account_list_t list)  //list在外部初始化
 {
     int n;
-    account_node_t *p,*q;
+    account_node_t *p;
     account_t tmp;
     FILE*fp=fopen("Account.dat","rb+");
     if (!fp)

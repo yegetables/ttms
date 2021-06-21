@@ -48,31 +48,31 @@ void StaSales_UI_Self(void)
     curdate.day     = p->tm_mday;
     startdate.year  = p->tm_year;
     startdate.month = p->tm_mon;
-    startdate.day = 1;
-    enddate.year = p->tm_year;
-    enddate.month = p->tm_mon;
-    enddate.day = 31;
+    startdate.day   = 1;
+    enddate.year    = p->tm_year;
+    enddate.month   = p->tm_mon;
+    enddate.day     = 31;
     printf(
-            "---------------------------选择菜单信息----------------------------"
-            "----\n");
+        "---------------------------选择菜单信息----------------------------"
+        "----\n");
     printf(
-            "\n================================================================"
-            "==\n");
+        "\n================================================================"
+        "==\n");
     char choice;
     printf("Your choice:");
-    scanf("%c",&choice);
+    scanf("%c", &choice);
     switch (choice)
     {
-    case 'd':
-    case 'D':
-        printf("当日销售额统计：");
-        StaSales_Srv_CompSaleVal(id,curdate,curdate);
-        break;
-    case 'm':
-    case 'M':
-        printf("当月销售额统计：");
-        StaSales_Srv_CompSaleVal(id,startdate,enddate);
-        break;
+        case 'd':
+        case 'D':
+            printf("当日销售额统计：");
+            StaSales_Srv_CompSaleVal(id, curdate, curdate);
+            break;
+        case 'm':
+        case 'M':
+            printf("当月销售额统计：");
+            StaSales_Srv_CompSaleVal(id, startdate, enddate);
+            break;
     }
     return;
 }
@@ -81,13 +81,13 @@ void StaSales_UI_Clerk(void)
 {
     extern account_t Gl_CurUser;
     int id = Gl_CurUser.id;
-    ttms_date_t curdate,startdate,enddate;
+    ttms_date_t curdate, startdate, enddate;
     account_t tmp;
     char Usrname[1000];
-    scanf("%s",&Usrname);
+    scanf("%s", Usrname);
     tmp = Account_Srv_FetchbyUser(Usrname);
-    id = tmp.id;
-    if()
+
+    if (id == tmp.id)
     {
         printf("用户不存在！！");
     }

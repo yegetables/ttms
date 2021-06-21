@@ -1,12 +1,13 @@
 #include"MaiAccount_UI.h"
 #include"../Service/Account.h"
-extern gl_CurUser;
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+extern account_t gl_CurUser;
 void MainAccount_UI_MgtEntry()
 {
-    initdata();
     account_t cdata=gl_CurUser;
     char cpassword[30];
-
     while(1)
     {
         printf("维护个人资料界面\n");
@@ -23,7 +24,7 @@ void MainAccount_UI_MgtEntry()
             while((b=getchar())!='\n');
             if (a!='1'&&a!='2'&&a!='3')
             {
-                printf("%s不是一个可执行的选项！\n",a);
+                printf("%c不是一个可执行的选项！\n",a);
                 printf("请重新输入！");
             }
             else break;
@@ -65,7 +66,6 @@ void MainAccount_UI_MgtEntry()
                     {
                         printf("Account_Srv_Modify error!\n");
                     }
-                    printff();
                     break;
             case '2':printf("暂时未开放");
                     break;

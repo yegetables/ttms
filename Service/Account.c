@@ -1,10 +1,19 @@
 #include "Account.h"
 #include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
 #include"../Common/List.h"
+#include"../Persistence/EntityKey_Persist.h"
+#include"../Persistence/Account_Persist.h"
+extern account_t gl_CurUser;
 account_t Account_Srv_FetchbyUser(char usrName[])
 {
     account_t tmp;
-    return tmp;
+    if (Account_Perst_SelByName(usrName,&tmp)==0)
+    {
+        printf("未找到");
+    }
+    else return tmp;
 }
 int Account_Srv_Modify(account_t *data)
 {
@@ -48,6 +57,7 @@ int Account_Srv_Verify(char usrName[], char pwd[])
     {
         if (strcmp(pwd,usr.password)==0)
         {
+            gl_CurUser=usr;
             return 1;
         }
         else return 0;
