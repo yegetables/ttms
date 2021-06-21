@@ -1,11 +1,13 @@
 #ifndef TICKET_H_
 #define TICKET_H_
 #include <stdio.h>
+
 #include "../Common/List.h"
+#include "../Persistence/Ticket_Persist.h"
+#include "Sale.h"
 #include "Schedule.h"
 #include "Seat.h"
 #include "Studio.h"
-#include "../Persistence/Ticket_Persist.h"
 
 /**
  * @brief 批量增加Ticket.dat的票信息
