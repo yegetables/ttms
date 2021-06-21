@@ -111,8 +111,7 @@ void Schedule_UI_ListAll(void)
 int Schedule_UI_Query(char *play_name)
 {
     play_list_t list_p;
-    int recCount = 0;
-    Play_Srv_FetchByName(play_name, list_p);
+    int recCount = Play_Srv_FilterByName(list_p,play_name);
     schedule_list_t list_s;
     while (list_p != NULL)
     {
@@ -143,4 +142,5 @@ int Schedule_UI_Query(char *play_name)
         }
         list_p = list_p->next;
     }
+    return recCount;
 }
