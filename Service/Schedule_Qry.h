@@ -1,7 +1,7 @@
 #ifndef TTMS_SCU_Schedule_UI_List
 #define TTMS_SCU_Schedule_UI_List
 #include "Play.h"
-#include "Schedule.h"
+#include"../Persistence/Schedule_Persist.h"
 
 /**
  * @brief 将界面层建立的演出计划链表的头指针传递给持久化层函数，
