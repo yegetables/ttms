@@ -1,13 +1,11 @@
 #ifndef SCHEDULE_H_
 #define SCHEDULE_H_
 #include <stdio.h>
-#include"Common.h"
 
+#include "../Common/Common.h"
 #include "../Common/List.h"
 #include "../Persistence/Schedule_Persist.h"
 #include "../Service/Ticket.h"
-
-
 
 /**
  * @brief 查找与ID号相关的的演出计划

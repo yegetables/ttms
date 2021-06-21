@@ -6,6 +6,7 @@
 #include "../Common/Common.h"
 #include "../Common/List.h"
 #include "../Persistence/Play_Persist.h"
+#include "../Persistence/Seat_Persist.h"
 
 
 /**

@@ -7,6 +7,8 @@
 #include "../Common/Common.h"
 #include "../Common/List.h"
 #include "EntityKey_Persist.h"
+#include "stdio.h"
+#include "../Common/List.h"
 typedef enum
 {
     SALE_SELL    = 1,  //买票
