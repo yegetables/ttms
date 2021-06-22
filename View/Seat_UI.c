@@ -101,11 +101,17 @@ void Seat_UI_MgtEntry(int roomID)
             printf("%d放映厅座位共%d行%d列\n", roomID, buf->rowsCount,
                    buf->colsCount);
             int seat[100][100];
-            memset(seat, NONE, sizeof(seat));  //初始化座位为空
+            for (int i = 0; i < 100; i++)
+            {
+                for (int j = 0; j < 100; j++)
+                {
+                    seat[i][j] = NONE;
+                }
+            }
             List_ForEach(list, curPos)
             {
                 seat[curPos->data.row][curPos->data.column] =
-                    curPos->data.status;
+                    (int)(curPos->data.status);
             }
             for (int i = 0; i < buf->rowsCount; i++)
             {
