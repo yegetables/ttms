@@ -12,17 +12,17 @@ void SalesAnalysis_UI_MgtEntry(void)
 {
     char choice;
     int i;
-    salesanalysis_node_t *newNode;
+    salesanalysis_node_t *pos;
     salesanalysis_list_t head;
     List_Init(head, salesanalysis_node_t);
     Pagination_t paging;
     paging.pageSize     = SALESANALYSIS_PAGE_SIZE;
     paging.totalRecords = SalesAnalysis_Srv_StaticSale(head);
-    printf("2\n");
+    // salesanalysis_list_t poss;
+    // List_ForEach(head, poss) { printf("%ld\n", poss->data.sales); }
+    // printf("AA");
     SalesAnalysis_Srv_SortBySale(head);
-    printf("3\n");
     Paging_Locate_FirstPage(head, paging);
-    play_node_t *pos;
     do
     {
         printf(
@@ -47,9 +47,9 @@ void SalesAnalysis_UI_MgtEntry(void)
                     pos->data.start_date.month, pos->data.start_date.day);
             sprintf(sho2, "%d-%d-%d", pos->data.end_date.year,
                     pos->data.end_date.month, pos->data.end_date.day);
-            printf("%10s  %10s  %10ld  %10ld  %10s %10s\n", newNode->data.name,
-                   newNode->data.area, newNode->data.totaltickets,
-                   newNode->data.sales,newNode->data.start_date,newNode->data.end_date, sho1, sho2);
+            printf("%10s  %10s  %10ld  %10ld  %10s %10s\n", pos->data.name,
+                   pos->data.area, pos->data.totaltickets, pos->data.sales,
+                   sho1, sho2);
         }
 
         printf(
@@ -75,14 +75,14 @@ void SalesAnalysis_UI_MgtEntry(void)
             case 'P':
                 if (!Pageing_IsFirstPage(paging))
                 {
-                    Paging_Locate_OffsetPage(head, paging, -1, play_node_t);
+                    Paging_Locate_OffsetPage(head, paging, -1, salesanalysis_node_t);
                 }
                 break;
             case 'n':
             case 'N':
                 if (!Pageing_IsLastPage(paging))
                 {
-                    Paging_Locate_OffsetPage(head, paging, 1, play_node_t);
+                    Paging_Locate_OffsetPage(head, paging, 1, salesanalysis_node_t);
                 }
                 break;
             case 'r':
@@ -94,5 +94,5 @@ void SalesAnalysis_UI_MgtEntry(void)
         }
     } while ('R' != choice && 'r' != choice);
     //释放链表空间
-    List_Destroy(head, play_node_t);
+    List_Destroy(head, salesanalysis_node_t);
 }

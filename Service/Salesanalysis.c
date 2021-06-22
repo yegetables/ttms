@@ -8,14 +8,14 @@
  */
 #include "Salesanalysis.h"
 
-
 int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list)
 {
     int a = 0;
     if (list != NULL)
     {
         play_node_t *pos;
-        salesanalysis_node_t newNode;
+        salesanalysis_node_t *newNode =
+            (salesanalysis_node_t *)malloc(sizeof(salesanalysis_node_t));
         play_list_t playList;
         int sold;
         List_Free(list, salesanalysis_node_t);
@@ -28,14 +28,14 @@ int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list)
         {
             List_ForEach(playList, pos)
             {
-                newNode.data.sales =
+                newNode->data.sales =
                     Schedule_Srv_StatRevByPlay(pos->data.id, &sold);
-                newNode.data.totaltickets = sold;
-                strcpy(newNode.data.area,pos->data.area);
-                strcpy(newNode.data.name,pos->data.name);
-                newNode.data.start_date = pos->data.start_date;
-                newNode.data.end_date = pos->data.end_date;
-                List_AddTail(list, &newNode);
+                newNode->data.totaltickets = sold;
+                strcpy(newNode->data.area, pos->data.area);
+                strcpy(newNode->data.name, pos->data.name);
+                newNode->data.start_date = pos->data.start_date;
+                newNode->data.end_date   = pos->data.end_date;
+                List_AddTail(list, newNode);
                 a++;
             }
             List_Destroy(playList, play_node_t);
@@ -67,6 +67,26 @@ void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t list)
         }
         salesanalysis_list_t p = listLeft;
         listLeft               = listLeft->next;
-        Seat_Srv_AddToSoftedList(list, p);
+        SalesAnalysis_Srv_AddToSoftedList(list, p);
     }
+}
+void SalesAnalysis_Srv_AddToSoftedList(salesanalysis_list_t list,
+                                       salesanalysis_node_t *node)
+{
+    // 请补充完整
+    if List_IsEmpty (list)
+    {
+        List_AddTail(list, node);
+        return;
+    }
+    salesanalysis_list_t curPos;
+    List_ForEach(list, curPos)
+    {  //大到小
+        if (!(curPos != list && curPos->data.sales > node->data.sales))
+        {
+            List_InsertBefore(curPos, node);
+            return;
+        }
+    }
+    List_AddTail(list, node);
 }
