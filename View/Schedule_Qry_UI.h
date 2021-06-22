@@ -1,11 +1,12 @@
 #ifndef TTMS_SCU_Schedule_UI_List
 #define TTMS_SCU_Schedule_UI_List
+#include <stdio.h>
+
 #include "../Common/List.h"
 #include "../Service/Play.h"
 #include "../Service/Schedule.h"
 #include "../Service/Schedule_Qry.h"
 #include "../Service/Studio.h"
-#include <stdio.h>
 /**
  * @brief 以列表形式显示所有的演出计划信息，
  * 列表上方显示表头信息，

@@ -1,6 +1,8 @@
 #ifndef TTMS_SCU_Schedule_Persist_List
 #define TTMS_SCU_Schedule_Persist_List
 #include"Schedule_Persist.h"
+#include"../Common/List.h"
+#include<stdio.h>
 /**
  * @brief 从Schedule.dat种载入所有演出计划，加载到链表list上
  * 

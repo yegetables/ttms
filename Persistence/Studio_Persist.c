@@ -10,14 +10,6 @@
 
 #include "Studio_Persist.h"
 
-#include <assert.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-#include "../Common/List.h"
-#include "../Service/Studio.h"
-#include "EntityKey_Persist.h"
 
 //演出厅文件名常量"Studio.dat"
 static const char STUDIO_DATA_FILE[] = "Studio.dat";

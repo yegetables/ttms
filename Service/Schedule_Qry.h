@@ -1,7 +1,12 @@
 #ifndef TTMS_SCU_Schedule_UI_List
 #define TTMS_SCU_Schedule_UI_List
+#include <stdio.h>
+
+#include "../Common/List.h"
+#include "../Persistence/Schedule_Persist.h"
+#include "../Persistence/Schedule_Persist_Qry.h"
 #include "Play.h"
-#include"../Persistence/Schedule_Persist.h"
+#include "Schedule.h"
 
 /**
  * @brief 将界面层建立的演出计划链表的头指针传递给持久化层函数，

@@ -10,10 +10,6 @@
 
 #include "Studio.h"
 
-#include <assert.h>
-#include <stdlib.h>
-
-#include "../Persistence/Studio_Persist.h"
 
 int Studio_Srv_Add(studio_t *data) { return Studio_Perst_Insert(data); }
 
