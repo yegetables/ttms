@@ -79,6 +79,7 @@ void StaSales_UI_Clerk(void)
     printf(
         "\n================================================================"
         "==\n");
+    printf("输入要查询的销售人员ID：");
     extern account_t gl_CurUser;
     int id = gl_CurUser.id;
     ttms_date_t startdate, enddate;
