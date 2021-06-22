@@ -28,10 +28,8 @@ dod:
         printf("[E]xist.\n");
         printf("\n=======|[P]revPage|[N]extPage|=============\n");
         printf("Please input your choice:");
-        fflush(stdin);
-        choice = getchar();
-        if (choice == '\n') choice = getchar();
-        fflush(stdin);
+    scanf("%c", choice);
+        getchar();
         switch (choice)
         {
             case 'C':
@@ -46,9 +44,7 @@ dod:
             case 's':
                 printf("输入剧目名称\n");
                 char name1[256] = {0};
-                fflush(stdin);
                 scanf("%s", name1);
-                fflush(stdin);
                 play_t buf;
                 if (1 != Play_Srv_FetchByName(name1, &buf))
                     printf("未找到剧目信息\n");
@@ -60,7 +56,7 @@ dod:
                 printf("输入剧目名称\n");
                 char name2[256] = {0};
                 scanf("%s", name2);
-                getchar();
+                
                 int num = Play_Srv_FilterByName(newlist, name2);
                 if (num == 0)
                 {

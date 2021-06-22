@@ -8,7 +8,7 @@ int Schedule_Perst_SelectByPlay(schedule_list_t list, int play_id)
     schedule_t sch;
     int recCount = 0;
     schedule_node_t *newNode;
-    FILE *fp = fopen(SCHEDULE_DATA_FILE, "rb+");
+    FILE *fp = fopen(SCHEDULE_DATA_FILE, "rb");
     if (!(fp == NULL))
     {
         while (!feof(fp))
@@ -37,7 +37,7 @@ int Schedule_Perst_SelectByPlay(schedule_list_t list, int play_id)
 
 int Schedule_Perst_Insert(schedule_t *data)
 {
-    FILE *fp = fopen(SCHEDULE_DATA_FILE, "ab");
+    FILE *fp = fopen(SCHEDULE_DATA_FILE, "ab+");
     int rtn  = 0;
     if (!(fp == NULL))
     {

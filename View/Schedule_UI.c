@@ -55,9 +55,8 @@ void Schedule_UI_MgtEntry(int play_id)
             "\n================================================================"
             "==\n");
         printf("Your Choice:");
-        fflush(stdin);
-        scanf("%c", &choice);
-        fflush(stdin);
+        scanf("%c", choice);
+        getchar();
         switch (choice)
         {
             case 'a':
@@ -91,9 +90,8 @@ void Schedule_UI_MgtEntry(int play_id)
             case 't':
             case 'T':
                 printf("Input the Schedule ID:");
-                fflush(stdin);
                 scanf("%d", &id);
-                fflush(stdin);
+
                 schedule_t sch;
                 Schedule_Srv_FetchByID(id, &sch);
                 // printf("rse==%d\n", rse);
@@ -138,7 +136,7 @@ int Schedule_UI_Add(int play_id)
         printf("****************  Add New Schedule  ****************\n");
         printf("-------------------------------------------------------\n");
         printf("Schedule id:");
-        fflush(stdin);
+
         scanf("%d", &(sch.id));
         printf("Schedule play_id:");
         scanf("%d", &(sch.play_id));
@@ -170,9 +168,10 @@ int Schedule_UI_Add(int play_id)
         }
         printf("-------------------------------------------------------\n");
         printf("[A]dd more, [R]eturn:");
-        
-        choice = getchar();
-        fflush(stdin);
+
+        scanf("%c", choice);
+        getchar();
+
     } while ('a' == choice || 'A' == choice);
 
     return newCount;
@@ -192,7 +191,6 @@ int Schedule_UI_Modify(int id)
     printf("****************  Update Schedule  ****************\n");
     printf("-------------------------------------------------------\n");
     printf("Schedule ID[%d]=====>", sch.id);
-    fflush(stdin);
     scanf("%d", (&sch.id));
     printf("Schedule Play_id[%d]=====>", sch.play_id);
     scanf("%d", &(sch.play_id));

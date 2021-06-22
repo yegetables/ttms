@@ -33,9 +33,7 @@ reshow:
     printf(
         "==================================================================\n");
 
-    fflush(stdin);
     scanf("%d", &which);
-    fflush(stdin);
     switch (which)
     {
         case 2:

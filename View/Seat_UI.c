@@ -127,18 +127,19 @@ void Seat_UI_MgtEntry(int roomID)
                 }
                 printf("\n");
             }
-            for (int i = 0; i < buf->rowsCount; i++)
-            {
-                free(seat[i]);
-            }
+            // for (int i = 0; i < buf->rowsCount; i++)
+            // {
+            //     free(seat[i]);
+            // }
             printf(
                 "[A]添加座位\n"
                 "[U]修改座位\n"
                 "[D]删除座位\n"
                 "[R]返回\n");
-            fflush(stdin);
+
             printf("输入您的选择\n");
             scanf("%c", &choice);
+            getchar();
             int row, col;
             switch (choice)
             {
@@ -149,22 +150,21 @@ void Seat_UI_MgtEntry(int roomID)
                 case 'u':
                 case 'U':
                     printf("输入需要修改的座位行号和列号\n");
-                    fflush(stdin);
+
                     scanf("%d%d", &row, &col);
-                    fflush(stdin);
+
                     Seat_UI_Modify(list, row, col);
                     break;
                 case 'd':
                 case 'D':
                     printf("输入删除座位的行列\n");
-                    fflush(stdin);
                     scanf("%d%d", &row, &col);
-                    fflush(stdin);
+
                     Seat_UI_Delete(list, row, col);
                     break;
                 case 'r':
                 case 'R':
-                    break;
+                    return;
                 default:
                     printf("输入有误,请重新输入\n");
                     break;
@@ -194,9 +194,8 @@ int Seat_UI_Add(seat_list_t list, int roomID, int row, int column)
         printf("-------------------------------------------------------\n");
         printf("输入待添加的座位行和列\n");
         int newRow, newCol;
-        fflush(stdin);
         scanf("%d%d", &newRow, &newCol);
-        fflush(stdin);
+
         if (newRow <= 0 || newCol <= 0 || newRow > row || newCol > column)
         {
             printf("输入有误,请核实后操作");
@@ -214,9 +213,8 @@ int Seat_UI_Add(seat_list_t list, int roomID, int row, int column)
             "%c:无座位\n"
             "%c:损坏的座位\n",
             CHAR_SEAT_GOOD, CHAR_SEAT_NONE, CHAR_SEAT_BROKEN);
-        fflush(stdin);
-        scanf("%c", &char_status);
-        fflush(stdin);
+        scanf("%d", &char_status);
+
         if (char_status == CHAR_SEAT_GOOD || char_status == CHAR_SEAT_NONE ||
             char_status == CHAR_SEAT_BROKEN)
         {
@@ -241,9 +239,8 @@ int Seat_UI_Add(seat_list_t list, int roomID, int row, int column)
             }
             printf("继续添加输入y\n");
             char choice;
-            fflush(stdin);
-            scanf("%c", &choice);
-            fflush(stdin);
+            scanf("%c", choice);
+            getchar();
             if (choice != 'y' && choice != 'Y')
             {
                 return newRecCount;
@@ -284,9 +281,8 @@ int Seat_UI_Modify(seat_list_t list, int row, int column)
            Seat_UI_Status2Char(nodePtr->data.status));
     printf("请输入修改后座位的状态\n");
     char char_status;
-    fflush(stdin);
-    scanf("%c", &char_status);
-    fflush(stdin);
+    scanf("%d", &char_status);
+
     if (char_status == CHAR_SEAT_GOOD || char_status == CHAR_SEAT_NONE ||
         char_status == CHAR_SEAT_BROKEN)
     {
