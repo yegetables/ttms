@@ -2,6 +2,7 @@
 #define MAIN_MENU_H_
 #include <stdio.h>
 
+#include "MaiAccount_UI.h"
 #include "Account_UI.h"
 #include "Play_UI.h"
 #include "Sale_UI.h"

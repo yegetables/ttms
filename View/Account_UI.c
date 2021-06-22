@@ -8,7 +8,7 @@ int SysLogin()  // SL界面
     char n;
     char usrname[30];
     char password[30];
-    while (i < 3)
+    while (i <= 3)
     {
         printf("                                    登录界面\n");
     add_usr:
@@ -34,7 +34,7 @@ int SysLogin()  // SL界面
         }
         usrname[j] = '\0';
 
-    add_pass:
+    add_pass_1:
         printf("                              密码:");
         j = 0;
         while ((n = getchar()) != '\n')
@@ -45,7 +45,7 @@ int SysLogin()  // SL界面
                     ;
                 printf("密码不合规\n");
                 j = 0;
-                goto add_pass;
+                goto add_pass_1;
             }
             password[j++] = n;
         }
@@ -53,7 +53,7 @@ int SysLogin()  // SL界面
         {
             printf("密码不为空\n");
             j = 0;
-            goto add_pass;
+            goto add_pass_1;
         }
         password[j] = '\0';
         i++;
@@ -85,8 +85,9 @@ int account_UI_Add(account_list_t list)
     char n;
     account_t cdata;
     printf("添加新系统用户界面\n");
-    add_usr:
+    add_usr_2:
     printf("请输入你的用户名\n");
+    i=0;
     while ((n = getchar()) != '\n')
         {
             if (n == ' ' || i >= 29)
@@ -95,7 +96,7 @@ int account_UI_Add(account_list_t list)
                 
                 printf("用户名不合规\n");
                 i = 0;
-                goto add_usr;
+                goto add_usr_2;
             }
             usrename[i++] = n;
         }
@@ -103,13 +104,13 @@ int account_UI_Add(account_list_t list)
         {
             printf("用户名不为空\n");
             i = 0;
-            goto add_usr;
+            goto add_usr_2;
         }
         usrename[i] = '\0';
     memset(cdata.username, '\0', sizeof(cdata.username));
     strcpy(cdata.username, usrename);
 
-add_pass:
+add_pass_2:
     printf("请输入你的新密码\n");
     i = 0;
         while ((n = getchar()) != '\n')
@@ -120,7 +121,7 @@ add_pass:
                     ;
                 printf("密码不合规\n");
                 i = 0;
-                goto add_pass;
+                goto add_pass_2;
             }
             cpassword[i++] = n;
         }
@@ -128,7 +129,7 @@ add_pass:
         {
             printf("密码不为空\n");
             i = 0;
-            goto add_pass;
+            goto add_pass_2;
         }
         cpassword[i] = '\0';
     memset(cdata.password, '\0', sizeof(cdata.password));
@@ -171,36 +172,36 @@ int account_UI_Modfify(account_list_t list, char usrName[])
     account_node_t *p;
     char cpassword[30];
     if ((p = Account_Srv_FindByUsrName(list, usrName)) == NULL)
-    {
+    {  
+
         printf("用户不存在\n");
         return 0;
     }
     else
         cdata = p->data;
     printf("%s %s\n", cdata.username, cdata.password);
-    printf("请输入你的新密码\n");
+   add_pass_3:
+   printf("请输入你的新密码\n");
     i = 0;
-    while (1)
-    {
-        n = getchar();
-        if (i == 0 && n == '\n')
+        while ((n = getchar()) != '\n')
         {
-            printf("密码不为空\n");
-        }
-        else if (n == ' ' || i >= 29)
-        {
-            printf("密码不合规请重新输入\n");
-            i = 0;
-            while ((n = getchar()) != '\n')
-                ;
-        }
-        else
-        {
-            if (n == '\n') break;
+            if (n == ' ' || i >= 29)
+            {
+                while ((n = getchar()) != '\n')
+                    ;
+                printf("密码不合规\n");
+                i = 0;
+                goto add_pass_3;
+            }
             cpassword[i++] = n;
         }
-    }
-    cpassword[i] = '\0';
+        if (n == '\n' && i == 0)
+        {
+            printf("密码不为空\n");
+            i = 0;
+            goto add_pass_3;
+        }
+        cpassword[i] = '\0';
     memset(cdata.password, '\0', sizeof(cdata.password));
     strcpy(cdata.password, cpassword);
     if (Account_Srv_Modify(&cdata) == 0)
@@ -309,6 +310,7 @@ void Account_UI_MgtEntry()
                 break;
             case 'M':
         add_usr_1:
+                i=0;
                 printf("请输入用户名\n");
                  while ((n = getchar()) != '\n')
                 {
@@ -332,65 +334,65 @@ void Account_UI_MgtEntry()
                 if (account_UI_Modfify(head, usrename))
                 {
                     printf("修改成功\n");
-                    n = Account_Srv_FetchAll(head);
                     List_Paging(head, paging, account_node_t)
                 }
                 break;
             case 'D':
+                add_usr_3:
+                i=0;
                 printf("请输入用户名\n");
-                while (1)
+                 while ((n = getchar()) != '\n')
                 {
-                    n = getchar();
-                    if (i == 0 && n == '\n')
+                    if (n == ' ' || i >= 29)
                     {
-                        printf("用户名不为空\n");
-                    }
-                    else if (n == ' ' || i >= 29)
-                    {
-                        printf("用户名不合规请重新输入\n");
+                        while ((n = getchar()) != '\n');
+                        
+                        printf("用户名不合规\n");
                         i = 0;
-                        while ((n = getchar()) != '\n')
-                            ;
+                        goto add_usr_3;
                     }
-                    else
-                    {
-                        if (n == '\n') break;
-                        usrename[i++] = n;
-                    }
+                    usrename[i++] = n;
+                }
+                if (n == '\n' && i == 0)
+                {
+                    printf("用户名不为空\n");
+                    i = 0;
+                    goto add_usr_3;
                 }
                 usrename[i] = '\0';
                 if (Account_UI_Delete(head, usrename))
                 {
-                    n = Account_Srv_FetchAll(head);
+
+                    n--;
+                    paging.totalRecords = n;
                     List_Paging(head, paging, account_node_t)
                 }
                 break;
             case 'Q':
+                add_usr_4:
+                i=0;
                 printf("请输入用户名\n");
-                while (1)
+                 while ((n = getchar()) != '\n')
                 {
-                    n = getchar();
-                    if (i == 0 && n == '\n')
+                    if (n == ' ' || i >= 29)
                     {
-                        printf("用户名不为空\n");
-                    }
-                    else if (n == ' ' || i >= 29)
-                    {
-                        printf("用户名不合规请重新输入\n");
+                        while ((n = getchar()) != '\n');
+                        
+                        printf("用户名不合规\n");
                         i = 0;
-                        while ((n = getchar()) != '\n')
-                            ;
+                        goto add_usr_4;
                     }
-                    else
-                    {
-                        if (n == '\n') break;
-                        usrename[i++] = n;
-                    }
+                    usrename[i++] = n;
+                }
+                if (n == '\n' && i == 0)
+                {
+                    printf("用户名不为空\n");
+                    i = 0;
+                    goto add_usr_4;
                 }
                 usrename[i] = '\0';
                 if (Account_UI_Query(head, usrename))
                 {
-                    n = Account_Srv_FetchAll(head);
                     List_Paging(head, paging, account_node_t)
                 }
                 break;
