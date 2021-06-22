@@ -32,7 +32,7 @@ int Ticket_Perst_Insert(ticket_list_t list)
         return 0;
     }
     schedule_t sch;
-    //BUG:
+    // BUG:
     ticket_list_t tmp;
     seat_list_t seat;
     List_Init(seat, seat_node_t);
@@ -41,11 +41,8 @@ int Ticket_Perst_Insert(ticket_list_t list)
     seat_node_t *ww = NULL;
     Seat_Perst_SelectAll(seat);
     List_ForEach(seat, ww) a++;
-    int key[a+1]={0};
-    List_ForEach(seat, ww) 
-    {
-        EntKey_Perst_GetNewKeys(    `                                                           QQ);
-    }
+    //int key[a + 1] = {0};
+    // List_ForEach(seat, ww) { EntKey_Perst_GetNewKeys(); }
     List_ForEach(list, tmp)
     {
         Schedule_Perst_SelectByID(tmp->data.schedule_id, &sch);
