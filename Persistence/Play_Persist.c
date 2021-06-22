@@ -144,7 +144,7 @@ int Play_Perst_SelectByID(int id, play_t *buf)
         if (curPos->data.id == id)
         {
             *buf = curPos->data;
-            find   = 1;
+            find = 1;
             break;
         }
     }
@@ -152,6 +152,7 @@ int Play_Perst_SelectByID(int id, play_t *buf)
 }
 int Play_Perst_SelectByName(play_list_t list, char condt[])
 {
+    assert(list != NULL);
     int recCount = 0;
     play_node_t *curPos;
     play_list_t headPtr = (play_list_t)malloc(sizeof(play_node_t));

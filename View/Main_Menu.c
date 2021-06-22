@@ -34,7 +34,8 @@ void Main_Menu(void)
             "==\n");
         printf("Please input your choice:");
         fflush(stdin);
-        choice = getchar();getchar();
+        choice = getchar();
+        getchar();
         switch (choice)
         {
             case 'S':
