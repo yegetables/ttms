@@ -65,8 +65,10 @@ void Play_UI_MgtEntry()
             "\n================================================================"
             "==\n");
         printf("输入选项:");
-        fflush(stdin);
-        scanf("%c", &choice);
+          fflush(stdin);
+        choice = getchar();
+        if(choice=='\n')
+        choice = getchar();
         fflush(stdin);
         switch (choice)
         {
@@ -82,7 +84,7 @@ void Play_UI_MgtEntry()
             case 'D':
                 printf("输入删除剧目id:");
                 fflush(stdin);
-                scanf("%d", &id);
+                scanf("%d", &id);fflush(stdin);
                 if (Play_UI_Delete(id) == 1)
                 {  //从新载入数据
                     paging.totalRecords = Play_Srv_FetchAll(head);

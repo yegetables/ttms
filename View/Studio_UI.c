@@ -70,9 +70,10 @@ void Studio_UI_MgtEntry(void)
         printf(
             "\n================================================================"
             "==\n");
-        fflush(stdin);
         printf("Your Choice:");
+        fflush(stdin);
         choice = getchar();
+        if (choice == '\n') choice = getchar();
         fflush(stdin);
         switch (choice)
         {
