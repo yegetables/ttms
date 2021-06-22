@@ -257,7 +257,6 @@ void Account_UI_MgtEntry()
     int pageSize, i;
     account_node_t *p;
     char choice;
-    char tmp_char;
     char usrename[30];
     printf("Input page size:");
     scanf("%d", &pageSize);
