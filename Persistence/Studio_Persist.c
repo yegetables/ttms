@@ -36,7 +36,6 @@ static const char STUDIO_KEY_NAME[] = "Studio";
 */
 int Studio_Perst_Insert(studio_t *data)
 {
-    assert(NULL != data);
     ////以下是新设计方案方案添加的代码
     ////以下是新设计方案方案添加的代码
     long key =
@@ -69,8 +68,6 @@ int Studio_Perst_Insert(studio_t *data)
 */
 int Studio_Perst_Update(const studio_t *data)
 {
-    assert(NULL != data);
-
     FILE *fp = fopen(STUDIO_DATA_FILE, "rb+");
     if (NULL == fp)
     {
@@ -163,8 +160,6 @@ int Studio_Perst_DeleteByID(int ID)
 */
 int Studio_Perst_SelectByID(int ID, studio_t *buf)
 {
-    assert(NULL != buf);
-
     FILE *fp = fopen(STUDIO_DATA_FILE, "rb");
     if (NULL == fp)
     {

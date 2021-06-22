@@ -16,7 +16,6 @@
 */
 int Seat_Perst_Insert(seat_t *data)
 {
-    assert(NULL != data);
     FILE *fp = fopen(SEAT_DATA_FILE, "ab");
     int rtn  = 0;
     if (NULL == fp)
@@ -39,7 +38,6 @@ int Seat_Perst_Insert(seat_t *data)
 */
 int Seat_Perst_InsertBatch(seat_list_t list)
 {
-    assert(NULL != list);
     seat_node_t *curPos;
     FILE *fp = fopen(SEAT_DATA_FILE, "ab");
     int rtn  = 0;
@@ -64,8 +62,6 @@ int Seat_Perst_InsertBatch(seat_list_t list)
 */
 int Seat_Perst_Update(const seat_t *seatdata)
 {
-    assert(NULL != seatdata);
-
     FILE *fp = fopen(SEAT_DATA_FILE, "rb+");
     if (NULL == fp)
     {
@@ -213,7 +209,6 @@ int Seat_Perst_DeleteAllByRoomID(int roomID)
 */
 int Seat_Perst_SelectByID(int ID, seat_t *buf)
 {
-    assert(NULL != buf);
     FILE *fp = fopen(SEAT_DATA_FILE, "rb");
     if (NULL == fp)
     {
@@ -245,8 +240,7 @@ int Seat_Perst_SelectByID(int ID, seat_t *buf)
 */
 int Seat_Perst_SelectAll(seat_list_t list)
 {
-    int recCount = 0;  //总数
-    assert(NULL != list);
+    int recCount = 0;              //总数
     List_Free(list, seat_node_t);  //清空
     FILE *fp = fopen(SEAT_DATA_FILE, "rb");
     if (NULL == fp)
@@ -282,7 +276,6 @@ int Seat_Perst_SelectAll(seat_list_t list)
 int Seat_Perst_SelectByRoomID(seat_list_t list, int roomID)
 {
     int recCount = 0;
-    assert(NULL != list);
     List_Free(list, seat_node_t);
     FILE *fp = fopen(SEAT_DATA_FILE, "rb");
     if (NULL == fp)

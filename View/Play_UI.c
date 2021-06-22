@@ -71,7 +71,7 @@ void Play_UI_MgtEntry()
         {
             case 'a':
             case 'A':
-                if (Play_UI_Add()>0)  //新添加成功，跳到最后一页显示
+                if (Play_UI_Add() > 0)  //新添加成功，跳到最后一页显示
                 {
                     paging.totalRecords = Play_Srv_FetchAll(head);
                     Paging_Locate_LastPage(head, paging, play_node_t);
@@ -92,7 +92,7 @@ void Play_UI_MgtEntry()
             case 'U':
                 printf("输入需要修改的剧目id:");
                 scanf("%d", &id);
-                if (Play_UI_Modify(id)==1)
+                if (Play_UI_Modify(id) == 1)
                 {  //从新载入数据
                     paging.totalRecords = Play_Srv_FetchAll(head);
                     List_Paging(head, paging, play_node_t);
@@ -145,6 +145,7 @@ int Play_UI_Add()
     play_t newPlay;
     printf("输入剧目名称\n");
     scanf("%s", newPlay.name);
+    printf("%s\n", newPlay.name);
     while (1)
     {
         printf("输入剧目类型\n");
@@ -171,7 +172,7 @@ int Play_UI_Add()
     }
     while (1)
     {
-        printf("输入时长");
+        printf("输入时长(分钟)");
         if (scanf("%d", &newPlay.duration) == 1 && newPlay.duration > 0)
         {
             break;
@@ -208,7 +209,7 @@ int Play_UI_Add()
     }
     while (1)
     {
-        printf("输入票价");
+        printf("输入票价(元)");
         if (scanf("%d", &newPlay.price) == 1 && newPlay.price >= 0)
         {
             break;
