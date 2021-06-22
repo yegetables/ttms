@@ -8,9 +8,7 @@
  */
 #include "Salesanalysis.h"
 
-#include "../Common/List.h"
-#include "../Service/Play.h"
-#include "stdio.h"
+
 int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list)
 {
     if (list != NULL)

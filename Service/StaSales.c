@@ -7,9 +7,7 @@
  * Version:  v.1
  */
 #include "StaSales.h"
-#include "../Service/Sale.h"
-#include "../Common/List.h"
-#include "../Persistence/Sale_Persist.h"
+
 int StaSales_Srv_CompSaleVal(int usrID, ttms_date_t stDate, ttms_date_t endDate)
 {
     int amount = 0;

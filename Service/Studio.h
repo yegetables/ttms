@@ -10,8 +10,10 @@
 
 #ifndef STUDIO_H_
 #define STUDIO_H_
-#include "../Persistence/Studio_Persist.h"
+#include <assert.h>
+#include <stdlib.h>
 
+#include "../Persistence/Studio_Persist.h"
 
 //标识符：TTMS_SCU_Studio_Srv_Add
 /**
