@@ -1,3 +1,5 @@
+#include "TimeLegal.h"
+
 #include <stdio.h>
 /**
  * @brief 判断给定年是否是闰年
