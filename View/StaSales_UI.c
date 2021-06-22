@@ -16,7 +16,7 @@ void StaSales_UI_MgtEntry(void)
     }
     else
     {
-        if (gl_CurUser.type == USR_MANG)
+        if (gl_CurUser.type == USR_MANG) 
         {
             StaSales_UI_Clerk();
         }
