@@ -10,6 +10,8 @@
 #ifndef SALESANALYSIS_t
 #define SALESANALYSIS_t
 
+#include <stdio.h>
+
 #include "../Common/List.h"
 #include "../Service/Play.h"
 #include "../Service/Sale.h"
@@ -40,6 +42,5 @@ typedef struct salesanalysis_node
 int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list);
 
 void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t list);
-
 
 #endif /* SALESANALYSIS_T */

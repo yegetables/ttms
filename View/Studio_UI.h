@@ -11,6 +11,13 @@
 #ifndef STUDIO_UI_H_
 #define STUDIO_UI_H_
 
+#include <stdio.h>
+#include <string.h>
+
+#include "../Common/List.h"
+#include "../Service/Seat.h"
+#include "../Service/Studio.h"
+#include "Seat_UI.h"
 //标识符：TTMS_SCU_Studio_UI_Add
 /**
  * @brief 添加新演出厅界面

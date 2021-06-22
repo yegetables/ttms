@@ -1,7 +1,4 @@
-#include"../Common/List.h"
-#include<stdio.h>
-#include"../Service/Schedule.h"
-#include"../Service/Play.h"
+#include"Schedule_Persist_Qry.h"
 
 static const char SCHEDULE_DATA_FILE[] = "Schedule.dat";
 int Schedule_Perst_SelectAll(schedule_list_t list){
