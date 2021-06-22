@@ -18,3 +18,9 @@ changelog.config.js
 yarn-error.log
 Play.dat
 Seat.dat
+Account.dat
+Ticket.dat
+Studio.dat
+StaSale.dat
+Schedule.dat
+Sale.dat
