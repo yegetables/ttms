@@ -53,39 +53,6 @@ int Schedule_Perst_Insert(schedule_t *data)
     }
 }
 
-int Schedule_Perst_SelectByID(int id, schedule_t *buf)
-{
-    int found = 0;
-    FILE *fp  = fopen("Schedule.dat", "r");
-    if (feof(fp))
-    {
-        fclose(fp);
-        return found;
-    }
-    else
-    {
-        schedule_t data;
-        while (feof(fp))
-        {
-            int x = fread(&data, sizeof(data), 1, fp);
-            if (x == 0)
-            {
-                fclose(fp);
-                return found;
-            }
-            else
-            {
-                if (data.id == id)
-                {
-                    found = 1;
-                    buf   = &data;
-                }
-            }
-        }
-        fclose(fp);
-        return found;
-    }
-}
 
 int Schedule_Perst_Update(const schedule_t *data)
 {
