@@ -59,7 +59,7 @@ void SalesAnalysis_UI_MgtEntry(void)
             "******************************************************************"
             "\n");
         printf(
-            "[P]revPage|[N]extPage | [A]dd|[D]elete|[U]pdate | [S]eat | "
+            "[P]revPage|[N]extPage"
             "[R]eturn");
         printf(
             "\n================================================================"
