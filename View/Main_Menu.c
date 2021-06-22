@@ -11,6 +11,8 @@
 //系统主菜单
 void Main_Menu(void)
 {
+    if(SysLogin()==1)
+    {
     char choice;
     do
     {
@@ -72,4 +74,5 @@ void Main_Menu(void)
                 break;
         }
     } while ('E' != choice && 'e' != choice);
+    }
 }
