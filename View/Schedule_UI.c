@@ -1,15 +1,4 @@
 #include "Schedule_UI.h"
-
-
-#include "./Schedule_UI.h"
-#include"Ticket_UI.h"
-#include "../Common/List.h"
-#include "../Service/Schedule.h"
-#include "../Service/Ticket.h"
-#include "../Service/Play.h"
-#include "../Common/TimeLegal.h"
-#include"../Common/Common.h"
-#include"../Service/Schedule_Qry.h"
 static const int SCHEDULE_PAGE_SIZE = 5;
 void Schedule_UI_MgtEntry(int play_id)
 {

@@ -1,10 +1,6 @@
 #include "Schedule_Persist.h"
 
-#include <assert.h>
-#include <stdio.h>
-#include <stdlib.h>
 
-#include "../Common/List.h"
 static const char SCHEDULE_DATA_FILE[]      = "Schedule.dat";
 static const char SCHEDULE_DATA_TEMP_FILE[] = "ScheduleTmp.dat";
 int Schedule_Perst_SelectByPlay(schedule_list_t list, int play_id)
