@@ -10,8 +10,8 @@ int SysLogin()  // SL界面
     char password[30];
     while (i < 3)
     {
-        printf("登录界面\n");
-        printf("请输入您的用户名:");
+        printf("                                    登录界面\n");
+        printf("                              用户名:");
         j = 0;
         while ((n = getchar()) != '\n')
         {
@@ -24,7 +24,7 @@ int SysLogin()  // SL界面
             usrname[j++] = n;
         }
         usrname[j] = '\0';
-        printf("请输入您的密码:");
+        printf("                              密码:");
         j = 0;
         while ((n = getchar()) != '\n')
         {
