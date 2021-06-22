@@ -25,9 +25,9 @@ void Play_UI_MgtEntry()
         printf(
             "********************** 剧目信息管理界面 "
             "**********************\n");
-        printf("%5s  %18s  %5s  %10s  %5s  %5s  %11s  %11s  %5s\n", "剧目ID",
-               "剧目名称", "剧目类型", "剧目出品地区", "剧目等级", "时长(分钟)",
-               "开始放映日期", "结束放映日期", "票价(元)");
+        printf("%10s  %18s  %10s  %10s  %10s  %10s  %11s    %11s  %5s\n",
+               "剧目ID", "剧目名称", "剧目类型", "剧目出品地区", "剧目等级",
+               "时长(分钟)", "开始放映日期", "结束放映日期", "票价(元)");
         printf(
             "------------------------------------------------------------------"
             "\n");
@@ -35,7 +35,7 @@ void Play_UI_MgtEntry()
         Paging_ViewPage_ForEach(head, paging, play_node_t, pos, i)
         {
             printf(
-                "%5d  %18s  %5d  %10s  %5d  %5d  %4d年%2d月%2d日  "
+                "%8d  %14s  %8d  %10s  %10d  %10d  %4d年%2d月%2d日  "
                 "%4d年%2d月%2d日  %5d\n",
                 pos->data.id, pos->data.name, pos->data.type, pos->data.area,
                 pos->data.rating, pos->data.duration, pos->data.start_date.year,
@@ -143,9 +143,10 @@ int Play_UI_Add()
     printf("****************  增加剧目界面  ****************\n");
     printf("-------------------------------------------------------\n");
     play_t newPlay;
+    fflush(stdin);
     printf("输入剧目名称\n");
-    scanf("%s", newPlay.name);
-    printf("%s\n", newPlay.name);
+    fgets(newPlay.name, 30, stdin);
+    newPlay.name[strlen(newPlay.name) - 1] = '\0';
     while (1)
     {
         printf("输入剧目类型\n");
@@ -241,15 +242,17 @@ int Play_UI_Modify(int id)
     else
     {
         play_t newPlay;
-        printf("修改剧目名称[%s]=====>\n", etc.name);
-        scanf("%s", newPlay.name);
+        fflush(stdin);
+        printf("修改剧目名称[%s]=====>", etc.name);
+        fgets(newPlay.name, 30, stdin);
+        newPlay.name[strlen(newPlay.name) - 1] = '\0';
         while (1)
         {
             char *t = NULL;
-            if (etc.type == 1) t = "PLAY_TYPE_FILE";
-            if (etc.type == 2) t = "PLAY_TYPE_OPEAR";
-            if (etc.type == 3) t = "PLAY_TYPE_CONCERT";
-            printf("修改剧目类型[%s]=====>\n", t);
+            if (etc.type == 1) t = "电影";
+            if (etc.type == 2) t = "京剧";
+            if (etc.type == 3) t = "音乐会";
+            printf("修改剧目类型[%s]=====>", t);
             printf("1.电影\n2.京剧\n3.音乐会\n");
             if (scanf("%d", (int *)&newPlay.type) == 1 && newPlay.type >= 1 &&
                 newPlay.type <= 3)
@@ -259,10 +262,10 @@ int Play_UI_Modify(int id)
             printf("输入有误,请重新输入\n");
         }
         printf("修改剧目出品地区[%s]=====>\n", etc.area);
-        scanf("%s", newPlay.area);
+        fscanf(stdin, "%s", newPlay.area);
         while (1)
         {
-            printf("修改剧目等级[%d]=====>\n", etc.rating);
+            printf("修改剧目等级[%d]=====>", etc.rating);
             printf("1.小孩\n2.青少年\n3.成人\n");
             if (scanf("%d", (int *)&newPlay.rating) == 1 &&
                 newPlay.rating >= 1 && newPlay.type <= 3)
@@ -319,7 +322,7 @@ int Play_UI_Modify(int id)
             }
             printf("输入有误,请重新输入");
         }
-        if (Play_Srv_Add(&newPlay))
+        if (Play_Srv_Modify(&newPlay))
         {
             printf("修改成功\n");
             return 1;
@@ -337,21 +340,24 @@ int Play_UI_Query(int id)
     printf("\n=======================================================\n");
     printf("****************  查询剧目界面  ****************\n");
     printf("-------------------------------------------------------\n");
-    play_t *buf = NULL;
-    if (Play_Srv_FetchByID(id, buf) != 1)
+    play_t buf;
+    if (Play_Srv_FetchByID(id, &buf) != 1)
     {
         printf("没有查询到相关剧目信息,请确定信息后查询\n");
         return 0;
     }
-    printf("%5s  %18s  %5s  %10s  %5s  %5s  %11s  %11s  %5s\n", "剧目ID",
+    printf("%10s  %18s  %10s  %10s  %10s  %10s  %11s    %11s  %5s\n", "剧目ID",
            "剧目名称", "剧目类型", "剧目出品地区", "剧目等级", "时长(分钟)",
            "开始放映日期", "结束放映日期", "票价(元)");
     printf(
-        "%5d  %18s  %5d  %10s  %5d  %5d  %4d年%2d月%2d日  "
+        "------------------------------------------------------------------"
+        "\n");
+    printf(
+        "%8d  %14s  %8d  %10s  %10d  %10d  %4d年%2d月%2d日  "
         "%4d年%2d月%2d日  %5d\n",
-        buf->id, buf->name, buf->type, buf->area, buf->rating, buf->duration,
-        buf->start_date.year, buf->start_date.month, buf->start_date.day,
-        buf->end_date.year, buf->end_date.month, buf->end_date.day, buf->price);
+        buf.id, buf.name, buf.type, buf.area, buf.rating, buf.duration,
+        buf.start_date.year, buf.start_date.month, buf.start_date.day,
+        buf.end_date.year, buf.end_date.month, buf.end_date.day, buf.price);
     return 1;
 }
 int Play_UI_Delete(int id) { return Play_Srv_DeleteByID(id); }
