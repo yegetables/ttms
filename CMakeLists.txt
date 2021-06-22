@@ -22,7 +22,7 @@ include_directories(${CMAKE_SOURCE_DIR}/View)
 set(EXECUTABLE_OUTPUT_PATH  ${CMAKE_SOURCE_DIR})
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 
-add_definitions(  -g -Wall -DDEBUG )
+add_definitions(  -g -Wall -DDEBUG -DUNICODE -D_UNICODE )
 
 # 指定生成目标 
 add_executable( ttms  ${MAIN_FUNC_SRCS}  ${VIEW_FUNC_SRCS}   ${PERSISTENCE_FUNC_SRCS}  
