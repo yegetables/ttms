@@ -156,7 +156,7 @@ add_pass:
         if (Account_Srv_Add(&cdata) == 1)
         {
             tmp->data = cdata;
-            List_AddHead(list, tmp);
+            List_AddTail(list, tmp);
             return 1;
         }
         else
@@ -298,7 +298,9 @@ void Account_UI_MgtEntry()
             case 'A':
                 if (account_UI_Add(head) == 1)
                 {
-                    n = Account_Srv_FetchAll(head);
+               //     n = Account_Srv_FetchAll(head);
+                    n++;
+                     paging.totalRecords = n;
                     Paging_Locate_LastPage(head, paging, account_node_t);
                 }
                 else
