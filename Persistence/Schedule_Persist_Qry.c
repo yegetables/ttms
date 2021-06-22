@@ -41,10 +41,11 @@ int Schedule_Perst_SelectAll(schedule_list_t list)
 int Schedule_Perst_SelectByID(int id, schedule_t *buf)
 {
     int found = 0;
-    FILE *fp  = fopen("Schedule.dat", "rb+");
+    FILE *fp  = fopen("Schedule.dat", "ab+");
     if (fp == NULL)
     {
         printf("fail to open file\n");
+        return -1;
     }
     if (feof(fp))
     {

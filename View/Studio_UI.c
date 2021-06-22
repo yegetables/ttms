@@ -73,7 +73,7 @@ void Studio_UI_MgtEntry(void)
         fflush(stdin);
         printf("Your Choice:");
         choice = getchar();
-        getchar();
+        fflush(stdin);
         switch (choice)
         {
             case 'a':
@@ -161,6 +161,7 @@ int Studio_UI_Add(void)
         // gets(rec.name);
         // getchar();
         fgets(rec.name, 30, stdin);  // 1\n\0
+        fflush(stdin);
         rec.name[strlen(rec.name) - 1] = '\0';
         printf("Row Count of Seats:");
         scanf("%d", &(rec.rowsCount));
@@ -216,7 +217,7 @@ int Studio_UI_Modify(int id)
     // getchar();
     fgets(rec.name, 30, stdin);
     rec.name[strlen(rec.name) - 1] = '\0';
-
+    fflush(stdin);
     List_Init(list, seat_node_t);
     seatcount = Seat_Srv_FetchByRoomID(list, rec.id);
     if (seatcount)

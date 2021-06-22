@@ -107,7 +107,7 @@ void Play_UI_MgtEntry()
                 scanf("%d", &id);
                 fflush(stdin);
                 Schedule_UI_MgtEntry(id);
-                
+
                 paging.totalRecords = Play_Srv_FetchAll(head);
                 printf("paging.totalRecords:%d\n", paging.totalRecords);
                 List_Paging(head, paging, play_node_t);
