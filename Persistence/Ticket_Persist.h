@@ -5,6 +5,7 @@
 #include "../Common/List.h"
 #include "Play_Persist.h"
 #include "Schedule_Persist.h"
+#include "Schedule_Persist_Qry.h"
 #include "Seat_Persist.h"
 #include "Studio_Persist.h"
 //票状态

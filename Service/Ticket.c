@@ -10,26 +10,27 @@ int Ticket_Srv_GenBatch(int schedule_id)
     int re = 0;
     schedule_t buf;
     re = Schedule_Srv_FetchByID(schedule_id, &buf);
-    printf("re 034rr %d\n", re);
+    // printf("re 034rr %d\n", re);
 
     if (re != 1)
     {
-        printf("re 0000 %d\n", re);
+        // printf("re 0000 %d\n", re);
         return re;
     }
     if ((re = Seat_Srv_FetchValidByRoomID(seat_head, buf.studio_id)) >= 0)
     {
-        printf("re wdasfa%d\n", re);
+        // printf("re wdasfa%d\n", re);
         //成功
         number += re;
+        //MARK:BUG:
         Ticket_Perst_Insert(seat_head);
-        printf("re 222a%d\n", re);
+        // printf("re 222a%d\n", re);
     }
     else
     {
         printf("error %s:%d\n", __FILE__, __LINE__);
     }
-    printf("re wfffarrd\n", number);
+    // printf("re wfffarrd\n", number);
     return number;
 }
 int Ticket_Srv_DeleteBatch(int schedule_id)
