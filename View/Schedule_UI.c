@@ -2,7 +2,7 @@
 
 
 #include "./Schedule_UI.h"
-
+#include"Ticket_UI.h"
 #include "../Common/List.h"
 #include "../Service/Schedule.h"
 #include "../Service/Ticket.h"
@@ -100,9 +100,14 @@ void Schedule_UI_MgtEntry(int play_id)
                 break;
             case 't':
             case 'T':
-                printf("Input the RoomID:");
+                printf("Input the Schedule ID:");
                 scanf("%d", &id);
-                Seat_UI_MgtEntry(id);
+                fflush(stdin);
+                if(!Schedule_Srv_FetchByID(id)){
+                    printf("fail to get the Schedule!");
+                }else{
+                    Ticket_UI_MgtEntry(id);
+                }
                 paging.totalRecords = Schedule_Srv_FetchAll(head);
                 List_Paging(head, paging, studio_node_t);
                 break;
