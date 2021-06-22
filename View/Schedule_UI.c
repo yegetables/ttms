@@ -62,9 +62,7 @@ void Schedule_UI_MgtEntry(int play_id)
         {
             case 'a':
             case 'A':
-
-                int re =
-                    Schedule_UI_Add(play_id);  //新添加成功，跳到最后一页显示
+                Schedule_UI_Add(play_id);  //新添加成功，跳到最后一页显示
                 paging.totalRecords = Schedule_Srv_FetchAll(head);
                 // printf("ser:%d\n", paging.totalRecords);
                 Paging_Locate_LastPage(head, paging, studio_node_t);
@@ -97,7 +95,7 @@ void Schedule_UI_MgtEntry(int play_id)
                 scanf("%d", &id);
                 fflush(stdin);
                 schedule_t sch;
-                int rse = Schedule_Srv_FetchByID(id, &sch);
+                Schedule_Srv_FetchByID(id, &sch);
                 //printf("rse==%d\n", rse);
                 
                 Ticket_UI_MgtEntry(id);
