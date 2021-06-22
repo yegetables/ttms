@@ -66,7 +66,7 @@ void Play_UI_MgtEntry()
             "==\n");
 
         printf("输入选项:");
-        scanf("%c", choice);
+        scanf("%c", &choice);
         getchar();
         switch (choice)
         {
@@ -103,7 +103,7 @@ void Play_UI_MgtEntry()
                 // printf("输入需要安排演出的放映厅id");
                 printf("输入需要安排演出的剧目id\n");
                 scanf("%d", &id);
-
+                getchar();
                 Schedule_UI_MgtEntry(id);
 
                 paging.totalRecords = Play_Srv_FetchAll(head);
@@ -132,7 +132,7 @@ void Play_UI_MgtEntry()
                 break;
             case 'r':
             case 'R':
-                break;
+                return;
             default:
                 printf("输入有误,请重新输入\n");
                 break;
@@ -148,7 +148,7 @@ int Play_UI_Add()
     printf("-------------------------------------------------------\n");
     play_t newPlay;
     printf("输入剧目名称\n");
-    scanf("%s",newPlay.name);
+    scanf("%s", newPlay.name);
     if (newPlay.name[strlen(newPlay.name) - 1] == '\n')
         newPlay.name[strlen(newPlay.name) - 1] = '\0';
     while (1)
@@ -207,7 +207,7 @@ int Play_UI_Add()
     {
         ttms_date_t startDate = newPlay.start_date;
         printf("输入剧目结束日期(年.月.日)");
-     
+
         if (scanf("%d.%d.%d", &newPlay.end_date.year, &newPlay.end_date.month,
                   &newPlay.end_date.day) == 3 &&
             IsTimeLegal(newPlay.end_date.year, newPlay.end_date.month,
@@ -221,7 +221,7 @@ int Play_UI_Add()
     while (1)
     {
         printf("输入票价(元)");
-        
+
         if (scanf("%d", &newPlay.price) == 1 && newPlay.price >= 0)
         {
             break;
@@ -274,12 +274,12 @@ int Play_UI_Modify(int id)
             printf("输入有误,请重新输入\n");
         }
         printf("修改剧目出品地区[%s]=====>\n", etc.area);
-        scanf("%s",newPlay.area);
+        scanf("%s", newPlay.area);
         while (1)
         {
             printf("修改剧目等级[%d]=====>\n", etc.rating);
             printf("1.小孩\n2.青少年\n3.成人\n");
-           
+
             if (scanf("%d", (int *)&newPlay.rating) == 1 &&
                 newPlay.rating >= 1 && newPlay.type <= 3)
             {
@@ -301,7 +301,7 @@ int Play_UI_Modify(int id)
             user_date_t nowDate = DateNow();
             printf("修改剧目放映日期(%d.%d.%d)=====>", etc.start_date.year,
                    etc.start_date.month, etc.start_date.day);
-           
+
             if (scanf("%d.%d.%d", &newPlay.start_date.year,
                       &newPlay.start_date.month,
                       &newPlay.start_date.day) == 3 &&
@@ -318,7 +318,7 @@ int Play_UI_Modify(int id)
             ttms_date_t startDate = newPlay.start_date;
             printf("修改剧目结束日期(%d.%d.%d)=====>", etc.end_date.year,
                    etc.end_date.month, etc.end_date.day);
-          
+
             if (scanf("%d.%d.%d", &newPlay.end_date.year,
                       &newPlay.end_date.month, &newPlay.end_date.day) == 3 &&
                 IsTimeLegal(newPlay.end_date.year, newPlay.end_date.month,
@@ -332,7 +332,7 @@ int Play_UI_Modify(int id)
         while (1)
         {
             printf("修改票价[%d]=====>", etc.price);
-           
+
             if (scanf("%d", &newPlay.price) == 1 && newPlay.price >= 0)
             {
                 break;

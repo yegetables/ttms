@@ -28,7 +28,7 @@ dod:
         printf("[E]xist.\n");
         printf("\n=======|[P]revPage|[N]extPage|=============\n");
         printf("Please input your choice:");
-    scanf("%c", choice);
+        scanf("%c", &choice);
         getchar();
         switch (choice)
         {
@@ -56,7 +56,7 @@ dod:
                 printf("输入剧目名称\n");
                 char name2[256] = {0};
                 scanf("%s", name2);
-                
+
                 int num = Play_Srv_FilterByName(newlist, name2);
                 if (num == 0)
                 {

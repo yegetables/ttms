@@ -97,7 +97,7 @@ void Studio_UI_MgtEntry(void)
             case 'u':
             case 'U':
                 printf("Input the ID:");
-                id = getchar();
+                scanf("%d", &id);
                 getchar();
                 if (Studio_UI_Modify(id))
                 {  //从新载入数据
@@ -201,7 +201,6 @@ int Studio_UI_Modify(int id)
     if (!Studio_Srv_FetchByID(id, &rec))
     {
         printf("The room does not exist!\nPress [Enter] key to return!\n");
-        getchar();
         return 0;
     }
 
@@ -252,7 +251,6 @@ int Studio_UI_Modify(int id)
     else
         printf("The room data updated failed!\nPress [Enter] key to return!\n");
 
-    getchar();
     return rtn;
 }
 

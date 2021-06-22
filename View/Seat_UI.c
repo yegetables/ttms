@@ -239,7 +239,7 @@ int Seat_UI_Add(seat_list_t list, int roomID, int row, int column)
             }
             printf("继续添加输入y\n");
             char choice;
-            scanf("%c", choice);
+            scanf("%c", &choice);
             getchar();
             if (choice != 'y' && choice != 'Y')
             {

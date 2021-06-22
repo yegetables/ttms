@@ -54,8 +54,8 @@ void StaSales_UI_Self(void)
         "==\n");
     char choice;
     printf("Your choice:");
-    scanf("%c", choice);
-        getchar();
+    scanf("%c", &choice);
+    getchar();
     switch (choice)
     {
         case 'd':

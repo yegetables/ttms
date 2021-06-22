@@ -55,7 +55,7 @@ void Schedule_UI_MgtEntry(int play_id)
             "\n================================================================"
             "==\n");
         printf("Your Choice:");
-        scanf("%c", choice);
+        scanf("%c", &choice);
         getchar();
         switch (choice)
         {
@@ -168,8 +168,7 @@ int Schedule_UI_Add(int play_id)
         }
         printf("-------------------------------------------------------\n");
         printf("[A]dd more, [R]eturn:");
-
-        scanf("%c", choice);
+        scanf("%d", &choice);
         getchar();
 
     } while ('a' == choice || 'A' == choice);
@@ -184,7 +183,6 @@ int Schedule_UI_Modify(int id)
     if (!Schedule_Srv_FetchByID(id, &sch))
     {
         printf("The room does not exist!\nPress [Enter] key to return!\n");
-        getchar();
         return 0;
     }
     printf("\n=======================================================\n");
