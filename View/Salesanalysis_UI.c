@@ -45,7 +45,7 @@ void SalesAnalysis_UI_MgtEntry(void)
                     pos->data.start_date.month, pos->data.start_date.day);
             sprintf(sho2, "%d-%d-%d", pos->data.end_date.year,
                     pos->data.end_date.month, pos->data.end_date.day);
-            printf("%5s  %18s  %10ld  %10ld  %10s %10s\n", pos->data.name,
+            printf("%10s  %10s  %10ld  %10ld  %10s %10s\n", pos->data.name,
                    pos->data.area, newNode->data.totaltickets,
                    newNode->data.sales, sho1, sho2);
         }

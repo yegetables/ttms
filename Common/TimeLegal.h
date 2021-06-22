@@ -1,3 +1,5 @@
+#ifndef TIMELEGAL_H_
+#define TIMELEGAL_H_
 /**
  * @brief 判断给定日期是否在规定日期之后且正确
  *
@@ -11,3 +13,5 @@
  */
 int IsTimeLegal(int year, int month, int day, int nowyear, int nowmon,
                 int nowday);  //判断年月日是否合法
+
+#endif
