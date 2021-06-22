@@ -1,5 +1,5 @@
-#ifndef TTMS_SCU_Schedule_UI_List
-#define TTMS_SCU_Schedule_UI_List
+#ifndef SCHEDULE_QRY_H_
+#define SCHEDULE_QRY_H_
 #include <stdio.h>
 
 #include "../Common/List.h"

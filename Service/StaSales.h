@@ -6,8 +6,8 @@
  * Author:   XUPT
  * Version:  v.1
  */
-#ifndef STASALES_SRV_H_
-#define STASALES_SRV_H_
+#ifndef STASALES_H_
+#define STASALES_H_
 #include "../Common/Common.h"
 #include "../Common/List.h"
 #include "../Persistence/Sale_Persist.h"

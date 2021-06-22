@@ -7,8 +7,8 @@
  * Version:  v.1
  */
 
-#ifndef SALESANALYSIS_t
-#define SALESANALYSIS_t
+#ifndef SALESANALYSIS_H_
+#define SALESANALYSIS_H_
 
 #include <stdio.h>
 

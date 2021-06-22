@@ -101,10 +101,15 @@ void Play_UI_MgtEntry()
                 break;
             case 's':
             case 'S':
-                printf("输入需要安排演出的放映厅id");
+                // printf("输入需要安排演出的放映厅id");
+                printf("输入需要安排演出的剧目id\n");
+                fflush(stdin);
                 scanf("%d", &id);
+                fflush(stdin);
                 Schedule_UI_MgtEntry(id);
+
                 paging.totalRecords = Play_Srv_FetchAll(head);
+                printf("paging.totalRecords:%d\n", paging.totalRecords);
                 List_Paging(head, paging, play_node_t);
                 break;
             case 'q':
