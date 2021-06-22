@@ -32,5 +32,3 @@ jobs:
       - name: nmake
         run: cd $GITHUB_WORKSPACE/build && ls &&  mingw32-make 
         shell: bash
-      - name: clang-format Code Formatter
-        uses: IvanLudvig/clang-format-action@v1.0
