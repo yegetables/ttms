@@ -18,6 +18,8 @@ jobs:
       - name: make
         run: cd $GITHUB_WORKSPACE/build && make
         shell: bash
+      - name: clang-format Code Formatter
+        uses: IvanLudvig/clang-format-action@v1.0
         
   windows_job:
     runs-on:  windows-latest
