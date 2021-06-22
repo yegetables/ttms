@@ -12,7 +12,6 @@ void Schedule_UI_MgtEntry(int play_id)
     List_Init(head, studio_node_t);
     paging.offset   = 0;
     paging.pageSize = SCHEDULE_PAGE_SIZE;
-    getchar();
     paging.totalRecords = Schedule_Srv_FetchByPlay(head, play_id);
     Paging_Locate_FirstPage(head, paging);
 
@@ -55,8 +54,8 @@ void Schedule_UI_MgtEntry(int play_id)
             "\n================================================================"
             "==\n");
         printf("Your Choice:");
-        scanf("%c", &choice);
         fflush(stdin);
+        scanf("%c", &choice);
         switch (choice)
         {
             case 'a':
@@ -91,11 +90,10 @@ void Schedule_UI_MgtEntry(int play_id)
                 scanf("%d", &id);
                 fflush(stdin);
                 schedule_t sch;
-                if(!Schedule_Srv_FetchByID(id,&sch)){
-                    printf("fail to get the Schedule!");
-                }else{
+                Schedule_Srv_FetchByID(id,&sch);
+                 
+               
                     Ticket_UI_MgtEntry(id);
-                }
                 paging.totalRecords = Schedule_Srv_FetchAll(head);
                 List_Paging(head, paging, studio_node_t);
                 break;

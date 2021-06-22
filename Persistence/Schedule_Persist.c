@@ -5,11 +5,10 @@ static const char SCHEDULE_DATA_FILE[]      = "Schedule.dat";
 static const char SCHEDULE_DATA_TEMP_FILE[] = "ScheduleTmp.dat";
 int Schedule_Perst_SelectByPlay(schedule_list_t list, int play_id)
 {
-    List_Init(list, schedule_node_t);
     schedule_t sch;
     int recCount = 0;
     schedule_node_t *newNode;
-    FILE *fp = fopen(SCHEDULE_DATA_FILE, "rb");
+    FILE *fp = fopen(SCHEDULE_DATA_FILE, "rb+");
     if (!(fp == NULL))
     {
         while (!feof(fp))
