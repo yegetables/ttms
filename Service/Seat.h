@@ -47,7 +47,7 @@ void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node);
 标识符：TTMS_SCU_Seat_Srv_Add
 功能：单个添加座位
 */
-int Seat_Srv_Add(const seat_t *data);
+int Seat_Srv_Add(seat_t *data);
 
 /*
 标识符：TTMS_SCU_Seat_Srv_AddBatch

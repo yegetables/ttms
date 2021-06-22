@@ -14,7 +14,7 @@
 参数说明：data为seat_t类型指针，表示需要添加的座位数据结点。
 返 回 值：整型，表示是否成功添加了座位的标志。
 */
-int Seat_Srv_Add(const seat_t *data)
+int Seat_Srv_Add(seat_t *data)
 {
     // 请补充完整
     return Seat_Perst_Insert(data);  //存储新座位
@@ -93,12 +93,13 @@ int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID)
     // 请补充完整
     seat_list_t headStr;  //所有roomID的头节点
     List_Init(headStr, seat_node_t);
+
     Seat_Srv_FetchByRoomID(headStr, roomID);  //获取所有roomID的座位
     int validCount     = 0;                   //有效座位个数
     seat_list_t curPos = NULL;                //遍历座位的指针
     List_ForEach(headStr, curPos)             //遍历所有roomID座位
     {
-        if (curPos->data.roomID == SEAT_GOOD)
+        if (curPos->data.status == SEAT_GOOD && curPos->data.roomID == roomID)
         {
             List_AddTail(list, curPos);
             validCount++;
@@ -196,9 +197,10 @@ void Seat_Srv_AddToSoftedList(seat_list_t list, seat_node_t *node)
     seat_list_t curPos;
     List_ForEach(list, curPos)
     {
-        if (!(curPos != list && (curPos->data.row < node->data.row) ||
-              curPos->data.row == node->data.row &&
-                  curPos->data.column < node->data.column))
+        if (!(curPos != list &&
+              (curPos->data.row < node->data.row ||
+               (curPos->data.row == node->data.row &&
+                curPos->data.column < node->data.column))))
         {
             List_InsertBefore(curPos, node);
             return;

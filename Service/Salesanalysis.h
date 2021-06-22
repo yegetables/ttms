@@ -42,5 +42,6 @@ typedef struct salesanalysis_node
 int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list);
 
 void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t list);
-
+void SalesAnalysis_Srv_AddToSoftedList(salesanalysis_list_t list,
+                                       salesanalysis_node_t *node);
 #endif /* SALESANALYSIS_T */
