@@ -302,5 +302,6 @@ int Seat_Perst_SelectByRoomID(seat_list_t list, int roomID)
             }
         }
     }
+    fclose(fp);
     return recCount;
 }

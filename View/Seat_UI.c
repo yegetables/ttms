@@ -77,35 +77,15 @@ void Seat_UI_MgtEntry(int roomID)
     if (Seat_Srv_FetchByRoomID(list, roomID) == 0)  //从文件中读座位信息
     {
         printf("此放映厅座位未初始化\n");
-        int rowsCount, colsCount;
-        while (1)
+        if (Seat_Srv_RoomInit(list, roomID, buf->rowsCount,
+                              buf->colsCount) == 0)  //座位初始化并保存到文件中
         {
-            printf("输入座位行数:");
-            if (scanf("%d", &rowsCount) != 1 || rowsCount <= 0)
-            {
-                printf("输入有误,请重新输入\n");
-                continue;
-            }
-            printf("输入座位列数:");
-            if (scanf("%d", &colsCount) != 1 || colsCount <= 0)
-            {
-                printf("输入有误,请重新输入\n");
-                continue;
-            }
-            break;
-        }
-        Seat_Srv_RoomInit(list, roomID, rowsCount,
-                          colsCount);  //座位初始化并保存到文件中
-        buf->rowsCount  = rowsCount;
-        buf->colsCount  = colsCount;
-        buf->seatsCount = rowsCount * colsCount;
-        if (Studio_Srv_Modify(buf))  //更新放映厅信息保存到文件
-        {
-            printf("初始化完毕\n");
+            printf("初始化失败\n");
         }
         else
         {
-            printf("初始化失败\n");
+            buf->seatsCount = buf->rowsCount * buf->colsCount;
+            printf("初始化成功\n");
         }
     }
     else
