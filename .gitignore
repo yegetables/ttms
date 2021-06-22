@@ -16,3 +16,5 @@ yarn.lock
 .husky
 changelog.config.js
 yarn-error.log
+Play.dat
+Seat.dat

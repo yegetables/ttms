@@ -130,27 +130,25 @@ int Play_Perst_RemByID(int id)
 int Play_Perst_SelectByID(int id, play_t *buf)
 {
     assert(NULL != buf);
-    FILE *fp = fopen(PLAY_DATA_FILE, "rb");
-    if (NULL == fp)
+    int find            = 0;
+    play_node_t *curPos = NULL;
+    play_list_t headPtr = (play_list_t)malloc(sizeof(play_node_t));
+    List_Init(headPtr, play_node_t);
+    if (Play_Perst_SelectAll(headPtr) <= 0)
     {
-        return 0;
+        printf("无剧目信息\n");
+        return find;
     }
-    play_t data;
-    int found = 0;
-    while (!feof(fp))
+    List_ForEach(headPtr, curPos)
     {
-        if (fread(&data, sizeof(play_t), 1, fp))
+        if (curPos->data.id == id)
         {
-            if (id == data.id)
-            {
-                *buf  = data;
-                found = 1;
-                break;
-            }
+            *buf = curPos->data;
+            find   = 1;
+            break;
         }
     }
-    fclose(fp);
-    return found;
+    return find;
 }
 int Play_Perst_SelectByName(play_list_t list, char condt[])
 {

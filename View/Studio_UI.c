@@ -19,7 +19,8 @@ static const int STUDIO_PAGE_SIZE = 5;
 */
 void Studio_UI_MgtEntry(void)
 {
-    int i, id;
+    int i, id = 0;
+    int seatID;
     char choice;
 
     studio_list_t head;
@@ -70,7 +71,8 @@ void Studio_UI_MgtEntry(void)
             "\n================================================================"
             "==\n");
         printf("Your Choice:");
-        scanf("%c", &choice);
+        choice = getchar();
+        getchar();
         switch (choice)
         {
             case 'a':
@@ -94,7 +96,8 @@ void Studio_UI_MgtEntry(void)
             case 'u':
             case 'U':
                 printf("Input the ID:");
-                scanf("%d", &id);
+                id = getchar();
+                getchar();
                 if (Studio_UI_Modify(id))
                 {  //从新载入数据
                     paging.totalRecords = Studio_Srv_FetchAll(head);
@@ -104,8 +107,8 @@ void Studio_UI_MgtEntry(void)
             case 's':
             case 'S':
                 printf("输入放映厅ID:");
-                scanf("%d", &id);
-                Seat_UI_MgtEntry(id);
+                scanf("%d", &seatID);
+                Seat_UI_MgtEntry(seatID);
                 paging.totalRecords = Studio_Srv_FetchAll(head);
                 List_Paging(head, paging, studio_node_t);
                 break;
@@ -162,7 +165,7 @@ int Studio_UI_Add(void)
         scanf("%d", &(rec.rowsCount));
         printf("Column Count of Seats:");
         scanf("%d", &(rec.colsCount));
-        rec.seatsCount = 0;
+        rec.seatsCount = rec.colsCount * rec.rowsCount;
         printf("=======================================================\n");
 
         if (Studio_Srv_Add(&rec))
