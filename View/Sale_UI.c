@@ -27,15 +27,16 @@ dod:
         printf("[E]xist.\n");
         printf("\n=======|[P]revPage|[N]extPage|=============\n");
         printf("Please input your choice:");
-        scanf("%c", &choice);
+        choice = getchar();
+        getchar();
         switch (choice)
         {
             case 'C':
             case 'c':
                 List_ForEach(list, tmp)
                     Sale_UI_ShowScheduler(tmp->data.id);  //显示演出计划
-
                 List_Destroy(list, play_node_t);
+                printf("显示完毕\n");
                 goto dod;
                 break;
             case 'S':
@@ -43,6 +44,7 @@ dod:
                 printf("输入剧目名称\n");
                 char name1[256] = {0};
                 scanf("%s", name1);
+                getchar();
                 play_t buf;
                 if (1 != Play_Srv_FetchByName(name1, &buf))
                     printf("未找到剧目信息\n");
@@ -54,13 +56,20 @@ dod:
                 printf("输入剧目名称\n");
                 char name2[256] = {0};
                 scanf("%s", name2);
-                Play_Srv_FilterByName(newlist, name2);
+                getchar();
+                int num = Play_Srv_FilterByName(newlist, name2);
+                if (num == 0)
+                {
+                    printf("未找到剧目信息\n");
+                    break;
+                }
                 List_ForEach(newlist, tmp)
                 {
                     printf("剧目id:%d\n剧目名称:%s\n", tmp->data.id,
                            tmp->data.name);
                 }
                 List_Destroy(list, play_node_t);
+
                 break;
             case 'R':
             case 'r':
@@ -82,6 +91,8 @@ dod:
                 break;
         }
     } while ('E' != choice && 'e' != choice);
+    printf("退出程序\n");
+    exit(0);
 }
 
 void Sale_UI_ShowScheduler(int playID)

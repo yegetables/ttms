@@ -11,6 +11,8 @@
 //系统主菜单
 void Main_Menu(void)
 {
+    if(SysLogin()==1)
+    {
     char choice;
     do
     {
@@ -25,8 +27,9 @@ void Main_Menu(void)
         printf("[T]icket Sale.\n");
         printf("[R]eturn Ticket.\n");
         // printf("[Q]ueries\n");
-        printf("Ra[n]king and Statistics.\n");
+        printf("Ra[N]king and Statistics.\n");
         printf("[A]ccount Management.\n");
+        printf("[B]StaSales_UI_MgtEntry\n");
         printf("[E]xist.\n");
         printf(
             "\n================================================================"
@@ -34,6 +37,7 @@ void Main_Menu(void)
         printf("Please input your choice:");
         fflush(stdin);
         choice = getchar();
+        getchar();
         switch (choice)
         {
             case 'S':
@@ -64,6 +68,11 @@ void Main_Menu(void)
             case 'a':
                 Account_UI_MgtEntry();
                 break;
+            case 'B':
+            case 'b':
+                StaSales_UI_MgtEntry();
+                break;
         }
     } while ('E' != choice && 'e' != choice);
+    }
 }
