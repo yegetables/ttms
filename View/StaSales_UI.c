@@ -59,13 +59,13 @@ void StaSales_UI_Self(void)
     {
         case 'd':
         case 'D':
-            printf("当日销售额统计：");
-            StaSales_Srv_CompSaleVal(id, curdate, curdate);
+            printf("当日销售额统计：%d",
+                   StaSales_Srv_CompSaleVal(id, curdate, curdate));
             break;
         case 'm':
         case 'M':
-            printf("当月销售额统计：");
-            StaSales_Srv_CompSaleVal(id, startdate, enddate);
+            printf("当月销售额统计：%d",
+                   StaSales_Srv_CompSaleVal(id, startdate, enddate));
             break;
     }
     return;
@@ -87,7 +87,7 @@ void StaSales_UI_Clerk(void)
     else
     {
         id = tmp.id;
-        StaSales_Srv_CompSaleVal(id, startdate, enddate);
+        printf("%d", StaSales_Srv_CompSaleVal(id, startdate, enddate));
     }
     return;
 }
