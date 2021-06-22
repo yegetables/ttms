@@ -67,6 +67,7 @@ inline seat_status_t Seat_UI_Char2Status(char statusChar)
 void Seat_UI_MgtEntry(int roomID)
 {
     studio_t *buf = (studio_t *)malloc(sizeof(studio_t));  //存储放映厅信息
+    printf("OK\n");
     if (Studio_Srv_FetchByID(roomID, buf) == 0)  //从文件中读放映厅
     {
         printf("不存在此放映厅\n");
@@ -100,14 +101,8 @@ void Seat_UI_MgtEntry(int roomID)
             printf("-------------------------------------------------------\n");
             printf("%d放映厅座位共%d行%d列\n", roomID, buf->rowsCount,
                    buf->colsCount);
-            int **seat = (int **)malloc(sizeof(int *) * buf->rowsCount);
-            for (int i = 0; i < buf->rowsCount; i++)
-            {
-                seat[i] = (int *)malloc(sizeof(int) * buf->colsCount);
-            }
-            memset(seat, NONE,
-                   sizeof(int) * buf->rowsCount *
-                       buf->colsCount);  //初始化座位为空
+            int seat[1000][1000];
+            memset(seat, NONE, sizeof(seat));  //初始化座位为空
             List_ForEach(list, curPos)
             {
                 seat[curPos->data.row][curPos->data.column] =
@@ -184,7 +179,6 @@ int Seat_UI_Add(seat_list_t list, int roomID, int row, int column)
         printf("-------------------------------------------------------\n");
         printf("输入待添加的座位行和列\n");
         int newRow, newCol;
-        fflush(stdin);
         scanf("%d%d", &newRow, &newCol);
         if (newRow <= 0 || newCol <= 0 || newRow > row || newCol > column)
         {

@@ -181,7 +181,7 @@ void Seat_Srv_SortSeatList(seat_list_t list)
         }
         seat_list_t p = listLeft;
         listLeft      = listLeft->next;
-        Seat_Srv_AddToSoftedList(listLeft, p);
+        Seat_Srv_AddToSoftedList(list, p);
     }
 }
 
