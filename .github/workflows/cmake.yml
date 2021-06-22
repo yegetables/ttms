@@ -2,9 +2,9 @@ name: CMake
 
 on:
   push:
-    branches: [ chatroom ]
+    branches: [ main , ajian , Raja  ]
   pull_request:
-    branches: [ chatroom ]
+    branches: [ main ]
 
 jobs:
   runs-on:  ubuntu-latest
