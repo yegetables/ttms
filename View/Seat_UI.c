@@ -149,13 +149,17 @@ void Seat_UI_MgtEntry(int roomID)
                 case 'u':
                 case 'U':
                     printf("输入需要修改的座位行号和列号\n");
+                    fflush(stdin);
                     scanf("%d%d", &row, &col);
+                    fflush(stdin);
                     Seat_UI_Modify(list, row, col);
                     break;
                 case 'd':
                 case 'D':
                     printf("输入删除座位的行列\n");
+                    fflush(stdin);
                     scanf("%d%d", &row, &col);
+                    fflush(stdin);
                     Seat_UI_Delete(list, row, col);
                     break;
                 case 'r':
@@ -190,7 +194,9 @@ int Seat_UI_Add(seat_list_t list, int roomID, int row, int column)
         printf("-------------------------------------------------------\n");
         printf("输入待添加的座位行和列\n");
         int newRow, newCol;
+        fflush(stdin);
         scanf("%d%d", &newRow, &newCol);
+        fflush(stdin);
         if (newRow <= 0 || newCol <= 0 || newRow > row || newCol > column)
         {
             printf("输入有误,请核实后操作");
@@ -210,6 +216,7 @@ int Seat_UI_Add(seat_list_t list, int roomID, int row, int column)
             CHAR_SEAT_GOOD, CHAR_SEAT_NONE, CHAR_SEAT_BROKEN);
         fflush(stdin);
         scanf("%c", &char_status);
+        fflush(stdin);
         if (char_status == CHAR_SEAT_GOOD || char_status == CHAR_SEAT_NONE ||
             char_status == CHAR_SEAT_BROKEN)
         {
@@ -236,6 +243,7 @@ int Seat_UI_Add(seat_list_t list, int roomID, int row, int column)
             char choice;
             fflush(stdin);
             scanf("%c", &choice);
+            fflush(stdin);
             if (choice != 'y' && choice != 'Y')
             {
                 return newRecCount;
@@ -278,6 +286,7 @@ int Seat_UI_Modify(seat_list_t list, int row, int column)
     char char_status;
     fflush(stdin);
     scanf("%c", &char_status);
+    fflush(stdin);
     if (char_status == CHAR_SEAT_GOOD || char_status == CHAR_SEAT_NONE ||
         char_status == CHAR_SEAT_BROKEN)
     {
