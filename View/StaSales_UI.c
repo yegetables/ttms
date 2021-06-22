@@ -56,6 +56,7 @@ void StaSales_UI_Self(void)
     printf("Your choice:");
     fflush(stdin);
     scanf("%c", &choice);
+    getchar();
     switch (choice)
     {
         case 'd':
@@ -72,11 +73,18 @@ void StaSales_UI_Self(void)
 
 void StaSales_UI_Clerk(void)
 {
+    printf(
+        "---------------------------职员销售额界面----------------------------"
+        "----\n");
+    printf(
+        "\n================================================================"
+        "==\n");
+    printf("输入要查询的销售人员ID：");
     extern account_t gl_CurUser;
     int id = gl_CurUser.id;
     ttms_date_t startdate, enddate;
     account_t tmp;
-    char Usrname[1000];
+    char Usrname[100];
     scanf("%s", Usrname);
     tmp = Account_Srv_FetchbyUser(Usrname);
     if (tmp.id == -1)
@@ -86,7 +94,7 @@ void StaSales_UI_Clerk(void)
     else
     {
         id = tmp.id;
-        printf("%d",StaSales_Srv_CompSaleVal(id, startdate, enddate));
+        printf("当月销售额统计：%d",StaSales_Srv_CompSaleVal(id, startdate, enddate));
     }
     return;
 }
