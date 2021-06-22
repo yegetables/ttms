@@ -22,7 +22,7 @@ int Schedule_Srv_Delete(int id) { return Schedule_Perst_RemByID(id); }
 
 int Schedule_Srv_StatRevByPlay(int play_id, int *soldCount)
 {
-    int value, sold;
+    int value = 0, sold;
     schedule_list_t list;
     schedule_node_t *p;
     *soldCount = 0;

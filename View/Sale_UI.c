@@ -13,6 +13,7 @@ dod:
     paging.pageSize     = SALESANALYSIS_PAGE_SIZE;
     paging.offset       = 0;
     paging.totalRecords = Play_Srv_FetchAll(list);
+    // printf("paging.totalRecords:%d\n", paging.totalRecords);
     Paging_Locate_FirstPage(list, paging);
 
     // int play_id = 0;
@@ -27,8 +28,9 @@ dod:
         printf("[E]xist.\n");
         printf("\n=======|[P]revPage|[N]extPage|=============\n");
         printf("Please input your choice:");
+        fflush(stdin);
         choice = getchar();
-        getchar();
+        fflush(stdin);
         switch (choice)
         {
             case 'C':
@@ -43,8 +45,9 @@ dod:
             case 's':
                 printf("输入剧目名称\n");
                 char name1[256] = {0};
+                fflush(stdin);
                 scanf("%s", name1);
-                getchar();
+                fflush(stdin);
                 play_t buf;
                 if (1 != Play_Srv_FetchByName(name1, &buf))
                     printf("未找到剧目信息\n");

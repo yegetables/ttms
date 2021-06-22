@@ -33,9 +33,9 @@ int Schedule_Srv_Modify(const schedule_t *data);
 
 /**
  * @brief 根据ID获取演出计划
- * @param id
+ * @param id 演出计划id
  * @param buf
- * @return int
+ * @return int 1成功
  */
 int Schedule_Srv_FetchByID(int id, schedule_t *buf);
 /**
