@@ -67,7 +67,6 @@ inline seat_status_t Seat_UI_Char2Status(char statusChar)
 void Seat_UI_MgtEntry(int roomID)
 {
     studio_t *buf = (studio_t *)malloc(sizeof(studio_t));  //存储放映厅信息
-    printf("OK\n");
     if (Studio_Srv_FetchByID(roomID, buf) == 0)  //从文件中读放映厅
     {
         printf("不存在此放映厅\n");

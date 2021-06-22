@@ -5,7 +5,8 @@ int Play_Perst_SelectAll(play_list_t list)
 {
     List_Free(list, play_node_t);
     int recCount = 0;
-    FILE *fp     = fopen(PLAY_DATA_FILE, "rb");
+    assert(NULL != list);
+    FILE *fp = fopen(PLAY_DATA_FILE, "rb");
     if (NULL == fp)
     {
         return 0;
@@ -32,6 +33,7 @@ int Play_Perst_SelectAll(play_list_t list)
 //存储新剧目,返回值==1保存成功!=1保存失败,data为待存储的剧目信息
 int Play_Perst_Insert(play_t *data)
 {
+    assert(NULL != data);
     FILE *fp = fopen(PLAY_DATA_FILE, "ab");
     int rtn  = 0;
     if (NULL == fp)
@@ -48,6 +50,8 @@ int Play_Perst_Insert(play_t *data)
 //更新剧目信息,返回值==1更新成功,!=1更新失败
 int Play_Perst_Update(const play_t *data)
 {
+    assert(NULL != data);
+
     FILE *fp = fopen(PLAY_DATA_FILE, "rb+");
     if (NULL == fp)
     {
@@ -125,6 +129,7 @@ int Play_Perst_RemByID(int id)
 //根据剧目ID载入剧目信息,返回值==1载入成功,!=1载入失败,buf存储载入的剧目信息
 int Play_Perst_SelectByID(int id, play_t *buf)
 {
+    assert(NULL != buf);
     int find            = 0;
     play_node_t *curPos = NULL;
     play_list_t headPtr = (play_list_t)malloc(sizeof(play_node_t));
