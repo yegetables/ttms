@@ -162,11 +162,11 @@ int Schedule_UI_Add(int play_id)
         if (Schedule_Srv_Add(&sch))
         {
             newCount += 1;
-            printf("The new Schedule added successfully!");
+            printf("The new Schedule added successfully!\n");
         }
         else
         {
-            printf("The new Schedule added failed!");
+            printf("The new Schedule added failed!\n");
         }
         printf("-------------------------------------------------------\n");
         printf("[A]dd more, [R]eturn:");
