@@ -30,12 +30,11 @@ int SysLogin()  // SL界面
         {
             if (n == ' ' && j >= 29)
             {
-                printf("用户名不合规\n");
+                printf("密码不合规\n");
                 j = 0;
                 break;
             }
             password[j++] = n;
-            printf("*");
         }
         password[j] = '\0';
         i++;
