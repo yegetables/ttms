@@ -25,8 +25,8 @@ jobs:
       - name: checkout
         uses: actions/checkout@master
       - name: cmake 
-        run:  mkdir $GITHUB_WORKSPACE/build && cd $GITHUB_WORKSPACE/build && cmake $GITHUB_WORKSPACE  --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug 
+        run:  mkdir $GITHUB_WORKSPACE/build && cd $GITHUB_WORKSPACE/build && cmake $GITHUB_WORKSPACE  --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -G "Unix Makefiles"
         shell: bash
       - name: nmake
-        run: cd $GITHUB_WORKSPACE/build && ls &&  nmake
+        run: cd $GITHUB_WORKSPACE/build && ls &&  mingw32-make 
         shell: bash
