@@ -1,10 +1,4 @@
 #include "Ticket_Persist.h"
-<<<<<<< HEAD
-#include "../Persistence/Play_Persist.h"
-#include "../Persistence/Schedule_Persist_Qry.h"
-#include "stdio.h"
-=======
->>>>>>> main
 int Ticket_Perst_Update(const ticket_t *data)
 {
     ticket_t ret;
