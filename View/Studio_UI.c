@@ -19,7 +19,7 @@ static const int STUDIO_PAGE_SIZE = 5;
 */
 void Studio_UI_MgtEntry(void)
 {
-    int i, id;
+    int i, id = 0;
     char choice;
 
     studio_list_t head;
