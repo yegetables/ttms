@@ -18,7 +18,16 @@ jobs:
       - name: make
         run: cd $GITHUB_WORKSPACE/build && make
         shell: bash
-        
+      - uses: purduesigbots/clang-format-action@1
+        # use one of clang-format's supported styles or leave this out to use the style in your .clang-format file
+        with:
+          style: file
+      # commit the changes (if there are any)
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4.1.2
+        with:
+          commit_message: 🎨 apply clang-format changes
+          branch: ${{ github.head_ref }}
   windows_job:
     runs-on:  windows-latest
     steps:
