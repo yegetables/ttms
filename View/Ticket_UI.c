@@ -2,15 +2,17 @@
 
 void Ticket_UI_MgtEntry(int schedule_id)
 {
-    schedule_t *buf = (schedule_t *)malloc(sizeof(schedule_t));
+    schedule_t buf1;
     //获取演出计划信息
-    if (1 != Schedule_Srv_FetchByID(schedule_id, buf))
+    if (1 != Schedule_Srv_FetchByID(schedule_id, &buf1))
     {
         printf("error : Schedule_Srv_FetchByID %s %d!\n", __FILE__, __LINE__);
         exit(1);
     }
+
     //用剧目id作为参数 ,获取剧目信息
-    Play_Srv_FetchByID(schedule_id, buf);
+    play_t buf2;
+    Play_Srv_FetchByID(buf1.play_id, &buf2);
     //显示剧目名称,演出厅编号,演出日期演出时间
 
     //接受输入,
@@ -19,6 +21,7 @@ reshow:
     //选择 生成还是重新生成 还是返回上一层
     printf("2:重新生成票；1：生成票；0：返回上一层\n");
     scanf("%d", &which);
+    getchar();
     switch (which)
     {
         case 2:
@@ -47,14 +50,12 @@ void Ticket_UI_Query()
 }
 int Ticket_UI_ShowTicket(int ticket_id)
 {
-    int rtn;
-    ticket_t *buf = (ticket_t *)malloc(sizeof(ticket_t));
-    if (Ticket_Srv_FetchByID(ticket_id, buf) != 1)
+    ticket_t buf;
+    if (Ticket_Srv_FetchByID(ticket_id, &buf) != 1)
     {
         printf("没有这张票");
-        return rtn;
+        return -1;
     }
     printf("查找成功");
-    rtn = 1;
-    return rtn;
+    return 1;
 }

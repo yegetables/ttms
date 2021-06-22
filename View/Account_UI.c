@@ -10,32 +10,50 @@ int SysLogin()  // SL界面
     char password[30];
     while (i < 3)
     {
-        printf("登录界面\n");
-        printf("请输入您的用户名:");
+        printf("                                    登录界面\n");
+    add_usr:
+        printf("                              用户名:");
         j = 0;
         while ((n = getchar()) != '\n')
         {
-            if (n == ' ' && j >= 29)
+            if (n == ' ' || j >= 29)
             {
+                while ((n = getchar()) != '\n');
+                
                 printf("用户名不合规\n");
                 j = 0;
-                break;
+                goto add_usr;
             }
             usrname[j++] = n;
         }
+        if (n == '\n' && j == 0)
+        {
+            printf("用户名不为空\n");
+            j = 0;
+            goto add_usr;
+        }
         usrname[j] = '\0';
-        printf("请输入您的密码:");
+
+    add_pass:
+        printf("                              密码:");
         j = 0;
         while ((n = getchar()) != '\n')
         {
-            if (n == ' ' && j >= 29)
+            if (n == ' ' || j >= 29)
             {
-                printf("用户名不合规\n");
+                while ((n = getchar()) != '\n')
+                    ;
+                printf("密码不合规\n");
                 j = 0;
-                break;
+                goto add_pass;
             }
             password[j++] = n;
-            printf("*");
+        }
+        if (n == '\n' && j == 0)
+        {
+            printf("密码不为空\n");
+            j = 0;
+            goto add_pass;
         }
         password[j] = '\0';
         i++;
@@ -67,61 +85,59 @@ int account_UI_Add(account_list_t list)
     char n;
     account_t cdata;
     printf("添加新系统用户界面\n");
-
+    add_usr:
     printf("请输入你的用户名\n");
-    while (1)
-    {
-        n = getchar();
-        if (i == 0 && n == '\n')
+    while ((n = getchar()) != '\n')
         {
-            printf("用户名不为空\n");
-        }
-        else if (n == ' ' || i >= 29)
-        {
-            printf("用户名不合规请重新输入\n");
-            i = 0;
-            while ((n = getchar()) != '\n')
-                ;
-        }
-        else
-        {
-            if (n == '\n') break;
+            if (n == ' ' || i >= 29)
+            {
+                while ((n = getchar()) != '\n');
+                
+                printf("用户名不合规\n");
+                i = 0;
+                goto add_usr;
+            }
             usrename[i++] = n;
         }
-    }
-    usrename[i] = '\0';
+        if (n == '\n' && i == 0)
+        {
+            printf("用户名不为空\n");
+            i = 0;
+            goto add_usr;
+        }
+        usrename[i] = '\0';
     memset(cdata.username, '\0', sizeof(cdata.username));
     strcpy(cdata.username, usrename);
 
+add_pass:
     printf("请输入你的新密码\n");
     i = 0;
-    while (1)
-    {
-        n = getchar();
-        if (i == 0 && n == '\n')
+        while ((n = getchar()) != '\n')
         {
-            printf("密码不为空\n");
-        }
-        else if (n == ' ' || i >= 29)
-        {
-            printf("密码不合规请重新输入\n");
-            i = 0;
-            while ((n = getchar()) != '\n')
-                ;
-        }
-        else
-        {
-            if (n == '\n') break;
+            if (n == ' ' || i >= 29)
+            {
+                while ((n = getchar()) != '\n')
+                    ;
+                printf("密码不合规\n");
+                i = 0;
+                goto add_pass;
+            }
             cpassword[i++] = n;
         }
-    }
-    cpassword[i] = '\0';
+        if (n == '\n' && i == 0)
+        {
+            printf("密码不为空\n");
+            i = 0;
+            goto add_pass;
+        }
+        cpassword[i] = '\0';
     memset(cdata.password, '\0', sizeof(cdata.password));
     strcpy(cdata.password, cpassword);
     printf("请输入新用户的权限\n");
     while (1)
     {
         scanf("%d", (int *)&cdata.type);
+        getchar();
         if (cdata.type == 0 || cdata.type == 1 || cdata.type == 2 ||
             cdata.type == 9)
             break;
@@ -245,6 +261,7 @@ void Account_UI_MgtEntry()
     char usrename[30];
     printf("Input page size:");
     scanf("%d", &pageSize);
+    getchar();
     if (pageSize <= 5) pageSize = 5;
     Pagination_t paging;
     paging.pageSize     = pageSize;
@@ -266,9 +283,8 @@ void Account_UI_MgtEntry()
             "[A]dd | [M]odify | [D]el | [Q]uery | [P]ast | [N]ext | "
             "[R]eturn\n");
         printf("You Choice:");
-        while ((tmp_char = getchar()) != '\n' && tmp_char != EOF)
-            ;
         scanf("%c", &choice);
+        getchar();
         if (choice >= 'a' && choice <= 'z') choice -= 32;
         switch (choice)
         {
@@ -378,8 +394,6 @@ void Account_UI_MgtEntry()
                 }
                 break;
         }
-        printf("输入R或r来退出此界面\n");
-        scanf("%c", &choice);
     } while (choice != 'R' && choice != 'r');
     List_Destroy(head, account_node_t)
 }

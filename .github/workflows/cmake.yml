@@ -18,7 +18,6 @@ jobs:
       - name: make
         run: cd $GITHUB_WORKSPACE/build && make
         shell: bash
-        
   windows_job:
     runs-on:  windows-latest
     steps:

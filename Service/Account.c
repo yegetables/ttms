@@ -70,7 +70,7 @@ void Account_Srv_InitSys()
     else
     {
         account_t admin = {0, USR_ADMIN, "admin", "12345"};
-        admin.id        = EntKey_Perst_GetNewKeys("系统用户", 1);
+ //       admin.id        = EntKey_Perst_GetNewKeys("系统用户", 1);
         Account_Srv_Add(&admin);
     }
 }

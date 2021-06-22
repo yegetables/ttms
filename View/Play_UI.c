@@ -269,7 +269,7 @@ int Play_UI_Modify(int id)
             printf("输入有误,请重新输入\n");
         }
         fflush(stdin);
-        printf("修改剧目出品地区[%s]=====>", etc.area);
+        printf("修改剧目出品地区[%s]=====>\n", etc.area);
         fscanf(stdin, "%s", newPlay.area);
         fflush(stdin);
         while (1)
