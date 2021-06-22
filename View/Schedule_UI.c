@@ -91,9 +91,9 @@ void Schedule_UI_MgtEntry(int play_id)
                 fflush(stdin);
                 schedule_t sch;
                 Schedule_Srv_FetchByID(id,&sch);
-                 
-               
+                   
                     Ticket_UI_MgtEntry(id);
+                
                 paging.totalRecords = Schedule_Srv_FetchAll(head);
                 List_Paging(head, paging, studio_node_t);
                 break;
