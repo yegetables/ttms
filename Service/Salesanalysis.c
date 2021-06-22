@@ -11,10 +11,11 @@
 
 int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list)
 {
+    int a = 0;
     if (list != NULL)
     {
         play_node_t *pos;
-        salesanalysis_node_t *newNode;
+        salesanalysis_node_t newNode;
         play_list_t playList;
         int sold;
         List_Free(list, salesanalysis_node_t);
@@ -25,20 +26,27 @@ int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list)
         }
         else
         {
-            List_AddTail(playList, newNode);
             List_ForEach(playList, pos)
             {
-                newNode->data.sales =
+                newNode.data.sales =
                     Schedule_Srv_StatRevByPlay(pos->data.id, &sold);
-                newNode->data.totaltickets = sold;
+                newNode.data.totaltickets = sold;
+                strcpy(newNode.data.area,pos->data.area);
+                strcpy(newNode.data.name,pos->data.name);
+                newNode.data.start_date = pos->data.start_date;
+                newNode.data.end_date = pos->data.end_date;
+                List_AddTail(list, &newNode);
+                a++;
             }
             List_Destroy(playList, play_node_t);
         }
     }
     else
     {
-        printf("Error!!!");
+        printf("Error!!!\n");
+        return 0;
     }
+    return a;
 }
 
 void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t list)
@@ -59,6 +67,6 @@ void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t list)
         }
         salesanalysis_list_t p = listLeft;
         listLeft               = listLeft->next;
-        Seat_Srv_AddToSoftedList(listLeft, p);
+        Seat_Srv_AddToSoftedList(list, p);
     }
 }

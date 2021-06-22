@@ -18,7 +18,9 @@ void SalesAnalysis_UI_MgtEntry(void)
     Pagination_t paging;
     paging.pageSize     = SALESANALYSIS_PAGE_SIZE;
     paging.totalRecords = SalesAnalysis_Srv_StaticSale(head);
+    printf("2\n");
     SalesAnalysis_Srv_SortBySale(head);
+    printf("3\n");
     Paging_Locate_FirstPage(head, paging);
     play_node_t *pos;
     do
@@ -45,9 +47,9 @@ void SalesAnalysis_UI_MgtEntry(void)
                     pos->data.start_date.month, pos->data.start_date.day);
             sprintf(sho2, "%d-%d-%d", pos->data.end_date.year,
                     pos->data.end_date.month, pos->data.end_date.day);
-            printf("%10s  %10s  %10ld  %10ld  %10s %10s\n", pos->data.name,
-                   pos->data.area, newNode->data.totaltickets,
-                   newNode->data.sales, sho1, sho2);
+            printf("%10s  %10s  %10ld  %10ld  %10s %10s\n", newNode->data.name,
+                   newNode->data.area, newNode->data.totaltickets,
+                   newNode->data.sales,newNode->data.start_date,newNode->data.end_date, sho1, sho2);
         }
 
         printf(
