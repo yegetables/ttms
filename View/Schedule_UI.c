@@ -10,9 +10,9 @@ void Schedule_UI_MgtEntry(int play_id)
     Pagination_t paging;
 
     List_Init(head, studio_node_t);
-    paging.offset   = 0;
-    paging.pageSize = SCHEDULE_PAGE_SIZE;
-    getchar();
+
+    paging.offset       = 0;
+    paging.pageSize     = SCHEDULE_PAGE_SIZE;
     paging.totalRecords = Schedule_Srv_FetchByPlay(head, play_id);
     Paging_Locate_FirstPage(head, paging);
 
@@ -55,15 +55,18 @@ void Schedule_UI_MgtEntry(int play_id)
             "\n================================================================"
             "==\n");
         printf("Your Choice:");
+        fflush(stdin);
         scanf("%c", &choice);
         fflush(stdin);
         switch (choice)
         {
             case 'a':
             case 'A':
-                    Schedule_UI_Add(play_id);  //新添加成功，跳到最后一页显示
-                    paging.totalRecords = Schedule_Srv_FetchAll(head);
-                    Paging_Locate_LastPage(head, paging, studio_node_t);
+                Schedule_UI_Add(play_id);  //新添加成功，跳到最后一页显示
+                paging.totalRecords = Schedule_Srv_FetchAll(head);
+                // printf("ser:%d\n", paging.totalRecords);
+                Paging_Locate_LastPage(head, paging, studio_node_t);
+                // printf("lat:%d\n", paging.totalRecords);
                 break;
             case 'd':
             case 'D':
@@ -88,14 +91,15 @@ void Schedule_UI_MgtEntry(int play_id)
             case 't':
             case 'T':
                 printf("Input the Schedule ID:");
+                fflush(stdin);
                 scanf("%d", &id);
                 fflush(stdin);
                 schedule_t sch;
-                if(!Schedule_Srv_FetchByID(id,&sch)){
-                    printf("fail to get the Schedule!");
-                }else{
-                    Ticket_UI_MgtEntry(id);
-                }
+                Schedule_Srv_FetchByID(id, &sch);
+                //printf("rse==%d\n", rse);
+                
+                Ticket_UI_MgtEntry(id);
+
                 paging.totalRecords = Schedule_Srv_FetchAll(head);
                 List_Paging(head, paging, studio_node_t);
                 break;
@@ -142,7 +146,9 @@ int Schedule_UI_Add(int play_id)
         scanf("%d", &(sch.studio_id));
         do
         {
-            printf("The Schedule Time:===========>");
+            printf(
+                "The Schedule Time:===========>(you should input:year  month  "
+                "day hour minute second:)");
             scanf("%d %d %d %d %d %d", &(sch.date.year), &(sch.date.month),
                   &(sch.date.day), &(sch.time.hour), &(sch.time.minute),
                   &(sch.time.second));
@@ -166,8 +172,9 @@ int Schedule_UI_Add(int play_id)
         printf("[A]dd more, [R]eturn:");
         fflush(stdin);
         scanf("%c", &choice);
+        fflush(stdin);
     } while ('a' == choice || 'A' == choice);
-    
+
     return newCount;
 }
 
@@ -198,6 +205,7 @@ int Schedule_UI_Modify(int id)
         printf("The Schedule Time:[%d--%d--%d--%d--%d--%d]\n========>",
                sch.date.year, sch.date.month, sch.date.day, sch.time.hour,
                sch.time.minute, sch.time.second);
+        printf("  you should input:year  month  day hour minute second:");
         scanf("%d %d %d %d %d %d", &(sch.date.year), &(sch.date.month),
               &(sch.date.day), &(sch.time.hour), &(sch.time.minute),
               &(sch.time.second));

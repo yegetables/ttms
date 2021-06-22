@@ -1,5 +1,5 @@
-#ifndef TICKET_UI_H
-#define TICKET_UI_H
+#ifndef TICKET_UI_H_
+#define TICKET_UI_H_
 #include <stdio.h>
 
 #include "../Service/Play.h"
@@ -9,7 +9,7 @@
  *
  * @param schedule_id 余票相关的演出计划ID
  */
-void Ticket_UI_MgtEntry(int schedule_id);
+int  Ticket_UI_MgtEntry(int schedule_id);
 /**
  * @brief :界面层演出票查询的入口函数；
  *

@@ -93,12 +93,13 @@ int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID)
     // 请补充完整
     seat_list_t headStr;  //所有roomID的头节点
     List_Init(headStr, seat_node_t);
+
     Seat_Srv_FetchByRoomID(headStr, roomID);  //获取所有roomID的座位
     int validCount     = 0;                   //有效座位个数
     seat_list_t curPos = NULL;                //遍历座位的指针
     List_ForEach(headStr, curPos)             //遍历所有roomID座位
     {
-        if (curPos->data.roomID == roomID && curPos->data.status == SEAT_GOOD)
+        if (curPos->data.status == SEAT_GOOD && curPos->data.roomID == roomID)
         {
             List_AddTail(list, curPos);
             validCount++;
