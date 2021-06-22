@@ -43,7 +43,7 @@ void Schedule_UI_MgtEntry(int play_id)
         //显示数据
         Paging_ViewPage_ForEach(head, paging, schedule_node_t, pos, i)
         {
-            printf("%10d  %10d  %10d  %10d  %d--%d--%d--%d--%d--%d\n",
+            printf("%10d  %10d  %10d  %10d  %d----%d----%d----%d----%d----%d\n",
                    pos->data.play_id, pos->data.id, pos->data.studio_id,
                    pos->data.seat_count, pos->data.date.year,
                    pos->data.date.month, pos->data.date.day,
@@ -67,6 +67,7 @@ void Schedule_UI_MgtEntry(int play_id)
             "==\n");
         printf("Your Choice:");
         scanf("%c", &choice);
+        fflush(stdin);
         switch (choice)
         {
             case 'a':
@@ -162,11 +163,11 @@ int Schedule_UI_Add(int play_id)
         if (Schedule_Srv_Add(&sch))
         {
             newCount += 1;
-            printf("The new Schedule added successfully!");
+            printf("The new Schedule added successfully!\n");
         }
         else
         {
-            printf("The new Schedule added failed!");
+            printf("The new Schedule added failed!\n");
         }
         printf("-------------------------------------------------------\n");
         printf("[A]dd more, [R]eturn:");
