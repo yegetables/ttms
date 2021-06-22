@@ -67,6 +67,7 @@ void Play_UI_MgtEntry()
         printf("输入选项:");
         fflush(stdin);
         scanf("%c", &choice);
+        fflush(stdin);
         switch (choice)
         {
             case 'a':
@@ -146,7 +147,7 @@ int Play_UI_Add()
     fflush(stdin);
     printf("输入剧目名称\n");
     fgets(newPlay.name, 30, stdin);
-    scanf("%s", newPlay.name);
+    newPlay.name[strlen(newPlay.name) - 1] = '\0';
     fflush(stdin);
     while (1)
     {
@@ -154,6 +155,7 @@ int Play_UI_Add()
         printf("1.电影\n2.京剧\n3.音乐会\n");
         int typ;
         scanf("%d", &typ);
+        fflush(stdin);
         if (typ <= 3 && typ >= 1)
         {
             if (typ == 1) newPlay.type = PLAY_TYPE_FILE;
@@ -164,7 +166,9 @@ int Play_UI_Add()
         printf("输入有误,请重新输入\n");
     }
     printf("输入剧目出品地区\n");
+    fflush(stdin);
     scanf("%s", newPlay.area);
+    fflush(stdin);
     while (1)
     {
         printf("输入剧目等级\n");
@@ -203,6 +207,7 @@ int Play_UI_Add()
     {
         ttms_date_t startDate = newPlay.start_date;
         printf("输入剧目结束日期(年.月.日)");
+        fflush(stdin);
         if (scanf("%d.%d.%d", &newPlay.end_date.year, &newPlay.end_date.month,
                   &newPlay.end_date.day) == 3 &&
             IsTimeLegal(newPlay.end_date.year, newPlay.end_date.month,
@@ -216,6 +221,7 @@ int Play_UI_Add()
     while (1)
     {
         printf("输入票价(元)");
+        fflush(stdin);
         if (scanf("%d", &newPlay.price) == 1 && newPlay.price >= 0)
         {
             break;
@@ -246,18 +252,19 @@ int Play_UI_Modify(int id)
     }
     else
     {
-        play_t newPlay;
-        fflush(stdin);
+        play_t newPlay = etc;
         printf("修改剧目名称[%s]=====>", etc.name);
+        fflush(stdin);
         fgets(newPlay.name, 30, stdin);
         newPlay.name[strlen(newPlay.name) - 1] = '\0';
+        fflush(stdin);
         while (1)
         {
             char *t = NULL;
             if (etc.type == 1) t = "电影";
             if (etc.type == 2) t = "京剧";
             if (etc.type == 3) t = "音乐会";
-            printf("修改剧目类型[%s]=====>", t);
+            printf("修改剧目类型[%s]=====>\n", t);
             printf("1.电影\n2.京剧\n3.音乐会\n");
             if (scanf("%d", (int *)&newPlay.type) == 1 && newPlay.type >= 1 &&
                 newPlay.type <= 3)
@@ -266,12 +273,15 @@ int Play_UI_Modify(int id)
             }
             printf("输入有误,请重新输入\n");
         }
+        fflush(stdin);
         printf("修改剧目出品地区[%s]=====>\n", etc.area);
         fscanf(stdin, "%s", newPlay.area);
+        fflush(stdin);
         while (1)
         {
-            printf("修改剧目等级[%d]=====>", etc.rating);
+            printf("修改剧目等级[%d]=====>\n", etc.rating);
             printf("1.小孩\n2.青少年\n3.成人\n");
+            fflush(stdin);
             if (scanf("%d", (int *)&newPlay.rating) == 1 &&
                 newPlay.rating >= 1 && newPlay.type <= 3)
             {
@@ -281,6 +291,8 @@ int Play_UI_Modify(int id)
         }
         while (1)
         {
+            printf("修改剧目时长[%d]=====>", etc.duration);
+            fflush(stdin);
             if (scanf("%d", &newPlay.duration) == 1 && newPlay.duration > 0)
             {
                 break;
@@ -292,6 +304,7 @@ int Play_UI_Modify(int id)
             user_date_t nowDate = DateNow();
             printf("修改剧目放映日期(%d.%d.%d)=====>", etc.start_date.year,
                    etc.start_date.month, etc.start_date.day);
+            fflush(stdin);
             if (scanf("%d.%d.%d", &newPlay.start_date.year,
                       &newPlay.start_date.month,
                       &newPlay.start_date.day) == 3 &&
@@ -308,6 +321,7 @@ int Play_UI_Modify(int id)
             ttms_date_t startDate = newPlay.start_date;
             printf("修改剧目结束日期(%d.%d.%d)=====>", etc.end_date.year,
                    etc.end_date.month, etc.end_date.day);
+            fflush(stdin);
             if (scanf("%d.%d.%d", &newPlay.end_date.year,
                       &newPlay.end_date.month, &newPlay.end_date.day) == 3 &&
                 IsTimeLegal(newPlay.end_date.year, newPlay.end_date.month,
@@ -321,6 +335,7 @@ int Play_UI_Modify(int id)
         while (1)
         {
             printf("修改票价[%d]=====>", etc.price);
+            fflush(stdin);
             if (scanf("%d", &newPlay.price) == 1 && newPlay.price >= 0)
             {
                 break;
