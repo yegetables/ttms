@@ -257,14 +257,15 @@ void Account_UI_MgtEntry()
     int pageSize, i;
     account_node_t *p;
     char choice;
+    char tmp_char;
     char usrename[30];
     printf("Input page size:");
     scanf("%d", &pageSize);
     getchar();
     if (pageSize <= 5) pageSize = 5;
     Pagination_t paging;
+      paging.totalRecords = n;
     paging.pageSize     = pageSize;
-    paging.totalRecords = n;
     Paging_Locate_FirstPage(head, paging);
     do
     {
@@ -307,26 +308,25 @@ void Account_UI_MgtEntry()
                     printf("add error\n");
                 break;
             case 'M':
+        add_usr_1:
                 printf("请输入用户名\n");
-                while (1)
+                 while ((n = getchar()) != '\n')
                 {
-                    n = getchar();
-                    if (i == 0 && n == '\n')
+                    if (n == ' ' || i >= 29)
                     {
-                        printf("用户名不为空\n");
-                    }
-                    else if (n == ' ' || i >= 29)
-                    {
-                        printf("用户名不合规请重新输入\n");
+                        while ((n = getchar()) != '\n');
+                        
+                        printf("用户名不合规\n");
                         i = 0;
-                        while ((n = getchar()) != '\n')
-                            ;
+                        goto add_usr_1;
                     }
-                    else
-                    {
-                        if (n == '\n') break;
-                        usrename[i++] = n;
-                    }
+                    usrename[i++] = n;
+                }
+                if (n == '\n' && i == 0)
+                {
+                    printf("用户名不为空\n");
+                    i = 0;
+                    goto add_usr_1;
                 }
                 usrename[i] = '\0';
                 if (account_UI_Modfify(head, usrename))
