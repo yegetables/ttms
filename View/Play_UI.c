@@ -153,9 +153,14 @@ int Play_UI_Add()
     {
         printf("输入剧目类型\n");
         printf("1.电影\n2.京剧\n3.音乐会\n");
-        if (scanf("%d", (int *)&(newPlay.type)) == 1 && newPlay.type >= 1 &&
-            newPlay.type <= 3)
+        int typ;
+        scanf("%d", &typ);
+        fflush(stdin);
+        if (typ <= 3 && typ >= 1)
         {
+            if (typ == 1) newPlay.type = PLAY_TYPE_FILE;
+            if (typ == 2) newPlay.type = PLAY_TYPE_OPEAR;
+            if (typ == 3) newPlay.type = PLAY_TYPE_CONCERT;
             break;
         }
         printf("输入有误,请重新输入\n");
