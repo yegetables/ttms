@@ -3,6 +3,10 @@
 #include <stdio.h>
 
 #include "../Common/List.h"
+#include "Play_Persist.h"
+#include "Schedule_Persist.h"
+#include "Seat_Persist.h"
+#include "Studio_Persist.h"
 //票状态
 typedef enum
 {

@@ -11,7 +11,23 @@
 #ifndef STUDIO_PERSIST_H_
 #define STUDIO_PERSIST_H_
 
-#include "../Service/Studio.h"
+//演出厅数据结构
+typedef struct
+{
+    int id;         //放映厅ID
+    char name[30];  //放映厅名称
+    int rowsCount;  //座位行数
+    int colsCount;  //座位列数
+    int seatsCount;
+} studio_t;
+
+//双向链表
+typedef struct studio_node
+{
+    studio_t data;             //实体数据
+    struct studio_node *next;  //后向指针
+    struct studio_node *prev;  //前向指针
+} studio_node_t, *studio_list_t;
 
 //标识符：TTMS_SCU_Studio_Perst_Insert
 //功能：向文件中存储新演出厅
