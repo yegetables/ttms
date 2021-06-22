@@ -91,7 +91,7 @@ void SalesAnalysis_UI_MgtEntry(void)
                 printf("Input Error,Please Input again\n");
                 break;
         }
-    } while ('E' != choice && 'e' != choice);
+    } while ('R' != choice && 'r' != choice);
     //释放链表空间
     List_Destroy(head, play_node_t);
 }
