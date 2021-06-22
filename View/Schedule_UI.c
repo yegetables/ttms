@@ -12,7 +12,7 @@ void Schedule_UI_MgtEntry(int play_id)
     List_Init(head, studio_node_t);
     paging.offset   = 0;
     paging.pageSize = SCHEDULE_PAGE_SIZE;
-
+    getchar();
     paging.totalRecords = Schedule_Srv_FetchByPlay(head, play_id);
     Paging_Locate_FirstPage(head, paging);
 
@@ -49,7 +49,7 @@ void Schedule_UI_MgtEntry(int play_id)
             "******************************************************************"
             "\n");
         printf(
-            "[P]revPage|[N]extPage | [A]dd|[D]elete|[U]pdate | [S]eat | "
+            "[P]revPage|[N]extPage | [A]dd|[D]elete|[U]pdate | [S]eat |[T]icket "
             "[R]eturn");
         printf(
             "\n================================================================"
@@ -61,11 +61,10 @@ void Schedule_UI_MgtEntry(int play_id)
         {
             case 'a':
             case 'A':
-                if (Schedule_UI_Add(play_id))  //新添加成功，跳到最后一页显示
-                {
+                    Schedule_UI_Add(play_id);  //新添加成功，跳到最后一页显示
                     paging.totalRecords = Schedule_Srv_FetchAll(head);
                     Paging_Locate_LastPage(head, paging, studio_node_t);
-                }
+                
                 break;
             case 'd':
             case 'D':
@@ -92,7 +91,8 @@ void Schedule_UI_MgtEntry(int play_id)
                 printf("Input the Schedule ID:");
                 scanf("%d", &id);
                 fflush(stdin);
-                if(!Schedule_Srv_FetchByID(id)){
+                schedule_t sch;
+                if(!Schedule_Srv_FetchByID(id,&sch)){
                     printf("fail to get the Schedule!");
                 }else{
                     Ticket_UI_MgtEntry(id);
