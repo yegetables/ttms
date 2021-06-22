@@ -6,7 +6,7 @@
 #include "../Common/List.h"
 #include "../Persistence/Schedule_Persist.h"
 #include "../Service/Ticket.h"
-
+#include "Play.h"
 /**
  * @brief 查找与ID号相关的的演出计划
  *

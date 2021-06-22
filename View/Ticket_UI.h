@@ -1,5 +1,7 @@
 #ifndef TICKET_UI_H
 #define TICKET_UI_H
+#include <stdio.h>
+
 #include "../Service/Play.h"
 #include "../Service/Ticket.h"
 /**

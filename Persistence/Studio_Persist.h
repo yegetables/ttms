@@ -11,6 +11,13 @@
 #ifndef STUDIO_PERSIST_H_
 #define STUDIO_PERSIST_H_
 
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#include "../Common/List.h"
+#include "EntityKey_Persist.h"
 //演出厅数据结构
 typedef struct
 {

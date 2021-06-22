@@ -1,6 +1,11 @@
 #ifndef SCHEDULE_PERSIST_H_
 #define SCHEDULE_PERSIST_H_
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "../Common/Common.h"
+#include "../Common/List.h"
 typedef struct
 {
     int id;            //演出计划id
