@@ -20,6 +20,7 @@ static const int STUDIO_PAGE_SIZE = 5;
 void Studio_UI_MgtEntry(void)
 {
     int i, id = 0;
+    int seatID;
     char choice;
 
     studio_list_t head;
@@ -106,8 +107,8 @@ void Studio_UI_MgtEntry(void)
             case 's':
             case 'S':
                 printf("输入放映厅ID:");
-                scanf("%d", &id);
-                Seat_UI_MgtEntry(id);
+                scanf("%d", &seatID);
+                Seat_UI_MgtEntry(seatID);
                 paging.totalRecords = Studio_Srv_FetchAll(head);
                 List_Paging(head, paging, studio_node_t);
                 break;
