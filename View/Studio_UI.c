@@ -281,6 +281,5 @@ int Studio_UI_Delete(int id)
         printf("The room does not exist!\nPress [Enter] key to return!\n");
     }
 
-    getchar();
     return rtn;
 }

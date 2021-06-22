@@ -13,6 +13,7 @@ int Schedule_Perst_SelectAll(schedule_list_t list){
     FILE *fp = fopen(SCHEDULE_DATA_FILE, "rb");
     if (NULL == fp)
     {  //文件不存在
+        printf("文件打开失败%s\n", SCHEDULE_DATA_FILE);
         return 0;
     }
 
@@ -42,6 +43,11 @@ int Schedule_Perst_SelectByID(int id, schedule_t *buf)
 {
     int found = 0;
     FILE *fp  = fopen("Schedule.dat", "w+");
+    if (fp == NULL)
+    {
+        printf("打开Schedule.dat 失败\n");
+        exit(0);
+    }
     if (feof(fp))
     {
         fclose(fp);

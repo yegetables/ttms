@@ -1,5 +1,5 @@
-#ifndef TICKET_UI_H
-#define TICKET_UI_H
+#ifndef TICKET_UI_H_
+#define TICKET_UI_H_
 #include <stdio.h>
 
 #include "../Service/Play.h"
