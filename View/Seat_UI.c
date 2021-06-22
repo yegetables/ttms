@@ -74,30 +74,36 @@ void Seat_UI_MgtEntry(int roomID)
     }
     seat_list_t list = NULL;  //存储座位的链表
     List_Init(list, seat_node_t);
-    if (Seat_Srv_FetchByRoomID(list, roomID) == 0)  //从文件中读座位信息
+    char choice;
+    do
     {
-        printf("此放映厅座位未初始化\n");
-        if (Seat_Srv_RoomInit(list, roomID, buf->rowsCount,
-                              buf->colsCount) == 0)  //座位初始化并保存到文件中
+        if (Seat_Srv_FetchByRoomID(list, roomID) == 0)  //从文件中读座位信息
         {
-            printf("初始化失败\n");
+            printf("此放映厅座位未初始化\n");
+            if (Seat_Srv_RoomInit(list, roomID, buf->rowsCount,
+                                  buf->colsCount) ==
+                0)  //座位初始化并保存到文件中
+            {
+                printf("初始化失败\n");
+                break;
+            }
+            else
+            {
+                buf->seatsCount = buf->rowsCount * buf->colsCount;
+                printf("初始化成功\n");
+                break;
+            }
         }
         else
         {
-            buf->seatsCount = buf->rowsCount * buf->colsCount;
-            printf("初始化成功\n");
-        }
-    }
-    else
-    {
-        char choice;
-        seat_node_t *curPos;
-        do
-        {
+            seat_node_t *curPos;
             printf(
-                "\n=======================================================\n");
+                "\n======================================================="
+                "\n");
             printf("****************  座位管理界面  ****************\n");
-            printf("-------------------------------------------------------\n");
+            printf(
+                "-------------------------------------------------------"
+                "\n");
             printf("%d放映厅座位共%d行%d列\n", roomID, buf->rowsCount,
                    buf->colsCount);
             int seat[100][100];
@@ -159,8 +165,8 @@ void Seat_UI_MgtEntry(int roomID)
                     printf("输入有误,请重新输入\n");
                     break;
             }
-        } while (choice != 'r' && choice != 'R');
-    }
+        }
+    } while (choice != 'r' && choice != 'R');
     List_Destroy(list, seat_node_t);
 }
 
