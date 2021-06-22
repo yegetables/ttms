@@ -120,8 +120,8 @@ int Seat_Srv_RoomInit(seat_list_t list, int roomID, int rowsCount,
             seat_t node    = {
                 EntKey_Perst_GetNewKeys(SEAT_KEY_NAME, 1),
                 roomID,
-                rowsCount,
-                colsCount,
+                i,
+                j,
                 SEAT_GOOD,
             };
             p->data = node;
@@ -181,7 +181,7 @@ void Seat_Srv_SortSeatList(seat_list_t list)
         }
         seat_list_t p = listLeft;
         listLeft      = listLeft->next;
-        Seat_Srv_AddToSoftedList(listLeft, p);
+        Seat_Srv_AddToSoftedList(list, p);
     }
 }
 

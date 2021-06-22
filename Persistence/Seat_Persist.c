@@ -290,7 +290,7 @@ int Seat_Perst_SelectByRoomID(seat_list_t list, int roomID)
         return 0;
     }
     seat_t data;
-    while (feof(fp))
+    while (!feof(fp))
     {
         if (fread(&data, sizeof(seat_t), 1, fp))
         {
@@ -309,5 +309,6 @@ int Seat_Perst_SelectByRoomID(seat_list_t list, int roomID)
             }
         }
     }
+    fclose(fp);
     return recCount;
 }

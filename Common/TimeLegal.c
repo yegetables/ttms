@@ -57,7 +57,8 @@ int IsTimeLegal(int year, int month, int day, int nowyear, int nowmon,
     {
         if (((year > nowyear && month >= 1) || month >= nowmon) && month <= 12)
         {
-            if (((month > nowmon && day >= 1) || day >= nowday) &&
+            if ((year > nowyear || (month > nowmon && day >= 1) ||
+                 day >= nowday) &&
                 day <= MaxDay(year, month))
             {
                 return 1;

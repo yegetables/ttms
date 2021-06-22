@@ -66,7 +66,7 @@ inline seat_status_t Seat_UI_Char2Status(char statusChar)
 */
 void Seat_UI_MgtEntry(int roomID)
 {
-    studio_t *buf = NULL;                        //存储放映厅信息
+    studio_t *buf = (studio_t *)malloc(sizeof(studio_t));  //存储放映厅信息
     if (Studio_Srv_FetchByID(roomID, buf) == 0)  //从文件中读放映厅
     {
         printf("不存在此放映厅\n");
@@ -74,64 +74,50 @@ void Seat_UI_MgtEntry(int roomID)
     }
     seat_list_t list = NULL;  //存储座位的链表
     List_Init(list, seat_node_t);
-    if (Seat_Srv_FetchByRoomID(list, roomID) == 0)  //从文件中读座位信息
+    char choice;
+    do
     {
-        printf("此放映厅座位未初始化\n");
-        int rowsCount, colsCount;
-        while (1)
+        if (Seat_Srv_FetchByRoomID(list, roomID) == 0)  //从文件中读座位信息
         {
-            printf("输入座位行数:");
-            if (scanf("%d", &rowsCount) != 1 || rowsCount <= 0)
+            printf("此放映厅座位未初始化\n");
+            if (Seat_Srv_RoomInit(list, roomID, buf->rowsCount,
+                                  buf->colsCount) ==
+                0)  //座位初始化并保存到文件中
             {
-                printf("输入有误,请重新输入\n");
-                continue;
+                printf("初始化失败\n");
+                break;
             }
-            printf("输入座位列数:");
-            if (scanf("%d", &colsCount) != 1 || colsCount <= 0)
+            else
             {
-                printf("输入有误,请重新输入\n");
-                continue;
+                buf->seatsCount = buf->rowsCount * buf->colsCount;
+                printf("初始化成功\n");
+                break;
             }
-            break;
-        }
-        Seat_Srv_RoomInit(list, roomID, rowsCount,
-                          colsCount);  //座位初始化并保存到文件中
-        buf->rowsCount  = rowsCount;
-        buf->colsCount  = colsCount;
-        buf->seatsCount = rowsCount * colsCount;
-        if (Studio_Srv_Modify(buf))  //更新放映厅信息保存到文件
-        {
-            printf("初始化完毕\n");
         }
         else
         {
-            printf("初始化失败\n");
-        }
-    }
-    else
-    {
-        char choice;
-        seat_node_t *curPos;
-        do
-        {
+            seat_node_t *curPos;
             printf(
-                "\n=======================================================\n");
+                "\n======================================================="
+                "\n");
             printf("****************  座位管理界面  ****************\n");
-            printf("-------------------------------------------------------\n");
+            printf(
+                "-------------------------------------------------------"
+                "\n");
             printf("%d放映厅座位共%d行%d列\n", roomID, buf->rowsCount,
                    buf->colsCount);
-            int **seat = (int **)malloc(sizeof(int *) * buf->rowsCount);
-            for (int i = 0; i < buf->rowsCount; i++)
+            int seat[100][100];
+            for (int i = 0; i < 100; i++)
             {
-                seat[i] = (int *)malloc(sizeof(int) * buf->colsCount);
+                for (int j = 0; j < 100; j++)
+                {
+                    seat[i][j] = NONE;
+                }
             }
-            memset(seat, NONE,
-                   sizeof(int) * buf->rowsCount *
-                       buf->colsCount);  //初始化座位为空
             List_ForEach(list, curPos)
             {
                 seat[curPos->data.row][curPos->data.column] =
-                    curPos->data.status;
+                    (int)(curPos->data.status);
             }
             for (int i = 0; i < buf->rowsCount; i++)
             {
@@ -179,8 +165,8 @@ void Seat_UI_MgtEntry(int roomID)
                     printf("输入有误,请重新输入\n");
                     break;
             }
-        } while (choice != 'r' && choice != 'R');
-    }
+        }
+    } while (choice != 'r' && choice != 'R');
     List_Destroy(list, seat_node_t);
 }
 
@@ -204,7 +190,6 @@ int Seat_UI_Add(seat_list_t list, int roomID, int row, int column)
         printf("-------------------------------------------------------\n");
         printf("输入待添加的座位行和列\n");
         int newRow, newCol;
-        fflush(stdin);
         scanf("%d%d", &newRow, &newCol);
         if (newRow <= 0 || newCol <= 0 || newRow > row || newCol > column)
         {
