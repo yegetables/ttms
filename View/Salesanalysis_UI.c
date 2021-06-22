@@ -29,7 +29,7 @@ void SalesAnalysis_UI_MgtEntry(void)
         printf(
             "********************** 剧目票房排行信息 "
             "**********************\n");
-        printf("  %18s  %10s  %10s  %10s %10s %10s \n", "剧目名", "剧目区域",
+        printf("  %10s  %10s  %10s  %10s %10s %10s \n", "剧目名", "剧目区域",
                "剧目上座数量", "剧目票房", "剧目上映日期", "剧目下映日期");
         printf(
             "------------------------------------------------------------------"
@@ -90,7 +90,7 @@ void SalesAnalysis_UI_MgtEntry(void)
                 printf("Input Error,Please Input again\n");
                 break;
         }
-    } while (1);
+    } while ('E' != choice && 'e' != choice);
     //释放链表空间
     List_Destroy(head, play_node_t);
 }

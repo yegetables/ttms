@@ -10,10 +10,6 @@
 void StaSales_UI_MgtEntry(void)
 {
     extern account_t gl_CurUser;
-    gl_CurUser.id = 1;
-    gl_CurUser.type = 1;
-    strcpy(gl_CurUser.username,"123");
-    strcpy(gl_CurUser.password,"s");
     if (gl_CurUser.type == USR_CLERK)
     {
         StaSales_UI_Self();
