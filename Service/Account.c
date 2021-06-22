@@ -13,7 +13,9 @@ account_t Account_Srv_FetchbyUser(char usrName[])
 }
 int Account_Srv_Modify(account_t *data)
 {
-    account_t tmp;
+    printf("asddasasd\n\n");
+        account_t tmp;
+    int found=0;
     FILE *fp = fopen("Account.dat", "rb+");
     if (!fp)
     {
@@ -29,19 +31,27 @@ int Account_Srv_Modify(account_t *data)
                 if (!feof(fp))  //文件结束：返回非0值；文件未结束：返回0值
                 {
                     printf("fread error\n");
+                    fclose(fp);
                     return 0;
                 }
                 break;
             }
-            if (tmp.username == data->username)
+            if (strcmp(tmp.username,data->username)==0)
             {
+                found=1;
                 fseek(fp, -(int)sizeof(account_t), SEEK_CUR);
                 fwrite(data, sizeof(account_t), 1, fp);
+                break;
             }
         }
-    }
     fclose(fp);
-    return 1;
+    if (found==1)
+    {
+        return 1;
+    }
+    else return 0;
+    }
+
 }
 int Account_Srv_Verify(char usrName[], char pwd[])
 {

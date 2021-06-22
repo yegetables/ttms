@@ -71,6 +71,10 @@ void Main_Menu(void)
             case 'b':
                 StaSales_UI_MgtEntry();
                 break;
+            case 'M':
+            case 'm':
+                MainAccount_UI_MgtEntry();
+                break;
         }
     } while ('E' != choice && 'e' != choice);
     }
