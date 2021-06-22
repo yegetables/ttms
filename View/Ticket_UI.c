@@ -1,6 +1,6 @@
 #include "Ticket_UI.h"
 
-void Ticket_UI_MgtEntry(int schedule_id)
+int Ticket_UI_MgtEntry(int schedule_id)
 {
     schedule_t buf;
     //获取演出计划信息
@@ -40,10 +40,10 @@ reshow:
             //?生成票?
             Ticket_Srv_GenBatch(schedule_id);
             // 跳转步骤e
-            return;
+            return 0;
         case 0:
             //返回上一层,步骤e
-            return;
+            return 0;
         default:
             //提示错误
             printf("重新输入\n");

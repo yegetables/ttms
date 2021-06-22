@@ -91,11 +91,10 @@ void Schedule_UI_MgtEntry(int play_id)
                 scanf("%d", &id);
                 fflush(stdin);
                 schedule_t sch;
-                if(!Schedule_Srv_FetchByID(id,&sch)){
-                    printf("fail to get the Schedule!");
-                }else{
+                Schedule_Srv_FetchByID(id,&sch);
+                   
                     Ticket_UI_MgtEntry(id);
-                }
+                
                 paging.totalRecords = Schedule_Srv_FetchAll(head);
                 List_Paging(head, paging, studio_node_t);
                 break;
