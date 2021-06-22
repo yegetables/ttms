@@ -65,6 +65,7 @@ void SalesAnalysis_UI_MgtEntry(void)
             "\n================================================================"
             "==\n");
         printf("Your Choice:");
+        fflush(stdin);
         scanf("%c", &choice);
         switch (choice)
         {

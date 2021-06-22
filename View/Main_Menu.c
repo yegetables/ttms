@@ -27,6 +27,7 @@ void Main_Menu(void)
         // printf("[Q]ueries\n");
         printf("Ra[N]king and Statistics.\n");
         printf("[A]ccount Management.\n");
+        printf("[B]StaSales_UI_MgtEntry\n");
         printf("[E]xist.\n");
         printf(
             "\n================================================================"
