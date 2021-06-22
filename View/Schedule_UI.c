@@ -49,7 +49,7 @@ void Schedule_UI_MgtEntry(int play_id)
             "******************************************************************"
             "\n");
         printf(
-            "[P]revPage|[N]extPage | [A]dd|[D]elete|[U]pdate | [S]eat |[T]icket "
+            "[P]revPage|[N]extPage | [A]dd|[D]elete|[U]pdate |[T]icket "
             "[R]eturn");
         printf(
             "\n================================================================"
@@ -64,7 +64,6 @@ void Schedule_UI_MgtEntry(int play_id)
                     Schedule_UI_Add(play_id);  //新添加成功，跳到最后一页显示
                     paging.totalRecords = Schedule_Srv_FetchAll(head);
                     Paging_Locate_LastPage(head, paging, studio_node_t);
-                
                 break;
             case 'd':
             case 'D':
@@ -121,7 +120,7 @@ void Schedule_UI_MgtEntry(int play_id)
                 printf("Input Error,Please Input again\n");
                 break;
         }
-    } while (choice != 'r' || choice != 'R');
+    } while (!(choice == 'r' || choice == 'R'));
 }
 
 int Schedule_UI_Add(int play_id)
@@ -168,7 +167,7 @@ int Schedule_UI_Add(int play_id)
         fflush(stdin);
         scanf("%c", &choice);
     } while ('a' == choice || 'A' == choice);
-
+    
     return newCount;
 }
 

@@ -7,6 +7,7 @@
 #include "../Persistence/Schedule_Persist.h"
 #include "../Service/Ticket.h"
 #include "Play.h"
+#include"../Persistence/Schedule_Persist_Qry.h"
 /**
  * @brief 查找与ID号相关的的演出计划
  *
