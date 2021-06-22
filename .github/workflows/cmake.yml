@@ -28,5 +28,5 @@ jobs:
         run:  mkdir $GITHUB_WORKSPACE/build && cd $GITHUB_WORKSPACE/build && cmake $GITHUB_WORKSPACE  --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug 
         shell: bash
       - name: make
-        run: cd $GITHUB_WORKSPACE/build && mingw32-make -f makefile.txt
+        run: cd $GITHUB_WORKSPACE/build && ls &&  mingw32-make -f makefile.txt
         shell: bash
