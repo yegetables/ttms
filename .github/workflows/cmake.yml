@@ -1,8 +1,6 @@
 name: CMake
 
 on:
-  push:
-    branches: [ main , ajian , Raja  ]
   pull_request:
     branches: [ main ]
 
