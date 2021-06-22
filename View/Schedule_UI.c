@@ -67,6 +67,7 @@ void Schedule_UI_MgtEntry(int play_id)
             "==\n");
         printf("Your Choice:");
         scanf("%c", &choice);
+        getchar();
         switch (choice)
         {
             case 'a':
