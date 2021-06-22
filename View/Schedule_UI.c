@@ -96,8 +96,8 @@ void Schedule_UI_MgtEntry(int play_id)
                 fflush(stdin);
                 schedule_t sch;
                 Schedule_Srv_FetchByID(id, &sch);
-                //printf("rse==%d\n", rse);
-                
+                // printf("rse==%d\n", rse);
+
                 Ticket_UI_MgtEntry(id);
 
                 paging.totalRecords = Schedule_Srv_FetchAll(head);
@@ -170,8 +170,8 @@ int Schedule_UI_Add(int play_id)
         }
         printf("-------------------------------------------------------\n");
         printf("[A]dd more, [R]eturn:");
-        fflush(stdin);
-        scanf("%c", &choice);
+        
+        choice = getchar();
         fflush(stdin);
     } while ('a' == choice || 'A' == choice);
 
