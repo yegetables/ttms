@@ -138,7 +138,7 @@ void Studio_UI_MgtEntry(void)
                 printf("Input Error,Please Input again\n");
                 break;
         }
-    } while (1);
+    } while (choice != 'r' && choice != 'R');
     //释放链表空间
     List_Destroy(head, studio_node_t);
 }

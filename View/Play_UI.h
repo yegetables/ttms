@@ -1,6 +1,14 @@
 #ifndef PLAY_UI_H_
 #define PLAY_UI_H_
+#include <stdio.h>
+#include <string.h>
 
+#include "../Common/Common.h"
+#include "../Common/List.h"
+#include "../Common/TimeLegal.h"
+#include "../Service/Play.h"
+#include "Schedule_UI.h"
+static const int PLAY_PAGE_SIZE = 5;
 /**
  * @brief 管理剧目界面函数
  *

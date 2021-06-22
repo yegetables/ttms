@@ -5,3 +5,14 @@ ttms
 EntityKey.dat
 Studio.dat
 ttms.exe
+每天任务.txt
+.cz-config.js
+node_modules
+package-lock.json
+package.json
+commitlint.config.js
+husky.config.js
+yarn.lock
+.husky
+changelog.config.js
+yarn-error.log

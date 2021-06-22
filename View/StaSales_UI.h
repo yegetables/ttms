@@ -8,7 +8,14 @@
  */
 #ifndef STASALES_UI_H_
 #define STASALES_UI_H_
+#include <stdio.h>
+#include <time.h>
 
+#include "../Common/Common.h"
+#include "../Persistence/Account_Persist.h"
+#include "../Service/Account.h"
+#include "../Service/Play.h"
+#include "../Service/StaSales.h"
 /**
  * @brief 提供统计销售额界面，
  * 剧院经理和售票员可以根据角色权限使用“统计售票员销售额”功能和“统计个人
@@ -30,4 +37,4 @@ void StaSales_UI_Self(void);
  */
 void StaSales_UI_Clerk(void);
 
-#endif /* StaSales_UI_H_ */
+#endif /* STASALES_UI_H_ */

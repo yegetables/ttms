@@ -9,14 +9,6 @@
  */
 
 #include "Seat.h"
-
-#include <stdlib.h>
-#include <string.h>
-
-#include "../Common/List.h"
-#include "../Persistence/EntityKey_Persist.h"
-#include "../Persistence/Seat_Persist.h"
-
 /*增加座位:添加新座位
 函数功能：用于添加一个新座位数据。
 参数说明：data为seat_t类型指针，表示需要添加的座位数据结点。
@@ -36,7 +28,7 @@ int Seat_Srv_Add(const seat_t *data)
 int Seat_Srv_AddBatch(seat_list_t list)
 {
     // 请补充完整
-    return Seat_Perst_InsertBatch(list);
+    return Seat_Perst_InsertBatch(list);  //批量添加到文件
 }
 
 /*修改座位:更新座位属性
@@ -58,7 +50,7 @@ int Seat_Srv_Modify(const seat_t *data)
 int Seat_Srv_DeleteByID(int ID)
 {
     // 请补充完整
-    return Seat_Perst_DeleteByID(ID);  //删除座位
+    return Seat_Perst_DeleteByID(ID);  //文件中删除座位
 }
 
 /*管理座位:通过座位ID获取座位数据
@@ -69,7 +61,7 @@ int Seat_Srv_DeleteByID(int ID)
 int Seat_Srv_FetchByID(int ID, seat_t *buf)
 {
     // 请补充完整
-    return Seat_Perst_SelectByID(ID, buf);
+    return Seat_Perst_SelectByID(ID, buf);  //从文件中读
 }
 
 /*删除座位:根据影厅ID删除所有座位
@@ -80,7 +72,7 @@ int Seat_Srv_FetchByID(int ID, seat_t *buf)
 inline int Seat_Srv_DeleteAllByRoomID(int roomID)
 {
     // 请补充完整
-    return Seat_Srv_DeleteAllByRoomID(roomID);
+    return Seat_Perst_DeleteAllByRoomID(roomID);  //删除所有座位
 }
 
 /*根据影厅ID获取所有座位
@@ -91,8 +83,8 @@ inline int Seat_Srv_DeleteAllByRoomID(int roomID)
 int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID)
 {
     // 请补充完整
-    int Count = Seat_Perst_SelectByRoomID(list, roomID);
-    Seat_Srv_SortSeatList(list);
+    int Count = Seat_Perst_SelectByRoomID(list, roomID);  //获取座位
+    Seat_Srv_SortSeatList(list);                          //排序
     return Count;
 }
 
@@ -124,8 +116,8 @@ int Seat_Srv_RoomInit(seat_list_t list, int roomID, int rowsCount,
     {
         for (int j = 1; j <= colsCount; j++)
         {
-            seat_list_t p = (seat_list_t)malloc(sizeof(seat_node_t));
-            seat_t node   = {
+            seat_node_t *p = (seat_node_t *)malloc(sizeof(seat_node_t));
+            seat_t node    = {
                 EntKey_Perst_GetNewKeys(SEAT_KEY_NAME, 1),
                 roomID,
                 rowsCount,

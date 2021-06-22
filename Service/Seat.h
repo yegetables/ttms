@@ -10,33 +10,12 @@
 
 #ifndef SEAT_H_
 #define SEAT_H_
+#include <stdlib.h>
+#include <string.h>
 
-//座位状态
-typedef enum
-{
-    SEAT_NONE   = 0,  //空位
-    SEAT_GOOD   = 1,  //有座位
-    SEAT_BROKEN = 9   //损坏的座位
-} seat_status_t;
-
-//座位数据结构
-typedef struct
-{
-    int id;      //座位id
-    int roomID;  //所在演出厅id
-    int row;     //座位行号
-    int column;  //座位列号
-    seat_status_t
-        status;  //座位在该行的状态，0表示没有座位，1表示有座位。扩展2可表示座位坏了
-} seat_t;
-
-//双向链表
-typedef struct seat_node
-{
-    seat_t data;
-    struct seat_node *next, *prev;
-} seat_node_t, *seat_list_t;
-
+#include "../Common/List.h"
+#include "../Persistence/EntityKey_Persist.h"
+#include "../Persistence/Seat_Persist.h"
 /**
  * @brief
  * 根据给定演出厅的行、列数初始化演出厅的所有座位数据，并将每个座位结点按行插入座位链表。管理座位:初始化演出厅座位
@@ -120,7 +99,7 @@ int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID);
  * @param list seat_list_t类型，表示座位链表头指针，
  * @param row 待获取座位的行号
  * @param column 列号
- * @return seat_node_t* 获取到的座位数据。
+ * @return seat_node_t* 获取到的座位数据,没有数据放回NULL。
  */
 seat_node_t *Seat_Srv_FindByRowCol(seat_list_t list, int row, int column);
 
@@ -129,7 +108,7 @@ seat_node_t *Seat_Srv_FindByRowCol(seat_list_t list, int row, int column);
  *
  * @param list seat_list_t类型，指向座位数据链表
  * @param seatID 座位ID
- * @return seat_node_t* 表示获取的座位数据
+ * @return seat_node_t* 表示获取的座位数据,没有找到返回NULL
  */
 seat_node_t *Seat_Srv_FindByID(seat_list_t list, int seatID);
 

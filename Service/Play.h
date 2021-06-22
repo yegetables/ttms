@@ -1,51 +1,12 @@
 #ifndef PLAY_H_
 #define PLAY_H_
-//剧目类型定义
-typedef enum
-{
-    PLAY_TYPE_FILE    = 1,
-    PLAY_TYPE_OPEAR   = 2,
-    PLAY_TYPE_CONCERT = 3
-} play_type_t;
+#include <stdio.h>
+#include <string.h>
 
-//剧目分级定义
-typedef enum
-{
-    PLAY_RATE_CHILD   = 1,
-    PLAY_RATE_TEENAGE = 2,
-    PLAY_RATE_ADULT   = 3
-} play_rating_t;
-
-//日期类型定义
-typedef struct
-{
-    int year;
-    int month;
-    int day;
-} ttms_date_t;
-
-//剧目实体数据类型定义
-typedef struct
-{
-    int id;                  //剧目ID
-    char name[31];           //剧目名称
-    play_type_t type;        //剧目类型
-    char area[9];            //剧目出品地区
-    play_rating_t rating;    //剧目等级
-    int duration;            //时长,以分钟为单位
-    ttms_date_t start_date;  //开始放映日期
-    ttms_date_t end_date;    //结束放映日期
-    int price;
-    // char describe[100];  //剧目描述
-} play_t;
-
-//剧目链表定义
-typedef struct play_node
-{
-    play_t data;
-    struct play_node *next;
-    struct play_node *prev;
-} play_node_t, *play_list_t;
+#include "../Common/Common.h"
+#include "../Common/List.h"
+#include "../Persistence/Play_Persist.h"
+#include "../Persistence/Seat_Persist.h"
 
 /**
  * @brief 获取全部剧目
@@ -67,7 +28,7 @@ int Play_Srv_Add(play_t *data);
  * @brief 修改剧目
  *
  * @param data 指向待修改的剧目信息
- * @return int 返回值==1修改成功,!=1修改失败
+ * @return int 返回值==1
  */
 int Play_Srv_Modify(const play_t *data);
 
@@ -87,8 +48,6 @@ int Play_Srv_DeleteByID(int id);
  * @return int 返回值==1获取成功,!=1获取失败
  */
 int Play_Srv_FetchByID(int id, play_t *buf);
-#endif
-
 /**
  * @brief 根据剧目name获取剧目信息
  * @param name 剧目name
@@ -96,5 +55,12 @@ int Play_Srv_FetchByID(int id, play_t *buf);
  * @return int 返回值==1获取成功,!=1获取失败
  */
 int Play_Srv_FetchByName(char *name, play_t *buf);
-
-Play_Srv_FilterByName();
+/**
+ * @brief 通过剧目关键字模糊查询剧目
+ *
+ * @param list 存储含有关键字的剧目链表头指针
+ * @param key 剧目名关键字
+ * @return int 含有关键字的剧目数量
+ */
+int Play_Srv_FilterByName(play_list_t list, char *key);
+#endif

@@ -24,8 +24,8 @@ void Main_Menu(void)
         printf("[P]lay Management.\n");
         printf("[T]icket Sale.\n");
         printf("[R]eturn Ticket.\n");
-        printf("[Q]ueries\n");
-        printf("Ra[n]king and Statistics.\n");
+        // printf("[Q]ueries\n");
+        printf("Ra[N]king and Statistics.\n");
         printf("[A]ccount Management.\n");
         printf("[E]xist.\n");
         printf(
@@ -44,10 +44,10 @@ void Main_Menu(void)
             case 'p':
                 Play_UI_MgtEntry();
                 break;
-            case 'Q':
-            case 'q':
-                Queries_Menu();
-                break;
+            // case 'Q':
+            // case 'q':
+            // Queries_Menu();
+            // break;
             case 'T':
             case 't':
                 Sale_UI_MgtEntry();
@@ -58,11 +58,15 @@ void Main_Menu(void)
                 break;
             case 'N':
             case 'n':
-                SalesAanalysis_UI_MgtEntry();
+                SalesAnalysis_UI_MgtEntry();
                 break;
             case 'A':
             case 'a':
                 Account_UI_MgtEntry();
+                break;
+            case 'B':
+            case 'b':
+                StaSales_UI_MgtEntry();
                 break;
         }
     } while ('E' != choice && 'e' != choice);

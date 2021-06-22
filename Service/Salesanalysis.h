@@ -12,6 +12,7 @@
 
 #include "../Common/List.h"
 #include "../Service/Play.h"
+#include "../Service/Sale.h"
 /**
  * @brief 函数实现了构建salesanalysis_list_t类型链表功能
  *  标识符：TTMS_SCU_SalesAnalysis_Srv_StaticSale
@@ -37,4 +38,8 @@ typedef struct salesanalysis_node
 } salesanalysis_node_t, *salesanalysis_list_t;
 
 int SalesAnalysis_Srv_StaticSale(salesanalysis_list_t list);
-#endif /* salesanalysis_t */
+
+void SalesAnalysis_Srv_SortBySale(salesanalysis_list_t list);
+
+
+#endif /* SALESANALYSIS_T */
