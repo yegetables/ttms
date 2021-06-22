@@ -16,7 +16,7 @@ void StaSales_UI_MgtEntry(void)
     }
     else
     {
-        if (gl_CurUser.type == USR_MANG) 
+        if (gl_CurUser.type == USR_MANG)
         {
             StaSales_UI_Clerk();
         }
@@ -55,17 +55,20 @@ void StaSales_UI_Self(void)
     char choice;
     printf("Your choice:");
     fflush(stdin);
-    scanf("%c", &choice);
-    getchar();
+    choice = getchar();
+    if (choice == '\n') choice = getchar();
+    fflush(stdin);
     switch (choice)
     {
         case 'd':
         case 'D':
-            printf("当日销售额统计：%d",StaSales_Srv_CompSaleVal(id, curdate, curdate));
+            printf("当日销售额统计：%d",
+                   StaSales_Srv_CompSaleVal(id, curdate, curdate));
             break;
         case 'm':
         case 'M':
-            printf("当月销售额统计：%d",StaSales_Srv_CompSaleVal(id, startdate, enddate));
+            printf("当月销售额统计：%d",
+                   StaSales_Srv_CompSaleVal(id, startdate, enddate));
             break;
     }
     return;
@@ -94,7 +97,8 @@ void StaSales_UI_Clerk(void)
     else
     {
         id = tmp.id;
-        printf("当月销售额统计：%d",StaSales_Srv_CompSaleVal(id, startdate, enddate));
+        printf("当月销售额统计：%d",
+               StaSales_Srv_CompSaleVal(id, startdate, enddate));
     }
     return;
 }
