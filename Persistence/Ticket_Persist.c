@@ -1,5 +1,4 @@
 #include "Ticket_Persist.h"
-
 #include "../Persistence/Play_Persist.h"
 #include "../Persistence/Schedule_Persist_Qry.h"
 #include "stdio.h"
