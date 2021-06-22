@@ -70,7 +70,8 @@ void Studio_UI_MgtEntry(void)
             "\n================================================================"
             "==\n");
         printf("Your Choice:");
-        scanf("%c", &choice);
+        choice = getchar();
+        getchar();
         switch (choice)
         {
             case 'a':
@@ -94,7 +95,8 @@ void Studio_UI_MgtEntry(void)
             case 'u':
             case 'U':
                 printf("Input the ID:");
-                scanf("%d", &id);
+                id = getchar();
+                getchar();
                 if (Studio_UI_Modify(id))
                 {  //从新载入数据
                     paging.totalRecords = Studio_Srv_FetchAll(head);
@@ -162,7 +164,7 @@ int Studio_UI_Add(void)
         scanf("%d", &(rec.rowsCount));
         printf("Column Count of Seats:");
         scanf("%d", &(rec.colsCount));
-        rec.seatsCount = 0;
+        rec.seatsCount = rec.colsCount * rec.rowsCount;
         printf("=======================================================\n");
 
         if (Studio_Srv_Add(&rec))
