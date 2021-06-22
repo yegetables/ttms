@@ -10,17 +10,29 @@ jobs:
   linux_job:
     runs-on:  ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@master
+      - uses: actions/checkout@v2
+         with:
+          # check out HEAD on the branch
+          ref: ${{ github.head_ref }}
+          # make sure the parent commit is grabbed as well, because
+          # that's what will get formatted (i.e. the most recent commit)
+          fetch-depth: 2
       - name: cmake 
         run:  mkdir $GITHUB_WORKSPACE/build && cd $GITHUB_WORKSPACE/build && cmake $GITHUB_WORKSPACE  --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug 
         shell: bash
       - name: make
         run: cd $GITHUB_WORKSPACE/build && make
         shell: bash
-      - name: clang-format Code Formatter
-        uses: IvanLudvig/clang-format-action@v1.0
-        
+      - uses: purduesigbots/clang-format-action@1
+        # use one of clang-format's supported styles or leave this out to use the style in your .clang-format file
+        with:
+          style: file
+      # commit the changes (if there are any)
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4.1.2
+        with:
+          commit_message: 🎨 apply clang-format changes
+          branch: ${{ github.head_ref }}
   windows_job:
     runs-on:  windows-latest
     steps:
