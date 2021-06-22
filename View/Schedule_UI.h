@@ -17,7 +17,7 @@
  *
  * @param play_id 指定剧目的ID所对应的所有演出计划
  *
- * @return 返回值 == 1 成功， ！= 1失败
+ * 
  */
 void Schedule_UI_MgtEntry(int play_id);
 
