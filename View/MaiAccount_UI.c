@@ -1,61 +1,43 @@
 #include "MaiAccount_UI.h"
 extern account_t gl_CurUser;
-void MainAccount_UI_MgtEntry()
+void MaiAccount_UI_MgtEntry()
 {
     account_t cdata = gl_CurUser;
     char cpassword[30];
 
-    while (1)
-    {
+    char a;
+     char n;
+    do{
         printf("维护个人资料界面\n");
         printf("1.修改个人密码\n");
-        printf("2.修改其他资料(未开放)\n");
-        printf("3.退出此界面\n");
-        char a;
-        char b;
-        char n;
+        printf("2.退出此界面\n");
         int i = 0;
-        while (1)
-        {
-            a = getchar();
-            while ((b = getchar()) != '\n')
-                ;
-            if (a != '1' && a != '2' && a != '3')
-            {
-                printf("%c不是一个可执行的选项！\n", a);
-                printf("请重新输入！");
-            }
-            else
-                break;
-        }
-        if (a == '3')
-        {
-            break;
-        }
+        printf("You Choice:");
+        scanf("%c", &a);
+        getchar();
         switch (a)
         {
             case '1':
-                i = 0;
-                printf("请输入你的新密码\n");
-                while (1)
+               add_pass_:
+                i=0;
+                printf("请输入新密码\n");
+                 while ((n = getchar()) != '\n')
                 {
-                    n = getchar();
-                    if (i == 0 && n == '\n')
+                    if (n == ' ' || i >= 29)
                     {
-                        printf("密码不为空\n");
-                    }
-                    else if (n == ' ' || i >= 29)
-                    {
-                        printf("密码不合规请重新输入\n");
+                        while ((n = getchar()) != '\n');
+                        
+                        printf("密码不合规\n");
                         i = 0;
-                        while ((n = getchar()) != '\n')
-                            ;
+                        goto add_pass_;
                     }
-                    else
-                    {
-                        if (n == '\n') break;
-                        cpassword[i++] = n;
-                    }
+                     cpassword[i++] = n;
+                }
+                if (n == '\n' && i == 0)
+                {
+                    printf("密码不为空\n");
+                    i = 0;
+                    goto add_pass_;
                 }
                 cpassword[i] = '\0';
                 memset(cdata.password, '\0', sizeof(cdata.password));
@@ -67,8 +49,7 @@ void MainAccount_UI_MgtEntry()
                 }
                 break;
             case '2':
-                printf("暂时未开放");
                 break;
         }
-    }
+    }while (a!='2');
 }

@@ -13,7 +13,6 @@ account_t Account_Srv_FetchbyUser(char usrName[])
 }
 int Account_Srv_Modify(account_t *data)
 {
-    printf("asddasasd\n\n");
         account_t tmp;
     int found=0;
     FILE *fp = fopen("Account.dat", "rb+");
@@ -28,7 +27,7 @@ int Account_Srv_Modify(account_t *data)
         {
             if (fread(&tmp, sizeof(account_t), 1, fp) < 1)
             {
-                if (feof(fp))  //文件结束：返回非0值；文件未结束：返回0值
+                if (!feof(fp))  //文件结束：返回非0值；文件未结束：返回0值
                 {
                     printf("fread error\n");
                     fclose(fp);
