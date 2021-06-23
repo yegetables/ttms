@@ -89,7 +89,7 @@ void Main_Menu(void)
                 break;
             case 'M':
             case 'm':
- //bug               MainAccount_UI_MgtEntry();
+                MaiAccount_UI_MgtEntry();
                 break;
         }
     } while ('E' != choice && 'e' != choice);

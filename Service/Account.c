@@ -13,7 +13,6 @@ account_t Account_Srv_FetchbyUser(char usrName[])
 }
 int Account_Srv_Modify(account_t *data)
 {
-    printf("asddasasd\n\n");
         account_t tmp;
     int found=0;
     FILE *fp = fopen("Account.dat", "rb+");
