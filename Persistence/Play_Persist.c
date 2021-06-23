@@ -41,6 +41,7 @@ int Play_Perst_Insert(play_t *data)
         printf("Cannot open file %s!\n", PLAY_DATA_FILE);
         return 0;
     }
+    
     data->id = EntKey_Perst_GetNewKeys(PLAY_KEY_NAME, 1);  //获取主键
     rtn      = fwrite(data, sizeof(play_t), 1, fp);
 

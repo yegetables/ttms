@@ -14,7 +14,8 @@ int Ticket_Perst_Update(const ticket_t *data)
         fread(&ret, sizeof(ticket_t), 1, fp);
         if (ret.id == data->id)
         {
-            fwrite(data, sizeof(studio_t), 1, fp);
+            fseek(fp, -((int)sizeof(ticket_t)), SEEK_CUR);
+            fwrite(data, sizeof(ticket_t), 1, fp);
             rtn = 1;
         }
     }
@@ -25,39 +26,43 @@ int Ticket_Perst_Update(const ticket_t *data)
 int Ticket_Perst_Insert(ticket_list_t list)
 {
     int count = 0, x;
-    FILE *fp  = fopen("Ticket.dat", "a");
+    ticket_list_t tmp;
+    FILE *fp = fopen("Ticket.dat", "ab");
     if (fp == NULL)
     {
         printf("打开失败");
         return 0;
     }
-    schedule_t sch;
     // BUG:
-    ticket_list_t tmp;
-    seat_list_t seat;
-    List_Init(seat, seat_node_t);
-    play_t play;
-    int a           = 0;
-    seat_node_t *ww = NULL;
-    Seat_Perst_SelectAll(seat);
-    List_ForEach(seat, ww) a++;
-    //int key[a + 1] = {0};
+
+    // seat_list_t seat;
+    // List_Init(seat, seat_node_t);
+
+    // schedule_t sch;
+    // ticket_list_t tmp;
+    // play_t play;
+    // int a           = 0;
+    // seat_node_t *ww = NULL;
+    // Seat_Perst_SelectAll(seat);
+
+    // int key[a + 1] = {0};
     // List_ForEach(seat, ww) { EntKey_Perst_GetNewKeys(); }
     List_ForEach(list, tmp)
     {
-        Schedule_Perst_SelectByID(tmp->data.schedule_id, &sch);
-        Play_Perst_SelectByID(sch.play_id, &play);
-    }
-    seat_t data;
-    while (seat != NULL)
-    {
+        fwrite(&tmp->data, sizeof(ticket_t), 1, fp);
         count++;
-        seat = seat->next;
-        data = seat->data;
-        x    = fwrite(&data, sizeof(ticket_t), 1, fp);
+        // Schedule_Perst_SelectByID(tmp->data.schedule_id, &sch);
+        // Play_Perst_SelectByID(sch.play_id, &play);
     }
+    // seat_t data;
+    // while (seat != NULL)
+    // {
+    //     seat = seat->next;
+    //     data = seat->data;
+    //     x    = fwrite(&data, sizeof(ticket_t), 1, fp);
+    // }
     fclose(fp);
-    return x;
+    return count;
 }
 
 int Ticket_Perst_Rem(int schedule_id)
@@ -101,10 +106,11 @@ int Ticket_Perst_SelByID(int id, ticket_t *buf)
         printf("Cannot open file !\n");
         exit(1);
     }
-    while (feof(fp))
+    while (!feof(fp))
     {
         ticket_t data;
         fread(&data, sizeof(ticket_t), 1, fp);
+        
         if (data.id == id)
         {
             found = 1;
@@ -124,26 +130,34 @@ int Ticket_Perst_SelBySchID(ticket_list_t ticket, int schedule_id)
     FILE *fp = fopen("Ticket.dat", "rb");
     if (NULL == fp)
     {
+        printf("Cannot open file\n");
         return 0;
     }
     ticket_t data;
+    // printf("HERE\n");
     while (!feof(fp))
     {
-        if (fread(&data, sizeof(ticket_t), 1, fp) &&
-            data.schedule_id == schedule_id)
+        if (fread(&data, sizeof(ticket_t), 1, fp))
         {
-            ticket_node_t *newNode =
-                (ticket_node_t *)malloc(sizeof(ticket_node_t));
-            if (!newNode)
+            // printf("data: %d %d\n", schedule_id, data.schedule_id);
+            if (data.schedule_id == schedule_id)
             {
-                printf("Warning,Memory OverFlow!!!\n");
-                break;
+                ticket_node_t *newNode =
+                    (ticket_node_t *)malloc(sizeof(ticket_node_t));
+                if (!newNode)
+                {
+                    printf("Warning,Memory OverFlow!!!\n");
+                    break;
+                }
+                newNode->data = data;
+                List_AddTail(ticket, newNode);
+                recCount++;
+                // printf("count++\n");
             }
-            newNode->data = data;
-            List_AddTail(ticket, newNode);
-            recCount++;
+            // printf("read\n");
         }
     }
+    // printf("over %d\n", recCount);
     fclose(fp);
     return recCount;
 }

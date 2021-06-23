@@ -1,6 +1,5 @@
 #include "Schedule_Persist.h"
 
-
 static const char SCHEDULE_DATA_FILE[]      = "Schedule.dat";
 static const char SCHEDULE_DATA_TEMP_FILE[] = "ScheduleTmp.dat";
 int Schedule_Perst_SelectByPlay(schedule_list_t list, int play_id)
@@ -8,7 +7,7 @@ int Schedule_Perst_SelectByPlay(schedule_list_t list, int play_id)
     schedule_t sch;
     int recCount = 0;
     schedule_node_t *newNode;
-    FILE *fp = fopen(SCHEDULE_DATA_FILE, "rb+");
+    FILE *fp = fopen(SCHEDULE_DATA_FILE, "rb");
     if (!(fp == NULL))
     {
         while (!feof(fp))
@@ -41,7 +40,8 @@ int Schedule_Perst_Insert(schedule_t *data)
     int rtn  = 0;
     if (!(fp == NULL))
     {
-        rtn = fwrite(data, sizeof(schedule_t), 1, fp);
+        data->id = EntKey_Perst_GetNewKeys(SCHEDULE_KEY_NAME, 1);
+        rtn      = fwrite(data, sizeof(schedule_t), 1, fp);
         fclose(fp);
         return rtn;
     }
@@ -51,7 +51,6 @@ int Schedule_Perst_Insert(schedule_t *data)
         return 0;
     }
 }
-
 
 int Schedule_Perst_Update(const schedule_t *data)
 {

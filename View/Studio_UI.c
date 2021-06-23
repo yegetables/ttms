@@ -71,10 +71,9 @@ void Studio_UI_MgtEntry(void)
             "\n================================================================"
             "==\n");
         printf("Your Choice:");
-        fflush(stdin);
-        choice = getchar();
-        if (choice == '\n') choice = getchar();
-        fflush(stdin);
+        scanf("%c", &choice);
+        getchar();
+
         switch (choice)
         {
             case 'a':
@@ -98,7 +97,7 @@ void Studio_UI_MgtEntry(void)
             case 'u':
             case 'U':
                 printf("Input the ID:");
-                id = getchar();
+                scanf("%d", &id);
                 getchar();
                 if (Studio_UI_Modify(id))
                 {  //从新载入数据
@@ -110,6 +109,7 @@ void Studio_UI_MgtEntry(void)
             case 'S':
                 printf("输入放映厅ID:");
                 scanf("%d", &seatID);
+                getchar();
                 Seat_UI_MgtEntry(seatID);
                 paging.totalRecords = Studio_Srv_FetchAll(head);
                 List_Paging(head, paging, studio_node_t);
@@ -158,12 +158,9 @@ int Studio_UI_Add(void)
         printf("****************  Add New Projection Room  ****************\n");
         printf("-------------------------------------------------------\n");
         printf("Room Name:");
-        fflush(stdin);
-        // gets(rec.name);
-        // getchar();
-        fgets(rec.name, 30, stdin);  // 1\n\0
-        fflush(stdin);
-        rec.name[strlen(rec.name) - 1] = '\0';
+        scanf("%s", rec.name);
+        if (rec.name[strlen(rec.name) - 1] == '\n')
+            rec.name[strlen(rec.name) - 1] = '\0';
         printf("Row Count of Seats:");
         scanf("%d", &(rec.rowsCount));
         printf("Column Count of Seats:");
@@ -180,8 +177,9 @@ int Studio_UI_Add(void)
             printf("The new room added failed!\n");
         printf("-------------------------------------------------------\n");
         printf("[A]dd more, [R]eturn:");
-        fflush(stdin);
+        getchar();
         scanf("%c", &choice);
+        getchar();
     } while ('a' == choice || 'A' == choice);
     return newRecCount;
 }
@@ -204,7 +202,6 @@ int Studio_UI_Modify(int id)
     if (!Studio_Srv_FetchByID(id, &rec))
     {
         printf("The room does not exist!\nPress [Enter] key to return!\n");
-        getchar();
         return 0;
     }
 
@@ -213,12 +210,12 @@ int Studio_UI_Modify(int id)
     printf("-------------------------------------------------------\n");
     printf("Room ID:%d\n", rec.id);
     printf("Room Name[%s]:", rec.name);
-    fflush(stdin);
-    //    gets(rec.name);
-    // getchar();
+
     fgets(rec.name, 30, stdin);
-    rec.name[strlen(rec.name) - 1] = '\0';
-    fflush(stdin);
+    scanf("%s", rec.name);
+    if (rec.name[strlen(rec.name) - 1] == '\n')
+        rec.name[strlen(rec.name) - 1] = '\0';
+
     List_Init(list, seat_node_t);
     seatcount = Seat_Srv_FetchByRoomID(list, rec.id);
     if (seatcount)
@@ -255,7 +252,6 @@ int Studio_UI_Modify(int id)
     else
         printf("The room data updated failed!\nPress [Enter] key to return!\n");
 
-    getchar();
     return rtn;
 }
 

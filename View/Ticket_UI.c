@@ -14,10 +14,10 @@ int Ticket_UI_MgtEntry(int schedule_id)
 
     //用剧目id作为参数 ,获取剧目信息
     play_t buf2;
-    if (!Play_Srv_FetchByID(buf.play_id, &buf2))
+    if (1 != Play_Srv_FetchByID(buf.play_id, &buf2))
     {
         printf("该剧目不存在!\n按 [Enter] 返回上层!\n");
-        setbuf(stdin, NULL);
+        // setbuf(stdin, NULL);
         getchar();
         return 0;
     }
@@ -33,9 +33,7 @@ reshow:
     printf(
         "==================================================================\n");
 
-    fflush(stdin);
     scanf("%d", &which);
-    fflush(stdin);
     switch (which)
     {
         case 2:
@@ -47,7 +45,7 @@ reshow:
             printf("生成\n");
             //?生成票?
             int eee = Ticket_Srv_GenBatch(schedule_id);
-            printf("eee =%d\n", eee);
+            // printf("eee =%d\n", eee);
             // 跳转步骤e
             return 0;
         case 0:

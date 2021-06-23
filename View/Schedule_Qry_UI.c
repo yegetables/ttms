@@ -63,6 +63,7 @@ void Schedule_UI_ListAll(void)
             "==\n");
         printf("Your Choice:");
         scanf("%c", &choice);
+        getchar();
         switch (choice)
         {
             case 'q':
