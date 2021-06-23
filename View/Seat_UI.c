@@ -213,8 +213,9 @@ int Seat_UI_Add(seat_list_t list, int roomID, int row, int column)
             "%c:无座位\n"
             "%c:损坏的座位\n",
             CHAR_SEAT_GOOD, CHAR_SEAT_NONE, CHAR_SEAT_BROKEN);
-        scanf("%d", &char_status);
-
+            getchar();
+        scanf("%c", &char_status);
+        getchar();
         if (char_status == CHAR_SEAT_GOOD || char_status == CHAR_SEAT_NONE ||
             char_status == CHAR_SEAT_BROKEN)
         {
@@ -281,8 +282,9 @@ int Seat_UI_Modify(seat_list_t list, int row, int column)
            Seat_UI_Status2Char(nodePtr->data.status));
     printf("请输入修改后座位的状态\n");
     char char_status;
-    scanf("%d", &char_status);
-
+    getchar();
+    scanf("%c", &char_status);
+    getchar();
     if (char_status == CHAR_SEAT_GOOD || char_status == CHAR_SEAT_NONE ||
         char_status == CHAR_SEAT_BROKEN)
     {
