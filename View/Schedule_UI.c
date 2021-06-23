@@ -9,7 +9,7 @@ void Schedule_UI_MgtEntry(int play_id)
     schedule_node_t *pos;
     Pagination_t paging;
 
-    List_Init(head, studio_node_t);
+    List_Init(head, schedule_node_t);
 
     paging.offset       = 0;
     paging.pageSize     = SCHEDULE_PAGE_SIZE;
@@ -56,16 +56,19 @@ void Schedule_UI_MgtEntry(int play_id)
             "==\n");
         printf("Your Choice:");
         scanf("%c", &choice);
-        getchar();
+        while (choice == '\n') choice = getchar();
+
         switch (choice)
         {
             case 'a':
             case 'A':
                 Schedule_UI_Add(play_id);  //新添加成功，跳到最后一页显示
+
                 paging.totalRecords = Schedule_Srv_FetchAll(head);
                 // printf("ser:%d\n", paging.totalRecords);
-                Paging_Locate_LastPage(head, paging, studio_node_t);
+                Paging_Locate_LastPage(head, paging, schedule_node_t);
                 // printf("lat:%d\n", paging.totalRecords);
+
                 break;
             case 'd':
             case 'D':
@@ -74,7 +77,7 @@ void Schedule_UI_MgtEntry(int play_id)
                 if (Schedule_UI_Delete(id))
                 {  //从新载入数据
                     paging.totalRecords = Schedule_Srv_FetchAll(head);
-                    List_Paging(head, paging, studio_node_t);
+                    List_Paging(head, paging, schedule_node_t);
                 }
                 break;
             case 'u':
@@ -84,7 +87,7 @@ void Schedule_UI_MgtEntry(int play_id)
                 if (Schedule_UI_Modify(id))
                 {  //从新载入数据
                     paging.totalRecords = Schedule_Srv_FetchAll(head);
-                    List_Paging(head, paging, studio_node_t);
+                    List_Paging(head, paging, schedule_node_t);
                 }
                 break;
             case 't':
@@ -93,26 +96,31 @@ void Schedule_UI_MgtEntry(int play_id)
                 scanf("%d", &id);
 
                 schedule_t sch;
-                Schedule_Srv_FetchByID(id, &sch);
+                int ret = 0;
+                if (1 != (ret = Schedule_Srv_FetchByID(id, &sch)))
+                {
+                    printf("failed %d\n", ret);
+                    break;
+                }
                 // printf("rse==%d\n", rse);
 
                 Ticket_UI_MgtEntry(id);
 
                 paging.totalRecords = Schedule_Srv_FetchAll(head);
-                List_Paging(head, paging, studio_node_t);
+                List_Paging(head, paging, schedule_node_t);
                 break;
             case 'p':
             case 'P':
                 if (!Pageing_IsFirstPage(paging))
                 {
-                    Paging_Locate_OffsetPage(head, paging, -1, studio_node_t);
+                    Paging_Locate_OffsetPage(head, paging, -1, schedule_node_t);
                 }
                 break;
             case 'n':
             case 'N':
                 if (!Pageing_IsLastPage(paging))
                 {
-                    Paging_Locate_OffsetPage(head, paging, 1, studio_node_t);
+                    Paging_Locate_OffsetPage(head, paging, 1, schedule_node_t);
                 }
                 break;
             case 'r':
@@ -168,7 +176,9 @@ int Schedule_UI_Add(int play_id)
         }
         printf("-------------------------------------------------------\n");
         printf("[A]dd more, [R]eturn:");
-        scanf("%d", &choice);
+        //
+        getchar();
+        scanf("%c", &choice);
         getchar();
 
     } while ('a' == choice || 'A' == choice);

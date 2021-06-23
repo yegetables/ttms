@@ -41,7 +41,7 @@ int Schedule_Perst_SelectAll(schedule_list_t list)
 int Schedule_Perst_SelectByID(int id, schedule_t *buf)
 {
     int found = 0;
-    FILE *fp  = fopen("Schedule.dat", "ab");
+    FILE *fp  = fopen("Schedule.dat", "rb");
     if (fp == NULL)
     {
         printf("fail to open file\n");
@@ -58,18 +58,12 @@ int Schedule_Perst_SelectByID(int id, schedule_t *buf)
         while (!feof(fp))
         {
             int x = fread(&data, sizeof(data), 1, fp);
-            if (x == 0)
+
+            if (data.id == id)
             {
-                fclose(fp);
-                return found;
-            }
-            else
-            {
-                if (data.id == id)
-                {
-                    found = 1;
-                    *buf  = data;
-                }
+                found = 1;
+                *buf  = data;
+                break;
             }
         }
         fclose(fp);

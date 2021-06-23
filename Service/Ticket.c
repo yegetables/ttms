@@ -6,12 +6,16 @@ int Ticket_Srv_GenBatch(int schedule_id)
     seat_list_t seat_head;
     List_Init(seat_head, seat_node_t);
     if (seat_head == NULL) return number;
+
     number = 0;
     int re = 0;
     schedule_t buf;
+    play_t puf;
     re = Schedule_Srv_FetchByID(schedule_id, &buf);
+    Play_Srv_FetchByID(buf.play_id, &puf);
     // printf("re 034rr %d\n", re);
 
+    // printf("aofasfa\n");
     if (re != 1)
     {
         // printf("re 0000 %d\n", re);
@@ -19,18 +23,37 @@ int Ticket_Srv_GenBatch(int schedule_id)
     }
     if ((re = Seat_Srv_FetchValidByRoomID(seat_head, buf.studio_id)) >= 0)
     {
-        // printf("re wdasfa%d\n", re);
+        // printf("ok %d\n", re);
         //成功
         number += re;
-        //MARK:BUG:
-        Ticket_Perst_Insert(seat_head);
-        // printf("re 222a%d\n", re);
     }
     else
     {
         printf("error %s:%d\n", __FILE__, __LINE__);
+        return number;
     }
-    // printf("re wfffarrd\n", number);
+    // num = 100
+    ticket_list_t ticketList;
+    List_Init(ticketList, ticket_node_t);
+    seat_node_t* tmp;
+    // printf("safa\n");
+    List_ForEach(seat_head, tmp)
+    {
+        ticket_node_t* tnode = (ticket_node_t*)malloc(sizeof(ticket_node_t));
+
+        ticket_t ymp;
+        ymp.schedule_id = schedule_id;
+        ymp.seat_id     = tmp->data.id;
+        ymp.status      = TICKET_AVL;
+        ymp.price       = puf.price;
+        ymp.id          = EntKey_Perst_GetNewKeys("Ticket", 1);
+        tnode->data     = ymp;
+        List_AddTail(ticketList, tnode);
+    }
+
+    re = Ticket_Perst_Insert(ticketList);
+    // printf("asfafaf\n");
+    List_Free(ticketList, ticket_node_t);
     return number;
 }
 int Ticket_Srv_DeleteBatch(int schedule_id)
@@ -84,20 +107,22 @@ ticket_node_t* Ticket_Srv_FetchBySeatID(ticket_list_t list, int seat_id)
 }
 int Ticket_Srv_FetchBySchID(int schedule_id, ticket_list_t list)
 {
-    int count = 0;
-    List_Free(list, ticket_node_t);
-    ticket_list_t tickList;
-    List_Init(tickList, ticket_node_t);
-    count = Ticket_Perst_SelBySchID(tickList, schedule_id);
-    if (count <= 0)
-    {
-        List_Destroy(tickList, ticket_node_t);
-        return 0;
-    }
-    else
-    {
-        return count;
-    }
+    // int count = 0;
+    // List_Free(list, ticket_node_t);
+    // ticket_list_t tickList;
+    // List_Init(tickList, ticket_node_t);
+    // count = Ticket_Perst_SelBySchID(tickList, schedule_id);
+    // if (count <= 0)
+    // {
+    //     List_Destroy(tickList, ticket_node_t);
+    //     return 0;
+    // }
+    // else
+    // {
+    //     return count;
+    // }
+
+    return Ticket_Perst_SelBySchID(list, schedule_id);
 }
 int Ticket_Srv_Modify(ticket_t* data) { return Ticket_Perst_Update(data); }
 

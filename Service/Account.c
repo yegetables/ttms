@@ -28,7 +28,7 @@ int Account_Srv_Modify(account_t *data)
         {
             if (fread(&tmp, sizeof(account_t), 1, fp) < 1)
             {
-                if (!feof(fp))  //文件结束：返回非0值；文件未结束：返回0值
+                if (feof(fp))  //文件结束：返回非0值；文件未结束：返回0值
                 {
                     printf("fread error\n");
                     fclose(fp);

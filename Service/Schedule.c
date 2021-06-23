@@ -2,7 +2,7 @@
 
 int Schedule_Srv_FetchByPlay(schedule_list_t list, int play_id)
 {
-    List_Init(list, schedule_node_t);
+    // List_Init(list, schedule_node_t);
     return Schedule_Perst_SelectByPlay(list, play_id);
 }
 

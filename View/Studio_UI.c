@@ -109,6 +109,7 @@ void Studio_UI_MgtEntry(void)
             case 'S':
                 printf("输入放映厅ID:");
                 scanf("%d", &seatID);
+                getchar();
                 Seat_UI_MgtEntry(seatID);
                 paging.totalRecords = Studio_Srv_FetchAll(head);
                 List_Paging(head, paging, studio_node_t);
@@ -176,7 +177,7 @@ int Studio_UI_Add(void)
             printf("The new room added failed!\n");
         printf("-------------------------------------------------------\n");
         printf("[A]dd more, [R]eturn:");
-
+        getchar();
         scanf("%c", &choice);
         getchar();
     } while ('a' == choice || 'A' == choice);
@@ -209,12 +210,12 @@ int Studio_UI_Modify(int id)
     printf("-------------------------------------------------------\n");
     printf("Room ID:%d\n", rec.id);
     printf("Room Name[%s]:", rec.name);
-    
+
     fgets(rec.name, 30, stdin);
-    scanf("%s",rec.name);
-    if(rec.name[strlen(rec.name) - 1]== '\n')
-    rec.name[strlen(rec.name) - 1] = '\0';
-    
+    scanf("%s", rec.name);
+    if (rec.name[strlen(rec.name) - 1] == '\n')
+        rec.name[strlen(rec.name) - 1] = '\0';
+
     List_Init(list, seat_node_t);
     seatcount = Seat_Srv_FetchByRoomID(list, rec.id);
     if (seatcount)

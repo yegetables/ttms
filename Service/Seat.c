@@ -84,7 +84,8 @@ int Seat_Srv_FetchByRoomID(seat_list_t list, int roomID)
 {
     // 请补充完整
     int Count = Seat_Perst_SelectByRoomID(list, roomID);  //获取座位
-    Seat_Srv_SortSeatList(list);                          //排序
+    // Seat_Srv_SortSeatList(list);                          //排序
+    // printf("%d daf\n", Count);
     return Count;
 }
 
@@ -94,18 +95,23 @@ int Seat_Srv_FetchValidByRoomID(seat_list_t list, int roomID)
     seat_list_t headStr;  //所有roomID的头节点
     List_Init(headStr, seat_node_t);
 
-    Seat_Srv_FetchByRoomID(headStr, roomID);  //获取所有roomID的座位
-    int validCount     = 0;                   //有效座位个数
-    seat_list_t curPos = NULL;                //遍历座位的指针
-    List_ForEach(headStr, curPos)             //遍历所有roomID座位
+    int ha1 = Seat_Srv_FetchByRoomID(headStr, roomID);  //获取所有roomID的座位
+
+    int validCount     = 0;        //有效座位个数
+    seat_list_t curPos = NULL;     //遍历座位的指针
+    List_ForEach(headStr, curPos)  //遍历所有roomID座位
     {
-        if (curPos->data.status == SEAT_GOOD && curPos->data.roomID == roomID)
+        if (curPos->data.status == SEAT_GOOD)
         {
-            List_AddTail(list, curPos);
+            seat_list_t ads = (seat_list_t)malloc(sizeof(seat_node_t));
+            ads->data       = curPos->data;
+            List_AddTail(list, ads);
             validCount++;
         }
     }
-    Seat_Srv_SortSeatList(list);
+    List_Free(headStr, seat_node_t);
+    // printf("%d valid\n", validCount);
+    // Seat_Srv_SortSeatList(list);
     return validCount;
 }
 

@@ -6,6 +6,7 @@
 
 #include "../Common/Common.h"
 #include "../Common/List.h"
+static const char SCHEDULE_KEY_NAME[] = "Schedule";
 typedef struct
 {
     int id;            //演出计划id

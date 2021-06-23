@@ -132,7 +132,8 @@ void Play_UI_MgtEntry()
                 break;
             case 'r':
             case 'R':
-                return;
+                choice = 'r';
+                break;
             default:
                 printf("输入有误,请重新输入\n");
                 break;
