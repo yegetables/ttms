@@ -20,13 +20,13 @@ dod:
     do
     {
         printf("\n=========================================================\n");
-        printf("**************** SALE  System 23****************\n");
+        printf("**************** 售票系统 ****************\n");
         printf("[C]显示演出计划\n");
         printf("[S]查询剧目名字\n");
         printf("[F]根据名称筛选剧目\n");
-        printf("[R]eturn\n");
-        printf("[E]xist.\n");
-        printf("\n=======|[P]revPage|[N]extPage|=============\n");
+        printf("[R]返回\n");
+        printf("[E]退出.\n");
+        printf("\n=======|[P]上一页|[N]下一页|=============\n");
         printf("Please input your choice:");
         scanf("%c", &choice);
         getchar();
@@ -123,14 +123,16 @@ w:
     do
     {
         printf("\n=========================================================\n");
-        printf("**************** SALE  System **33**************\n");
+        printf("**************** 售票系统 ****************\n");
         // int i;
-        List_ForEach(sch_list, tmp) printf(
-            "演出计划id:%d,剧目ID:%d,演出厅ID:%d,座位数:%d\n", tmp->data.id,
-            tmp->data.play_id, tmp->data.studio_id, tmp->data.seat_count);
+        printf("演出计划id||剧目ID||演出厅ID||座位数\n");
+
+        List_ForEach(sch_list, tmp)
+            printf("%10d %6d %8d %6d\n", tmp->data.id, tmp->data.play_id,
+                   tmp->data.studio_id, tmp->data.seat_count);
+        printf("--------------------------------\n");
         printf("[T]显示演出票\n");
-        printf(
-            "\n=======|[P]revPage|[N]extPage|[E]xist|[R]eturn=============\n");
+        printf("\n=======|[P]上一页|[N]下一页|[E]退出|[R]返回=============\n");
         printf("Please input your choice:");
         scanf("%c", &choice);
 
@@ -193,7 +195,7 @@ int Sale_UI_SellTicket(ticket_list_t tickList, seat_list_t seatList)
         return -1;
     }
     tick_node->data.status = TICKET_SOLD;
-    
+
     if (Ticket_Srv_Modify(&tick_node->data))
     {
         printf("修改票信息成功\n");
@@ -264,7 +266,7 @@ void Sale_UI_ShowTicket(play_t p_t)
     printf(
         "\n========================================================="
         "\n");
-    printf("**************** SALE  System1 ****************\n");
+    printf("**************** 售票系统 ****************\n");
     //    Schedule_Srv_FetchByID();
     schedule_list_t sch_t_head;  //演出计划
     schedule_node_t* sch_t;
