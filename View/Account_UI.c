@@ -21,6 +21,8 @@ int getch()
    printf("*");
    return c;
 }
+#else 
+#include<conio.h>
 #endif
 
 int SysLogin()  // SL界面
