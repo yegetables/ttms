@@ -1,4 +1,7 @@
 #include "Account_UI.h"
+
+#if __has_include(<termio.h>)
+#include <termio.h>
 int getch()
 {
    int c = 0;
@@ -18,6 +21,10 @@ int getch()
    printf("*");
    return c;
 }
+#else 
+#include<conio.h>
+#endif
+
 int SysLogin()  // SL界面
 {
     Account_Srv_InitSys();
