@@ -2,9 +2,6 @@
 
 #if __has_include(<termio.h>)
 #include <termio.h>
-#else
-#endif
-
 int getch()
 {
    int c = 0;
@@ -24,6 +21,8 @@ int getch()
    printf("*");
    return c;
 }
+#endif
+
 int SysLogin()  // SL界面
 {
     Account_Srv_InitSys();
