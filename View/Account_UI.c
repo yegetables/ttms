@@ -1,4 +1,10 @@
 #include "Account_UI.h"
+
+#if __has_include(<termio.h>)
+#include <termio.h>
+#else
+#endif
+
 int getch()
 {
    int c = 0;
